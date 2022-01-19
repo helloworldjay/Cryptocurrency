@@ -9,7 +9,7 @@ import UIKit
 
 import Then
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
   
   // MARK: Properties
   
