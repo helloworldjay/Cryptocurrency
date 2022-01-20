@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CDF2799728C008F2AD1 /* CoinListView.swift */; };
+		48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE127997298008F2AD1 /* CoinListViewModel.swift */; };
+		48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */; };
 		4881F42727979E5200472C90 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42627979E5200472C90 /* TabBarController.swift */; };
 		4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42827979E6600472C90 /* ExchangeViewController.swift */; };
 		4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */; };
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48256CDF2799728C008F2AD1 /* CoinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListView.swift; sourceTree = "<group>"; };
+		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
+		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		4881F42627979E5200472C90 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +104,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48256CD42799715A008F2AD1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				48256CD52799716C008F2AD1 /* CoinList */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		48256CD52799716C008F2AD1 /* CoinList */ = {
+			isa = PBXGroup;
+			children = (
+				48256CDF2799728C008F2AD1 /* CoinListView.swift */,
+				48256CE127997298008F2AD1 /* CoinListViewModel.swift */,
+				48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */,
+			);
+			path = CoinList;
+			sourceTree = "<group>";
+		};
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +145,7 @@
 		4881F42527979DDF00472C90 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				48256CD42799715A008F2AD1 /* Components */,
 				4881F42827979E6600472C90 /* ExchangeViewController.swift */,
 			);
 			path = Exchange;
@@ -363,7 +388,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
+				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
@@ -371,6 +398,7 @@
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
+				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
