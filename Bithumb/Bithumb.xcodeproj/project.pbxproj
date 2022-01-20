@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */; };
+		48256CDA27997246008F2AD1 /* ExchangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CD927997246008F2AD1 /* ExchangeUseCase.swift */; };
 		48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CDB27997267008F2AD1 /* ExchangeSearchBar.swift */; };
 		48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CDD2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift */; };
 		48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CDF2799728C008F2AD1 /* CoinListView.swift */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
+		48256CD927997246008F2AD1 /* ExchangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeUseCase.swift; sourceTree = "<group>"; };
 		48256CDB27997267008F2AD1 /* ExchangeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBar.swift; sourceTree = "<group>"; };
 		48256CDD2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModel.swift; sourceTree = "<group>"; };
 		48256CDF2799728C008F2AD1 /* CoinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListView.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			children = (
 				48256CD42799715A008F2AD1 /* Components */,
 				4881F42827979E6600472C90 /* ExchangeViewController.swift */,
+				48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */,
+				48256CD927997246008F2AD1 /* ExchangeUseCase.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -402,9 +408,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48256CDA27997246008F2AD1 /* ExchangeUseCase.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
+				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
