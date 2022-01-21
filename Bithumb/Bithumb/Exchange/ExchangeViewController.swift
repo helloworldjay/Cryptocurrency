@@ -7,9 +7,24 @@
 
 import UIKit
 
+import Then
+
 final class ExchangeViewController: UIViewController {
+  
+  // MARK: Properties
+  
+  let exchangeSearchBar = ExchangeSearchBar()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    layout()
   }
+  
+  private func layout() {
+    self.navigationItem.do {
+      $0.titleView = self.exchangeSearchBar
+    }
+  }
+  
 }

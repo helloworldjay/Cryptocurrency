@@ -57,14 +57,14 @@
 /* Begin PBXFileReference section */
 		48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		48256CD927997246008F2AD1 /* ExchangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeUseCase.swift; sourceTree = "<group>"; };
-		48256CDB27997267008F2AD1 /* ExchangeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBar.swift; sourceTree = "<group>"; };
+		48256CDB27997267008F2AD1 /* ExchangeSearchBar.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBar.swift; sourceTree = "<group>"; tabWidth = 2; };
 		48256CDD2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModel.swift; sourceTree = "<group>"; };
 		48256CDF2799728C008F2AD1 /* CoinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListView.swift; sourceTree = "<group>"; };
 		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		48256CE62799732E008F2AD1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4881F42627979E5200472C90 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
+		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
 		4881F4332797A29900472C90 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
