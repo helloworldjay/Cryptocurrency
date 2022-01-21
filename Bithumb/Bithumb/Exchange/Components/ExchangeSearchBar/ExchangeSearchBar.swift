@@ -30,8 +30,8 @@ final class ExchangeSearchBar: UISearchBar {
   override init(frame: CGRect) {
     super.init(frame: frame)
 
-    configure()
-    layout()
+    self.configure()
+    self.layout()
   }
   
   required init?(coder: NSCoder) {
@@ -39,17 +39,18 @@ final class ExchangeSearchBar: UISearchBar {
   }
   
   private func layout() {
-    self.addSubview(giftButton)
-    self.addSubview(bellButton)
+    [giftButton, bellButton].forEach {
+      self.addSubview($0)
+    }
     
     self.searchTextField.snp.makeConstraints {
       $0.leading.equalToSuperview().offset(12)
-      $0.trailing.equalTo(giftButton.snp.leading).offset(-12)
+      $0.trailing.equalTo(self.giftButton.snp.leading).offset(-12)
       $0.centerY.equalToSuperview()
     }
     
     self.giftButton.snp.makeConstraints {
-      $0.trailing.equalTo(bellButton.snp.leading).offset(-12)
+      $0.trailing.equalTo(self.bellButton.snp.leading).offset(-12)
       $0.centerY.equalToSuperview()
     }
     
