@@ -35,6 +35,7 @@
 		48FDD0392795422F002F0050 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 48FDD0382795422F002F0050 /* RxCocoa */; };
 		48FDD03B2795422F002F0050 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 48FDD03A2795422F002F0050 /* RxRelay */; };
 		48FDD03D2795422F002F0050 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48FDD03C2795422F002F0050 /* RxSwift */; };
+		B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		48FDD018279541E4002F0050 /* BithumbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BithumbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDD01C279541E4002F0050 /* BithumbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbUITests.swift; sourceTree = "<group>"; };
 		48FDD01E279541E4002F0050 /* BithumbUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				48FDD004279541E4002F0050 /* Assets.xcassets */,
 				48FDD006279541E4002F0050 /* LaunchScreen.storyboard */,
 				48FDD009279541E4002F0050 /* Info.plist */,
+				B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				48256CDA27997246008F2AD1 /* ExchangeUseCase.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
+				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,

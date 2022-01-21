@@ -62,22 +62,12 @@ final class ExchangeSearchBar: UISearchBar {
   private func configure() {
     self.searchTextField.do {
       $0.layer.borderWidth = 2
-      $0.layer.borderColor = UIColor(
-        red: 227/255,
-        green: 129/255,
-        blue: 30/255,
-        alpha: 1
-      ).cgColor
+      $0.layer.borderColor = UIColor.bithumb.cgColor
       $0.layer.cornerRadius = 10
       $0.leftView?.tintColor = .black
       $0.backgroundColor = .systemBackground
       $0.placeholder = "코인명 또는 심볼 검색"
-      $0.tintColor = UIColor(
-        red: 227/255,
-        green: 129/255,
-        blue: 30/255,
-        alpha: 1
-      )
+      $0.tintColor = UIColor.bithumb
     }
   }
 }
