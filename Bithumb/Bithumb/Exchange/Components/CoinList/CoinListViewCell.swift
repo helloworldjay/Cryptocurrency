@@ -12,15 +12,14 @@ import SnapKit
 final class CoinListViewCell: UITableViewCell {
   
   // MARK: Properties
-  
-  static let reuseIdentifier = "CoinListViewCell"
-  
+    
   private let coinTitleLabel = UILabel()
   private let tickerLabel = UILabel()
   private let titleStackView = UIStackView()
   private let currentPriceLabel = UILabel()
   private let priceChangedRatioLabel = UILabel()
   private let priceDifferenceLabel = UILabel()
+  private let changesStackView = UIStackView()
   private let transactionAmountLabel = UILabel()
   
   override func layoutSubviews() {
@@ -32,13 +31,13 @@ final class CoinListViewCell: UITableViewCell {
 
   private func attribute() {
     self.coinTitleLabel.do {
-      $0.font = .systemFont(ofSize: 12)
+      $0.font = .systemFont(ofSize: 14)
       $0.numberOfLines = 2
       $0.lineBreakMode = .byCharWrapping
     }
     
     self.tickerLabel.do {
-      $0.font = .systemFont(ofSize: 8)
+      $0.font = .systemFont(ofSize: 10)
       $0.textColor = .darkGray
     }
     
@@ -48,54 +47,61 @@ final class CoinListViewCell: UITableViewCell {
     }
     
     self.currentPriceLabel.do {
-      $0.font = .systemFont(ofSize: 11)
+      $0.font = .systemFont(ofSize: 14)
     }
     
     self.priceChangedRatioLabel.do {
-      $0.font = .systemFont(ofSize: 11)
+      $0.font = .systemFont(ofSize: 14)
+      $0.textAlignment = .right
     }
     
     self.priceDifferenceLabel.do {
-      $0.font = .systemFont(ofSize: 7)
+      $0.font = .systemFont(ofSize: 10)
+      $0.textAlignment = .right
+    }
+    
+    self.changesStackView.do {
+      $0.axis = .vertical
+      $0.spacing = 2
     }
     
     self.transactionAmountLabel.do {
-      $0.font = .systemFont(ofSize: 12)
+      $0.font = .systemFont(ofSize: 14)
     }
   }
   
   private func layout() {
-    [self.titleStackView, self.currentPriceLabel, self.priceChangedRatioLabel, self.priceDifferenceLabel, self.transactionAmountLabel].forEach {
-      contentView.addSubview($0)
+    [self.titleStackView, self.currentPriceLabel, self.changesStackView, self.transactionAmountLabel].forEach {
+      self.contentView.addSubview($0)
     }
     
     [self.coinTitleLabel, self.tickerLabel].forEach {
       self.titleStackView.addArrangedSubview($0)
     }
     
-    self.titleStackView.snp.makeConstraints { make in
-      make.centerY.equalToSuperview()
-      make.leading.equalToSuperview().inset(10)
-    }
-
-    self.currentPriceLabel.snp.makeConstraints { make in
-      make.centerY.equalTo(self.coinTitleLabel)
-      make.trailing.equalToSuperview().multipliedBy(0.6)
+    [self.priceChangedRatioLabel, self.priceDifferenceLabel].forEach {
+      self.changesStackView.addArrangedSubview($0)
     }
     
-    self.priceChangedRatioLabel.snp.makeConstraints { make in
-      make.centerY.equalTo(self.coinTitleLabel)
-      make.trailing.equalToSuperview().multipliedBy(0.75)
+    self.titleStackView.snp.makeConstraints {
+      $0.centerY.equalToSuperview()
+      $0.leading.equalToSuperview().inset(12)
+      $0.width.equalToSuperview().multipliedBy(0.2)
     }
     
-    self.priceDifferenceLabel.snp.makeConstraints { make in
-      make.trailing.equalTo(self.priceChangedRatioLabel)
-      make.top.equalTo(self.priceChangedRatioLabel.snp.bottom)
+    self.currentPriceLabel.snp.makeConstraints {
+      $0.centerY.equalTo(self.coinTitleLabel)
+      $0.trailing.equalToSuperview().multipliedBy(0.5)
     }
     
-    self.transactionAmountLabel.snp.makeConstraints { make in
-      make.centerY.equalTo(self.coinTitleLabel)
-      make.trailing.equalToSuperview().inset(10)
+    self.changesStackView.snp.makeConstraints {
+      $0.centerY.equalToSuperview()
+      $0.trailing.equalToSuperview().multipliedBy(0.7)
+    }
+    
+    self.transactionAmountLabel.snp.makeConstraints {
+      $0.centerY.equalTo(self.coinTitleLabel)
+      $0.trailing.equalToSuperview().inset(12)
     }
   }
 }
