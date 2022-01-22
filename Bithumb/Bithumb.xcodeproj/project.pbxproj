@@ -21,6 +21,7 @@
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
 		4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4332797A29900472C90 /* TransactionViewController.swift */; };
 		4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4352797A2B800472C90 /* MoreOptionViewController.swift */; };
+		488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
 		48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFD279541E2002F0050 /* SceneDelegate.swift */; };
 		48FDD005279541E4002F0050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48FDD004279541E4002F0050 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
 		4881F4332797A29900472C90 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		4881F4352797A2B800472C90 /* MoreOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionViewController.swift; sourceTree = "<group>"; };
+		488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModelTests.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDCFFB279541E2002F0050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48FDCFFD279541E2002F0050 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -248,6 +250,30 @@
 			path = TBD;
 			sourceTree = "<group>";
 		};
+		488F9E7D279BA7BF0021A545 /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				488F9E7E279BA7C70021A545 /* Components */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
+		488F9E7E279BA7C70021A545 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				488F9E7F279BA7D80021A545 /* ExchangeSearchBar */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		488F9E7F279BA7D80021A545 /* ExchangeSearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */,
+			);
+			path = ExchangeSearchBar;
+			sourceTree = "<group>";
+		};
 		48FDCFEF279541E2002F0050 = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +312,7 @@
 		48FDD011279541E4002F0050 /* BithumbTests */ = {
 			isa = PBXGroup;
 			children = (
+				488F9E7D279BA7BF0021A545 /* Exchange */,
 				48FDD012279541E4002F0050 /* BithumbTests.swift */,
 			);
 			path = BithumbTests;
@@ -594,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
