@@ -10,7 +10,35 @@ import Foundation
 import Alamofire
 import RxSwift
 
+protocol NetworkManagerLogic {
+  func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<TickerResponse>
+}
+
 struct NetworkManager: NetworkManagerLogic {
+  
+  // MARK: Fetch Data
+  
+  func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<TickerResponse> {
+    return Single.create { observer -> Disposable in
+      AF.request(NetworkRequestRouter.fetchTickerData(orderCurrency, paymentCurrency))
+        .validate()
+        .response { response in
+          switch response.result {
+          case .success(let data):
+            guard let data = self.dataToDecode(orderCurrency: orderCurrency, data: data) else { return }
+            if let response = try? JSONDecoder().decode(TickerResponse.self, from: data) {
+              observer(.success(response))
+            } else {
+              observer(.failure(NetworkError.decodingError))
+            }
+          case .failure(_):
+            observer(.failure(NetworkError.networkError))
+          }
+        }
+      return Disposables.create()
+    }
+  }
+  
   
   // MARK: Converters
   
