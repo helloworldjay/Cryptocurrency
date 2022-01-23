@@ -29,7 +29,7 @@ class BottomSheet: UIViewController {
   }
   
   private func attribute() {
-    bottomSheetView.do {
+    self.bottomSheetView.do {
       $0.backgroundColor = .white
       $0.layer.cornerRadius = 10
       $0.layer.maskedCorners = [.layerMinXMinYCorner,
@@ -37,13 +37,13 @@ class BottomSheet: UIViewController {
       $0.clipsToBounds = true
     }
     
-    dimmedTap.do {
-      $0.addTarget(self, action: #selector(dimmedViewTapped))
+    self.dimmedTap.do {
+      $0.addTarget(self, action: #selector(self.dimmedViewTapped))
     }
     
-    dimmedView.do {
+    self.dimmedView.do {
       $0.backgroundColor = .darkGray.withAlphaComponent(0.7)
-      $0.addGestureRecognizer(dimmedTap)
+      $0.addGestureRecognizer(self.dimmedTap)
       $0.isUserInteractionEnabled = true
     }
   }
@@ -53,7 +53,11 @@ class BottomSheet: UIViewController {
   }
   
   func hideBottomSheetAndGoBack() {
-    self.bottomSheetViewTopConstraint?.constraint.update(inset: 0)
+    self.bottomSheetView.snp.remakeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(self.view.snp.bottom).offset(self.defaultHeight)
+      $0.top.equalTo(self.view.snp.bottom)
+    }
     
     UIView.animate(withDuration: 0.25,
                    delay: 0,
@@ -65,13 +69,13 @@ class BottomSheet: UIViewController {
   }
   
   private func layout() {
-    self.view.addSubview(dimmedView)
-    self.view.addSubview(bottomSheetView)
+    self.view.addSubview(self.dimmedView)
+    self.view.addSubview(self.bottomSheetView)
     
     self.bottomSheetView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalTo(self.view.snp_bottomMargin)
-      self.bottomSheetViewTopConstraint = $0.top.equalTo(self.view.snp_bottomMargin)
+      $0.bottom.equalTo(self.view.snp.bottom).offset(self.defaultHeight)
+      $0.top.equalTo(self.view.snp.bottom)
     }
     
     self.dimmedView.snp.makeConstraints {
@@ -85,8 +89,12 @@ class BottomSheet: UIViewController {
   }
   
   private func showBottomSheet() {
-    self.bottomSheetViewTopConstraint?.constraint.update(inset: defaultHeight)
-
+    self.bottomSheetView.snp.remakeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(self.view.snp.bottom)
+      $0.top.equalTo(self.view.snp.bottom).inset(self.defaultHeight)
+    }
+    
     UIView.animate(withDuration: 0.25,
                    delay: 0,
                    options: .curveEaseIn) { [weak self] in
