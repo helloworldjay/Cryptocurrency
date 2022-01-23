@@ -21,6 +21,7 @@
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
 		4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4332797A29900472C90 /* TransactionViewController.swift */; };
 		4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4352797A2B800472C90 /* MoreOptionViewController.swift */; };
+		4882FA6F279D288100A25880 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4882FA6E279D288100A25880 /* Currency.swift */; };
 		488F9E7C279BA68F0021A545 /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E7B279BA68E0021A545 /* TickerResponse.swift */; };
 		488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
@@ -71,6 +72,7 @@
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
 		4881F4332797A29900472C90 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		4881F4352797A2B800472C90 /* MoreOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionViewController.swift; sourceTree = "<group>"; };
+		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		488F9E7B279BA68E0021A545 /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModelTests.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				488F9E7B279BA68E0021A545 /* TickerResponse.swift */,
+				4882FA6E279D288100A25880 /* Currency.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
 				4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */,
+				4882FA6F279D288100A25880 /* Currency.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
