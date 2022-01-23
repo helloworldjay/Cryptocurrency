@@ -48,6 +48,7 @@ final class ExchangeCategoryView: UIView {
   
   private func attribute() {
     self.segmentedControl.do {
+      $0.setDividerColor(with: UIColor.white)
       $0.selectedSegmentIndex = 0
       $0.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
       $0.setTitleTextAttributes([
