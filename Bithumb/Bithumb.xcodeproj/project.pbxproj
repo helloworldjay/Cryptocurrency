@@ -25,6 +25,7 @@
 		488F9E7C279BA68F0021A545 /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E7B279BA68E0021A545 /* TickerResponse.swift */; };
 		488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */; };
 		489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */; };
+		489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */; };
 		489FB624279C43F10078AEE1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB623279C43F10078AEE1 /* NetworkError.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
 		48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFD279541E2002F0050 /* SceneDelegate.swift */; };
@@ -78,6 +79,7 @@
 		488F9E7B279BA68E0021A545 /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModelTests.swift; sourceTree = "<group>"; };
 		489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestRouter.swift; sourceTree = "<group>"; };
+		489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		489FB623279C43F10078AEE1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDCFFB279541E2002F0050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -286,6 +288,14 @@
 			path = ExchangeSearchBar;
 			sourceTree = "<group>";
 		};
+		489FB61F279C29B50078AEE1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		48FDCFEF279541E2002F0050 = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +334,7 @@
 		48FDD011279541E4002F0050 /* BithumbTests */ = {
 			isa = PBXGroup;
 			children = (
+				489FB61F279C29B50078AEE1 /* Network */,
 				488F9E7D279BA7BF0021A545 /* Exchange */,
 				48FDD012279541E4002F0050 /* BithumbTests.swift */,
 			);
@@ -637,6 +648,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
 			);
