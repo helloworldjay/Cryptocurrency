@@ -14,10 +14,11 @@ final class ExchangeCategoryView: UIView {
   
   //MARK: Properties
   
-  private var fontSize: CGFloat
   var segmentedControl: UISegmentedControl
   private let segmentIndicator = UIView()
-
+  
+  private var fontSize: CGFloat
+  
   
   //MARK: Initializers
   
@@ -34,15 +35,15 @@ final class ExchangeCategoryView: UIView {
   }
   
   @objc func indexChanged(_ sender: UISegmentedControl) {
-    let numberOfSegments = CGFloat(segmentedControl.numberOfSegments)
+    let numberOfSegments = CGFloat(self.segmentedControl.numberOfSegments)
     let selectedIndex = CGFloat(sender.selectedSegmentIndex)
-    let titlecount = CGFloat((segmentedControl.titleForSegment(at: sender.selectedSegmentIndex)!.count))
+    let titlecount = CGFloat((self.segmentedControl.titleForSegment(at: sender.selectedSegmentIndex)!.count))
     
     segmentIndicator.snp.remakeConstraints {
-      $0.top.equalTo(segmentedControl.snp.bottom).offset(3)
+      $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
       $0.height.equalTo(2)
       $0.width.equalTo(self.fontSize + titlecount * 8)
-      $0.centerX.equalTo(segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex-1.0)*2.0))
+      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex-1.0)*2.0))
     }
   }
   
@@ -75,7 +76,7 @@ final class ExchangeCategoryView: UIView {
     }
     
     self.snp.makeConstraints {
-      $0.edges.equalTo(segmentedControl.snp.edges)
+      $0.edges.equalTo(self.segmentedControl.snp.edges)
     }
     
     self.segmentIndicator.snp.makeConstraints {
