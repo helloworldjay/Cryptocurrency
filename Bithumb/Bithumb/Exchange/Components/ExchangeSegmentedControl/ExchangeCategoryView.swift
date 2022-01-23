@@ -34,7 +34,7 @@ final class ExchangeCategoryView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  @objc func indexChanged(_ sender: UISegmentedControl) {
+  @objc func changeIndex(_ sender: UISegmentedControl) {
     let numberOfSegments = CGFloat(self.segmentedControl.numberOfSegments)
     let selectedIndex = CGFloat(sender.selectedSegmentIndex)
     let titlecount = CGFloat((self.segmentedControl.titleForSegment(at: sender.selectedSegmentIndex)!.count))
@@ -51,7 +51,7 @@ final class ExchangeCategoryView: UIView {
     self.segmentedControl.do {
       $0.setDividerColor(with: UIColor.white)
       $0.selectedSegmentIndex = 0
-      $0.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
+      $0.addTarget(self, action: #selector(changeIndex), for: .valueChanged)
       $0.setTitleTextAttributes([
         NSAttributedString.Key.font : UIFont(name: "AvenirNextCondensed-Medium", size: self.fontSize)!,
         NSAttributedString.Key.foregroundColor: UIColor.lightGray
