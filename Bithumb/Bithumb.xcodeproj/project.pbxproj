@@ -37,6 +37,7 @@
 		48FDD03D2795422F002F0050 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 48FDD03C2795422F002F0050 /* RxSwift */; };
 		B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */; };
 		C31A5122279BCFBE00BA688F /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31A5121279BCFBE00BA688F /* BottomSheet.swift */; };
+		C3264043279D120100AF8ABD /* PriceChangedPeriodBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3264042279D120100AF8ABD /* PriceChangedPeriodBottomSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		48FDD01E279541E4002F0050 /* BithumbUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		C31A5121279BCFBE00BA688F /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		C3264042279D120100AF8ABD /* PriceChangedPeriodBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChangedPeriodBottomSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		48256CD42799715A008F2AD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C3264041279D10A400AF8ABD /* PriceChangedPeriodBottomSheet */,
 				48256CD52799716C008F2AD1 /* CoinList */,
 				48256CD627997179008F2AD1 /* ExchangeSearchBar */,
 			);
@@ -303,6 +306,14 @@
 			path = BottomSheet;
 			sourceTree = "<group>";
 		};
+		C3264041279D10A400AF8ABD /* PriceChangedPeriodBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C3264042279D120100AF8ABD /* PriceChangedPeriodBottomSheet.swift */,
+			);
+			path = PriceChangedPeriodBottomSheet;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -457,6 +468,7 @@
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
+				C3264043279D120100AF8ABD /* PriceChangedPeriodBottomSheet.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
