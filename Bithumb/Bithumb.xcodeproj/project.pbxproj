@@ -33,6 +33,7 @@
 		6C6755D0D77E50E4E4F23A6B /* Pods_BithumbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EF170BEFCCD8D7B5FAADDC /* Pods_BithumbTests.framework */; };
 		AECFA866C0A5ED5A74EF7698 /* Pods_Bithumb_BithumbUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */; };
 		B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */; };
+		B4A8E118279BF15D00A2BFCD /* ExchangeCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E117279BF15D00A2BFCD /* ExchangeCategoryView.swift */; };
 		F19014D04656742DAD3CEE42 /* Pods_Bithumb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C458E072B175DDD2D261FA3 /* Pods-Bithumb-BithumbUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb-BithumbUITests.debug.xcconfig"; path = "Target Support Files/Pods-Bithumb-BithumbUITests/Pods-Bithumb-BithumbUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
+		B4A8E117279BF15D00A2BFCD /* ExchangeCategoryView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeCategoryView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb_BithumbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15410D7F32C1F0DA5436F6 /* Pods-BithumbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAB7FEE542EBD52C0D4D875A /* Pods-Bithumb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb.debug.xcconfig"; path = "Target Support Files/Pods-Bithumb/Pods-Bithumb.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		48256CD42799715A008F2AD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B4A8E116279BF11100A2BFCD /* ExchangeSegmentedControl */,
 				48256CD52799716C008F2AD1 /* CoinList */,
 				48256CD627997179008F2AD1 /* ExchangeSearchBar */,
 			);
@@ -338,6 +341,14 @@
 				26EF170BEFCCD8D7B5FAADDC /* Pods_BithumbTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4A8E116279BF11100A2BFCD /* ExchangeSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				B4A8E117279BF15D00A2BFCD /* ExchangeCategoryView.swift */,
+			);
+			path = ExchangeSegmentedControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -617,6 +628,7 @@
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
 				48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */,
 				488F9E7C279BA68F0021A545 /* TickerResponse.swift in Sources */,
+				B4A8E118279BF15D00A2BFCD /* ExchangeCategoryView.swift in Sources */,
 				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
