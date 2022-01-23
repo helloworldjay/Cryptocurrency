@@ -24,6 +24,7 @@
 		4882FA6F279D288100A25880 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4882FA6E279D288100A25880 /* Currency.swift */; };
 		488F9E7C279BA68F0021A545 /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E7B279BA68E0021A545 /* TickerResponse.swift */; };
 		488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */; };
+		489FB624279C43F10078AEE1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB623279C43F10078AEE1 /* NetworkError.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
 		48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFD279541E2002F0050 /* SceneDelegate.swift */; };
 		48FDD005279541E4002F0050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48FDD004279541E4002F0050 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		488F9E7B279BA68E0021A545 /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModelTests.swift; sourceTree = "<group>"; };
+		489FB623279C43F10078AEE1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDCFFB279541E2002F0050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48FDCFFD279541E2002F0050 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		48256CE52799730A008F2AD1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				489FB623279C43F10078AEE1 /* NetworkError.swift */,
 				48256CE62799732E008F2AD1 /* NetworkManager.swift */,
 			);
 			path = Network;
@@ -611,6 +614,7 @@
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
+				489FB624279C43F10078AEE1 /* NetworkError.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
