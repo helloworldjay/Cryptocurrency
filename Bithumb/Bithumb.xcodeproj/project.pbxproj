@@ -21,8 +21,12 @@
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
 		4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4332797A29900472C90 /* TransactionViewController.swift */; };
 		4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4352797A2B800472C90 /* MoreOptionViewController.swift */; };
+		4882FA6F279D288100A25880 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4882FA6E279D288100A25880 /* Currency.swift */; };
 		488F9E7C279BA68F0021A545 /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E7B279BA68E0021A545 /* TickerResponse.swift */; };
 		488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */; };
+		489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */; };
+		489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */; };
+		489FB624279C43F10078AEE1 /* BithumbNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
 		48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFD279541E2002F0050 /* SceneDelegate.swift */; };
 		48FDD005279541E4002F0050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48FDD004279541E4002F0050 /* Assets.xcassets */; };
@@ -71,8 +75,12 @@
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
 		4881F4332797A29900472C90 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		4881F4352797A2B800472C90 /* MoreOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionViewController.swift; sourceTree = "<group>"; };
+		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		488F9E7B279BA68E0021A545 /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModelTests.swift; sourceTree = "<group>"; };
+		489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestRouter.swift; sourceTree = "<group>"; };
+		489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbNetworkError.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDCFFB279541E2002F0050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48FDCFFD279541E2002F0050 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,7 +173,9 @@
 		48256CE52799730A008F2AD1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */,
 				48256CE62799732E008F2AD1 /* NetworkManager.swift */,
+				489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -174,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				488F9E7B279BA68E0021A545 /* TickerResponse.swift */,
+				4882FA6E279D288100A25880 /* Currency.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -277,6 +288,14 @@
 			path = ExchangeSearchBar;
 			sourceTree = "<group>";
 		};
+		489FB61F279C29B50078AEE1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		48FDCFEF279541E2002F0050 = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +334,7 @@
 		48FDD011279541E4002F0050 /* BithumbTests */ = {
 			isa = PBXGroup;
 			children = (
+				489FB61F279C29B50078AEE1 /* Network */,
 				488F9E7D279BA7BF0021A545 /* Exchange */,
 				48FDD012279541E4002F0050 /* BithumbTests.swift */,
 			);
@@ -602,16 +622,19 @@
 			files = (
 				48256CDA27997246008F2AD1 /* ExchangeUseCase.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
+				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
+				489FB624279C43F10078AEE1 /* BithumbNetworkError.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
 				4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */,
+				4882FA6F279D288100A25880 /* Currency.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
@@ -625,6 +648,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
 			);
