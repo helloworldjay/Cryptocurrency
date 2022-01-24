@@ -1,5 +1,5 @@
 //
-//  ExchangeSegmentedControl.swift
+//  SegmentedCategoryView.swift
 //  Bithumb
 //
 //  Created by 김민성 on 2022/01/22.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class ExchangeCategoryView: UIView {
+final class SegmentedCategoryView: UIView {
   
   //MARK: Properties
   
