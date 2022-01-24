@@ -186,13 +186,12 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B4A8E11B279E858500A2BFCD /* Extensions */,
 				48FDCFFB279541E2002F0050 /* AppDelegate.swift */,
 				48FDCFFD279541E2002F0050 /* SceneDelegate.swift */,
 				48FDD004279541E4002F0050 /* Assets.xcassets */,
 				48FDD006279541E4002F0050 /* LaunchScreen.storyboard */,
 				48FDD009279541E4002F0050 /* Info.plist */,
-				B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */,
-				B4A8E119279D286200A2BFCD /* UISegmentedControl + Ext.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -352,6 +351,15 @@
 				B4A8E117279BF15D00A2BFCD /* SegmentedCategoryView.swift */,
 			);
 			path = ExchangeSegmentedControl;
+			sourceTree = "<group>";
+		};
+		B4A8E11B279E858500A2BFCD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4A8E119279D286200A2BFCD /* UISegmentedControl + Ext.swift */,
+				B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
