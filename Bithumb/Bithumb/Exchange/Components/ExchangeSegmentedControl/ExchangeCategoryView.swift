@@ -35,8 +35,8 @@ final class ExchangeCategoryView: UIView {
   }
   
   private func attribute() {
-    self.setTitleTextAttributes(foregroundColor: .lightGray, for: .normal)
-    self.setTitleTextAttributes(foregroundColor: .black, for: .selected)
+    self.setSegmentTitleTextAttributes(foregroundColor: .lightGray, for: .normal)
+    self.setSegmentTitleTextAttributes(foregroundColor: .black, for: .selected)
     self.segmentedControl.do {
       $0.setDividerColor(with: .white)
       $0.selectedSegmentIndex = 0
@@ -51,7 +51,7 @@ final class ExchangeCategoryView: UIView {
     }
   }
   
-  private func setTitleTextAttributes(foregroundColor: UIColor, for state: UIControl.State) {
+  private func setSegmentTitleTextAttributes(foregroundColor: UIColor, for state: UIControl.State) {
     guard let font = UIFont(name: "AvenirNextCondensed-Medium", size: self.fontSize) else { return }
     self.segmentedControl.do {
       $0.setTitleTextAttributes([NSAttributedString.Key.font : font,
@@ -61,10 +61,12 @@ final class ExchangeCategoryView: UIView {
   }
   
   @objc func changeIndex(_ sender: UISegmentedControl) {
-    let numberOfSegments = CGFloat(self.segmentedControl.numberOfSegments)
-    let selectedIndex = CGFloat(sender.selectedSegmentIndex)
-    let titlecount = CGFloat((self.segmentedControl.titleForSegment(at: sender.selectedSegmentIndex)!.count))
+    guard let titleForSegment = sender.titleForSegment(at: sender.selectedSegmentIndex) else { return }
     
+    let titlecount = CGFloat((titleForSegment.count))
+    let numberOfSegments = CGFloat(sender.numberOfSegments)
+    let selectedIndex = CGFloat(sender.selectedSegmentIndex)
+   
     segmentIndicator.snp.remakeConstraints {
       $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
       $0.height.equalTo(2)
@@ -83,9 +85,11 @@ final class ExchangeCategoryView: UIView {
     }
     
     self.segmentIndicator.snp.makeConstraints {
+      guard let titleForFirstSegment = self.segmentedControl.titleForSegment(at: 0) else { return }
+      
       $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
       $0.height.equalTo(2)
-      $0.width.equalTo(Int(self.fontSize) + self.segmentedControl.titleForSegment(at: 0)!.count * 8)
+      $0.width.equalTo(Int(self.fontSize) + titleForFirstSegment.count * 8)
       $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(self.segmentedControl.numberOfSegments)
     }
   }
