@@ -15,7 +15,9 @@ final class SegmentedCategoryView: UIView {
   //MARK: Properties
   
   var segmentedControl: UISegmentedControl
-  private let segmentIndicator = UIView()
+  private let segmentIndicator = UIView().then {
+    $0.backgroundColor = .bithumb
+  }
   
   private var fontSize: CGFloat
   
@@ -46,10 +48,6 @@ final class SegmentedCategoryView: UIView {
         $0.backgroundColor = .white
       }
     }
-    
-    self.segmentIndicator.do {
-      $0.backgroundColor = .bithumb
-    }
   }
   
   private func setSegmentTitleTextAttributes(foregroundColor: UIColor, for state: UIControl.State) {
@@ -67,12 +65,17 @@ final class SegmentedCategoryView: UIView {
     let selectedIndex = CGFloat(sender.selectedSegmentIndex)
     let numberOfSegments = CGFloat(sender.numberOfSegments)
     
-    segmentIndicator.snp.remakeConstraints {
+    self.segmentIndicator.snp.remakeConstraints {
       $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
       $0.height.equalTo(2)
       $0.width.equalTo(self.fontSize + titlecount * 8)
-      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex - 1.0) * 2.0))
+      $0.centerX.equalTo(self.segmentedControl.snp.centerX)
+        .dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex - 1.0) * 2.0))
     }
+
+    UIView.animate(withDuration: 0.2, animations: {
+      self.layoutIfNeeded()
+    })
   }
   
   private func layout() {
@@ -89,7 +92,8 @@ final class SegmentedCategoryView: UIView {
       $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
       $0.width.equalTo(Int(self.fontSize) + titleForFirstSegment.count * 8)
       $0.height.equalTo(2)
-      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(self.segmentedControl.numberOfSegments)
+      $0.centerX.equalTo(self.segmentedControl.snp.centerX)
+        .dividedBy(self.segmentedControl.numberOfSegments)
     }
   }
 }
