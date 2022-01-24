@@ -35,18 +35,12 @@ final class ExchangeCategoryView: UIView {
   }
   
   private func attribute() {
+    self.setTitleTextAttributes(foregroundColor: .lightGray, for: .normal)
+    self.setTitleTextAttributes(foregroundColor: .black, for: .selected)
     self.segmentedControl.do {
       $0.setDividerColor(with: UIColor.white)
       $0.selectedSegmentIndex = 0
       $0.addTarget(self, action: #selector(changeIndex), for: .valueChanged)
-      $0.setTitleTextAttributes([
-        NSAttributedString.Key.font : UIFont(name: "AvenirNextCondensed-Medium", size: self.fontSize)!,
-        NSAttributedString.Key.foregroundColor: UIColor.lightGray
-      ], for: .normal)
-      $0.setTitleTextAttributes([
-        NSAttributedString.Key.font : UIFont(name: "AvenirNextCondensed-Medium", size: self.fontSize)!,
-        NSAttributedString.Key.foregroundColor: UIColor.black
-      ], for: .selected)
       $0.subviews.forEach {
         $0.backgroundColor = .white
       }
@@ -54,6 +48,15 @@ final class ExchangeCategoryView: UIView {
     
     self.segmentIndicator.do {
       $0.backgroundColor = UIColor.bithumb
+    }
+  }
+  
+  private func setTitleTextAttributes(foregroundColor: UIColor, for state: UIControl.State) {
+    guard let font = UIFont(name: "AvenirNextCondensed-Medium", size: self.fontSize) else { return }
+    self.segmentedControl.do {
+      $0.setTitleTextAttributes([NSAttributedString.Key.font : font,
+                                 NSAttributedString.Key.foregroundColor : foregroundColor],
+                                for: state)
     }
   }
   
