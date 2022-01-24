@@ -26,6 +26,7 @@ final class ExchangeCategoryView: UIView {
     self.segmentedControl = UISegmentedControl(items: items)
     self.fontSize = fontSize
     super.init(frame: .zero)
+    
     self.attribute()
     self.layout()
   }
@@ -62,16 +63,15 @@ final class ExchangeCategoryView: UIView {
   
   @objc func changeIndex(_ sender: UISegmentedControl) {
     guard let titleForSegment = sender.titleForSegment(at: sender.selectedSegmentIndex) else { return }
-    
     let titlecount = CGFloat((titleForSegment.count))
-    let numberOfSegments = CGFloat(sender.numberOfSegments)
     let selectedIndex = CGFloat(sender.selectedSegmentIndex)
-   
+    let numberOfSegments = CGFloat(sender.numberOfSegments)
+    
     segmentIndicator.snp.remakeConstraints {
       $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
       $0.height.equalTo(2)
       $0.width.equalTo(self.fontSize + titlecount * 8)
-      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex-1.0)*2.0))
+      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex - 1.0) * 2.0))
     }
   }
   
@@ -86,10 +86,9 @@ final class ExchangeCategoryView: UIView {
     
     self.segmentIndicator.snp.makeConstraints {
       guard let titleForFirstSegment = self.segmentedControl.titleForSegment(at: 0) else { return }
-      
       $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
-      $0.height.equalTo(2)
       $0.width.equalTo(Int(self.fontSize) + titleForFirstSegment.count * 8)
+      $0.height.equalTo(2)
       $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(self.segmentedControl.numberOfSegments)
     }
   }
