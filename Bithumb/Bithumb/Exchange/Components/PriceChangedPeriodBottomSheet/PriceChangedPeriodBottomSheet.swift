@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
@@ -19,11 +21,31 @@ final class PriceChangedPeriodBottomSheet: BottomSheet {
   private let periodListView = UITableView()
   private let cancelButton = UIButton()
   
+  let viewModel: PriceChangedPeriodViewModel
+  private let disposeBag = DisposeBag()
+  
+  
+  // MARK: Initializer
+  
+  init(selectedPeriod: Period) {
+    self.viewModel = PriceChangedPeriodViewModel(selectedPeriod: selectedPeriod)
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("Not Use Interface Builder")
+  }
+  
+  
+  // MARK: Layout Function
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     self.layout()
     self.attribute()
+    self.bind()
   }
   
   private func layout() {
@@ -53,7 +75,7 @@ final class PriceChangedPeriodBottomSheet: BottomSheet {
       $0.bottom.equalToSuperview().inset(20)
     }
     
-    self.defaultHeight = 320
+    self.defaultHeight = 360
   }
     
   private func attribute() {
@@ -88,5 +110,24 @@ final class PriceChangedPeriodBottomSheet: BottomSheet {
   
   @objc private func tapCancelButton() {
     self.hideBottomSheetAndGoBack()
+  }
+  
+  private func bind() {
+    Observable.just(self.viewModel.periods)
+      .bind(to: self.periodListView.rx.items) { (tableView, row, element) in
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
+          return UITableViewCell()
+        }
+        cell.textLabel?.text = element.rawValue
+        cell.textLabel?.font = .systemFont(ofSize: 15)
+        if row == self.viewModel.tapListView.value.row {
+          cell.accessoryType = .checkmark
+        }
+        return cell
+      }.disposed(by: self.disposeBag)
+    
+    self.periodListView.rx.itemSelected
+      .bind(to: self.viewModel.tapListView)
+      .disposed(by: self.disposeBag)
   }
 }

@@ -35,6 +35,9 @@
 		B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */; };
 		C39FC5C2279DA76E008EF91A /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FC5C1279DA76E008EF91A /* BottomSheet.swift */; };
 		C39FC5C5279DA784008EF91A /* PriceChangedPeriodBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FC5C4279DA784008EF91A /* PriceChangedPeriodBottomSheet.swift */; };
+		C39FC5D9279E3739008EF91A /* PriceChangedPeriodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FC5D8279E3739008EF91A /* PriceChangedPeriodViewModel.swift */; };
+		C39FC5DB279E3764008EF91A /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FC5DA279E3764008EF91A /* Period.swift */; };
+		C39FC5DE279E3846008EF91A /* PriceChangedPeriodViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FC5DD279E3846008EF91A /* PriceChangedPeriodViewModelTests.swift */; };
 		F19014D04656742DAD3CEE42 /* Pods_Bithumb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,9 @@
 		B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		C39FC5C1279DA76E008EF91A /* BottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		C39FC5C4279DA784008EF91A /* PriceChangedPeriodBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceChangedPeriodBottomSheet.swift; sourceTree = "<group>"; };
+		C39FC5D8279E3739008EF91A /* PriceChangedPeriodViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceChangedPeriodViewModel.swift; sourceTree = "<group>"; };
+		C39FC5DA279E3764008EF91A /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		C39FC5DD279E3846008EF91A /* PriceChangedPeriodViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChangedPeriodViewModelTests.swift; sourceTree = "<group>"; };
 		C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb_BithumbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15410D7F32C1F0DA5436F6 /* Pods-BithumbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAB7FEE542EBD52C0D4D875A /* Pods-Bithumb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb.debug.xcconfig"; path = "Target Support Files/Pods-Bithumb/Pods-Bithumb.debug.xcconfig"; sourceTree = "<group>"; };
@@ -270,6 +276,7 @@
 		488F9E7E279BA7C70021A545 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C39FC5DC279E3821008EF91A /* PriceChangedPeriodBottomSheet */,
 				488F9E7F279BA7D80021A545 /* ExchangeSearchBar */,
 			);
 			path = Components;
@@ -366,6 +373,16 @@
 			isa = PBXGroup;
 			children = (
 				C39FC5C4279DA784008EF91A /* PriceChangedPeriodBottomSheet.swift */,
+				C39FC5D8279E3739008EF91A /* PriceChangedPeriodViewModel.swift */,
+				C39FC5DA279E3764008EF91A /* Period.swift */,
+			);
+			path = PriceChangedPeriodBottomSheet;
+			sourceTree = "<group>";
+		};
+		C39FC5DC279E3821008EF91A /* PriceChangedPeriodBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C39FC5DD279E3846008EF91A /* PriceChangedPeriodViewModelTests.swift */,
 			);
 			path = PriceChangedPeriodBottomSheet;
 			sourceTree = "<group>";
@@ -632,6 +649,7 @@
 			files = (
 				C39FC5C5279DA784008EF91A /* PriceChangedPeriodBottomSheet.swift in Sources */,
 				48256CDA27997246008F2AD1 /* ExchangeUseCase.swift in Sources */,
+				C39FC5D9279E3739008EF91A /* PriceChangedPeriodViewModel.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
@@ -641,6 +659,7 @@
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
+				C39FC5DB279E3764008EF91A /* Period.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
 				4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
@@ -658,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
+				C39FC5DE279E3846008EF91A /* PriceChangedPeriodViewModelTests.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
