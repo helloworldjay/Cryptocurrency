@@ -38,7 +38,7 @@ final class ExchangeCategoryView: UIView {
     self.setTitleTextAttributes(foregroundColor: .lightGray, for: .normal)
     self.setTitleTextAttributes(foregroundColor: .black, for: .selected)
     self.segmentedControl.do {
-      $0.setDividerColor(with: UIColor.white)
+      $0.setDividerColor(with: .white)
       $0.selectedSegmentIndex = 0
       $0.addTarget(self, action: #selector(changeIndex), for: .valueChanged)
       $0.subviews.forEach {
@@ -47,7 +47,7 @@ final class ExchangeCategoryView: UIView {
     }
     
     self.segmentIndicator.do {
-      $0.backgroundColor = UIColor.bithumb
+      $0.backgroundColor = .bithumb
     }
   }
   
