@@ -34,19 +34,6 @@ final class ExchangeCategoryView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  @objc func changeIndex(_ sender: UISegmentedControl) {
-    let numberOfSegments = CGFloat(self.segmentedControl.numberOfSegments)
-    let selectedIndex = CGFloat(sender.selectedSegmentIndex)
-    let titlecount = CGFloat((self.segmentedControl.titleForSegment(at: sender.selectedSegmentIndex)!.count))
-    
-    segmentIndicator.snp.remakeConstraints {
-      $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
-      $0.height.equalTo(2)
-      $0.width.equalTo(self.fontSize + titlecount * 8)
-      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex-1.0)*2.0))
-    }
-  }
-  
   private func attribute() {
     self.segmentedControl.do {
       $0.setDividerColor(with: UIColor.white)
@@ -67,6 +54,19 @@ final class ExchangeCategoryView: UIView {
     
     self.segmentIndicator.do {
       $0.backgroundColor = UIColor.bithumb
+    }
+  }
+  
+  @objc func changeIndex(_ sender: UISegmentedControl) {
+    let numberOfSegments = CGFloat(self.segmentedControl.numberOfSegments)
+    let selectedIndex = CGFloat(sender.selectedSegmentIndex)
+    let titlecount = CGFloat((self.segmentedControl.titleForSegment(at: sender.selectedSegmentIndex)!.count))
+    
+    segmentIndicator.snp.remakeConstraints {
+      $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
+      $0.height.equalTo(2)
+      $0.width.equalTo(self.fontSize + titlecount * 8)
+      $0.centerX.equalTo(self.segmentedControl.snp.centerX).dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex-1.0)*2.0))
     }
   }
   
