@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum BithumbNetworkError: Error {
   case networkError
   case decodingError
   

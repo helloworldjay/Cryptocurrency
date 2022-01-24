@@ -29,10 +29,10 @@ struct NetworkManager: NetworkManagerLogic {
             if let response = try? JSONDecoder().decode(TickerResponse.self, from: data) {
               observer(.success(response))
             } else {
-              observer(.failure(NetworkError.decodingError))
+              observer(.failure(BithumbNetworkError.decodingError))
             }
           case .failure(_):
-            observer(.failure(NetworkError.networkError))
+            observer(.failure(BithumbNetworkError.networkError))
           }
         }
       return Disposables.create()
