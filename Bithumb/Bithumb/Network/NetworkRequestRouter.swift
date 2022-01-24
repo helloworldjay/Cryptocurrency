@@ -27,12 +27,12 @@ enum NetworkRequestRouter: URLRequestConvertible {
   private var path: String {
     switch self {
     case .fetchTickerData(let orderCurrency, let paymentCurrency):
-      return "\(self.baseURLString)" + "/ticker" + "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
+      return "/ticker" + "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
     }
   }
   
   func asURLRequest() throws -> URLRequest {
-    let url = try self.path.asURL()
+    let url = try (self.baseURLString + self.path).asURL()
     var request = URLRequest(url: url)
     request.httpMethod = self.HTTPMethod.rawValue
     
