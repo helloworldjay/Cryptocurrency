@@ -27,6 +27,7 @@
 		489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */; };
 		489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */; };
 		489FB624279C43F10078AEE1 /* BithumbNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */; };
+		48B60E48279F923A000534EC /* ExchangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */; };
 		48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B60E4B279FBF3B000534EC /* TickerResponse.swift */; };
 		48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C7E8F2279E79E5003C4B25 /* CoinListViewCellData.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
@@ -83,6 +84,7 @@
 		489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestRouter.swift; sourceTree = "<group>"; };
 		489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbNetworkError.swift; sourceTree = "<group>"; };
+		48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeUseCaseTests.swift; sourceTree = "<group>"; };
 		48B60E4B279FBF3B000534EC /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		48C7E8F2279E79E5003C4B25 /* CoinListViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCellData.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				488F9E7E279BA7C70021A545 /* Components */,
+				48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48B60E48279F923A000534EC /* ExchangeUseCaseTests.swift in Sources */,
 				489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
