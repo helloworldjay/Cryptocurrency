@@ -5,8 +5,42 @@
 //  Created by Seungjin Baek on 2022/01/20.
 //
 
-import UIKit
+import RxCocoa
+import RxSwift
 
 final class CoinListView: UITableView {
   
+  // MARK: Properties
+  
+  let disposeBag = DisposeBag()
+  
+  
+  // MARK: Initializers
+  
+  override init(frame: CGRect, style: UITableView.Style) {
+    super.init(frame: frame, style: style)
+    
+    self.attribute()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func attribute() {
+    self.backgroundColor = .white
+    self.register(CoinListViewCell.self, forCellReuseIdentifier: "CoinListViewCell")
+    self.separatorStyle = .singleLine
+    self.rowHeight = 100
+  }
+  
+  func bind(viewModel: CoinListViewModel) {
+    viewModel.cellData
+      .drive(self.rx.items) { tableView, row, data in
+        let index = IndexPath(row: row, section: 0)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CoinListViewCell", for: index) as! CoinListViewCell
+        cell.setData(with: data)
+        return cell
+      }.disposed(by: disposeBag)
+  }
 }
