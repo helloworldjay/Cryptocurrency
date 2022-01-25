@@ -12,7 +12,7 @@ enum PaymentCurrency: String {
   case btc = "BTC"
 }
 
-enum OrderCurrency: String {
+enum OrderCurrency: String, CaseIterable {
   case all = "ALL"
   case btc = "BTC"
   case eth = "ETH"
