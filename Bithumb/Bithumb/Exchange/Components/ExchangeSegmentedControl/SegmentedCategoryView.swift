@@ -76,11 +76,11 @@ final class SegmentedCategoryView: UIView {
     let segmentWidth = segmentedControlWidth / numberOfSegments
     let headerWidth = 0.1 * segmentWidth
     let dividerWidth = 0.1
-    let leadingInset = remake ? segmentWidth * selectedIndex + headerWidth * segmentWidth + dividerWidth * selectedIndex : headerWidth
+    let leadingInset = remake ? segmentWidth * selectedIndex + headerWidth + dividerWidth * selectedIndex : headerWidth
     
     make.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
     make.leading.equalTo(self.segmentedControl.snp.leading).inset(leadingInset)
-    make.width.equalTo(segmentWidth).multipliedBy(0.8)
+    make.width.equalTo(segmentedControl.snp.width).dividedBy(numberOfSegments / 0.8)
     make.height.equalTo(2)
   }
   
