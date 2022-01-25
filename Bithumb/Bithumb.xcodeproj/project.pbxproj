@@ -28,6 +28,7 @@
 		489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */; };
 		489FB624279C43F10078AEE1 /* BithumbNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */; };
 		48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B60E4B279FBF3B000534EC /* TickerResponse.swift */; };
+		48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C7E8F2279E79E5003C4B25 /* CoinListViewCellData.swift */; };
 		48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFB279541E2002F0050 /* AppDelegate.swift */; };
 		48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFD279541E2002F0050 /* SceneDelegate.swift */; };
 		48FDD005279541E4002F0050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48FDD004279541E4002F0050 /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbNetworkError.swift; sourceTree = "<group>"; };
 		48B60E4B279FBF3B000534EC /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
+		48C7E8F2279E79E5003C4B25 /* CoinListViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCellData.swift; sourceTree = "<group>"; };
 		48FDCFF8279541E2002F0050 /* Bithumb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bithumb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDCFFB279541E2002F0050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48FDCFFD279541E2002F0050 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				48256CDF2799728C008F2AD1 /* CoinListView.swift */,
 				48256CE127997298008F2AD1 /* CoinListViewModel.swift */,
 				48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */,
+				48C7E8F2279E79E5003C4B25 /* CoinListViewCellData.swift */,
 			);
 			path = CoinList;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
+				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
