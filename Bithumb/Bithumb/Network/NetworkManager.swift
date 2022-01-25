@@ -11,14 +11,14 @@ import Alamofire
 import RxSwift
 
 protocol NetworkManagerLogic {
-  func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<TickerResponse>
+  func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>>
 }
 
 struct NetworkManager: NetworkManagerLogic {
   
   // MARK: Fetch Data
   
-  func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<TickerResponse> {
+  func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>> {
     return Single.create { observer -> Disposable in
       AF.request(NetworkRequestRouter.fetchTickerData(orderCurrency, paymentCurrency))
         .validate()
@@ -26,8 +26,8 @@ struct NetworkManager: NetworkManagerLogic {
           switch response.result {
           case .success(let data):
             guard let data = self.dataToDecode(orderCurrency: orderCurrency, data: data) else { return }
-            if let response = try? JSONDecoder().decode(TickerResponse.self, from: data) {
-              observer(.success(response))
+            if let response = convertedResponse(orderCurrency: orderCurrency, data: data) {
+              observer(.success(.success(response)))
             } else {
               observer(.failure(BithumbNetworkError.decodingError))
             }
@@ -67,5 +67,32 @@ struct NetworkManager: NetworkManagerLogic {
   
   private func convertToData(from dictionary: [String: Any]) -> Data? {
     return try? JSONSerialization.data(withJSONObject: dictionary, options: [])
+  }
+  
+  func convertedResponse(orderCurrency: OrderCurrency, data: Data) -> AllTickerResponse? {
+    if orderCurrency == .all {
+      return try? JSONDecoder().decode(AllTickerResponse.self, from: data)
+    }
+    
+    guard let decodedResponse = try? JSONDecoder().decode(TickerResponse.self, from: data) else { return nil }
+    return AllTickerResponse(
+      status: decodedResponse.status,
+      data: [
+        orderCurrency.rawValue:TickerData(
+          openingPrice: decodedResponse.data.openingPrice,
+          closingPrice: decodedResponse.data.closingPrice,
+          minPrice: decodedResponse.data.minPrice,
+          maxPrice: decodedResponse.data.maxPrice,
+          tradedUnit: decodedResponse.data.tradedUnit,
+          accTradeValue: decodedResponse.data.accTradeValue,
+          previousClosingPrice: decodedResponse.data.previousClosingPrice,
+          tradedUnit24H: decodedResponse.data.tradedUnit24H,
+          accTradeValue24H: decodedResponse.data.accTradeValue24H,
+          fluctate24H: decodedResponse.data.fluctate24H,
+          fluctateRate24H: decodedResponse.data.fluctateRate24H,
+          date: nil
+        )
+      ]
+    )
   }
 }
