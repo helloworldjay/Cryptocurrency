@@ -5,8 +5,15 @@
 //  Created by Seungjin Baek on 2022/01/20.
 //
 
-import Foundation
+import RxCocoa
+import RxSwift
 
 struct CoinListViewModel {
+  let coinListCellData = PublishSubject<[CoinListViewCellData]>()
+  let cellData: Driver<[CoinListViewCellData]>
   
+  init() {
+    self.cellData = self.coinListCellData
+      .asDriver(onErrorJustReturn: [])
+  }
 }
