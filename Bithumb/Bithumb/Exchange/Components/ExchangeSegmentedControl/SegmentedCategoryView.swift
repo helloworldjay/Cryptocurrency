@@ -60,22 +60,28 @@ final class SegmentedCategoryView: UIView {
   }
   
   @objc func changeIndex(_ sender: UISegmentedControl) {
-    guard let titleForSegment = sender.titleForSegment(at: sender.selectedSegmentIndex) else { return }
-    let titlecount = CGFloat((titleForSegment.count))
-    let selectedIndex = CGFloat(sender.selectedSegmentIndex)
-    let numberOfSegments = CGFloat(sender.numberOfSegments)
-    
     self.segmentIndicator.snp.remakeConstraints {
-      $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
-      $0.height.equalTo(2)
-      $0.width.equalTo(self.fontSize + titlecount * 8)
-      $0.centerX.equalTo(self.segmentedControl.snp.centerX)
-        .dividedBy(numberOfSegments / CGFloat(3.0 + CGFloat(selectedIndex - 1.0) * 2.0))
+      self.setSegmentIndicatorConstraints(of: $0, remake: true)
     }
 
     UIView.animate(withDuration: 0.2, animations: {
       self.layoutIfNeeded()
     })
+  }
+  
+  private func setSegmentIndicatorConstraints(of make: ConstraintMaker, remake: Bool) {
+    let selectedIndex = CGFloat(self.segmentedControl.selectedSegmentIndex)
+    let numberOfSegments = CGFloat(self.segmentedControl.numberOfSegments)
+    let segmentedControlWidth = CGFloat(self.segmentedControl.frame.width)
+    let segmentWidth = segmentedControlWidth / numberOfSegments
+    let headerWidth = 0.1 * segmentWidth
+    let dividerWidth = 0.1
+    let leadingInset = remake ? segmentWidth * selectedIndex + headerWidth * segmentWidth + dividerWidth * selectedIndex : headerWidth
+    
+    make.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
+    make.leading.equalTo(self.segmentedControl.snp.leading).inset(leadingInset)
+    make.width.equalTo(segmentWidth).multipliedBy(0.8)
+    make.height.equalTo(2)
   }
   
   private func layout() {
@@ -88,12 +94,7 @@ final class SegmentedCategoryView: UIView {
     }
     
     self.segmentIndicator.snp.makeConstraints {
-      guard let titleForFirstSegment = self.segmentedControl.titleForSegment(at: 0) else { return }
-      $0.top.equalTo(self.segmentedControl.snp.bottom).offset(3)
-      $0.width.equalTo(Int(self.fontSize) + titleForFirstSegment.count * 8)
-      $0.height.equalTo(2)
-      $0.centerX.equalTo(self.segmentedControl.snp.centerX)
-        .dividedBy(self.segmentedControl.numberOfSegments)
+      self.setSegmentIndicatorConstraints(of: $0, remake: false)
     }
   }
 }
