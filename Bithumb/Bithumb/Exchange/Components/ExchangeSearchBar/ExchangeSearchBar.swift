@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
@@ -23,8 +25,11 @@ final class ExchangeSearchBar: UISearchBar {
     $0.setImage(UIImage(systemName: "bell"), for: .normal)
     $0.tintColor = .black
   }
-  
-  
+
+  private let exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
+  private let disposeBag = DisposeBag()
+
+
   // MARK: Initializers
   
   override init(frame: CGRect) {
@@ -38,6 +43,18 @@ final class ExchangeSearchBar: UISearchBar {
     fatalError("init(coder:) has not been implemented")
   }
   
+  private func configure() {
+    self.searchTextField.do {
+      $0.layer.borderWidth = 2
+      $0.layer.borderColor = UIColor.bithumb.cgColor
+      $0.layer.cornerRadius = 10
+      $0.leftView?.tintColor = .black
+      $0.backgroundColor = .systemBackground
+      $0.placeholder = "코인명 또는 심볼 검색"
+      $0.tintColor = UIColor.bithumb
+    }
+  }
+
   private func layout() {
     [giftButton, bellButton].forEach {
       self.addSubview($0)
@@ -59,16 +76,30 @@ final class ExchangeSearchBar: UISearchBar {
       $0.centerY.equalToSuperview()
     }
   }
-  
-  private func configure() {
-    self.searchTextField.do {
-      $0.layer.borderWidth = 2
-      $0.layer.borderColor = UIColor.bithumb.cgColor
-      $0.layer.cornerRadius = 10
-      $0.leftView?.tintColor = .black
-      $0.backgroundColor = .systemBackground
-      $0.placeholder = "코인명 또는 심볼 검색"
-      $0.tintColor = UIColor.bithumb
+
+  func bind(viewModel: ExchangeSearchBarViewModel) {
+    self.rx.text
+      .bind(to: viewModel.inputText)
+      .disposed(by: self.disposeBag)
+    
+    self.rx.searchButtonClicked.asObservable()
+      .bind(to: viewModel.searchButtonTapped)
+      .disposed(by: self.disposeBag)
+    
+    viewModel.searchButtonTapped
+      .asSignal()
+      .emit(to: self.rx.endEditing)
+      .disposed(by: self.disposeBag)
+  }
+}
+
+
+// MARK: - Reactive Extension
+
+extension Reactive where Base: ExchangeSearchBar {
+  var endEditing: Binder<Void> {
+    return Binder(base) { base, _ in
+      base.endEditing(true)
     }
   }
 }
