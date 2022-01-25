@@ -2,32 +2,32 @@
 //  TickerResponse.swift
 //  Bithumb
 //
-//  Created by Seungjin Baek on 2022/01/22.
+//  Created by Seungjin Baek on 2022/01/25.
 //
 
 import Foundation
 
+/**
+ {
+     "status": "0000",
+     "data": {
+         "opening_price": "41369000",
+         "closing_price": "44027000",
+         "min_price": "41084000",
+         "max_price": "45546000",
+         "units_traded": "4530.72099928",
+         "acc_trade_value": "197702716416.6475",
+         "prev_closing_price": "41368000",
+         "units_traded_24H": "6673.65642084",
+         "acc_trade_value_24H": "287026523345.5483",
+         "fluctate_24H": "1024000",
+         "fluctate_rate_24H": "2.38",
+         "date": "1643101115538"
+     }
+ }
+ */
+
 struct TickerResponse: Decodable {
   let status: String
-  let data: [String: TickerData]
-}
-
-struct TickerData: Decodable {
-  let openingPrice, closingPrice, minPrice, maxPrice: String
-  let tradedUnit, accTradeValue, previousClosingPrice, tradedUnit24H: String
-  let accTradeValue24H, fluctate24H, fluctateRate24H: String
-  
-  enum CodingKeys: String, CodingKey {
-    case openingPrice = "opening_price"
-    case closingPrice = "closing_price"
-    case minPrice = "min_price"
-    case maxPrice = "max_price"
-    case tradedUnit = "units_traded"
-    case accTradeValue = "acc_trade_value"
-    case previousClosingPrice = "prev_closing_price"
-    case tradedUnit24H = "units_traded_24H"
-    case accTradeValue24H = "acc_trade_value_24H"
-    case fluctate24H = "fluctate_24H"
-    case fluctateRate24H = "fluctate_rate_24H"
-  }
+  let data: TickerData
 }
