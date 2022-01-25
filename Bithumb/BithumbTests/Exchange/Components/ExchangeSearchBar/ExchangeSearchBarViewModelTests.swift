@@ -53,14 +53,18 @@ class ExchangeSearchBarViewModelTests: XCTestCase {
       .disposed(by: self.disposeBag)
     
     //then
-    expect(self.sut.queryText)
+    expect(self.sut.orderCurrencyToSearch)
       .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
-      .to(equal([]))
+      .to(equal(
+        [
+          .next(10, OrderCurrency.all)
+        ]
+      ))
   }
   
   func test_검색_버튼을_눌렀을_때_입력된_문자열이_있는_경우() throws {
     //given
-    let keyword = "테스트 검색어"
+    let keyword = "ALL"
     self.scheduler.createColdObservable(
       [
         .next(5, keyword)
@@ -77,18 +81,18 @@ class ExchangeSearchBarViewModelTests: XCTestCase {
       .disposed(by: self.disposeBag)
     
     //then
-    expect(self.sut.queryText)
+    expect(self.sut.orderCurrencyToSearch)
       .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
       .to(equal(
         [
-          .next(10, keyword)
+          .next(10, OrderCurrency.all)
         ]
       ))
   }
   
   func test_검색_버튼을_다시_눌렀을_때_입력된_문자열이_기존의_입력과_같은_경우() throws {
     //given
-    let keyword = "테스트 검색어"
+    let keyword = "ALL"
     self.scheduler.createColdObservable(
       [
         .next(5, keyword),
@@ -107,11 +111,11 @@ class ExchangeSearchBarViewModelTests: XCTestCase {
       .disposed(by: self.disposeBag)
     
     //then
-    expect(self.sut.queryText)
+    expect(self.sut.orderCurrencyToSearch)
       .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
       .to(equal(
         [
-          .next(6, keyword)
+          .next(6, OrderCurrency.all)
         ]
       ))
   }
