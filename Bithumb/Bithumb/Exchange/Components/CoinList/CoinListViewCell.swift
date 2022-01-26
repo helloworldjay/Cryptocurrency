@@ -28,7 +28,7 @@ final class CoinListViewCell: UITableViewCell {
     self.attribute()
     self.layout()
   }
-  
+
   private func attribute() {
     self.coinTitleLabel.do {
       $0.font = .systemFont(ofSize: 14)
@@ -107,6 +107,7 @@ final class CoinListViewCell: UITableViewCell {
   
   // TBD: "%" 표시 등 구체적인 디테일은 추후 구현 예정
   func setData(with data: CoinListViewCellData) {
+    self.coinTitleLabel.text = data.coinName
     self.tickerLabel.text = data.ticker
     self.currentPriceLabel.text = data.currentPrice
     self.priceChangedRatioLabel.text = data.priceChangedRatio

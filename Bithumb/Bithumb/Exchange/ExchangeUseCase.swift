@@ -47,6 +47,7 @@ struct ExchangeUseCase: ExchangeUseCaseLogic {
     return response.data
       .map {
         return CoinListViewCellData(
+          coinName: OrderCurrency.search(with: $0.key).koreanName,
           ticker: $0.key,
           currentPrice: $0.value.closingPrice,
           priceChangedRatio: $0.value.fluctateRate24H,

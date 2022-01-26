@@ -8,6 +8,7 @@
 import Foundation
 
 struct CoinListViewCellData: Equatable {
+  let coinName: String
   let ticker: String
   let currentPrice: String
   let priceChangedRatio: String

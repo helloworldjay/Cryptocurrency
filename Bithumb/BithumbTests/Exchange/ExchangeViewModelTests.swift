@@ -57,6 +57,7 @@ class ExchangeViewModelTests: XCTestCase {
   func test_검색_버튼을_눌렀을_때_CoinListViewModel로_CellData가_전달되는_지_확인() throws {
     //given
     let targetCellData = CoinListViewCellData(
+      coinName: "비트코인",
       ticker: "BTC",
       currentPrice: "2000",
       priceChangedRatio: "1.0",
