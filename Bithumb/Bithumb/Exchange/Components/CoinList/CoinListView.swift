@@ -38,7 +38,7 @@ final class CoinListView: UITableView {
     viewModel.cellData
       .drive(self.rx.items) { tableView, row, data in
         let index = IndexPath(row: row, section: 0)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CoinListViewCell", for: index) as! CoinListViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CoinListViewCell", for: index) as? CoinListViewCell else { return CoinListViewCell() }
         cell.setData(with: data)
         return cell
       }.disposed(by: disposeBag)
