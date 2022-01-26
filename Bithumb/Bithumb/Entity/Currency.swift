@@ -585,4 +585,13 @@ enum OrderCurrency: String, CaseIterable {
       return "이름 없음"
     }
   }
+  
+  static func search(with name: String) -> OrderCurrency {
+    for orderCurrency in OrderCurrency.allCases {
+      if orderCurrency.rawValue == name {
+        return orderCurrency
+      }
+    }
+    return .all
+  }
 }

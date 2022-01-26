@@ -29,13 +29,7 @@ final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
     self.orderCurrencyToSearch = self.searchButtonTapped
       .withLatestFrom(self.inputText) { $1 ?? "ALL" }
       .map {
-        var currency = OrderCurrency.all
-        for orderCurrency in OrderCurrency.allCases {
-          if orderCurrency.rawValue == $0 {
-            currency = orderCurrency
-          }
-        }
-        return currency
+        return OrderCurrency.search(with: $0)
       }
       .distinctUntilChanged()
   }
