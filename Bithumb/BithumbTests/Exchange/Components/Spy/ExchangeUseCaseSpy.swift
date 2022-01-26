@@ -14,7 +14,7 @@ struct ExchangeUseCaseSpy: ExchangeUseCaseLogic {
   
   var tickerResponseStub: Result<AllTickerResponse, BithumbNetworkError>
   
-  func fetchTicker(orderCurrency: OrderCurrency, paymentConcurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>> {
+  func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>> {
     return Observable.just(tickerResponseStub)
       .asSingle()
   }

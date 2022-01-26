@@ -8,7 +8,7 @@
 import RxSwift
 
 protocol ExchangeUseCaseLogic {
-  func fetchTicker(orderCurrency: OrderCurrency, paymentConcurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>>
+  func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>>
   func tickerResponse(result: Result<AllTickerResponse, BithumbNetworkError>) -> AllTickerResponse?
   func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData]
 }
@@ -29,8 +29,8 @@ struct ExchangeUseCase: ExchangeUseCaseLogic {
   
   // MARK: Network Logics
   
-  func fetchTicker(orderCurrency: OrderCurrency, paymentConcurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>> {
-    return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentConcurrency)
+  func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>> {
+    return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
   }
   
   func tickerResponse(result: Result<AllTickerResponse, BithumbNetworkError>) -> AllTickerResponse? {

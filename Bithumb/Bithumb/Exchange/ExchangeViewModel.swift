@@ -27,7 +27,7 @@ struct ExchangeViewModel: ExchangeViewModelLogic {
   init(useCase: ExchangeUseCaseLogic) {
     let result = self.exchangeSearchBarViewModel.orderCurrencyToSearch
       .flatMapLatest { currency in
-        useCase.fetchTicker(orderCurrency: currency, paymentConcurrency: .krw)
+        useCase.fetchTicker(orderCurrency: currency, paymentCurrency: .krw)
       }
     
     let cellData = result
