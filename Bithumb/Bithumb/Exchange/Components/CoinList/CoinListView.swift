@@ -31,7 +31,7 @@ final class CoinListView: UITableView {
     self.backgroundColor = .white
     self.register(CoinListViewCell.self, forCellReuseIdentifier: "CoinListViewCell")
     self.separatorStyle = .singleLine
-    self.rowHeight = 100
+    self.rowHeight = 60
   }
   
   func bind(viewModel: CoinListViewModel) {
