@@ -12,7 +12,7 @@ final class CoinListView: UITableView {
   
   // MARK: Properties
   
-  let disposeBag = DisposeBag()
+  private let disposeBag = DisposeBag()
   
   
   // MARK: Initializers
