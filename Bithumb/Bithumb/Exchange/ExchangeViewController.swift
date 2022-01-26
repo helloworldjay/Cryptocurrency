@@ -12,6 +12,7 @@ final class ExchangeViewController: UIViewController {
   // MARK: Properties
   
   let coinListView: CoinListView
+  let segmentedCategoryView: SegmentedCategoryView
   let exchangeSearchBar: ExchangeSearchBar
   let exchangeViewModel: ExchangeViewModelLogic
   let exchangeUseCase: ExchangeUseCaseLogic
@@ -25,6 +26,7 @@ final class ExchangeViewController: UIViewController {
     self.exchangeUseCase = ExchangeUseCase(network: self.networkManager)
     self.exchangeViewModel = ExchangeViewModel(useCase: self.exchangeUseCase)
     self.exchangeSearchBar = ExchangeSearchBar()
+    self.segmentedCategoryView = SegmentedCategoryView(items: ["원화", "BTC", "관심"], fontSize: 14)
     self.coinListView = CoinListView()
     
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -50,19 +52,23 @@ final class ExchangeViewController: UIViewController {
     self.coinListView.bind(viewModel: self.exchangeViewModel.coinListViewModel)
   }
   
-  //TBD: UI 재조정 필요
   private func layout() {
-    [self.exchangeSearchBar, self.coinListView].forEach { self.view.addSubview($0) }
+    self.setUpNavigationBar()
     
-    self.exchangeSearchBar.snp.makeConstraints {
-      $0.top.equalTo(view.safeAreaLayoutGuide)
-      $0.leading.trailing.equalToSuperview()
+    [self.segmentedCategoryView, self.coinListView].forEach { self.view.addSubview($0) }
+    
+    self.segmentedCategoryView.snp.makeConstraints {
+      $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
     
     self.coinListView.snp.makeConstraints {
-      $0.top.equalTo(exchangeSearchBar.snp.bottom)
+      $0.top.equalTo(self.segmentedCategoryView.snp.bottom).offset(10)
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalToSuperview().inset(100)
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }
+  }
+  
+  private func setUpNavigationBar() {
+    self.navigationItem.titleView = exchangeSearchBar
   }
 }
