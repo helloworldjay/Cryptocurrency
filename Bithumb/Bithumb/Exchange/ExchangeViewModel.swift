@@ -36,7 +36,6 @@ struct ExchangeViewModel: ExchangeViewModelLogic {
       .map(useCase.coinListCellData)
     
     cellData
-      .asObservable()
       .bind(to: coinListViewModel.coinListCellData)
       .disposed(by: disposeBag)
   }
