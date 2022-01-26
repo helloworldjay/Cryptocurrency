@@ -1,36 +1,22 @@
 //
-//  ExchangeUseCase.swift
-//  Bithumb
+//  ExchangeUseCaseSpy.swift
+//  BithumbTests
 //
-//  Created by Seungjin Baek on 2022/01/20.
+//  Created by Seungjin Baek on 2022/01/25.
 //
+
+import Foundation
+@testable import Bithumb
 
 import RxSwift
 
-protocol ExchangeUseCaseLogic {
-  func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>>
-  func tickerResponse(result: Result<AllTickerResponse, BithumbNetworkError>) -> AllTickerResponse?
-  func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData]
-}
-
-struct ExchangeUseCase: ExchangeUseCaseLogic {
+struct ExchangeUseCaseSpy: ExchangeUseCaseLogic {
   
-  // MARK: Properties
-  
-  let network: NetworkManagerLogic
-  
-  
-  // MARK: Initializers
-  
-  init(network: NetworkManagerLogic) {
-    self.network = network
-  }
-  
-  
-  // MARK: Network Logics
+  var tickerResponseStub: Result<AllTickerResponse, BithumbNetworkError>
   
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>> {
-    return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
+    return Observable.just(tickerResponseStub)
+      .asSingle()
   }
   
   func tickerResponse(result: Result<AllTickerResponse, BithumbNetworkError>) -> AllTickerResponse? {

@@ -12,7 +12,7 @@ import SnapKit
 final class CoinListViewCell: UITableViewCell {
   
   // MARK: Properties
-    
+  
   private let coinTitleLabel = UILabel()
   private let tickerLabel = UILabel()
   private let titleStackView = UIStackView()
@@ -103,5 +103,15 @@ final class CoinListViewCell: UITableViewCell {
       $0.centerY.equalTo(self.coinTitleLabel)
       $0.trailing.equalToSuperview().inset(12)
     }
+  }
+  
+  // TBD: "%" 표시 등 구체적인 디테일은 추후 구현 예정
+  func setData(with data: CoinListViewCellData) {
+    self.coinTitleLabel.text = data.coinName
+    self.tickerLabel.text = data.ticker
+    self.currentPriceLabel.text = data.currentPrice
+    self.priceChangedRatioLabel.text = data.priceChangedRatio
+    self.priceDifferenceLabel.text = data.priceDifference
+    self.transactionAmountLabel.text = data.transactionAmount
   }
 }

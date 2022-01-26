@@ -8,21 +8,29 @@
 import RxCocoa
 import RxSwift
 
-final class ExchangeSearchBarViewModel {
+protocol ExchangeSearchBarViewModelLogic {
+  var inputText: PublishRelay<String?> { get set }
+  var searchButtonTapped: PublishRelay<Void> { get set }
+  var orderCurrencyToSearch: Observable<OrderCurrency> { get }
+}
+
+final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
   
   // MARK: Properties
   
-  let inputText = PublishRelay<String>()
-  let searchButtonTapped = PublishRelay<Void>()
-  let queryText: Observable<String>
+  var inputText = PublishRelay<String?>()
+  var searchButtonTapped = PublishRelay<Void>()
+  var orderCurrencyToSearch: Observable<OrderCurrency>
   
   
   // MARK: Initializers
   
   init() {
-    self.queryText = self.searchButtonTapped
-      .withLatestFrom(self.inputText)
-      .filter { !$0.isEmpty }
+    self.orderCurrencyToSearch = self.searchButtonTapped
+      .withLatestFrom(self.inputText) { $1 ?? "ALL" }
+      .map {
+        return OrderCurrency.search(with: $0)
+      }
       .distinctUntilChanged()
   }
 }
