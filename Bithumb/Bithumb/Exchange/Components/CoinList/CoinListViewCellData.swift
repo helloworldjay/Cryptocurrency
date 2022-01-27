@@ -29,12 +29,14 @@ extension CoinListViewCellData {
   
   func priceDifferenceText() -> NSAttributedString? {
     guard let priceDifference = Double(self.priceDifference),
-          let convertedString = self.priceDifference.convertToDecimalText() else {
-        return nil
-      }
-      
+          let convertedString = String(abs(priceDifference)).convertToDecimalText() else {
+            return nil
+          }
+    
+    let sign = self.sign(about: priceDifference)
     let color = UIColor.tickerColor(with: priceDifference)
-      return convertedString.convertToAttributedString(with: color)
+    let priceDifferenceText = sign + convertedString
+    return priceDifferenceText.convertToAttributedString(with: color)
   }
   
   func priceChangedRatioText() -> NSAttributedString? {
@@ -54,7 +56,7 @@ extension CoinListViewCellData {
       return nil
     }
     let millionUnitNumber = Int(round(transactionAmount / 1000000))
-
+    
     guard var millionUnitText = String(millionUnitNumber).convertToDecimalText() else {
       return nil
     }
