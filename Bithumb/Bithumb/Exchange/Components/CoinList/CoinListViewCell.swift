@@ -105,13 +105,12 @@ final class CoinListViewCell: UITableViewCell {
     }
   }
   
-  // TBD: "%" 표시 등 구체적인 디테일은 추후 구현 예정
   func setData(with data: CoinListViewCellData) {
+    self.transactionAmountLabel.text = data.transactionAmountText()
     self.coinTitleLabel.text = data.coinName
     self.tickerLabel.text = data.ticker
-    self.currentPriceLabel.text = data.currentPrice
-    self.priceChangedRatioLabel.text = data.priceChangedRatio
-    self.priceDifferenceLabel.text = data.priceDifference
-    self.transactionAmountLabel.text = data.transactionAmount
+    self.currentPriceLabel.attributedText = data.currentPriceText()
+    self.priceDifferenceLabel.attributedText = data.priceDifferenceText()
+    self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
   }
 }
