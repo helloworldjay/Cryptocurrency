@@ -38,16 +38,14 @@ extension CoinListViewCellData {
   }
   
   func priceChangedRatioText() -> NSAttributedString? {
-    guard var priceChangedRatio = Double(self.priceChangedRatio) else {
+    guard let priceChangedRatio = Double(self.priceChangedRatio) else {
       return nil
     }
     
-    var percentageText = ""
-    priceChangedRatio = round(priceChangedRatio * 100) / 100
-    percentageText = priceChangedRatio >= 0 ? "+" : ""
-    percentageText.append(String(priceChangedRatio) + "%")
-    
+    let sign = self.sign(about: priceChangedRatio)
     let color = UIColor.tickerColor(with: priceChangedRatio)
+    let slicedPriceChangedRatio = abs(floor(priceChangedRatio * 100) / 100)
+    let percentageText = sign + String(slicedPriceChangedRatio) + "%"
     return percentageText.convertToAttributedString(with: color)
   }
   
@@ -63,6 +61,16 @@ extension CoinListViewCellData {
     
     millionUnitText += "백만"
     return millionUnitText
+  }
+  
+  private func sign(about number: Double) -> String {
+    if number == .zero {
+      return ""
+    } else if number > .zero {
+      return "+"
+    } else {
+      return "-"
+    }
   }
 }
 
