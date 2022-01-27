@@ -22,11 +22,12 @@ final class ExchangeViewController: UIViewController {
   // MARK: Initializers
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    let categoryItems = ["원화", "BTC", "관심"]
+    self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
     self.networkManager = NetworkManager()
     self.exchangeUseCase = ExchangeUseCase(network: self.networkManager)
     self.exchangeViewModel = ExchangeViewModel(useCase: self.exchangeUseCase)
     self.exchangeSearchBar = ExchangeSearchBar()
-    self.segmentedCategoryView = SegmentedCategoryView(items: ["원화", "BTC", "관심"], fontSize: 14)
     self.coinListView = CoinListView()
     
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
