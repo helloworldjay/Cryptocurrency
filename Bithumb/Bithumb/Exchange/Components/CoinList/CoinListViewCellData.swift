@@ -55,7 +55,7 @@ extension CoinListViewCellData {
     guard let transactionAmount = Double(self.transactionAmount) else {
       return nil
     }
-    let millionUnitNumber = Int(round(transactionAmount / 1000000))
+    let millionUnitNumber = Int(floor(transactionAmount / 1000000))
     
     guard var millionUnitText = String(millionUnitNumber).convertToDecimalText() else {
       return nil
