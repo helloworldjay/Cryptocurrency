@@ -65,7 +65,7 @@ extension CoinListViewCellData {
     return millionUnitText
   }
   
-  private func sign(about number: Double) -> String {
+  private func sign(of number: Double) -> String {
     if number == .zero {
       return ""
     } else if number > .zero {
