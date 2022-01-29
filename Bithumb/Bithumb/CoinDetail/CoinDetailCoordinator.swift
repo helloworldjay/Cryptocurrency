@@ -13,7 +13,7 @@ final class CoinDetailCoordinator: Coordinator {
 
   weak var parentCoordinator: Coordinator?
   var childCoordinators: [Coordinator] = []
-  var navigationController: UINavigationController!
+  var navigationController: UINavigationController
   var orderCurrency: OrderCurrency
 
 
