@@ -11,6 +11,7 @@ import RxSwift
 struct CoinListViewModel {
   let coinListCellData = PublishSubject<[CoinListViewCellData]>()
   let cellData: Driver<[CoinListViewCellData]>
+  let selectedOrderCurrency = PublishSubject<OrderCurrency>()
   
   init() {
     self.cellData = self.coinListCellData

@@ -41,6 +41,12 @@ final class CoinListView: UITableView {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CoinListViewCell", for: index) as? CoinListViewCell else { return CoinListViewCell() }
         cell.setData(with: data)
         return cell
-      }.disposed(by: disposeBag)
+      }.disposed(by: self.disposeBag)
+    
+    self.rx.modelSelected(CoinListViewCellData.self)
+      .map { $0.ticker }
+      .map { OrderCurrency.search(with: $0) }
+      .bind(to: viewModel.selectedOrderCurrency)
+      .disposed(by: self.disposeBag)
   }
 }
