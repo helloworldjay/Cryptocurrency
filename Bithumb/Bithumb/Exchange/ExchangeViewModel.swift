@@ -11,14 +11,16 @@ import RxSwift
 protocol ExchangeViewModelLogic {
   var exchangeSearchBarViewModel: ExchangeSearchBarViewModel { get set }
   var coinListViewModel: CoinListViewModel { get set }
+  var exchangeCoordinator: ExchangeCoordinator? { get set }
 }
 
-struct ExchangeViewModel: ExchangeViewModelLogic {
+final class ExchangeViewModel: ExchangeViewModelLogic {
   
   // MARK: Properties
   
   var exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
   var coinListViewModel = CoinListViewModel()
+  var exchangeCoordinator: ExchangeCoordinator?
   private let disposeBag = DisposeBag()
   
   
@@ -38,5 +40,11 @@ struct ExchangeViewModel: ExchangeViewModelLogic {
     cellData
       .bind(to: coinListViewModel.coinListCellData)
       .disposed(by: disposeBag)
+
+    self.coinListViewModel.selectedOrderCurrency
+      .subscribe(on: MainScheduler.instance)
+      .subscribe {
+        self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: $0)
+      }.disposed(by: self.disposeBag)
   }
 }
