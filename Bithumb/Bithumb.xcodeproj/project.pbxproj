@@ -15,7 +15,6 @@
 		48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE127997298008F2AD1 /* CoinListViewModel.swift */; };
 		48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */; };
 		48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE62799732E008F2AD1 /* NetworkManager.swift */; };
-		4881F42727979E5200472C90 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42627979E5200472C90 /* TabBarController.swift */; };
 		4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42827979E6600472C90 /* ExchangeViewController.swift */; };
 		4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */; };
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
@@ -23,6 +22,7 @@
 		4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4352797A2B800472C90 /* MoreOptionViewController.swift */; };
 		4882FA6F279D288100A25880 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4882FA6E279D288100A25880 /* Currency.swift */; };
 		4885375427A38EA300BE00FD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375327A38EA300BE00FD /* Coordinator.swift */; };
+		4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375527A3CFF800BE00FD /* AppCoordinator.swift */; };
 		4885375827A3D1F500BE00FD /* ExchangeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375727A3D1F500BE00FD /* ExchangeCoordinator.swift */; };
 		4885375A27A3D88400BE00FD /* ProductServiceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375927A3D88400BE00FD /* ProductServiceCoordinator.swift */; };
 		4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375B27A3D90E00BE00FD /* CurrentAssetCoordinator.swift */; };
@@ -84,7 +84,6 @@
 		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		48256CE62799732E008F2AD1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		4881F42627979E5200472C90 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		4881F4352797A2B800472C90 /* MoreOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionViewController.swift; sourceTree = "<group>"; };
 		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		4885375327A38EA300BE00FD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4885375527A3CFF800BE00FD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4885375727A3D1F500BE00FD /* ExchangeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCoordinator.swift; sourceTree = "<group>"; };
 		4885375927A3D88400BE00FD /* ProductServiceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceCoordinator.swift; sourceTree = "<group>"; };
 		4885375B27A3D90E00BE00FD /* CurrentAssetCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetCoordinator.swift; sourceTree = "<group>"; };
@@ -236,14 +236,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		4881F42427979DD300472C90 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				4881F42627979E5200472C90 /* TabBarController.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
 		4881F42527979DDF00472C90 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				4885375327A38EA300BE00FD /* Coordinator.swift */,
+				4885375527A3CFF800BE00FD /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -388,7 +381,6 @@
 		48FDCFFA279541E2002F0050 /* Bithumb */ = {
 			isa = PBXGroup;
 			children = (
-				4881F42427979DD300472C90 /* TabBar */,
 				4885376127A40E1C00BE00FD /* CoinDetail */,
 				4881F42527979DDF00472C90 /* Exchange */,
 				48256CE52799730A008F2AD1 /* Network */,
@@ -710,7 +702,6 @@
 				4885376027A3D92800BE00FD /* MoreOptionCoordinator.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
-				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
 				4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */,
@@ -729,6 +720,7 @@
 				4882FA6F279D288100A25880 /* Currency.swift in Sources */,
 				48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
+				4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */,
 				4885376327A40E3600BE00FD /* CoinDetailViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
@@ -737,7 +729,6 @@
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,
 				B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */,
-
 				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
