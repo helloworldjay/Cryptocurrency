@@ -34,7 +34,7 @@ final class CoinListView: UITableView {
     self.rowHeight = 60
   }
   
-  func bind(viewModel: CoinListViewModel) {
+  func bind(viewModel: CoinListViewModelLogic) {
     viewModel.cellData
       .drive(self.rx.items) { tableView, row, data in
         let index = IndexPath(row: row, section: 0)

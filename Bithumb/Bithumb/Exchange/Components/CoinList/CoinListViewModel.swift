@@ -8,11 +8,17 @@
 import RxCocoa
 import RxSwift
 
-struct CoinListViewModel {
-  let coinListCellData = PublishSubject<[CoinListViewCellData]>()
-  let cellData: Driver<[CoinListViewCellData]>
-  let selectedOrderCurrency = PublishSubject<OrderCurrency>()
-  
+protocol CoinListViewModelLogic {
+  var coinListCellData: PublishSubject<[CoinListViewCellData]> { get set }
+  var cellData: Driver<[CoinListViewCellData]> { get set }
+  var selectedOrderCurrency: PublishSubject<OrderCurrency> { get set }
+}
+
+final class CoinListViewModel: CoinListViewModelLogic {
+  var coinListCellData = PublishSubject<[CoinListViewCellData]>()
+  var cellData: Driver<[CoinListViewCellData]>
+  var selectedOrderCurrency = PublishSubject<OrderCurrency>()
+
   init() {
     self.cellData = self.coinListCellData
       .asDriver(onErrorJustReturn: [])

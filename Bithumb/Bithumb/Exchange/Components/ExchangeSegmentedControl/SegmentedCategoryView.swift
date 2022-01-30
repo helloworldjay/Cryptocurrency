@@ -11,8 +11,8 @@ import SnapKit
 import Then
 
 final class SegmentedCategoryView: UIView {
-  
-  //MARK: Properties
+
+  // MARK: Properties
   
   var segmentedControl: UISegmentedControl
   private let segmentIndicator = UIView().then {
@@ -21,8 +21,7 @@ final class SegmentedCategoryView: UIView {
   
   private var fontSize: CGFloat
   
-  
-  //MARK: Initializers
+  // MARK: Initializers
   
   init(items: [String] = [], fontSize: CGFloat) {
     self.segmentedControl = UISegmentedControl(items: items)
@@ -64,9 +63,10 @@ final class SegmentedCategoryView: UIView {
       self.setSegmentIndicatorConstraints(of: $0, remake: true)
     }
 
-    UIView.animate(withDuration: 0.2, animations: {
-      self.layoutIfNeeded()
-    })
+    UIView.animate(
+      withDuration: 0.2,
+      animations: { self.layoutIfNeeded() }
+    )
   }
   
   private func setSegmentIndicatorConstraints(of make: ConstraintMaker, remake: Bool) {

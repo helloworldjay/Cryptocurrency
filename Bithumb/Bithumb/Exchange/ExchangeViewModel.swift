@@ -9,8 +9,8 @@ import RxCocoa
 import RxSwift
 
 protocol ExchangeViewModelLogic {
-  var exchangeSearchBarViewModel: ExchangeSearchBarViewModel { get set }
-  var coinListViewModel: CoinListViewModel { get set }
+  var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic { get set }
+  var coinListViewModel: CoinListViewModelLogic { get set }
   var exchangeCoordinator: ExchangeCoordinator? { get set }
 }
 
@@ -18,8 +18,8 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   
   // MARK: Properties
   
-  var exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
-  var coinListViewModel = CoinListViewModel()
+  var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic
+  var coinListViewModel: CoinListViewModelLogic
   var exchangeCoordinator: ExchangeCoordinator?
   private let disposeBag = DisposeBag()
   
@@ -27,6 +27,9 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   // MARK: Initializers
   
   init(useCase: ExchangeUseCaseLogic) {
+    self.exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
+    self.coinListViewModel = CoinListViewModel()
+
     let result = self.exchangeSearchBarViewModel.orderCurrencyToSearch
       .flatMapLatest { currency in
         useCase.fetchTicker(orderCurrency: currency, paymentCurrency: .krw)
