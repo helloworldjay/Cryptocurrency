@@ -33,7 +33,7 @@ extension CoinListViewCellData {
             return nil
           }
     
-    let sign = self.sign(about: priceDifference)
+    let sign = self.sign(of: priceDifference)
     let color = UIColor.tickerColor(with: priceDifference)
     let priceDifferenceText = sign + convertedString
     return priceDifferenceText.convertToAttributedString(with: color)
@@ -44,7 +44,7 @@ extension CoinListViewCellData {
       return nil
     }
     
-    let sign = self.sign(about: priceChangedRatio)
+    let sign = self.sign(of: priceChangedRatio)
     let color = UIColor.tickerColor(with: priceChangedRatio)
     let slicedPriceChangedRatio = abs(floor(priceChangedRatio * 100) / 100)
     let percentageText = sign + String(slicedPriceChangedRatio) + "%"
