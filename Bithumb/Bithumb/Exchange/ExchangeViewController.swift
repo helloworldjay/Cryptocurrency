@@ -14,11 +14,11 @@ final class ExchangeViewController: UIViewController {
   let coinListView: CoinListView
   let segmentedCategoryView: SegmentedCategoryView
   let exchangeSearchBar: ExchangeSearchBar
-  let exchangeViewModel: ExchangeViewModelLogic
+  var exchangeViewModel: ExchangeViewModelLogic
   let exchangeUseCase: ExchangeUseCaseLogic
   let networkManager: NetworkManagerLogic
-  
-  
+
+
   // MARK: Initializers
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

@@ -15,13 +15,21 @@
 		48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE127997298008F2AD1 /* CoinListViewModel.swift */; };
 		48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */; };
 		48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE62799732E008F2AD1 /* NetworkManager.swift */; };
-		4881F42727979E5200472C90 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42627979E5200472C90 /* TabBarController.swift */; };
 		4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42827979E6600472C90 /* ExchangeViewController.swift */; };
 		4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */; };
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
 		4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4332797A29900472C90 /* TransactionViewController.swift */; };
 		4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F4352797A2B800472C90 /* MoreOptionViewController.swift */; };
 		4882FA6F279D288100A25880 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4882FA6E279D288100A25880 /* Currency.swift */; };
+		4885375427A38EA300BE00FD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375327A38EA300BE00FD /* Coordinator.swift */; };
+		4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375527A3CFF800BE00FD /* AppCoordinator.swift */; };
+		4885375827A3D1F500BE00FD /* ExchangeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375727A3D1F500BE00FD /* ExchangeCoordinator.swift */; };
+		4885375A27A3D88400BE00FD /* ProductServiceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375927A3D88400BE00FD /* ProductServiceCoordinator.swift */; };
+		4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375B27A3D90E00BE00FD /* CurrentAssetCoordinator.swift */; };
+		4885375E27A3D91D00BE00FD /* TransactionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375D27A3D91D00BE00FD /* TransactionCoordinator.swift */; };
+		4885376027A3D92800BE00FD /* MoreOptionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885375F27A3D92800BE00FD /* MoreOptionCoordinator.swift */; };
+		4885376327A40E3600BE00FD /* CoinDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885376227A40E3600BE00FD /* CoinDetailViewController.swift */; };
+		4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4885376427A40E4000BE00FD /* CoinDetailCoordinator.swift */; };
 		488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E7B279BA68E0021A545 /* AllTickerResponse.swift */; };
 		488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */; };
 		489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */; };
@@ -77,13 +85,21 @@
 		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		48256CE62799732E008F2AD1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		4881F42627979E5200472C90 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
 		4881F4332797A29900472C90 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		4881F4352797A2B800472C90 /* MoreOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionViewController.swift; sourceTree = "<group>"; };
 		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		4885375327A38EA300BE00FD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4885375527A3CFF800BE00FD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		4885375727A3D1F500BE00FD /* ExchangeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCoordinator.swift; sourceTree = "<group>"; };
+		4885375927A3D88400BE00FD /* ProductServiceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceCoordinator.swift; sourceTree = "<group>"; };
+		4885375B27A3D90E00BE00FD /* CurrentAssetCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetCoordinator.swift; sourceTree = "<group>"; };
+		4885375D27A3D91D00BE00FD /* TransactionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCoordinator.swift; sourceTree = "<group>"; };
+		4885375F27A3D92800BE00FD /* MoreOptionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionCoordinator.swift; sourceTree = "<group>"; };
+		4885376227A40E3600BE00FD /* CoinDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewController.swift; sourceTree = "<group>"; };
+		4885376427A40E4000BE00FD /* CoinDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailCoordinator.swift; sourceTree = "<group>"; };
 		488F9E7B279BA68E0021A545 /* AllTickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTickerResponse.swift; sourceTree = "<group>"; };
 		488F9E80279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModelTests.swift; sourceTree = "<group>"; };
 		489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestRouter.swift; sourceTree = "<group>"; };
@@ -211,6 +227,7 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4885375027A38A5300BE00FD /* Coordinators */,
 				B4A8E11B279E858500A2BFCD /* Extensions */,
 				48FDCFFB279541E2002F0050 /* AppDelegate.swift */,
 				48FDCFFD279541E2002F0050 /* SceneDelegate.swift */,
@@ -221,14 +238,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		4881F42427979DD300472C90 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				4881F42627979E5200472C90 /* TabBarController.swift */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
 		4881F42527979DDF00472C90 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +245,7 @@
 				4881F42827979E6600472C90 /* ExchangeViewController.swift */,
 				48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */,
 				48256CD927997246008F2AD1 /* ExchangeUseCase.swift */,
+				4885375727A3D1F500BE00FD /* ExchangeCoordinator.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -244,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */,
+				4885375927A3D88400BE00FD /* ProductServiceCoordinator.swift */,
 			);
 			path = ProductService;
 			sourceTree = "<group>";
@@ -252,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */,
+				4885375B27A3D90E00BE00FD /* CurrentAssetCoordinator.swift */,
 			);
 			path = CurrentAsset;
 			sourceTree = "<group>";
@@ -260,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				4881F4332797A29900472C90 /* TransactionViewController.swift */,
+				4885375D27A3D91D00BE00FD /* TransactionCoordinator.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -268,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				4881F4352797A2B800472C90 /* MoreOptionViewController.swift */,
+				4885375F27A3D92800BE00FD /* MoreOptionCoordinator.swift */,
 			);
 			path = MoreOption;
 			sourceTree = "<group>";
@@ -281,6 +295,24 @@
 				4881F4312797A23A00472C90 /* MoreOption */,
 			);
 			path = TBD;
+			sourceTree = "<group>";
+		};
+		4885375027A38A5300BE00FD /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				4885375327A38EA300BE00FD /* Coordinator.swift */,
+				4885375527A3CFF800BE00FD /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		4885376127A40E1C00BE00FD /* CoinDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4885376227A40E3600BE00FD /* CoinDetailViewController.swift */,
+				4885376427A40E4000BE00FD /* CoinDetailCoordinator.swift */,
+			);
+			path = CoinDetail;
 			sourceTree = "<group>";
 		};
 		488F9E7D279BA7BF0021A545 /* Exchange */ = {
@@ -351,7 +383,7 @@
 		48FDCFFA279541E2002F0050 /* Bithumb */ = {
 			isa = PBXGroup;
 			children = (
-				4881F42427979DD300472C90 /* TabBar */,
+				4885376127A40E1C00BE00FD /* CoinDetail */,
 				4881F42527979DDF00472C90 /* Exchange */,
 				48256CE52799730A008F2AD1 /* Network */,
 				48256CE827997415008F2AD1 /* Entity */,
@@ -669,26 +701,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				48256CDA27997246008F2AD1 /* ExchangeUseCase.swift in Sources */,
+				4885375E27A3D91D00BE00FD /* TransactionCoordinator.swift in Sources */,
+				4885376027A3D92800BE00FD /* MoreOptionCoordinator.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
-				4881F42727979E5200472C90 /* TabBarController.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
+				4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
+				4885375427A38EA300BE00FD /* Coordinator.swift in Sources */,
+				4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
 				489FB624279C43F10078AEE1 /* BithumbNetworkError.swift in Sources */,
 				4881F4342797A29900472C90 /* TransactionViewController.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
+				4885375A27A3D88400BE00FD /* ProductServiceCoordinator.swift in Sources */,
 				C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */,
 				4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */,
 				4882FA6F279D288100A25880 /* Currency.swift in Sources */,
 				48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
+				4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */,
+				4885376327A40E3600BE00FD /* CoinDetailViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
+				4885375827A3D1F500BE00FD /* ExchangeCoordinator.swift in Sources */,
 				48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */,
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,

@@ -582,7 +582,7 @@ enum OrderCurrency: String, CaseIterable {
     case .btt:
       return "비트토렌트"
     default:
-      return "이름 없음"
+      return "신규 코인"
     }
   }
   
