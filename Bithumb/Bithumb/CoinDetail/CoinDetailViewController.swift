@@ -8,6 +8,7 @@
 import UIKit
 
 import Charts
+import RxSwift
 import SnapKit
 import Then
 
@@ -23,7 +24,10 @@ final class CoinDetailViewController: UIViewController {
   
   private let candleStickChartView: CandleStickChartView
   private let segmentedCategoryView: SegmentedCategoryView
+  private let timeIntervalChangeButton: UIButton
   
+  private let coinDetailViewModel: CoinDetailViewModel
+  private let disposeBag: DisposeBag
   let payload: Payload
 
 
@@ -34,6 +38,9 @@ final class CoinDetailViewController: UIViewController {
     let categoryItems = ["호가", "차트"]
     self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
     self.candleStickChartView = CandleStickChartView()
+    self.timeIntervalChangeButton = UIButton()
+    self.coinDetailViewModel = CoinDetailViewModel()
+    self.disposeBag = DisposeBag()
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -51,7 +58,9 @@ final class CoinDetailViewController: UIViewController {
   }
   
   private func layout() {
-    [self.candleStickChartView, self.segmentedCategoryView].forEach { self.view.addSubview($0) }
+    [self.candleStickChartView,
+     self.segmentedCategoryView,
+     self.timeIntervalChangeButton].forEach { self.view.addSubview($0) }
     
     self.segmentedCategoryView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
@@ -61,6 +70,10 @@ final class CoinDetailViewController: UIViewController {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(self.segmentedCategoryView.snp.bottom)
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
+    }
+    
+    self.timeIntervalChangeButton.snp.makeConstraints {
+      $0.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
   }
   
@@ -84,10 +97,22 @@ final class CoinDetailViewController: UIViewController {
       $0.dragYEnabled = false
       $0.delegate = self
     }
+    
+    self.timeIntervalChangeButton.do {
+      $0.setTitleColor(.black, for: .normal)
+    }
   }
   
   private func bind() {
-    //TODO: ViewModel과 Binding
+    self.timeIntervalChangeButton.rx.tap
+      .bind(to: self.coinDetailViewModel.tapSelctTimeIntervalButton)
+      .disposed(by: self.disposeBag)
+    
+    self.coinDetailViewModel.selectedTimeInterval
+      .bind {
+        self.timeIntervalChangeButton.setTitle($0.rawValue, for: .normal)
+      }
+      .disposed(by: self.disposeBag)
   }
   
   private func setChart(chartData: [ChartData]) {
