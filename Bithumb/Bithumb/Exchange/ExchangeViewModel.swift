@@ -11,6 +11,7 @@ import RxSwift
 protocol ExchangeViewModelLogic {
   var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic { get set }
   var coinListViewModel: CoinListViewModelLogic { get set }
+  var segmentedCategoryViewModel: SegmentedCategoryViewModelLogic { get set }
   var exchangeCoordinator: ExchangeCoordinator? { get set }
 }
 
@@ -20,6 +21,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   
   var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic
   var coinListViewModel: CoinListViewModelLogic
+  var segmentedCategoryViewModel: SegmentedCategoryViewModelLogic
   var exchangeCoordinator: ExchangeCoordinator?
   private let disposeBag = DisposeBag()
   
@@ -29,12 +31,17 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   init(useCase: ExchangeUseCaseLogic) {
     self.exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
     self.coinListViewModel = CoinListViewModel()
+    self.segmentedCategoryViewModel = SegmentedCategoryViewModel()
 
-    let result = self.exchangeSearchBarViewModel.orderCurrencyToSearch
-      .flatMapLatest { currency in
-        useCase.fetchTicker(orderCurrency: currency, paymentCurrency: .krw)
-      }
-    
+    let result = Observable
+      .combineLatest(
+        self.exchangeSearchBarViewModel.orderCurrencyToSearch,
+        self.segmentedCategoryViewModel.paymentCurrency,
+        resultSelector: {
+          useCase.fetchTicker(orderCurrency: $0, paymentCurrency: $1)
+        }
+      ).flatMap { $0 }
+
     let cellData = result
       .map(useCase.tickerResponse)
       .filter { $0 != nil }
