@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
@@ -19,11 +21,15 @@ final class TimeIntervalBottomSheet: BottomSheet {
   private let timeIntervalListView = UITableView()
   private let cancelButton = UIButton()
   
+  private let disposeBag = DisposeBag()
+  var timeIntervalViewModel = TimeIntervalViewModel()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     self.layout()
     self.attribute()
+    self.bind()
   }
   
   private func layout() {
@@ -53,7 +59,7 @@ final class TimeIntervalBottomSheet: BottomSheet {
       $0.bottom.equalToSuperview().inset(20)
     }
     
-    self.defaultHeight = 320
+    self.defaultHeight = 500
   }
   
   private func attribute() {
@@ -87,5 +93,25 @@ final class TimeIntervalBottomSheet: BottomSheet {
   
   @objc private func tapCancelButton() {
     self.hideBottomSheetAndGoBack()
+  }
+  
+  private func bind() {
+    Observable.just(self.timeIntervalViewModel.intervals)
+      .bind(to: self.timeIntervalListView.rx.items) { (tableView, row, element) in
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
+          return UITableViewCell()
+        }
+        cell.textLabel?.text = element.rawValue
+        cell.textLabel?.font = .systemFont(ofSize: 15)
+        cell.tintColor = .bithumb
+        if row == self.timeIntervalViewModel.tapListView.value.row {
+          cell.accessoryType = .checkmark
+        }
+        return cell
+      }.disposed(by: self.disposeBag)
+    
+    self.timeIntervalListView.rx.itemSelected
+      .bind(to: self.timeIntervalViewModel.tapListView)
+      .disposed(by: self.disposeBag)
   }
 }

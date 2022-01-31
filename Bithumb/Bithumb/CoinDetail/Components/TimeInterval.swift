@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TimeInterval: String {
+enum TimeInterval: String, CaseIterable {
   case oneMinute = "1m"
   case threeMinute = "3m"
   case fiveMinute = "5m"
