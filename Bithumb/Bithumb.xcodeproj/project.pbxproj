@@ -319,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				488F9E7E279BA7C70021A545 /* Components */,
+				48B60E5027A035E4000534EC /* Spy */,
 				48B60E5327A036C0000534EC /* ExchangeViewModelTests.swift */,
 				48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */,
 			);
@@ -328,7 +329,6 @@
 		488F9E7E279BA7C70021A545 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				48B60E5027A035E4000534EC /* Spy */,
 				488F9E7F279BA7D80021A545 /* ExchangeSearchBar */,
 			);
 			path = Components;
