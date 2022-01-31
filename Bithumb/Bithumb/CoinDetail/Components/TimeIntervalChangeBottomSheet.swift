@@ -1,5 +1,5 @@
 //
-//  PeriodBottomSheet.swift
+//  TimeIntervalChangeBottomSheet.swift
 //  Bithumb
 //
 //  Created by 이영우 on 2022/01/31.
@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
-final class PeriodBottomSheet: BottomSheet {
+final class TimeIntervalChangeBottomSheet: BottomSheet {
   
   // MARK: Properties
   
   private let titleLabel = UILabel()
   private let descriptionLabel = UILabel()
-  private let periodListView = UITableView()
+  private let timeIntervalListView = UITableView()
   private let cancelButton = UIButton()
   
   override func viewDidLoad() {
@@ -27,7 +27,7 @@ final class PeriodBottomSheet: BottomSheet {
   }
   
   private func layout() {
-    [self.titleLabel, self.descriptionLabel, self.periodListView, self.cancelButton].forEach {
+    [self.titleLabel, self.descriptionLabel, self.timeIntervalListView, self.cancelButton].forEach {
       self.bottomSheetView.addSubview($0)
     }
     
@@ -47,7 +47,7 @@ final class PeriodBottomSheet: BottomSheet {
       $0.width.equalTo(self.cancelButton.snp.height)
     }
     
-    self.periodListView.snp.makeConstraints {
+    self.timeIntervalListView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(self.descriptionLabel.snp.bottom).offset(10)
       $0.bottom.equalToSuperview().inset(20)
@@ -77,7 +77,7 @@ final class PeriodBottomSheet: BottomSheet {
                    for: .touchUpInside)
     }
     
-    self.periodListView.do {
+    self.timeIntervalListView.do {
       $0.separatorStyle = .none
       $0.register(UITableViewCell.self,
                   forCellReuseIdentifier: "cell")
