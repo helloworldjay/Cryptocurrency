@@ -16,7 +16,6 @@ class BottomSheet: UIViewController {
   
   private let dimmedTap = UITapGestureRecognizer()
   private let dimmedView = UIView()
-  private var bottomSheetViewTopConstraint: ConstraintMakerEditable?
   
   let bottomSheetView = UIView()
   var defaultHeight: CGFloat = 300
@@ -53,7 +52,11 @@ class BottomSheet: UIViewController {
   }
   
   func hideBottomSheetAndGoBack() {
-    self.bottomSheetViewTopConstraint?.constraint.update(inset: 0)
+    self.bottomSheetView.snp.remakeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(self.view.snp.bottom).offset(self.defaultHeight)
+      $0.top.equalTo(self.view.snp.bottom)
+    }
     
     UIView.animate(withDuration: 0.25,
                    delay: 0,
@@ -70,14 +73,13 @@ class BottomSheet: UIViewController {
     
     self.bottomSheetView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
-      $0.bottom.equalTo(self.view.snp.bottom)
-      self.bottomSheetViewTopConstraint = $0.top.equalTo(self.view.snp.bottom)
+      $0.bottom.equalTo(self.view.snp.bottom).offset(self.defaultHeight)
+      $0.top.equalTo(self.view.snp.bottom)
     }
     
     self.dimmedView.snp.makeConstraints {
       $0.leading.trailing.top.bottom.equalToSuperview()
     }
-    
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -86,7 +88,11 @@ class BottomSheet: UIViewController {
   }
   
   private func showBottomSheet() {
-    self.bottomSheetViewTopConstraint?.constraint.update(inset: defaultHeight)
+    self.bottomSheetView.snp.remakeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.bottom.equalTo(self.view.snp.bottom)
+      $0.top.equalTo(self.view.snp.bottom).inset(self.defaultHeight)
+    }
     
     UIView.animate(withDuration: 0.25,
                    delay: 0,
