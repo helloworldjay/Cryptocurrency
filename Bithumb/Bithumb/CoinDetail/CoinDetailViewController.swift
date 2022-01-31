@@ -90,9 +90,9 @@ final class CoinDetailViewController: UIViewController {
     //TODO: ViewModel과 Binding
   }
   
-  private func setChart(chartDatum: [ChartData]) {
-    let dataEntries = self.convertToDataEntries(from: chartDatum)
-    let axisValues = self.convertToAxisValues(from: chartDatum)
+  private func setChart(chartData: [ChartData]) {
+    let dataEntries = self.convertToDataEntries(from: chartData)
+    let axisValues = self.convertToAxisValues(from: chartData)
     
     let chartDataSet = CandleChartDataSet(entries: dataEntries).then {
       $0.shadowColorSameAsCandle = true
@@ -116,11 +116,11 @@ final class CoinDetailViewController: UIViewController {
     }
   }
   
-  private func convertToDataEntries(from graphDatum: [ChartData]) -> [CandleChartDataEntry]? {
+  private func convertToDataEntries(from graphData: [ChartData]) -> [CandleChartDataEntry]? {
     var dataEntries: [CandleChartDataEntry] = []
     
-    for index in 0..<graphDatum.count {
-      guard let graphData = graphDatum[safe: index] else { return nil }
+    for index in 0..<graphData.count {
+      guard let graphData = graphData[safe: index] else { return nil }
 
       let dataEntry = CandleChartDataEntry(x: Double(index),
                                            shadowH: graphData.highPrice,
@@ -133,8 +133,8 @@ final class CoinDetailViewController: UIViewController {
     return dataEntries
   }
   
-  private func convertToAxisValues(from graphDatum: [ChartData]) -> [String] {
-    return graphDatum.map { $0.dateText }
+  private func convertToAxisValues(from graphData: [ChartData]) -> [String] {
+    return graphData.map { $0.dateText }
   }
 }
 
