@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class TimeIntervalChangeBottomSheet: BottomSheet {
+final class TimeIntervalBottomSheet: BottomSheet {
   
   // MARK: Properties
   

@@ -56,7 +56,7 @@
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
 		C3D0EF6D27A7685100A5E4BE /* Array + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */; };
 		C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */; };
-		C3D0EF7A27A7A42100A5E4BE /* TimeIntervalChangeBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF7927A7A42100A5E4BE /* TimeIntervalChangeBottomSheet.swift */; };
+		C3D0EF7A27A7A42100A5E4BE /* TimeIntervalBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */; };
 		C3D0EF8427A7B25000A5E4BE /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */; };
 		F19014D04656742DAD3CEE42 /* Pods_Bithumb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */; };
 /* End PBXBuildFile section */
@@ -136,7 +136,7 @@
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
-		C3D0EF7927A7A42100A5E4BE /* TimeIntervalChangeBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalChangeBottomSheet.swift; sourceTree = "<group>"; };
+		C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalBottomSheet.swift; sourceTree = "<group>"; };
 		C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb_BithumbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15410D7F32C1F0DA5436F6 /* Pods-BithumbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -465,7 +465,7 @@
 		C3D0EF7827A7A40100A5E4BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C3D0EF7927A7A42100A5E4BE /* TimeIntervalChangeBottomSheet.swift */,
+				C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */,
 				C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */,
 			);
 			path = Components;
@@ -769,7 +769,7 @@
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,
 				B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */,
 				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
-				C3D0EF7A27A7A42100A5E4BE /* TimeIntervalChangeBottomSheet.swift in Sources */,
+				C3D0EF7A27A7A42100A5E4BE /* TimeIntervalBottomSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
