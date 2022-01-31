@@ -1,5 +1,5 @@
 //
-//  Array.swift
+//  Array + Ext.swift
 //  Bithumb
 //
 //  Created by 이영우 on 2022/01/31.
