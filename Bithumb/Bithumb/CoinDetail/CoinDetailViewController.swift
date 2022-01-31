@@ -116,21 +116,14 @@ final class CoinDetailViewController: UIViewController {
     }
   }
   
-  private func convertToDataEntries(from graphData: [ChartData]) -> [CandleChartDataEntry]? {
-    var dataEntries: [CandleChartDataEntry] = []
-    
-    for index in 0..<graphData.count {
-      guard let graphData = graphData[safe: index] else { return nil }
-
-      let dataEntry = CandleChartDataEntry(x: Double(index),
-                                           shadowH: graphData.highPrice,
-                                           shadowL: graphData.lowPrice,
-                                           open: graphData.openPrice,
-                                           close: graphData.closePrice)
-      dataEntries.append(dataEntry)
+  private func convertToDataEntries(from graphData: [ChartData]) -> [CandleChartDataEntry] {
+    return graphData.enumerated().map {
+      CandleChartDataEntry(x: Double($0),
+                           shadowH: $1.highPrice,
+                           shadowL: $1.lowPrice,
+                           open: $1.openPrice,
+                           close: $1.closePrice)
     }
-    
-    return dataEntries
   }
   
   private func convertToAxisValues(from graphData: [ChartData]) -> [String] {
