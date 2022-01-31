@@ -7,6 +7,10 @@
 
 import UIKit
 
+import Charts
+import SnapKit
+import Then
+
 final class CoinDetailViewController: UIViewController {
 
   // TODO: 상세 구현 필요
@@ -16,7 +20,10 @@ final class CoinDetailViewController: UIViewController {
 
 
   // MARK: Properties
-
+  
+  private let candleStickChartView: CandleStickChartView
+  private let segmentedCategoryView: SegmentedCategoryView
+  
   let payload: Payload
 
 
@@ -24,9 +31,11 @@ final class CoinDetailViewController: UIViewController {
 
   init(payload: Payload) {
     self.payload = payload
+    let categoryItems = ["호가", "차트"]
+    self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
+    self.candleStickChartView = CandleStickChartView()
+    
     super.init(nibName: nil, bundle: nil)
-    // FIXME: 값 넘김 확인을 위한 타이틀로 상세 구현시 삭제 필요
-    self.title = payload.orderCurrency.koreanName
   }
 
   required init?(coder: NSCoder) {
@@ -35,5 +44,102 @@ final class CoinDetailViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.layout()
+    self.attribute()
+    self.bind()
+  }
+  
+  private func layout() {
+    [self.candleStickChartView, self.segmentedCategoryView].forEach { self.view.addSubview($0) }
+    
+    self.segmentedCategoryView.snp.makeConstraints {
+      $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+    }
+    
+    self.candleStickChartView.snp.makeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.top.equalTo(self.segmentedCategoryView.snp.bottom)
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
+    }
+  }
+  
+  private func attribute() {
+    self.title = payload.orderCurrency.koreanName
+    
+    self.candleStickChartView.do {
+      $0.noDataText = "데이터가 없습니다."
+      $0.noDataFont = .systemFont(ofSize: 20)
+      $0.noDataTextColor = .lightGray
+      $0.backgroundColor = .white
+      $0.xAxis.setLabelCount(3, force: false)
+      $0.xAxis.labelPosition = .bottom
+      $0.dragDecelerationEnabled = false
+      $0.autoScaleMinMaxEnabled = true
+      $0.doubleTapToZoomEnabled = false
+      $0.highlightPerTapEnabled = false
+      $0.rightAxis.enabled = false
+      $0.leftAxis.enabled = true
+      $0.scaleYEnabled = false
+      $0.dragYEnabled = false
+      $0.delegate = self
+    }
+  }
+  
+  private func bind() {
+    //TODO: ViewModel과 Binding
+  }
+  
+  private func setChart(chartDatum: [ChartData]) {
+    let dataEntries = self.convertToDataEntries(from: chartDatum)
+    let axisValues = self.convertToAxisValues(from: chartDatum)
+    
+    let chartDataSet = CandleChartDataSet(entries: dataEntries).then {
+      $0.shadowColorSameAsCandle = true
+      $0.drawValuesEnabled = false
+      $0.highlightEnabled = false
+      $0.increasingFilled = true
+      $0.decreasingFilled = true
+      $0.increasingColor = .red
+      $0.decreasingColor = .blue
+    }
+    
+    let chartData = CandleChartData(dataSet: chartDataSet)
+    let maxValue = self.candleStickChartView.chartXMax
+    
+    self.candleStickChartView.do {
+      $0.data = chartData
+      $0.xAxis.valueFormatter = IndexAxisValueFormatter(values: axisValues)
+      $0.setVisibleXRangeMaximum(20.0)
+      $0.moveViewToX(maxValue)
+      $0.drawMarkers = false
+    }
+  }
+  
+  private func convertToDataEntries(from graphDatum: [ChartData]) -> [CandleChartDataEntry]? {
+    var dataEntries: [CandleChartDataEntry] = []
+    
+    for index in 0..<graphDatum.count {
+      guard let graphData = graphDatum[safe: index] else { return nil }
+
+      let dataEntry = CandleChartDataEntry(x: Double(index),
+                                           shadowH: graphData.highPrice,
+                                           shadowL: graphData.lowPrice,
+                                           open: graphData.openPrice,
+                                           close: graphData.closePrice)
+      dataEntries.append(dataEntry)
+    }
+    
+    return dataEntries
+  }
+  
+  private func convertToAxisValues(from graphDatum: [ChartData]) -> [String] {
+    return graphDatum.map { $0.dateText }
+  }
+}
+
+extension CoinDetailViewController: ChartViewDelegate {
+  func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
+    self.candleStickChartView.setVisibleXRange(minXRange: 10, maxXRange: 300)
   }
 }

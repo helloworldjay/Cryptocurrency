@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.5.0)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - Kingfisher (7.1.2)
   - Nimble (9.2.1)
   - RxBlocking (6.5.0):
@@ -26,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.5)
+  - Charts
   - Kingfisher (~> 7.0)
   - Nimble
   - RxCocoa (= 6.5.0)
@@ -39,6 +43,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Charts
     - Kingfisher
     - Nimble
     - RxBlocking
@@ -52,6 +57,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
   RxBlocking: 04b5fd28bb5ea49f7d64b80db8bbfe50d9cc1c7d
@@ -63,6 +69,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: dee262d9c8160fbfcd261dd9aa04e74a57478bbb
+PODFILE CHECKSUM: 6ba13e13d1836fe33e912baea91d57d1aafd1d2f
 
 COCOAPODS: 1.11.2
