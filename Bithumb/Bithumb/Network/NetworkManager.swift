@@ -29,10 +29,10 @@ struct NetworkManager: NetworkManagerLogic {
             if let response = convertedResponse(orderCurrency: orderCurrency, data: data) {
               observer(.success(.success(response)))
             } else {
-              observer(.failure(BithumbNetworkError.decodingError))
+              observer(.success(.failure(BithumbNetworkError.decodingError)))
             }
           case .failure(_):
-            observer(.failure(BithumbNetworkError.networkError))
+            observer(.success(.failure(BithumbNetworkError.networkError)))
           }
         }
       return Disposables.create()
