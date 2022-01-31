@@ -55,6 +55,7 @@
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
 		C3D0EF6D27A7685100A5E4BE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6C27A7685100A5E4BE /* Array.swift */; };
+		C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */; };
 		F19014D04656742DAD3CEE42 /* Pods_Bithumb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		C3D0EF6C27A7685100A5E4BE /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb_BithumbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15410D7F32C1F0DA5436F6 /* Pods-BithumbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAB7FEE542EBD52C0D4D875A /* Pods-Bithumb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb.debug.xcconfig"; path = "Target Support Files/Pods-Bithumb/Pods-Bithumb.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C3D0EF6F27A777B500A5E4BE /* Module */,
 				4885375027A38A5300BE00FD /* Coordinators */,
 				B4A8E11B279E858500A2BFCD /* Extensions */,
 				48FDCFFB279541E2002F0050 /* AppDelegate.swift */,
@@ -444,6 +447,14 @@
 				B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C3D0EF6F27A777B500A5E4BE /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -713,6 +724,7 @@
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
+				C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */,
 				4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				C3D0EF6D27A7685100A5E4BE /* Array.swift in Sources */,
