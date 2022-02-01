@@ -86,7 +86,7 @@ final class TimeIntervalBottomSheet: BottomSheet {
     self.timeIntervalListView.do {
       $0.separatorStyle = .none
       $0.register(UITableViewCell.self,
-                  forCellReuseIdentifier: "cell")
+                  forCellReuseIdentifier: "timeIntervalListViewCell")
       $0.isScrollEnabled = false
     }
   }
@@ -98,7 +98,7 @@ final class TimeIntervalBottomSheet: BottomSheet {
   private func bind() {
     Observable.just(self.timeIntervalViewModel.intervals)
       .bind(to: self.timeIntervalListView.rx.items) { (tableView, row, element) in
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "timeIntervalListViewCell") else {
           return UITableViewCell()
         }
         cell.textLabel?.text = element.rawValue
