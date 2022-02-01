@@ -70,7 +70,7 @@ class ExchangeViewModelTests: XCTestCase {
       ]
     ).bind(to: self.sut.exchangeSearchBarViewModel.inputText)
       .disposed(by: self.disposeBag)
-    
+
     //when
     self.scheduler.createColdObservable(
       [

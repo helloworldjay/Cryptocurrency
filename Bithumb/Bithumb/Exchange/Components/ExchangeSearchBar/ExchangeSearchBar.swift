@@ -77,7 +77,7 @@ final class ExchangeSearchBar: UISearchBar {
     }
   }
 
-  func bind(viewModel: ExchangeSearchBarViewModel) {
+  func bind(viewModel: ExchangeSearchBarViewModelLogic) {
     self.rx.text
       .bind(to: viewModel.inputText)
       .disposed(by: self.disposeBag)

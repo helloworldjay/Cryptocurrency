@@ -15,6 +15,8 @@
 		48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE127997298008F2AD1 /* CoinListViewModel.swift */; };
 		48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */; };
 		48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE62799732E008F2AD1 /* NetworkManager.swift */; };
+		4865371D27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4865371C27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift */; };
+		4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */; };
 		4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42827979E6600472C90 /* ExchangeViewController.swift */; };
 		4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */; };
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
@@ -85,6 +87,8 @@
 		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		48256CE62799732E008F2AD1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4865371C27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCategoryViewModel.swift; sourceTree = "<group>"; };
+		4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCategoryViewTests.swift; sourceTree = "<group>"; };
 		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +228,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		4865371E27A6CBDE00BEBBB3 /* SegmentedCategory */ = {
+			isa = PBXGroup;
+			children = (
+				4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */,
+			);
+			path = SegmentedCategory;
+			sourceTree = "<group>";
+		};
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				488F9E7E279BA7C70021A545 /* Components */,
+				48B60E5027A035E4000534EC /* Spy */,
 				48B60E5327A036C0000534EC /* ExchangeViewModelTests.swift */,
 				48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */,
 			);
@@ -328,7 +341,7 @@
 		488F9E7E279BA7C70021A545 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				48B60E5027A035E4000534EC /* Spy */,
+				4865371E27A6CBDE00BEBBB3 /* SegmentedCategory */,
 				488F9E7F279BA7D80021A545 /* ExchangeSearchBar */,
 			);
 			path = Components;
@@ -426,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A8E117279BF15D00A2BFCD /* SegmentedCategoryView.swift */,
+				4865371C27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift */,
 			);
 			path = ExchangeSegmentedControl;
 			sourceTree = "<group>";
@@ -711,6 +725,7 @@
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				4885375427A38EA300BE00FD /* Coordinator.swift in Sources */,
+				4865371D27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift in Sources */,
 				4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
@@ -743,6 +758,7 @@
 			files = (
 				48B60E48279F923A000534EC /* ExchangeUseCaseTests.swift in Sources */,
 				489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */,
+				4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48B60E5227A035F2000534EC /* ExchangeUseCaseSpy.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
