@@ -38,6 +38,7 @@
 		489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */; };
 		489FB624279C43F10078AEE1 /* BithumbNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */; };
 		48A49ECF27A9772000DF5124 /* SocketTickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A49ECE27A9772000DF5124 /* SocketTickerResponse.swift */; };
+		48AD306F27A974F100278D7A /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AD306E27A974F000278D7A /* WebSocketManager.swift */; };
 		48B60E48279F923A000534EC /* ExchangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */; };
 		48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B60E4B279FBF3B000534EC /* TickerResponse.swift */; };
 		48B60E5227A035F2000534EC /* ExchangeUseCaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B60E5127A035F2000534EC /* ExchangeUseCaseSpy.swift */; };
@@ -111,6 +112,7 @@
 		489FB621279C29D20078AEE1 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbNetworkError.swift; sourceTree = "<group>"; };
 		48A49ECE27A9772000DF5124 /* SocketTickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTickerResponse.swift; sourceTree = "<group>"; };
+		48AD306E27A974F000278D7A /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		48B60E47279F923A000534EC /* ExchangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeUseCaseTests.swift; sourceTree = "<group>"; };
 		48B60E4B279FBF3B000534EC /* TickerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		48B60E5127A035F2000534EC /* ExchangeUseCaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeUseCaseSpy.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				489FB623279C43F10078AEE1 /* BithumbNetworkError.swift */,
 				48256CE62799732E008F2AD1 /* NetworkManager.swift */,
 				489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */,
+				48AD306E27A974F000278D7A /* WebSocketManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,
 				B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */,
+				48AD306F27A974F100278D7A /* WebSocketManager.swift in Sources */,
 				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
