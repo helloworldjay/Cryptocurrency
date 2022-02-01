@@ -26,8 +26,8 @@ final class CoinDetailViewController: UIViewController {
   private let segmentedCategoryView: SegmentedCategoryView
   private let timeIntervalChangeButton: UIButton
   
-  private let coinDetailViewModel: CoinDetailViewModel
   private let disposeBag: DisposeBag
+  let coinDetailViewModel: CoinDetailViewModel
   let payload: Payload
 
 

@@ -12,24 +12,27 @@ protocol TimeIntervalViewModelLogic {
   var intervals: [TimeInterval] { get }
   var tapListView: BehaviorRelay<IndexPath> { get }
   var selectedTimeInterval: BehaviorRelay<TimeInterval> { get }
+  var timeIntervalBottomSheetCoordinator: TimeIntervalBottomSheetCoordinator? { get set }
 }
 
 final class TimeIntervalViewModel: TimeIntervalViewModelLogic {
   
   // MARK: Properties
   
-  private let disposeBag = DisposeBag()
   let intervals = TimeInterval.allCases
   let tapListView: BehaviorRelay<IndexPath>
   let selectedTimeInterval: BehaviorRelay<TimeInterval>
   
+  var timeIntervalBottomSheetCoordinator: TimeIntervalBottomSheetCoordinator?
+  private let disposeBag = DisposeBag()
+  
   
   // MARK: Initializaer
   
-  init() {
-    let index = self.intervals.firstIndex(of: .oneMinute) ?? 0
+  init(timeInterval: TimeInterval) {
+    let index = self.intervals.firstIndex(of: timeInterval) ?? 0
     self.tapListView = BehaviorRelay(value: IndexPath(row: index, section: .zero))
-    self.selectedTimeInterval = BehaviorRelay(value: .oneMinute)
+    self.selectedTimeInterval = BehaviorRelay(value: timeInterval)
     
     self.bind()
   }
@@ -40,5 +43,12 @@ final class TimeIntervalViewModel: TimeIntervalViewModelLogic {
     }
     .bind(to: self.selectedTimeInterval)
     .disposed(by: self.disposeBag)
+
+    self.selectedTimeInterval
+      .skip(1)
+      .bind { timeInterval in
+        self.timeIntervalBottomSheetCoordinator?.dismiss()
+      }
+      .disposed(by: self.disposeBag)
   }
 }
