@@ -158,6 +158,8 @@ final class CoinDetailViewController: UIViewController {
 
 extension CoinDetailViewController: ChartViewDelegate {
   func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-    self.candleStickChartView.setVisibleXRange(minXRange: 10, maxXRange: 300)
+    if chartView.maxVisibleCount == 20 {
+      self.candleStickChartView.setVisibleXRange(minXRange: 10, maxXRange: 300)
+    }
   }
 }
