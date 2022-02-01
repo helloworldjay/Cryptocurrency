@@ -9,8 +9,8 @@ import RxCocoa
 import RxSwift
 
 protocol ExchangeSearchBarViewModelLogic {
-  var inputText: PublishRelay<String?> { get set }
-  var searchButtonTapped: PublishRelay<Void> { get set }
+  var inputText: PublishRelay<String?> { get }
+  var searchButtonTapped: PublishRelay<Void> { get }
   var orderCurrencyToSearch: Observable<OrderCurrency> { get }
 }
 
@@ -18,9 +18,9 @@ final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
   
   // MARK: Properties
   
-  var inputText = PublishRelay<String?>()
-  var searchButtonTapped = PublishRelay<Void>()
-  var orderCurrencyToSearch: Observable<OrderCurrency>
+  let inputText = PublishRelay<String?>()
+  let searchButtonTapped = PublishRelay<Void>()
+  let orderCurrencyToSearch: Observable<OrderCurrency>
 
 
   // MARK: Initializers

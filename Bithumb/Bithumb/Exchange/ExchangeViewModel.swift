@@ -9,9 +9,9 @@ import RxCocoa
 import RxSwift
 
 protocol ExchangeViewModelLogic {
-  var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic { get set }
-  var coinListViewModel: CoinListViewModelLogic { get set }
-  var segmentedCategoryViewModel: SegmentedCategoryViewModelLogic { get set }
+  var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic { get }
+  var coinListViewModel: CoinListViewModelLogic { get }
+  var segmentedCategoryViewModel: SegmentedCategoryViewModelLogic { get }
   var exchangeCoordinator: ExchangeCoordinator? { get set }
 }
 
@@ -19,9 +19,9 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   
   // MARK: Properties
   
-  var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic
-  var coinListViewModel: CoinListViewModelLogic
-  var segmentedCategoryViewModel: SegmentedCategoryViewModelLogic
+  let exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic
+  let coinListViewModel: CoinListViewModelLogic
+  let segmentedCategoryViewModel: SegmentedCategoryViewModelLogic
   var exchangeCoordinator: ExchangeCoordinator?
   private let disposeBag = DisposeBag()
   

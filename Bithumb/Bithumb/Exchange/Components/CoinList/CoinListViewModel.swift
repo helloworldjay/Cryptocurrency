@@ -9,15 +9,15 @@ import RxCocoa
 import RxSwift
 
 protocol CoinListViewModelLogic {
-  var coinListCellData: PublishSubject<[CoinListViewCellData]> { get set }
-  var cellData: Driver<[CoinListViewCellData]> { get set }
-  var selectedOrderCurrency: PublishSubject<OrderCurrency> { get set }
+  var coinListCellData: PublishSubject<[CoinListViewCellData]> { get }
+  var cellData: Driver<[CoinListViewCellData]> { get }
+  var selectedOrderCurrency: PublishSubject<OrderCurrency> { get }
 }
 
 final class CoinListViewModel: CoinListViewModelLogic {
-  var coinListCellData = PublishSubject<[CoinListViewCellData]>()
-  var cellData: Driver<[CoinListViewCellData]>
-  var selectedOrderCurrency = PublishSubject<OrderCurrency>()
+  let coinListCellData = PublishSubject<[CoinListViewCellData]>()
+  let cellData: Driver<[CoinListViewCellData]>
+  let selectedOrderCurrency = PublishSubject<OrderCurrency>()
 
   init() {
     self.cellData = self.coinListCellData

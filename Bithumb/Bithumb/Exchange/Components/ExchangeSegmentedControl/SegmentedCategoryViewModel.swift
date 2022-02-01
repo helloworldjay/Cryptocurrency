@@ -10,9 +10,9 @@ import Foundation
 import RxSwift
 
 protocol SegmentedCategoryViewModelLogic {
-  var paymentCurrency: BehaviorSubject<PaymentCurrency> { get set }
+  var paymentCurrency: BehaviorSubject<PaymentCurrency> { get }
 }
 
 final class SegmentedCategoryViewModel: SegmentedCategoryViewModelLogic {
-  var paymentCurrency = BehaviorSubject<PaymentCurrency>(value: .krw)
+  let paymentCurrency = BehaviorSubject<PaymentCurrency>(value: .krw)
 }
