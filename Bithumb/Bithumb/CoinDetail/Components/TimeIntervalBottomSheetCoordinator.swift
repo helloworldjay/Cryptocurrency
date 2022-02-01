@@ -40,6 +40,21 @@ final class TimeIntervalBottomSheetCoordinator: Coordinator {
     }
 
     self.presentingViewController.present(timeIntervalBottomSheet, animated: false)
+    self.bind()
+  }
+  
+  private func bind() {
+    guard let coinDetailViewController = presentingViewController as? CoinDetailViewController else {
+      return
+    }
+    
+    guard let timeintervalBottomSheet = presentingViewController.presentedViewController as? TimeIntervalBottomSheet else {
+      return
+    }
+    
+    timeintervalBottomSheet.timeIntervalViewModel.selectedTimeInterval
+      .bind(to: coinDetailViewController.coinDetailViewModel.selectedTimeInterval)
+      .disposed(by: self.disposeBag)
   }
   
   func dismiss() {
