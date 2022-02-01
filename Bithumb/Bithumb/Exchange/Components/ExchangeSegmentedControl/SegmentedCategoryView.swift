@@ -7,22 +7,47 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
 final class SegmentedCategoryView: UIView {
-  
-  //MARK: Properties
+
+  // MARK: Register Segmented Index Matching to PaymentCurrency
+
+  enum SegmentedViewIndex: Int, CaseIterable {
+    case krw = 0
+    case btc = 1
+
+    var matchedCurrency: PaymentCurrency {
+      switch self {
+      case .krw:
+        return PaymentCurrency.krw
+      case .btc:
+        return PaymentCurrency.btc
+      }
+    }
+
+    static func findPaymentCurrency(with index: Int) -> PaymentCurrency {
+      guard let paymentCurrency = SegmentedViewIndex.allCases
+              .filter({ $0.rawValue == index })
+              .map({ $0.matchedCurrency }).first else { return .krw }
+      return paymentCurrency
+    }
+  }
+
+
+  // MARK: Properties
   
   var segmentedControl: UISegmentedControl
   private let segmentIndicator = UIView().then {
     $0.backgroundColor = .bithumb
   }
-  
   private var fontSize: CGFloat
+  private let disposeBag = DisposeBag()
   
-  
-  //MARK: Initializers
+  // MARK: Initializers
   
   init(items: [String] = [], fontSize: CGFloat) {
     self.segmentedControl = UISegmentedControl(items: items)
@@ -64,9 +89,10 @@ final class SegmentedCategoryView: UIView {
       self.setSegmentIndicatorConstraints(of: $0, remake: true)
     }
 
-    UIView.animate(withDuration: 0.2, animations: {
-      self.layoutIfNeeded()
-    })
+    UIView.animate(
+      withDuration: 0.2,
+      animations: { self.layoutIfNeeded() }
+    )
   }
   
   private func setSegmentIndicatorConstraints(of make: ConstraintMaker, remake: Bool) {
@@ -97,5 +123,12 @@ final class SegmentedCategoryView: UIView {
       self.setSegmentIndicatorConstraints(of: $0, remake: false)
     }
   }
-}
 
+  func bind(viewModel: SegmentedCategoryViewModelLogic) {
+    self.segmentedControl.rx.selectedSegmentIndex
+      .filter { $0 < SegmentedViewIndex.allCases.count }
+      .map { SegmentedViewIndex.findPaymentCurrency(with: $0) }
+      .bind(to: viewModel.paymentCurrency)
+      .disposed(by: self.disposeBag)
+  }
+}
