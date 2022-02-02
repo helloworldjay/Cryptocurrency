@@ -22,7 +22,20 @@ final class TimeIntervalBottomSheet: BottomSheet {
   private let cancelButton = UIButton()
   
   private let disposeBag = DisposeBag()
-  var timeIntervalViewModel = TimeIntervalViewModel()
+  var timeIntervalViewModel: TimeIntervalViewModelLogic
+  
+  
+  // MARK: Initializer
+  
+  init(timeIntervalViewModel: TimeIntervalViewModelLogic) {
+    self.timeIntervalViewModel = timeIntervalViewModel
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

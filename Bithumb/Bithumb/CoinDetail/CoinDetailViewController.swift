@@ -22,15 +22,15 @@ final class CoinDetailViewController: UIViewController {
 
   // MARK: Properties
   
+  let coinDetailViewModel: CoinDetailViewModel
+  private let payload: Payload
+  private let disposeBag: DisposeBag
+  
   private let candleStickChartView: CandleStickChartView
   private let segmentedCategoryView: SegmentedCategoryView
   private let timeIntervalChangeButton: UIButton
   
-  private let coinDetailViewModel: CoinDetailViewModel
-  private let disposeBag: DisposeBag
-  let payload: Payload
-
-
+  
   // MARK: Initializers
 
   init(payload: Payload) {
@@ -105,7 +105,7 @@ final class CoinDetailViewController: UIViewController {
   
   private func bind() {
     self.timeIntervalChangeButton.rx.tap
-      .bind(to: self.coinDetailViewModel.tapSelctTimeIntervalButton)
+      .bind(to: self.coinDetailViewModel.tapSelectTimeIntervalButton)
       .disposed(by: self.disposeBag)
     
     self.coinDetailViewModel.selectedTimeInterval

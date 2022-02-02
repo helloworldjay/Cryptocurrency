@@ -64,6 +64,7 @@
 		C3D0EF8427A7B25000A5E4BE /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */; };
 		C3D0EF9327A8A30500A5E4BE /* TimeIntervalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */; };
 		C3D0EF9C27A8AC1F00A5E4BE /* CoinDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF9B27A8AC1F00A5E4BE /* CoinDetailViewModel.swift */; };
+		C3D9461B27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D9461A27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift */; };
 		F19014D04656742DAD3CEE42 /* Pods_Bithumb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +151,7 @@
 		C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalViewModel.swift; sourceTree = "<group>"; };
 		C3D0EF9B27A8AC1F00A5E4BE /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
+		C3D9461A27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalBottomSheetCoordinator.swift; sourceTree = "<group>"; };
 		C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb_BithumbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15410D7F32C1F0DA5436F6 /* Pods-BithumbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAB7FEE542EBD52C0D4D875A /* Pods-Bithumb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb.debug.xcconfig"; path = "Target Support Files/Pods-Bithumb/Pods-Bithumb.debug.xcconfig"; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */,
 				C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */,
 				C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */,
+				C3D9461A27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
 				4885375827A3D1F500BE00FD /* ExchangeCoordinator.swift in Sources */,
+				C3D9461B27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift in Sources */,
 				48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */,
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
 				C3D0EF8427A7B25000A5E4BE /* TimeInterval.swift in Sources */,

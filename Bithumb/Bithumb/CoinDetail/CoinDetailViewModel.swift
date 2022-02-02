@@ -13,5 +13,16 @@ final class CoinDetailViewModel {
   // MARK: Properties
   
   let selectedTimeInterval = BehaviorRelay(value: TimeInterval.oneMinute)
-  let tapSelctTimeIntervalButton = PublishRelay<Void>()
+  let tapSelectTimeIntervalButton = PublishRelay<Void>()
+  var coinDetailCoordinator: CoinDetailCoordinator?
+    
+  private let disposeBag = DisposeBag()
+  
+  init() {
+    self.tapSelectTimeIntervalButton
+      .bind {
+        self.coinDetailCoordinator?.presentTimeIntervalBottomSheet(with: self.selectedTimeInterval.value)
+      }
+      .disposed(by: self.disposeBag)
+  }
 }
