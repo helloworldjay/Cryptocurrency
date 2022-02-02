@@ -57,6 +57,13 @@
 		B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E117279BF15D00A2BFCD /* SegmentedCategoryView.swift */; };
 		B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E119279D286200A2BFCD /* UISegmentedControl + Ext.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
+		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
+		C3D0EF6D27A7685100A5E4BE /* Array + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */; };
+		C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */; };
+		C3D0EF7A27A7A42100A5E4BE /* TimeIntervalBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */; };
+		C3D0EF8427A7B25000A5E4BE /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */; };
+		C3D0EF9327A8A30500A5E4BE /* TimeIntervalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */; };
+		C3D0EF9C27A8AC1F00A5E4BE /* CoinDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF9B27A8AC1F00A5E4BE /* CoinDetailViewModel.swift */; };
 		F19014D04656742DAD3CEE42 /* Pods_Bithumb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57327AFB9F622280BD99C397 /* Pods_Bithumb.framework */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +143,13 @@
 		B4A8E117279BF15D00A2BFCD /* SegmentedCategoryView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SegmentedCategoryView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		B4A8E119279D286200A2BFCD /* UISegmentedControl + Ext.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Ext.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
+		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Ext.swift"; sourceTree = "<group>"; };
+		C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
+		C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalBottomSheet.swift; sourceTree = "<group>"; };
+		C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalViewModel.swift; sourceTree = "<group>"; };
+		C3D0EF9B27A8AC1F00A5E4BE /* CoinDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModel.swift; sourceTree = "<group>"; };
 		C3E678E6A65670DF362AEC9A /* Pods_Bithumb_BithumbUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bithumb_BithumbUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15410D7F32C1F0DA5436F6 /* Pods-BithumbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.release.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.release.xcconfig"; sourceTree = "<group>"; };
 		EAB7FEE542EBD52C0D4D875A /* Pods-Bithumb.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb.debug.xcconfig"; path = "Target Support Files/Pods-Bithumb/Pods-Bithumb.debug.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +259,7 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C3D0EF6F27A777B500A5E4BE /* Module */,
 				4885375027A38A5300BE00FD /* Coordinators */,
 				B4A8E11B279E858500A2BFCD /* Extensions */,
 				48FDCFFB279541E2002F0050 /* AppDelegate.swift */,
@@ -327,7 +342,10 @@
 		4885376127A40E1C00BE00FD /* CoinDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C3D0EF7827A7A40100A5E4BE /* Components */,
 				4885376227A40E3600BE00FD /* CoinDetailViewController.swift */,
+				C3D0EF9B27A8AC1F00A5E4BE /* CoinDetailViewModel.swift */,
+				C3D0EF6A27A7682400A5E4BE /* ChartData.swift */,
 				4885376427A40E4000BE00FD /* CoinDetailCoordinator.swift */,
 			);
 			path = CoinDetail;
@@ -454,10 +472,29 @@
 			isa = PBXGroup;
 			children = (
 				B4A8E119279D286200A2BFCD /* UISegmentedControl + Ext.swift */,
+				C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */,
 				C3D0EF4127A1902000A5E4BE /* String + Ext.swift */,
 				B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C3D0EF6F27A777B500A5E4BE /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				C3D0EF7027A777CA00A5E4BE /* BottomSheet.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		C3D0EF7827A7A40100A5E4BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */,
+				C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */,
+				C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -726,11 +763,15 @@
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
+				C3D0EF9327A8A30500A5E4BE /* TimeIntervalViewModel.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
+				C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */,
 				4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
+				C3D0EF6D27A7685100A5E4BE /* Array + Ext.swift in Sources */,
 				48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */,
 				4885375427A38EA300BE00FD /* Coordinator.swift in Sources */,
+				C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */,
 				4865371D27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift in Sources */,
 				4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
@@ -753,10 +794,13 @@
 				4885375827A3D1F500BE00FD /* ExchangeCoordinator.swift in Sources */,
 				48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */,
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
+				C3D0EF8427A7B25000A5E4BE /* TimeInterval.swift in Sources */,
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,
 				B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */,
 				48AD306F27A974F100278D7A /* WebSocketManager.swift in Sources */,
 				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
+				C3D0EF7A27A7A42100A5E4BE /* TimeIntervalBottomSheet.swift in Sources */,
+				C3D0EF9C27A8AC1F00A5E4BE /* CoinDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
