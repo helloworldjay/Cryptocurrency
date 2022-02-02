@@ -23,12 +23,13 @@ final class CoinDetailViewController: UIViewController {
   // MARK: Properties
   
   let coinDetailViewModel: CoinDetailViewModel
-  let payload: Payload
+  private let payload: Payload
   private let disposeBag: DisposeBag
   
   private let candleStickChartView: CandleStickChartView
   private let segmentedCategoryView: SegmentedCategoryView
   private let timeIntervalChangeButton: UIButton
+  
   
   // MARK: Initializers
 

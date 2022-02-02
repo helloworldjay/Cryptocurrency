@@ -59,7 +59,6 @@ final class TimeIntervalBottomSheetCoordinator: Coordinator {
   }
   
   func dismiss() {
-    let presentedViewController = self.presentingViewController.presentedViewController
-    presentedViewController?.dismiss(animated: false, completion: nil)
+    self.presentingViewController.dismiss(animated: false, completion: nil)
   }
 }
