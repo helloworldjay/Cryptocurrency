@@ -34,7 +34,8 @@ final class TimeIntervalBottomSheetCoordinator: Coordinator {
     let timeIntervalViewModel = TimeIntervalViewModel(timeInterval: self.timeInterval)
     
     let timeIntervalBottomSheet = TimeIntervalBottomSheet(
-      timeIntervalViewModel: timeIntervalViewModel).then {
+      timeIntervalViewModel: timeIntervalViewModel
+    ).then {
       $0.timeIntervalViewModel.timeIntervalBottomSheetCoordinator = self
       $0.modalPresentationStyle = .overFullScreen
     }
@@ -44,11 +45,11 @@ final class TimeIntervalBottomSheetCoordinator: Coordinator {
   }
   
   private func bind() {
-    guard let coinDetailViewController = presentingViewController as? CoinDetailViewController else {
+    guard let coinDetailViewController = self.presentingViewController as? CoinDetailViewController else {
       return
     }
     
-    guard let timeintervalBottomSheet = presentingViewController.presentedViewController as? TimeIntervalBottomSheet else {
+    guard let timeintervalBottomSheet = self.presentingViewController.presentedViewController as? TimeIntervalBottomSheet else {
       return
     }
     

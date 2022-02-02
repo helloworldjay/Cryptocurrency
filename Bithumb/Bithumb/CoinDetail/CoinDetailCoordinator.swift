@@ -43,8 +43,8 @@ final class CoinDetailCoordinator: Coordinator {
   // MARK: Presentations
   
   func presentTimeIntervalBottomSheet(with timeInterval: TimeInterval) {
-    guard let lastViewController = self.navigationController.viewControllers.last else { return }
-    let timeIntervalCoordinator = TimeIntervalBottomSheetCoordinator(presentingViewController: lastViewController,
+    guard let coinDetailViewController = self.navigationController.viewControllers.last else { return }
+    let timeIntervalCoordinator = TimeIntervalBottomSheetCoordinator(presentingViewController: coinDetailViewController,
                                                                      timeInterval: timeInterval)
     timeIntervalCoordinator.parentCoordinator = self
     self.childCoordinators.append(timeIntervalCoordinator)
