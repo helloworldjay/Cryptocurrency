@@ -21,15 +21,14 @@ final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
   let inputText = PublishRelay<String>()
   let searchButtonTapped = PublishRelay<Void>()
   let orderCurrenciesToSearch: Observable<[OrderCurrency : String]>
-
-
+  
+  
   // MARK: Initializers
   
   init() {
     self.orderCurrenciesToSearch = self.inputText
-    .map {
-      return OrderCurrency.filteredItems(with: $0.uppercased())
-    }
-    .distinctUntilChanged()
+      .map({ $0.uppercased() })
+      .map(OrderCurrency.filteredItems)
+      .distinctUntilChanged()
   }
 }

@@ -23,6 +23,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   let coinListViewModel: CoinListViewModelLogic
   let segmentedCategoryViewModel: SegmentedCategoryViewModelLogic
   var exchangeCoordinator: ExchangeCoordinator?
+  let orderCurrency = BehaviorSubject<OrderCurrency>(value: .all)
   private let disposeBag = DisposeBag()
   
   
@@ -33,11 +34,10 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
     self.coinListViewModel = CoinListViewModel()
     self.segmentedCategoryViewModel = SegmentedCategoryViewModel()
 
-    let filteredOrderCurrencies = self.exchangeSearchBarViewModel.orderCurrenciesToSearch
-
-    let result = self.segmentedCategoryViewModel.paymentCurrency
-      .flatMapLatest {
-        useCase.fetchTicker(orderCurrency: .all, paymentCurrency: $0)
+    let result = Observable.combineLatest(self.orderCurrency, self.segmentedCategoryViewModel.paymentCurrency) { orderCurrency, paymentCurrency in
+        useCase.fetchTicker(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
+      }.flatMap {
+        $0
       }
 
     let cellData = result
@@ -45,7 +45,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
       .filter { $0 != nil }
       .map(useCase.coinListCellData)
     
-    let filteredCellData = Observable.combineLatest(cellData, filteredOrderCurrencies) { cellData, filteredOne in
+    let filteredCellData = Observable.combineLatest(cellData, self.exchangeSearchBarViewModel.orderCurrenciesToSearch) { cellData, filteredOne in
       cellData.filter { cellDatum in
         filteredOne.values.contains(cellDatum.ticker)
       }
