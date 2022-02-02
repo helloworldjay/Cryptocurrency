@@ -40,7 +40,7 @@ final class LetterSeparator {
     "ㅄ":"ㅂㅅ"
   ]
   
-  static func getSeparatedLetter(_ input: String) -> String {
+  static func getSeparatedLetter(of input: String) -> String {
     var result = ""
     for scalar in input.unicodeScalars{
       result += getSeparatedLetterFromSyllable(scalar) ?? ""
