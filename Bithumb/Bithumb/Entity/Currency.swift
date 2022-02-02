@@ -594,13 +594,19 @@ enum OrderCurrency: String, CaseIterable {
     }
     return .all
   }
-    
+  
   static func filteredItems(with name: String) -> [OrderCurrency : String] {
     var currencies: [OrderCurrency : String] = [:]
-    for orderCurrency in OrderCurrency.allCases {
-      if orderCurrency.rawValue.contains(name) {
+    let separatedLetter = LetterSeparator.getSeparatedLetter(name)
+    if name.isEmpty {
+      for orderCurrency in OrderCurrency.allCases {
         currencies[orderCurrency] = orderCurrency.rawValue
-      } else if name == "" {
+      }
+      return currencies
+    }
+    for orderCurrency in OrderCurrency.allCases {
+      if LetterSeparator.getSeparatedLetter(orderCurrency.rawValue).contains(separatedLetter) ||
+          LetterSeparator.getSeparatedLetter(orderCurrency.koreanName).contains(separatedLetter) {
         currencies[orderCurrency] = orderCurrency.rawValue
       }
     }
