@@ -28,7 +28,7 @@ final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
   init() {
     self.orderCurrenciesToSearch = self.inputText
     .map {
-      return OrderCurrency.filteredItems(with: $0)
+      return OrderCurrency.filteredItems(with: $0.uppercased())
     }
     .distinctUntilChanged()
   }
