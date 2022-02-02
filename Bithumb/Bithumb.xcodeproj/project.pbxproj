@@ -79,10 +79,10 @@
 		114D3A1E134DE0667AC5648F /* Pods-Bithumb-BithumbUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bithumb-BithumbUITests.release.xcconfig"; path = "Target Support Files/Pods-Bithumb-BithumbUITests/Pods-Bithumb-BithumbUITests.release.xcconfig"; sourceTree = "<group>"; };
 		26EF170BEFCCD8D7B5FAADDC /* Pods_BithumbTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BithumbTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41725A19228DD05069A43D6B /* Pods-BithumbTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BithumbTests.debug.xcconfig"; path = "Target Support Files/Pods-BithumbTests/Pods-BithumbTests.debug.xcconfig"; sourceTree = "<group>"; };
-		48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
+		48256CD72799722E008F2AD1 /* ExchangeViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		48256CD927997246008F2AD1 /* ExchangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeUseCase.swift; sourceTree = "<group>"; };
 		48256CDB27997267008F2AD1 /* ExchangeSearchBar.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBar.swift; sourceTree = "<group>"; tabWidth = 2; };
-		48256CDD2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModel.swift; sourceTree = "<group>"; };
+		48256CDD2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeSearchBarViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		48256CDF2799728C008F2AD1 /* CoinListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListView.swift; sourceTree = "<group>"; };
 		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
 		4881F4332797A29900472C90 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		4881F4352797A2B800472C90 /* MoreOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionViewController.swift; sourceTree = "<group>"; };
-		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		4882FA6E279D288100A25880 /* Currency.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4885375327A38EA300BE00FD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4885375527A3CFF800BE00FD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4885375727A3D1F500BE00FD /* ExchangeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCoordinator.swift; sourceTree = "<group>"; };

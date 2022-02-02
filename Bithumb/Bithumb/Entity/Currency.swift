@@ -594,4 +594,16 @@ enum OrderCurrency: String, CaseIterable {
     }
     return .all
   }
+    
+  static func filteredItems(with name: String) -> [OrderCurrency : String] {
+    var currencies: [OrderCurrency : String] = [:]
+    for orderCurrency in OrderCurrency.allCases {
+      if orderCurrency.rawValue.contains(name) {
+        currencies[orderCurrency] = orderCurrency.rawValue
+      } else if name == "" {
+        currencies[orderCurrency] = orderCurrency.rawValue
+      }
+    }
+    return currencies
+  }
 }
