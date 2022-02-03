@@ -12,22 +12,27 @@ import Alamofire
 enum NetworkRequestRouter: URLRequestConvertible {
   
   case fetchTickerData(OrderCurrency, PaymentCurrency)
+  case fetchCandleStickData(OrderCurrency, PaymentCurrency, TimeInterval)
   
   private var baseURLString: String {
-    return "https://api.bithumb.com/public"
+    switch self {
+    case .fetchTickerData:
+      return "https://api.bithumb.com/public"
+    case .fetchCandleStickData:
+      return "https://api.bithumb.com/public/candlestick"
+    }
   }
   
   private var HTTPMethod: Alamofire.HTTPMethod {
-    switch self {
-    case .fetchTickerData(_, _):
-      return .get
-    }
+    return .get
   }
   
   private var path: String {
     switch self {
     case .fetchTickerData(let orderCurrency, let paymentCurrency):
       return "/ticker" + "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
+    case .fetchCandleStickData(let orderCurrency, let paymentCurrency, let chartInterval):
+      return "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)/\(chartInterval.rawValue)"
     }
   }
   
@@ -35,10 +40,6 @@ enum NetworkRequestRouter: URLRequestConvertible {
     let url = try (self.baseURLString + self.path).asURL()
     var request = URLRequest(url: url)
     request.httpMethod = self.HTTPMethod.rawValue
-    
-    switch self {
-    case .fetchTickerData(_, _):
-      return request
-    }
+    return request
   }
 }
