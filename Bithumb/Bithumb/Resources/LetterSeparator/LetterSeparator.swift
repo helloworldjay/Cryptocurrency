@@ -14,27 +14,27 @@ final class LetterSeparator {
   private static let initialKoreanIndex: UInt32 = 44032
   private static let finalKoreanIndex: UInt32 = 55199
   
-  private static let initialCycle: UInt32 = 588
-  private static let neutralCycle: UInt32 = 28
+  private static let firstConsonantCycle: UInt32 = 588
+  private static let middleVowelCycle: UInt32 = 28
   
-  private static let initialLetter = [
+  private static let firstConsonantLetter = [
     "ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  private static let neutralLetter = [
+  private static let middleVowelLetter = [
     "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ","ㅕ", "ㅖ", "ㅗ", "ㅘ",
     "ㅙ", "ㅚ","ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ",
     "ㅣ"
   ]
   
-  private static let finalLetter = [
+  private static let lastConsonantLetter = [
     "","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ",
     "ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  private static let doubledFinalLetter = [
+  private static let separatedDoubledLastConsonantLetter = [
     "ㄳ":"ㄱㅅ","ㄵ":"ㄴㅈ","ㄶ":"ㄴㅎ","ㄺ":"ㄹㄱ","ㄻ":"ㄹㅁ",
     "ㄼ":"ㄹㅂ","ㄽ":"ㄹㅅ","ㄾ":"ㄹㅌ","ㄿ":"ㄹㅍ","ㅀ":"ㄹㅎ",
     "ㅄ":"ㅂㅅ"
@@ -51,13 +51,13 @@ final class LetterSeparator {
   private static func separatedLetterFromSyllable(unicodeScalar: UnicodeScalar) -> String? {
     if CharacterSet.Korean.contains(unicodeScalar) {
       let index = unicodeScalar.value - initialKoreanIndex
-      let initialSeparatedLetter = initialLetter[Int(index / initialCycle)]
-      let neutralSeparatedLetter = neutralLetter[Int((index % initialCycle) / neutralCycle)]
-      var finalSeparatedLetter = finalLetter[Int(index % neutralCycle)]
-      if let disassembledFinal = doubledFinalLetter[finalSeparatedLetter] {
-        finalSeparatedLetter = disassembledFinal
+      let separatedFirstConsonantLetter = firstConsonantLetter[Int(index / firstConsonantCycle)]
+      let separatedMiddleVowelLetter = middleVowelLetter[Int((index % firstConsonantCycle) / middleVowelCycle)]
+      var separatedLastConsonantLetter = lastConsonantLetter[Int(index % middleVowelCycle)]
+      if let disassembledLastConsonantLetter = separatedDoubledLastConsonantLetter[separatedLastConsonantLetter] {
+        separatedLastConsonantLetter = disassembledLastConsonantLetter
       }
-      return initialSeparatedLetter + neutralSeparatedLetter + finalSeparatedLetter
+      return separatedFirstConsonantLetter + separatedMiddleVowelLetter + separatedLastConsonantLetter
     } else {
       return String(UnicodeScalar(unicodeScalar))
     }
