@@ -11,30 +11,30 @@ final class LetterSeparator {
   
   // MARK: Properties
   
-  static let initialKoreanIndex: UInt32 = 44032
-  static let finalKoreanIndex: UInt32 = 55199
+  private static let initialKoreanIndex: UInt32 = 44032
+  private static let finalKoreanIndex: UInt32 = 55199
   
-  static let initialCycle: UInt32 = 588
-  static let neutralCycle: UInt32 = 28
+  private static let initialCycle: UInt32 = 588
+  private static let neutralCycle: UInt32 = 28
   
-  static let initialLetter = [
+  private static let initialLetter = [
     "ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  static let neutralLetter = [
+  private static let neutralLetter = [
     "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ","ㅕ", "ㅖ", "ㅗ", "ㅘ",
     "ㅙ", "ㅚ","ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ",
     "ㅣ"
   ]
   
-  static let finalLetter = [
+  private static let finalLetter = [
     "","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ",
     "ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  static let doubledFinalLetter = [
+  private static let doubledFinalLetter = [
     "ㄳ":"ㄱㅅ","ㄵ":"ㄴㅈ","ㄶ":"ㄴㅎ","ㄺ":"ㄹㄱ","ㄻ":"ㄹㅁ",
     "ㄼ":"ㄹㅂ","ㄽ":"ㄹㅅ","ㄾ":"ㄹㅌ","ㄿ":"ㄹㅍ","ㅀ":"ㄹㅎ",
     "ㅄ":"ㅂㅅ"

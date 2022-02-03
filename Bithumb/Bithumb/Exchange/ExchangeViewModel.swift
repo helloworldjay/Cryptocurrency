@@ -23,7 +23,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   let coinListViewModel: CoinListViewModelLogic
   let segmentedCategoryViewModel: SegmentedCategoryViewModelLogic
   var exchangeCoordinator: ExchangeCoordinator?
-  let orderCurrency = BehaviorSubject<OrderCurrency>(value: .all)
+  private let orderCurrency = BehaviorSubject<OrderCurrency>(value: .all)
   private let disposeBag = DisposeBag()
   
   
