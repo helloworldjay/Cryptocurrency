@@ -36,9 +36,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
 
     let result = Observable.combineLatest(self.orderCurrency, self.segmentedCategoryViewModel.paymentCurrency) { orderCurrency, paymentCurrency in
       useCase.fetchTicker(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
-    }.flatMap {
-      $0
-    }
+    }.flatMap { $0 }
 
     let cellData = result
       .map(useCase.tickerResponse)
