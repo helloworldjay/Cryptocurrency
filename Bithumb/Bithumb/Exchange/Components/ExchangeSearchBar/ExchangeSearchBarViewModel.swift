@@ -21,8 +21,8 @@ final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
   let inputText = PublishRelay<String>()
   let searchButtonTapped = PublishRelay<Void>()
   let orderCurrenciesToSearch: Observable<[OrderCurrency : String]>
-  
-  
+
+
   // MARK: Initializers
   
   init() {

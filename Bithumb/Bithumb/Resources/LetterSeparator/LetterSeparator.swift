@@ -48,8 +48,8 @@ final class LetterSeparator {
     return result
   }
   
-  private static func getSeparatedLetterFromSyllable(_ unicodeScalar: UnicodeScalar) -> String?{
-    if CharacterSet.Korean.contains(unicodeScalar){
+  private static func getSeparatedLetterFromSyllable(_ unicodeScalar: UnicodeScalar) -> String? {
+    if CharacterSet.Korean.contains(unicodeScalar) {
       let index = unicodeScalar.value - initialKoreanIndex
       let initial = initial[Int(index / initialCycle)]
       let neutral = neutral[Int((index % initialCycle) / neutralCycle)]
