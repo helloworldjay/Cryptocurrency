@@ -39,6 +39,28 @@ struct NetworkManager: NetworkManagerLogic {
     }
   }
   
+  func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeInterval: TimeInterval) -> Single<Result<CandleStickResponse, BithumbNetworkError>> {
+    return Single.create { observer -> Disposable in
+      AF.request(NetworkRequestRouter.fetchCandleStickData(orderCurrency, paymentCurrency, timeInterval))
+        .validate()
+        .response { response in
+          switch response.result {
+          case .success(let data):
+            guard let data = data else { return }
+            let response = try? JSONDecoder().decode(CandleStickResponse.self, from: data)
+            if let response = response {
+              observer(.success(.success(response)))
+            } else {
+              observer(.success(.failure(BithumbNetworkError.decodingError)))
+            }
+          case .failure(_):
+            observer(.success(.failure(BithumbNetworkError.networkError)))
+          }
+        }
+      return Disposables.create()
+    }
+  }
+  
   
   // MARK: Converters
   

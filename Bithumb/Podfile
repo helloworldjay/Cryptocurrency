@@ -10,6 +10,8 @@ target 'Bithumb' do
   pod 'Then'
   pod 'SnapKit', '~> 5.0.0'
   pod 'Kingfisher', '~> 7.0'
+  pod 'Starscream', '~> 4.0.0'
+  pod 'Charts'
 
   # Pods for Bithumb
 

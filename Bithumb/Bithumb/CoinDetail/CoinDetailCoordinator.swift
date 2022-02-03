@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Then
+
 final class CoinDetailCoordinator: Coordinator {
 
   // MARK: Properties
@@ -31,7 +33,20 @@ final class CoinDetailCoordinator: Coordinator {
       payload: CoinDetailViewController.Payload(
         orderCurrency: self.orderCurrency
       )
-    )
+    ).then {
+      $0.coinDetailViewModel.coinDetailCoordinator = self
+    }
     self.navigationController.pushViewController(coinDetailViewController, animated: false)
+  }
+  
+  
+  // MARK: Presentations
+  
+  func presentTimeIntervalBottomSheet(with timeInterval: TimeInterval) {
+    guard let coinDetailViewController = self.navigationController.viewControllers.last else { return }
+    let timeIntervalCoordinator = TimeIntervalBottomSheetCoordinator(presentingViewController: coinDetailViewController,
+                                                                     timeInterval: timeInterval)
+    timeIntervalCoordinator.parentCoordinator = self
+    self.childCoordinators.append(timeIntervalCoordinator)
   }
 }
