@@ -8,7 +8,7 @@
 import Foundation
 
 extension CharacterSet {
-  static var Korean: CharacterSet {
+  static var korean: CharacterSet {
     return CharacterSet(charactersIn: ("가".unicodeScalars.first!)...("힣".unicodeScalars.first!))
   }
 }
