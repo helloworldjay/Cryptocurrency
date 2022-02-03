@@ -17,47 +17,47 @@ final class LetterSeparator {
   static let initialCycle: UInt32 = 588
   static let neutralCycle: UInt32 = 28
   
-  static let initial = [
+  static let initialLetter = [
     "ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  static let neutral = [
+  static let neutralLetter = [
     "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ","ㅕ", "ㅖ", "ㅗ", "ㅘ",
     "ㅙ", "ㅚ","ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ",
     "ㅣ"
   ]
   
-  static let final = [
+  static let finalLetter = [
     "","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ",
     "ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  static let doubledFinal = [
+  static let doubledFinalLetter = [
     "ㄳ":"ㄱㅅ","ㄵ":"ㄴㅈ","ㄶ":"ㄴㅎ","ㄺ":"ㄹㄱ","ㄻ":"ㄹㅁ",
     "ㄼ":"ㄹㅂ","ㄽ":"ㄹㅅ","ㄾ":"ㄹㅌ","ㄿ":"ㄹㅍ","ㅀ":"ㄹㅎ",
     "ㅄ":"ㅂㅅ"
   ]
   
-  static func getSeparatedLetter(of input: String) -> String {
+  static func seperatedLetter(from input: String) -> String {
     var result = ""
     for scalar in input.unicodeScalars{
-      result += getSeparatedLetterFromSyllable(scalar) ?? ""
+      result += separatedLetterFromSyllable(unicodeScalar: scalar) ?? ""
     }
     return result
   }
   
-  private static func getSeparatedLetterFromSyllable(_ unicodeScalar: UnicodeScalar) -> String? {
+  private static func separatedLetterFromSyllable(unicodeScalar: UnicodeScalar) -> String? {
     if CharacterSet.Korean.contains(unicodeScalar) {
       let index = unicodeScalar.value - initialKoreanIndex
-      let initial = initial[Int(index / initialCycle)]
-      let neutral = neutral[Int((index % initialCycle) / neutralCycle)]
-      var final = final[Int(index % neutralCycle)]
-      if let disassembledFinal = doubledFinal[final] {
-        final = disassembledFinal
+      let initialSeparatedLetter = initialLetter[Int(index / initialCycle)]
+      let neutralSeparatedLetter = neutralLetter[Int((index % initialCycle) / neutralCycle)]
+      var finalSeparatedLetter = finalLetter[Int(index % neutralCycle)]
+      if let disassembledFinal = doubledFinalLetter[finalSeparatedLetter] {
+        finalSeparatedLetter = disassembledFinal
       }
-      return initial + neutral + final
+      return initialSeparatedLetter + neutralSeparatedLetter + finalSeparatedLetter
     } else {
       return String(UnicodeScalar(unicodeScalar))
     }
