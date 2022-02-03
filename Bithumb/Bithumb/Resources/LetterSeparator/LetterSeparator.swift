@@ -11,36 +11,36 @@ final class LetterSeparator {
   
   // MARK: Properties
   
-  private static let initialKoreanIndex: UInt32 = 44032
-  private static let finalKoreanIndex: UInt32 = 55199
+  private let initialKoreanIndex: UInt32 = 44032
+  private let finalKoreanIndex: UInt32 = 55199
   
-  private static let firstConsonantCycle: UInt32 = 588
-  private static let middleVowelCycle: UInt32 = 28
+  private let firstConsonantCycle: UInt32 = 588
+  private let middleVowelCycle: UInt32 = 28
   
-  private static let firstConsonantLetter = [
+  private let firstConsonantLetter = [
     "ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  private static let middleVowelLetter = [
+  private let middleVowelLetter = [
     "ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ","ㅕ", "ㅖ", "ㅗ", "ㅘ",
     "ㅙ", "ㅚ","ㅛ", "ㅜ", "ㅝ", "ㅞ", "ㅟ", "ㅠ", "ㅡ", "ㅢ",
     "ㅣ"
   ]
   
-  private static let lastConsonantLetter = [
+  private let lastConsonantLetter = [
     "","ㄱ","ㄲ","ㄳ","ㄴ","ㄵ","ㄶ","ㄷ","ㄹ","ㄺ",
     "ㄻ","ㄼ","ㄽ","ㄾ","ㄿ","ㅀ","ㅁ","ㅂ","ㅄ","ㅅ",
     "ㅆ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"
   ]
   
-  private static let separatedDoubledLastConsonantLetter = [
+  private let separatedDoubledLastConsonantLetter = [
     "ㄳ":"ㄱㅅ","ㄵ":"ㄴㅈ","ㄶ":"ㄴㅎ","ㄺ":"ㄹㄱ","ㄻ":"ㄹㅁ",
     "ㄼ":"ㄹㅂ","ㄽ":"ㄹㅅ","ㄾ":"ㄹㅌ","ㄿ":"ㄹㅍ","ㅀ":"ㄹㅎ",
     "ㅄ":"ㅂㅅ"
   ]
   
-  static func seperatedLetter(from input: String) -> String {
+  func seperatedLetter(from input: String) -> String {
     var result = ""
     for scalar in input.unicodeScalars{
       result += separatedLetterFromSyllable(unicodeScalar: scalar) ?? ""
@@ -48,7 +48,7 @@ final class LetterSeparator {
     return result
   }
   
-  private static func separatedLetterFromSyllable(unicodeScalar: UnicodeScalar) -> String? {
+  private func separatedLetterFromSyllable(unicodeScalar: UnicodeScalar) -> String? {
     if CharacterSet.Korean.contains(unicodeScalar) {
       let index = unicodeScalar.value - initialKoreanIndex
       let separatedFirstConsonantLetter = firstConsonantLetter[Int(index / firstConsonantCycle)]
