@@ -39,8 +39,8 @@ enum CandleStickData: Decodable {
       self = .timeInterval(time)
       return
     }
-    if let tickerInfo = try? container.decode(String.self) {
-      self = .information(tickerInfo)
+    if let transaction = try? container.decode(String.self) {
+      self = .information(transaction)
       return
     }
     throw DecodingError.typeMismatch(CandleStickData.self,
