@@ -51,13 +51,12 @@ final class WebSocketManager {
   private func setUpRequest() -> URLRequest? {
     guard let url = URL(string: self.baseURL) else { return nil }
     var request = URLRequest(url: url)
-    request.timeoutInterval = 30
+    request.timeoutInterval = 60
     return request
   }
 
-  // TODO: symbols, tickType은 요소 사이에 \", \" 를 넣어야됨
   func sendMessage(socketType: SocketType, symbols: String, tickType: String) {
-    let message = "{\"type\":\(socketType.message), \"symbols\": [\"\(symbols)\"], \"tickTypes\": [\"\(tickType)\"]}"
+    let message = "{\"type\":\"\(socketType.message)\", \"symbols\": [\"\(symbols)\"], \"tickTypes\": [\"\(tickType)\"]}"
     socket?.write(string: message)
   }
 }
