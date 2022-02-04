@@ -14,7 +14,7 @@ final class CoinListView: UITableView {
   
   private let disposeBag = DisposeBag()
   
-  
+
   // MARK: Initializers
   
   override init(frame: CGRect, style: UITableView.Style) {
@@ -44,6 +44,25 @@ final class CoinListView: UITableView {
         return cell
       }.disposed(by: self.disposeBag)
 
+    viewModel.socketTickerData
+      .subscribe(onNext: { socketTickerData in
+        let numberOfRows = self.numberOfRows(inSection: 0)
+        guard let tickerName = socketTickerData.ticker,
+              let coinListViewCellData = socketTickerData.coinListViewCellData else { return }
+        for row in 0..<numberOfRows {
+          guard let cell = self.cellForRow(at: IndexPath(row: row, section: 0)) as? CoinListViewCell else { continue }
+          if cell.hasSameTickerName(with: tickerName) {
+            cell.setData(with: coinListViewCellData)
+            cell.contentView.layer.do {
+              $0.borderColor = UIColor.bithumb.cgColor
+              $0.borderWidth = 3
+            }
+          } else {
+            cell.contentView.layer.borderColor = UIColor.white.cgColor
+          }
+        }
+      }).disposed(by: self.disposeBag)
+    
     self.rx.modelSelected(CoinListViewCellData.self)
       .map { $0.ticker }
       .map { OrderCurrency.search(with: $0) }
