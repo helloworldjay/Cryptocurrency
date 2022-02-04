@@ -52,7 +52,6 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
       .disposed(by: disposeBag)
 
     self.coinListViewModel.selectedOrderCurrency
-      .subscribe(on: MainScheduler.instance)
       .subscribe {
         self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: $0)
       }.disposed(by: self.disposeBag)
