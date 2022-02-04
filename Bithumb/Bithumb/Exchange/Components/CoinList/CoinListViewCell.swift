@@ -113,4 +113,9 @@ final class CoinListViewCell: UITableViewCell {
     self.priceDifferenceLabel.attributedText = data.priceDifferenceText()
     self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
   }
+
+  func hasSameTickerName(with tickerName: String) -> Bool {
+    guard let cellTickerName = self.tickerLabel.text else { return false }
+    return cellTickerName == tickerName
+  }
 }
