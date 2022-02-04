@@ -59,4 +59,11 @@ final class WebSocketManager {
     let message = "{\"type\":\"\(socketType.message)\", \"symbols\": [\"\(symbols)\"], \"tickTypes\": [\"\(tickType)\"]}"
     socket?.write(string: message)
   }
+
+  func generateSymbol(with paymentCurreny: PaymentCurrency) -> String {
+    return OrderCurrency.allCases
+      .filter { $0 != .all }
+      .map { return $0.rawValue + "_\(paymentCurreny.rawValue)" }
+      .joined(separator: "\", \"")
+  }
 }
