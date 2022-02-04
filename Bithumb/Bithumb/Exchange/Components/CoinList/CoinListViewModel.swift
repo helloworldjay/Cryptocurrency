@@ -13,23 +13,23 @@ protocol CoinListViewModelLogic {
   var coinListCellData: PublishSubject<[CoinListViewCellData]> { get }
   var cellData: Driver<[CoinListViewCellData]> { get }
   var selectedOrderCurrency: PublishSubject<OrderCurrency> { get }
-  var socketText: PublishSubject<String> { get }
-  var updatedTickerData: Observable<SocketTickerData> { get }
+  var socketText: PublishRelay<String> { get }
+  var socketTickerData: Observable<SocketTickerData> { get }
 }
 
 final class CoinListViewModel: CoinListViewModelLogic {
   let coinListCellData = PublishSubject<[CoinListViewCellData]>()
   let cellData: Driver<[CoinListViewCellData]>
   let selectedOrderCurrency = PublishSubject<OrderCurrency>()
-  let socketText = PublishSubject<String>()
-  let updatedTickerData: Observable<SocketTickerData>
+  let socketText = PublishRelay<String>()
+  let socketTickerData: Observable<SocketTickerData>
   private let disposeBag = DisposeBag()
 
   init() {
     self.cellData = self.coinListCellData
       .asDriver(onErrorJustReturn: [])
 
-    self.updatedTickerData = self.socketText
+    self.socketTickerData = self.socketText
       .map {
         return $0.replacingOccurrences(of: "\\", with: "").data(using: .utf8)
       }.filter { $0 != nil }
@@ -52,6 +52,7 @@ extension CoinListViewModel: WebSocketDelegate {
     switch event {
     case .connected(let headers):
       client.write(string: "이름")
+      self.sendSocketTickerMessage()
       print("websocket is connected: \(headers)")
     case .disconnected(let reason, let code):
       print("websocket is disconnected: \(reason) with code: \(code)")
@@ -74,5 +75,13 @@ extension CoinListViewModel: WebSocketDelegate {
     case .error(let error):
       print("websocket is error = \(error!)")
     }
+  }
+
+  private func sendSocketTickerMessage() {
+    WebSocketManager.shared.sendMessage(
+      socketType: SocketType.ticker,
+      symbols: WebSocketManager.shared.generateSymbol(with: .krw),
+      tickType: "24H"
+    )
   }
 }
