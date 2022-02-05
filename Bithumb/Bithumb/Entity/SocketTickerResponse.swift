@@ -60,7 +60,7 @@ struct SocketTickerData: Decodable {
   }
 
   var coinListViewCellData: CoinListViewCellData? {
-    guard let ticker = self.ticker else { return nil}
+    guard let ticker = self.ticker else { return nil }
     return CoinListViewCellData(
       coinName: OrderCurrency.search(with: ticker).koreanName,
       ticker: ticker,
