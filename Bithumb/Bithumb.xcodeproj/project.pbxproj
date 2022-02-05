@@ -268,7 +268,6 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-
 				B49FDAF927AAAFDE001A11E9 /* LetterSeparator */,
 				C3D0EF6F27A777B500A5E4BE /* Module */,
 				4885375027A38A5300BE00FD /* Coordinators */,
@@ -499,6 +498,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C329A87A27AECD1400193A4D /* TimeIntervalBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */,
+				C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */,
+				C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */,
+				C3D9461A27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift */,
+			);
+			path = TimeIntervalBottomSheet;
+			sourceTree = "<group>";
+		};
 		C3D0EF6F27A777B500A5E4BE /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,10 +520,7 @@
 		C3D0EF7827A7A40100A5E4BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C3D0EF7927A7A42100A5E4BE /* TimeIntervalBottomSheet.swift */,
-				C3D0EF9227A8A30500A5E4BE /* TimeIntervalViewModel.swift */,
-				C3D0EF8327A7B25000A5E4BE /* TimeInterval.swift */,
-				C3D9461A27A9991000EDE8FF /* TimeIntervalBottomSheetCoordinator.swift */,
+				C329A87A27AECD1400193A4D /* TimeIntervalBottomSheet */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -785,7 +792,6 @@
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
-
 				B49FDAFB27AAAFF5001A11E9 /* LetterSeparator.swift in Sources */,
 				C3D0EF9327A8A30500A5E4BE /* TimeIntervalViewModel.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
