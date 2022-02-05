@@ -28,8 +28,8 @@ final class CoinDetailViewController: UIViewController {
   
   private let coinChartView: CoinChartView
   private let segmentedCategoryView: SegmentedCategoryView
-  private let timeIntervalChangeButton: UIButton
-  
+  private let timeUnitChangeButton: UIButton
+
   
   // MARK: Initializers
 
@@ -38,7 +38,7 @@ final class CoinDetailViewController: UIViewController {
     let categoryItems = ["호가", "차트"]
     self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
     self.coinChartView = CoinChartView()
-    self.timeIntervalChangeButton = UIButton()
+    self.timeUnitChangeButton = UIButton()
     self.coinDetailViewModel = CoinDetailViewModel()
     self.disposeBag = DisposeBag()
     
@@ -60,8 +60,8 @@ final class CoinDetailViewController: UIViewController {
   private func layout() {
     [self.coinChartView,
      self.segmentedCategoryView,
-     self.timeIntervalChangeButton].forEach { self.view.addSubview($0) }
-    
+     self.timeUnitChangeButton].forEach { self.view.addSubview($0) }
+
     self.segmentedCategoryView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
@@ -72,7 +72,7 @@ final class CoinDetailViewController: UIViewController {
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }
     
-    self.timeIntervalChangeButton.snp.makeConstraints {
+    self.timeUnitChangeButton.snp.makeConstraints {
       $0.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
   }
@@ -80,7 +80,7 @@ final class CoinDetailViewController: UIViewController {
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
     
-    self.timeIntervalChangeButton.do {
+    self.timeUnitChangeButton.do {
       $0.setTitleColor(.black, for: .normal)
     }
   }
@@ -92,13 +92,13 @@ final class CoinDetailViewController: UIViewController {
   private func bind() {
     self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
 
-    self.timeIntervalChangeButton.rx.tap
-      .bind(to: self.coinDetailViewModel.tapSelectTimeIntervalButton)
+    self.timeUnitChangeButton.rx.tap
+      .bind(to: self.coinDetailViewModel.tapSelectTimeUnitButton)
       .disposed(by: self.disposeBag)
     
-    self.coinDetailViewModel.selectedTimeInterval
+    self.coinDetailViewModel.selectedTimeUnit
       .bind {
-        self.timeIntervalChangeButton.setTitle($0.rawValue, for: .normal)
+        self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
       }
       .disposed(by: self.disposeBag)
   }

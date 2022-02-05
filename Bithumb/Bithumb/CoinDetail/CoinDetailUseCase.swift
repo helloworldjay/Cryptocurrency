@@ -17,7 +17,7 @@ protocol CoinDetailUseCaseLogic {
   func tickerData(response: AllTickerResponse?) -> CoinDetailData?
   func fetchCandleStick(orderCurrency: OrderCurrency,
                         paymentCurrency: PaymentCurrency,
-                        timeInterval: TimeInterval) -> Single<Result<CandleStickResponse, BithumbNetworkError>>
+                        timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, BithumbNetworkError>>
   func candleStickResponse(result: Result<CandleStickResponse,
                            BithumbNetworkError>) -> CandleStickResponse?
   func chartData(response: CandleStickResponse?) -> [ChartData]
@@ -65,10 +65,10 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
   
   func fetchCandleStick(orderCurrency: OrderCurrency,
                         paymentCurrency: PaymentCurrency,
-                        timeInterval: TimeInterval) -> Single<Result<CandleStickResponse, BithumbNetworkError>> {
+                        timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, BithumbNetworkError>> {
     return network.fetchCandleStickData(orderCurrency: orderCurrency,
                                         paymentCurrency: paymentCurrency,
-                                        timeInterval: timeInterval)
+                                        timeUnit: timeUnit)
   }
 
   func candleStickResponse(result: Result<CandleStickResponse,
