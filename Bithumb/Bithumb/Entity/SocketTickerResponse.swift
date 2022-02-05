@@ -53,4 +53,21 @@ struct SocketTickerData: Decodable {
   let chgAmt: String
   let volumePower: String
   let symbol: String
+
+  var ticker: String? {
+    guard let ticker = self.symbol.split(separator: "_").first else { return nil }
+    return String(ticker)
+  }
+
+  var coinListViewCellData: CoinListViewCellData? {
+    guard let ticker = self.ticker else { return nil }
+    return CoinListViewCellData(
+      coinName: OrderCurrency.search(with: ticker).koreanName,
+      ticker: ticker,
+      currentPrice: self.closePrice,
+      priceChangedRatio: self.chgRate,
+      priceDifference: self.chgAmt,
+      transactionAmount: value
+    )
+  }
 }
