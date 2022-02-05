@@ -35,36 +35,34 @@ class ExchangeSearchBarViewModelTests: XCTestCase {
   
   // MARK: Tests
   
-  func test_검색_버튼을_눌렀을_때_입력된_문자열이_없는_경우() throws {
+  func test_검색_바에_입력된_문자열이_없는_경우_모든_OrderCurrency_딕셔너리를_반환() throws {
     //given
+    let expectedResult = OrderCurrency.orderCurrencyDictionaryByTicker
+
+    //when
     self.scheduler.createColdObservable(
       [
         .next(5, "")
       ]
     ).bind(to: self.sut.inputText)
       .disposed(by: self.disposeBag)
-    
-    //when
-    self.scheduler.createColdObservable(
-      [
-        .next(10, ())
-      ]
-    ).bind(to: self.sut.searchButtonTapped)
-      .disposed(by: self.disposeBag)
-    
+
     //then
-    expect(self.sut.orderCurrencyToSearch)
+    expect(self.sut.orderCurrenciesToSearch)
       .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
       .to(equal(
         [
-          .next(10, OrderCurrency.all)
+          .next(5, expectedResult)
         ]
       ))
   }
   
-  func test_검색_버튼을_눌렀을_때_입력된_문자열이_있는_경우() throws {
+  func test_검색_바에_입력된_문자열이_있는_경우_매칭된_OrderCurrency_딕셔너리를_반환() throws {
     //given
-    let keyword = "ALL"
+    let keyword = "BT"
+    let expectedResult = OrderCurrency.filteredCurrencies(with: keyword)
+
+    //when
     self.scheduler.createColdObservable(
       [
         .next(5, keyword)
@@ -72,50 +70,12 @@ class ExchangeSearchBarViewModelTests: XCTestCase {
     ).bind(to: self.sut.inputText)
       .disposed(by: self.disposeBag)
     
-    //when
-    self.scheduler.createColdObservable(
-      [
-        .next(10, ())
-      ]
-    ).bind(to: self.sut.searchButtonTapped)
-      .disposed(by: self.disposeBag)
-    
     //then
-    expect(self.sut.orderCurrencyToSearch)
+    expect(self.sut.orderCurrenciesToSearch)
       .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
       .to(equal(
         [
-          .next(10, OrderCurrency.all)
-        ]
-      ))
-  }
-  
-  func test_검색_버튼을_다시_눌렀을_때_입력된_문자열이_기존의_입력과_같은_경우() throws {
-    //given
-    let keyword = "ALL"
-    self.scheduler.createColdObservable(
-      [
-        .next(5, keyword),
-        .next(10, keyword)
-      ]
-    ).bind(to: self.sut.inputText)
-      .disposed(by: self.disposeBag)
-    
-    //when
-    self.scheduler.createColdObservable(
-      [
-        .next(6, ()),
-        .next(11, ())
-      ]
-    ).bind(to: self.sut.searchButtonTapped)
-      .disposed(by: self.disposeBag)
-    
-    //then
-    expect(self.sut.orderCurrencyToSearch)
-      .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
-      .to(equal(
-        [
-          .next(6, OrderCurrency.all)
+          .next(5, expectedResult)
         ]
       ))
   }
