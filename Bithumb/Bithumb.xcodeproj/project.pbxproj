@@ -17,6 +17,8 @@
 		48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE62799732E008F2AD1 /* NetworkManager.swift */; };
 		4865371D27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4865371C27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift */; };
 		4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */; };
+		4869B20A27AE96FD002A9B15 /* OrderCurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4869B20927AE96FD002A9B15 /* OrderCurrencyTests.swift */; };
+		4869B20D27AE9A95002A9B15 /* CoinListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4869B20C27AE9A95002A9B15 /* CoinListViewModelTests.swift */; };
 		4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42827979E6600472C90 /* ExchangeViewController.swift */; };
 		4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */; };
 		4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */; };
@@ -101,6 +103,8 @@
 		48256CE62799732E008F2AD1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4865371C27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCategoryViewModel.swift; sourceTree = "<group>"; };
 		4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCategoryViewTests.swift; sourceTree = "<group>"; };
+		4869B20927AE96FD002A9B15 /* OrderCurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCurrencyTests.swift; sourceTree = "<group>"; };
+		4869B20C27AE9A95002A9B15 /* CoinListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModelTests.swift; sourceTree = "<group>"; };
 		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		4881F42D2797A1C400472C90 /* ProductServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceViewController.swift; sourceTree = "<group>"; };
 		4881F42F2797A22200472C90 /* CurrentAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentAssetViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +267,22 @@
 			path = SegmentedCategory;
 			sourceTree = "<group>";
 		};
+		4869B20827AE96D7002A9B15 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4869B20927AE96FD002A9B15 /* OrderCurrencyTests.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4869B20B27AE9A67002A9B15 /* CoinListView */ = {
+			isa = PBXGroup;
+			children = (
+				4869B20C27AE9A95002A9B15 /* CoinListViewModelTests.swift */,
+			);
+			path = CoinListView;
+			sourceTree = "<group>";
+		};
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +393,7 @@
 		488F9E7E279BA7C70021A545 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4869B20B27AE9A67002A9B15 /* CoinListView */,
 				4865371E27A6CBDE00BEBBB3 /* SegmentedCategory */,
 				488F9E7F279BA7D80021A545 /* ExchangeSearchBar */,
 			);
@@ -443,6 +464,7 @@
 			children = (
 				489FB61F279C29B50078AEE1 /* Network */,
 				488F9E7D279BA7BF0021A545 /* Exchange */,
+				4869B20827AE96D7002A9B15 /* Resources */,
 			);
 			path = BithumbTests;
 			sourceTree = "<group>";
@@ -832,9 +854,11 @@
 				48B60E48279F923A000534EC /* ExchangeUseCaseTests.swift in Sources */,
 				489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */,
 				4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */,
+				4869B20D27AE9A95002A9B15 /* CoinListViewModelTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48B60E5227A035F2000534EC /* ExchangeUseCaseSpy.swift in Sources */,
 				48B60E5427A036C0000534EC /* ExchangeViewModelTests.swift in Sources */,
+				4869B20A27AE96FD002A9B15 /* OrderCurrencyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

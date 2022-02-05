@@ -36,7 +36,7 @@ struct SocketTickerResponse: Decodable {
   let content: SocketTickerData
 }
 
-struct SocketTickerData: Decodable {
+struct SocketTickerData: Decodable, Equatable {
   let tickType: String
   let date: String
   let time: String
