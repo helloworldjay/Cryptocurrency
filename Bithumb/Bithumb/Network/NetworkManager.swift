@@ -12,6 +12,7 @@ import RxSwift
 
 protocol NetworkManagerLogic {
   func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>>
+  func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeInterval: TimeInterval) -> Single<Result<CandleStickResponse, BithumbNetworkError>>
 }
 
 struct NetworkManager: NetworkManagerLogic {

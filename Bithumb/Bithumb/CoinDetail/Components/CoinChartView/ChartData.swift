@@ -8,10 +8,17 @@
 import Foundation
 
 struct ChartData {
-  let dateText: String
-  let openPrice: Double
-  let closePrice: Double
-  let highPrice: Double
-  let lowPrice: Double
-  let exchangeVolume: Double
+  var timeInterval: Double = 0.0
+  var openPrice: Double = 0.0
+  var closePrice: Double = 0.0
+  var highPrice: Double = 0.0
+  var lowPrice: Double = 0.0
+  var exchangeVolume: Double = 0.0
+  
+  var dateText: String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd\nHH:mm"
+    let date = Date(timeIntervalSince1970: self.timeInterval / 1000)
+    return dateFormatter.string(from: date)
+  }
 }
