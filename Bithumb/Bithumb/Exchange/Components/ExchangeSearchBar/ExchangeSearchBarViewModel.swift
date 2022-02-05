@@ -10,7 +10,6 @@ import RxSwift
 
 protocol ExchangeSearchBarViewModelLogic {
   var inputText: PublishRelay<String> { get }
-  var searchButtonTapped: PublishRelay<Void> { get }
   var orderCurrenciesToSearch: Observable<[OrderCurrency : String]> { get }
 }
 
@@ -19,7 +18,6 @@ final class ExchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic {
   // MARK: Properties
   
   let inputText = PublishRelay<String>()
-  let searchButtonTapped = PublishRelay<Void>()
   let orderCurrenciesToSearch: Observable<[OrderCurrency : String]>
 
 
