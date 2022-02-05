@@ -47,19 +47,28 @@ final class LetterSeparator {
     }
     return result
   }
+
+  func seperatedOrderCurrencyLetter(from orderCurrency: OrderCurrency) -> String {
+    return self.seperatedLetter(from: orderCurrency.rawValue)
+    + self.seperatedLetter(from: orderCurrency.koreanName)
+  }
   
   private func separatedLetterFromSyllable(unicodeScalar: UnicodeScalar) -> String? {
-    if CharacterSet.korean.contains(unicodeScalar) {
-      let index = unicodeScalar.value - initialKoreanIndex
-      let separatedFirstConsonantLetter = firstConsonantLetter[Int(index / firstConsonantCycle)]
-      let separatedMiddleVowelLetter = middleVowelLetter[Int((index % firstConsonantCycle) / middleVowelCycle)]
-      var separatedLastConsonantLetter = lastConsonantLetter[Int(index % middleVowelCycle)]
-      if let disassembledLastConsonantLetter = separatedDoubledLastConsonantLetter[separatedLastConsonantLetter] {
-        separatedLastConsonantLetter = disassembledLastConsonantLetter
-      }
-      return separatedFirstConsonantLetter + separatedMiddleVowelLetter + separatedLastConsonantLetter
-    } else {
+    guard let koreanCharacterSet = CharacterSet.korean else { return nil }
+
+    if !koreanCharacterSet.contains(unicodeScalar) {
       return String(UnicodeScalar(unicodeScalar))
     }
+
+    let index = unicodeScalar.value - initialKoreanIndex
+    guard let separatedFirstConsonantLetter = firstConsonantLetter[safe: Int(index / firstConsonantCycle)],
+          let separatedMiddleVowelLetter = middleVowelLetter[safe: Int((index % firstConsonantCycle) / middleVowelCycle)],
+          var separatedLastConsonantLetter = lastConsonantLetter[safe: Int(index % middleVowelCycle)] else { return nil }
+
+    if let disassembledLastConsonantLetter = separatedDoubledLastConsonantLetter[separatedLastConsonantLetter] {
+      separatedLastConsonantLetter = disassembledLastConsonantLetter
+    }
+
+    return separatedFirstConsonantLetter + separatedMiddleVowelLetter + separatedLastConsonantLetter
   }
 }
