@@ -48,7 +48,6 @@
 		48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDCFFD279541E2002F0050 /* SceneDelegate.swift */; };
 		48FDD005279541E4002F0050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48FDD004279541E4002F0050 /* Assets.xcassets */; };
 		48FDD008279541E4002F0050 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48FDD006279541E4002F0050 /* LaunchScreen.storyboard */; };
-		48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDD012279541E4002F0050 /* BithumbTests.swift */; };
 		48FDD01D279541E4002F0050 /* BithumbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDD01C279541E4002F0050 /* BithumbUITests.swift */; };
 		48FDD01F279541E4002F0050 /* BithumbUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FDD01E279541E4002F0050 /* BithumbUITestsLaunchTests.swift */; };
 		6C6755D0D77E50E4E4F23A6B /* Pods_BithumbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EF170BEFCCD8D7B5FAADDC /* Pods_BithumbTests.framework */; };
@@ -136,7 +135,6 @@
 		48FDD007279541E4002F0050 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48FDD009279541E4002F0050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48FDD00E279541E4002F0050 /* BithumbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BithumbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		48FDD012279541E4002F0050 /* BithumbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbTests.swift; sourceTree = "<group>"; };
 		48FDD018279541E4002F0050 /* BithumbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BithumbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FDD01C279541E4002F0050 /* BithumbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbUITests.swift; sourceTree = "<group>"; };
 		48FDD01E279541E4002F0050 /* BithumbUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BithumbUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -268,7 +266,6 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-
 				B49FDAF927AAAFDE001A11E9 /* LetterSeparator */,
 				C3D0EF6F27A777B500A5E4BE /* Module */,
 				4885375027A38A5300BE00FD /* Coordinators */,
@@ -446,7 +443,6 @@
 			children = (
 				489FB61F279C29B50078AEE1 /* Network */,
 				488F9E7D279BA7BF0021A545 /* Exchange */,
-				48FDD012279541E4002F0050 /* BithumbTests.swift */,
 			);
 			path = BithumbTests;
 			sourceTree = "<group>";
@@ -785,7 +781,6 @@
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
-
 				B49FDAFB27AAAFF5001A11E9 /* LetterSeparator.swift in Sources */,
 				C3D0EF9327A8A30500A5E4BE /* TimeIntervalViewModel.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
@@ -839,7 +834,6 @@
 				4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48B60E5227A035F2000534EC /* ExchangeUseCaseSpy.swift in Sources */,
-				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
 				48B60E5427A036C0000534EC /* ExchangeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
