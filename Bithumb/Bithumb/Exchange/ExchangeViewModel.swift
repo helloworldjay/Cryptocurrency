@@ -53,9 +53,11 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
       .bind(to: coinListViewModel.coinListCellData)
       .disposed(by: disposeBag)
 
-    self.coinListViewModel.selectedOrderCurrency
-      .subscribe {
-        self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: $0)
-      }.disposed(by: self.disposeBag)
+    Observable.combineLatest(
+      self.coinListViewModel.selectedOrderCurrency,
+      self.segmentedCategoryViewModel.paymentCurrency
+    ).subscribe {
+      self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: $0, paymentCurrency: $1)
+    }.disposed(by: self.disposeBag)
   }
 }

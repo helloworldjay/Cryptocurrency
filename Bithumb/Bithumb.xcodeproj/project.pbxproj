@@ -66,6 +66,8 @@
 		C329A88827AECFD600193A4D /* CryptoCurrencyDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A88727AECFD600193A4D /* CryptoCurrencyDataType.swift */; };
 		C329A88A27AED08400193A4D /* CoinDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A88927AED08400193A4D /* CoinDetailUseCase.swift */; };
 		C329A88D27AED1F700193A4D /* CoinDetailUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A88C27AED1F700193A4D /* CoinDetailUseCaseTests.swift */; };
+		C329A89027AED69C00193A4D /* CoinDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A88F27AED69C00193A4D /* CoinDetailViewModelTests.swift */; };
+		C329A89227AED6B400193A4D /* NetworkManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A89127AED6B400193A4D /* NetworkManagerSpy.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
 		C3D0EF6D27A7685100A5E4BE /* Array + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */; };
@@ -163,6 +165,8 @@
 		C329A88727AECFD600193A4D /* CryptoCurrencyDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCurrencyDataType.swift; sourceTree = "<group>"; };
 		C329A88927AED08400193A4D /* CoinDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailUseCase.swift; sourceTree = "<group>"; };
 		C329A88C27AED1F700193A4D /* CoinDetailUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailUseCaseTests.swift; sourceTree = "<group>"; };
+		C329A88F27AED69C00193A4D /* CoinDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailViewModelTests.swift; sourceTree = "<group>"; };
+		C329A89127AED6B400193A4D /* NetworkManagerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerSpy.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Ext.swift"; sourceTree = "<group>"; };
@@ -548,9 +552,19 @@
 		C329A88B27AED0C300193A4D /* CoinDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C329A88E27AED68700193A4D /* Spy */,
 				C329A88C27AED1F700193A4D /* CoinDetailUseCaseTests.swift */,
+				C329A88F27AED69C00193A4D /* CoinDetailViewModelTests.swift */,
 			);
 			path = CoinDetail;
+			sourceTree = "<group>";
+		};
+		C329A88E27AED68700193A4D /* Spy */ = {
+			isa = PBXGroup;
+			children = (
+				C329A89127AED6B400193A4D /* NetworkManagerSpy.swift */,
+			);
+			path = Spy;
 			sourceTree = "<group>";
 		};
 		C3D0EF6F27A777B500A5E4BE /* Module */ = {
@@ -892,10 +906,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				48B60E48279F923A000534EC /* ExchangeUseCaseTests.swift in Sources */,
+				C329A89227AED6B400193A4D /* NetworkManagerSpy.swift in Sources */,
 				489FB622279C29D20078AEE1 /* NetworkManagerTests.swift in Sources */,
 				4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */,
 				488F9E81279BA8020021A545 /* ExchangeSearchBarViewModelTests.swift in Sources */,
 				48B60E5227A035F2000534EC /* ExchangeUseCaseSpy.swift in Sources */,
+				C329A89027AED69C00193A4D /* CoinDetailViewModelTests.swift in Sources */,
 				48FDD013279541E4002F0050 /* BithumbTests.swift in Sources */,
 				48B60E5427A036C0000534EC /* ExchangeViewModelTests.swift in Sources */,
 				C329A88D27AED1F700193A4D /* CoinDetailUseCaseTests.swift in Sources */,

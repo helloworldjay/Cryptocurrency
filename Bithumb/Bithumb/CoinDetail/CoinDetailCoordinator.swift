@@ -17,13 +17,15 @@ final class CoinDetailCoordinator: Coordinator {
   var childCoordinators: [Coordinator] = []
   var navigationController: UINavigationController
   var orderCurrency: OrderCurrency
+  var paymentCurrency: PaymentCurrency
 
 
   // MARK: - Initializers
 
-  init(navigationController: UINavigationController, orderCurrency: OrderCurrency) {
+  init(navigationController: UINavigationController, orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) {
     self.navigationController = navigationController
     self.orderCurrency = orderCurrency
+    self.paymentCurrency = paymentCurrency
 
     self.start()
   }
@@ -31,7 +33,8 @@ final class CoinDetailCoordinator: Coordinator {
   func start() {
     let coinDetailViewController = CoinDetailViewController(
       payload: CoinDetailViewController.Payload(
-        orderCurrency: self.orderCurrency
+        orderCurrency: self.orderCurrency,
+        paymentCurrency: self.paymentCurrency
       )
     ).then {
       $0.coinDetailViewModel.coinDetailCoordinator = self

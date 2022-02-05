@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChartData {
+struct ChartData: Equatable {
   var timeInterval: Double = 0.0
   var openPrice: Double = 0.0
   var closePrice: Double = 0.0

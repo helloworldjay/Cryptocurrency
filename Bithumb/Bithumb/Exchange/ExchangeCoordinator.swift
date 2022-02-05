@@ -41,10 +41,11 @@ final class ExchangeCoordinator: Coordinator {
 
   // MARK: Presentations
 
-  func presentCoinDetailViewController(orderCurrency: OrderCurrency) {
+  func presentCoinDetailViewController(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) {
     let coinDetailCoordinator = CoinDetailCoordinator(
       navigationController: self.navigationController,
-      orderCurrency: orderCurrency
+      orderCurrency: orderCurrency,
+      paymentCurrency: paymentCurrency
     )
     coinDetailCoordinator.parentCoordinator = self
     self.childCoordinators.append(coinDetailCoordinator)

@@ -14,9 +14,11 @@ import Then
 
 final class CoinDetailViewController: UIViewController {
 
-  // TODO: 상세 구현 필요
+  // MARK: Payload
+  
   struct Payload {
     let orderCurrency: OrderCurrency
+    let paymentCurrency: PaymentCurrency
   }
 
 
@@ -37,9 +39,9 @@ final class CoinDetailViewController: UIViewController {
     self.payload = payload
     let categoryItems = ["호가", "차트"]
     self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
+    self.coinDetailViewModel = CoinDetailViewModel(payload: payload)
     self.coinChartView = CoinChartView()
     self.timeUnitChangeButton = UIButton()
-    self.coinDetailViewModel = CoinDetailViewModel()
     self.disposeBag = DisposeBag()
     
     super.init(nibName: nil, bundle: nil)
