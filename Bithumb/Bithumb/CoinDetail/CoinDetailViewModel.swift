@@ -21,7 +21,8 @@ final class CoinDetailViewModel {
   private let disposeBag = DisposeBag()
 
   init(useCase: CoinDetailUseCaseLogic = CoinDetailUseCase(),
-       payload: CoinDetailViewController.Payload) {
+       orderCurrency: OrderCurrency,
+       paymentCurrency: PaymentCurrency) {
     self.tapSelectTimeUnitButton
       .bind {
         self.coinDetailCoordinator?.presentTimeUnitBottomSheet(with: self.selectedTimeUnit.value)
@@ -30,8 +31,8 @@ final class CoinDetailViewModel {
     
     let candleStickResult = self.selectedTimeUnit
       .flatMapLatest {
-        useCase.fetchCandleStick(orderCurrency: payload.orderCurrency,
-                                 paymentCurrency: payload.paymentCurrency,
+        useCase.fetchCandleStick(orderCurrency: orderCurrency,
+                                 paymentCurrency: paymentCurrency,
                                  timeUnit: $0)
       }
     
@@ -44,8 +45,8 @@ final class CoinDetailViewModel {
       .bind(to: self.coinChartViewModel.chartData)
       .disposed(by: self.disposeBag)
     
-    let tickerResult = useCase.fetchTicker(orderCurrency: payload.orderCurrency,
-                                           paymentCurrency: payload.paymentCurrency)
+    let tickerResult = useCase.fetchTicker(orderCurrency: orderCurrency,
+                                           paymentCurrency: paymentCurrency)
     
     let coinDetailData = tickerResult
       .map(useCase.tickerResponse)

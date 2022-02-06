@@ -39,7 +39,8 @@ final class CoinDetailViewController: UIViewController {
     self.payload = payload
     let categoryItems = ["호가", "차트"]
     self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
-    self.coinDetailViewModel = CoinDetailViewModel(payload: payload)
+    self.coinDetailViewModel = CoinDetailViewModel(orderCurrency: payload.orderCurrency,
+                                                   paymentCurrency: payload.paymentCurrency)
     self.coinChartView = CoinChartView()
     self.timeUnitChangeButton = UIButton()
     self.disposeBag = DisposeBag()
