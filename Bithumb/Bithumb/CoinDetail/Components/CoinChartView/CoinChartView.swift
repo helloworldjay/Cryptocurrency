@@ -30,23 +30,21 @@ final class CoinChartView: CandleStickChartView {
   }
   
   private func attribute() {
-    self.do {
-      $0.noDataText = "데이터가 없습니다."
-      $0.noDataFont = .systemFont(ofSize: 20)
-      $0.noDataTextColor = .lightGray
-      $0.backgroundColor = .white
-      $0.xAxis.setLabelCount(4, force: false)
-      $0.xAxis.labelPosition = .bottom
-      $0.dragDecelerationEnabled = false
-      $0.autoScaleMinMaxEnabled = true
-      $0.doubleTapToZoomEnabled = false
-      $0.highlightPerTapEnabled = false
-      $0.rightAxis.enabled = false
-      $0.leftAxis.enabled = true
-      $0.scaleYEnabled = false
-      $0.dragYEnabled = false
-      $0.delegate = self
-    }
+    self.noDataText = "데이터가 없습니다."
+    self.noDataFont = .systemFont(ofSize: 20)
+    self.noDataTextColor = .lightGray
+    self.backgroundColor = .white
+    self.xAxis.setLabelCount(4, force: false)
+    self.xAxis.labelPosition = .bottom
+    self.dragDecelerationEnabled = false
+    self.autoScaleMinMaxEnabled = true
+    self.doubleTapToZoomEnabled = false
+    self.highlightPerTapEnabled = false
+    self.rightAxis.enabled = false
+    self.leftAxis.enabled = true
+    self.scaleYEnabled = false
+    self.dragYEnabled = false
+    self.delegate = self
   }
   
   func bind(viewModel: CoinChartViewModelLogic) {
@@ -74,14 +72,11 @@ final class CoinChartView: CandleStickChartView {
     }
     
     let chartData = CandleChartData(dataSet: chartDataSet)
-
-    self.do {
-      $0.data = chartData
-      $0.xAxis.valueFormatter = IndexAxisValueFormatter(values: axisValues)
-      $0.setVisibleXRangeMaximum(20.0)
-      $0.moveViewToX($0.chartXMax)
-      $0.drawMarkers = false
-    }
+    self.data = chartData
+    self.xAxis.valueFormatter = IndexAxisValueFormatter(values: axisValues)
+    self.setVisibleXRangeMaximum(20.0)
+    self.moveViewToX(self.chartXMax)
+    self.drawMarkers = false
   }
   
   private func convertToDataEntries(from graphData: [ChartData]) -> [CandleChartDataEntry] {
@@ -104,7 +99,7 @@ final class CoinChartView: CandleStickChartView {
 
 extension CoinChartView: ChartViewDelegate {
   func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-    if self.isUpdated == true {
+    if self.isUpdated {
       self.setVisibleXRange(minXRange: 10, maxXRange: 300)
       self.isUpdated = false
     }
