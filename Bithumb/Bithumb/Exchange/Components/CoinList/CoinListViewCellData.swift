@@ -10,9 +10,9 @@ import UIKit
 struct CoinListViewCellData: Equatable, CryptoCurrencyDataType {
   let coinName: String
   let ticker: String
-  var currentPrice: String
-  var priceChangedRatio: String
-  var priceDifference: String
+  let currentPrice: String
+  let priceChangedRatio: String
+  let priceDifference: String
   let transactionAmount: String
 }
 

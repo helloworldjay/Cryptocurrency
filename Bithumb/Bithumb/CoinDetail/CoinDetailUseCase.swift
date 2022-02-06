@@ -83,36 +83,6 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     guard let response = response else {
       return []
     }
-    return response.data.map { candleStickData -> ChartData in
-      var chartData = ChartData()
-      
-      for index in 0..<6 {
-        guard let candleStickDatum = candleStickData[safe: index] else {
-          return chartData
-        }
-        
-        switch candleStickDatum {
-        case .timeInterval(let number):
-          chartData.timeInterval = number
-        case .information(let number):
-          guard let number = Double(number) else {
-            return chartData
-          }
-          
-          if index == 1 {
-            chartData.openPrice = number
-          } else if index == 2 {
-            chartData.closePrice = number
-          } else if index == 3 {
-            chartData.highPrice = number
-          } else if index == 4 {
-            chartData.lowPrice = number
-          } else if index == 5 {
-            chartData.exchangeVolume = number
-          }
-        }
-      }
-      return chartData
-    }
+    return response.chartData
   }
 }

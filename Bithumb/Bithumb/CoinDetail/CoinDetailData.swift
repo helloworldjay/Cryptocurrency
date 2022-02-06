@@ -8,7 +8,7 @@
 import UIKit
 
 struct CoinDetailData: Equatable, CryptoCurrencyDataType {
-  var currentPrice: String
-  var priceChangedRatio: String
-  var priceDifference: String
+  let currentPrice: String
+  let priceChangedRatio: String
+  let priceDifference: String
 }

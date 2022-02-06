@@ -8,9 +8,9 @@
 import UIKit
 
 protocol CryptoCurrencyDataType {
-  var currentPrice: String { get set }
-  var priceChangedRatio: String { get set }
-  var priceDifference: String { get set }
+  var currentPrice: String { get }
+  var priceChangedRatio: String { get }
+  var priceDifference: String { get }
   func currentPriceText() -> NSAttributedString?
   func priceDifferenceText() -> NSAttributedString?
   func priceChangedRatioText() -> NSAttributedString?
