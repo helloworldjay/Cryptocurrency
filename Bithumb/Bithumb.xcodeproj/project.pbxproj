@@ -257,6 +257,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		48311FDE27AF977F002F1E87 /* SegmentedCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				B4A8E117279BF15D00A2BFCD /* SegmentedCategoryView.swift */,
+			);
+			path = SegmentedCategoryView;
+			sourceTree = "<group>";
+		};
 		4865371E27A6CBDE00BEBBB3 /* SegmentedCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +276,7 @@
 		4881F42327979D8B00472C90 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-
+				48311FDE27AF977F002F1E87 /* SegmentedCategoryView */,
 				B49FDAF927AAAFDE001A11E9 /* LetterSeparator */,
 				C3D0EF6F27A777B500A5E4BE /* Module */,
 				4885375027A38A5300BE00FD /* Coordinators */,
@@ -481,7 +489,6 @@
 		B4A8E116279BF11100A2BFCD /* ExchangeSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
-				B4A8E117279BF15D00A2BFCD /* SegmentedCategoryView.swift */,
 				4865371C27A69DB300BEBBB3 /* SegmentedCategoryViewModel.swift */,
 			);
 			path = ExchangeSegmentedControl;
