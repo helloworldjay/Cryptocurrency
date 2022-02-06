@@ -12,8 +12,8 @@ import Alamofire
 enum NetworkRequestRouter: URLRequestConvertible {
   
   case fetchTickerData(OrderCurrency, PaymentCurrency)
-  case fetchCandleStickData(OrderCurrency, PaymentCurrency, TimeInterval)
-  
+  case fetchCandleStickData(OrderCurrency, PaymentCurrency, TimeUnit)
+
   private var baseURLString: String {
     return "https://api.bithumb.com/public"
   }
@@ -26,8 +26,8 @@ enum NetworkRequestRouter: URLRequestConvertible {
     switch self {
     case .fetchTickerData(let orderCurrency, let paymentCurrency):
       return "/ticker" + "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
-    case .fetchCandleStickData(let orderCurrency, let paymentCurrency, let chartInterval):
-      return "/candlestick/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)/\(chartInterval.rawValue)"
+    case .fetchCandleStickData(let orderCurrency, let paymentCurrency, let timeUnit):
+      return "/candlestick/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)/\(timeUnit.rawValue)"
     }
   }
   

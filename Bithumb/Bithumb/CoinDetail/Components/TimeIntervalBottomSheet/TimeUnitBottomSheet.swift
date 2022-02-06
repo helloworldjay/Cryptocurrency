@@ -1,5 +1,5 @@
 //
-//  TimeIntervalChangeBottomSheet.swift
+//  TimeUnitBottomSheet.swift
 //  Bithumb
 //
 //  Created by 이영우 on 2022/01/31.
@@ -12,23 +12,23 @@ import RxSwift
 import SnapKit
 import Then
 
-final class TimeIntervalBottomSheet: BottomSheet {
-  
+final class TimeUnitBottomSheet: BottomSheet {
+
   // MARK: Properties
   
   private let titleLabel = UILabel()
   private let descriptionLabel = UILabel()
-  private let timeIntervalListView = UITableView()
+  private let timetUnitListView = UITableView()
   private let cancelButton = UIButton()
   
   private let disposeBag = DisposeBag()
-  var timeIntervalViewModel: TimeIntervalViewModelLogic
-  
+  var timeUnitViewModel: TimeUnitBottomSheetViewModelLogic
+
   
   // MARK: Initializer
   
-  init(timeIntervalViewModel: TimeIntervalViewModelLogic) {
-    self.timeIntervalViewModel = timeIntervalViewModel
+  init(timeUnitViewModel: TimeUnitBottomSheetViewModelLogic) {
+    self.timeUnitViewModel = timeUnitViewModel
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -46,7 +46,7 @@ final class TimeIntervalBottomSheet: BottomSheet {
   }
   
   private func layout() {
-    [self.titleLabel, self.descriptionLabel, self.timeIntervalListView, self.cancelButton].forEach {
+    [self.titleLabel, self.descriptionLabel, self.timetUnitListView, self.cancelButton].forEach {
       self.bottomSheetView.addSubview($0)
     }
     
@@ -66,7 +66,7 @@ final class TimeIntervalBottomSheet: BottomSheet {
       $0.width.equalTo(self.cancelButton.snp.height)
     }
     
-    self.timeIntervalListView.snp.makeConstraints {
+    self.timetUnitListView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(self.descriptionLabel.snp.bottom).offset(10)
       $0.bottom.equalToSuperview().inset(20)
@@ -96,10 +96,10 @@ final class TimeIntervalBottomSheet: BottomSheet {
                    for: .touchUpInside)
     }
     
-    self.timeIntervalListView.do {
+    self.timetUnitListView.do {
       $0.separatorStyle = .none
       $0.register(UITableViewCell.self,
-                  forCellReuseIdentifier: "timeIntervalListViewCell")
+                  forCellReuseIdentifier: "timeUnitListViewCell")
       $0.isScrollEnabled = false
     }
   }
@@ -109,22 +109,22 @@ final class TimeIntervalBottomSheet: BottomSheet {
   }
   
   private func bind() {
-    Observable.just(self.timeIntervalViewModel.intervals)
-      .bind(to: self.timeIntervalListView.rx.items) { (tableView, row, element) in
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "timeIntervalListViewCell") else {
+    Observable.just(self.timeUnitViewModel.units)
+      .bind(to: self.timetUnitListView.rx.items) { (tableView, row, element) in
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "timeUnitListViewCell") else {
           return UITableViewCell()
         }
         cell.textLabel?.text = element.rawValue
         cell.textLabel?.font = .systemFont(ofSize: 15)
         cell.tintColor = .bithumb
-        if row == self.timeIntervalViewModel.tapListView.value.row {
+        if row == self.timeUnitViewModel.tapListView.value.row {
           cell.accessoryType = .checkmark
         }
         return cell
       }.disposed(by: self.disposeBag)
     
-    self.timeIntervalListView.rx.itemSelected
-      .bind(to: self.timeIntervalViewModel.tapListView)
+    self.timetUnitListView.rx.itemSelected
+      .bind(to: self.timeUnitViewModel.tapListView)
       .disposed(by: self.disposeBag)
   }
 }

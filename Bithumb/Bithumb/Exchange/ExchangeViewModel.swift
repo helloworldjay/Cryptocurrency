@@ -59,8 +59,12 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
       .disposed(by: disposeBag)
 
     self.coinListViewModel.selectedOrderCurrency
-      .subscribe {
-        self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: $0)
-      }.disposed(by: self.disposeBag)
+      .subscribe(onNext: { orderCurrency in
+        guard let paymentCurrency = try? self.segmentedCategoryViewModel.paymentCurrency.value() else {
+          return
+        }
+        self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: orderCurrency,
+                                                                  paymentCurrency: paymentCurrency)
+      }).disposed(by: self.disposeBag)
   }
 }

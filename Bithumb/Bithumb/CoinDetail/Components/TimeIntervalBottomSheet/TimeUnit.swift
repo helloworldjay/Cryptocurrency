@@ -1,5 +1,5 @@
 //
-//  TimeInterval.swift
+//  TimeUnit.swift
 //  Bithumb
 //
 //  Created by 이영우 on 2022/01/31.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TimeInterval: String, CaseIterable {
+enum TimeUnit: String, CaseIterable {
   case oneMinute = "1m"
   case threeMinute = "3m"
   case fiveMinute = "5m"
