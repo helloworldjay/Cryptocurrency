@@ -12,6 +12,7 @@ import RxSwift
 
 protocol NetworkManagerLogic {
   func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, BithumbNetworkError>>
+  func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, BithumbNetworkError>>
 }
 
 struct NetworkManager: NetworkManagerLogic {
@@ -39,9 +40,9 @@ struct NetworkManager: NetworkManagerLogic {
     }
   }
   
-  func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeInterval: TimeInterval) -> Single<Result<CandleStickResponse, BithumbNetworkError>> {
+  func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, BithumbNetworkError>> {
     return Single.create { observer -> Disposable in
-      AF.request(NetworkRequestRouter.fetchCandleStickData(orderCurrency, paymentCurrency, timeInterval))
+      AF.request(NetworkRequestRouter.fetchCandleStickData(orderCurrency, paymentCurrency, timeUnit))
         .validate()
         .response { response in
           switch response.result {

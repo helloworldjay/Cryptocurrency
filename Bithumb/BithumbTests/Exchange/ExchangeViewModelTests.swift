@@ -54,29 +54,23 @@ class ExchangeViewModelTests: XCTestCase {
   
   // MARK: Tests
   
-  func test_검색_버튼을_눌렀을_때_CoinListViewModel로_CellData가_전달되는_지_확인() throws {
+  func test_SearchBar에서_검색을_했을_때_CoinListViewModel로_CellData가_전달되는_지_확인() throws {
     //given
-    let targetCellData = CoinListViewCellData(
+    let expectedResult = [CoinListViewCellData(
       coinName: "비트코인",
       ticker: "BTC",
       currentPrice: "2000",
       priceChangedRatio: "1.0",
       priceDifference: "10000",
       transactionAmount: "9000"
-    )
-    self.scheduler.createColdObservable(
-      [
-        .next(5, "")
-      ]
-    ).bind(to: self.sut.exchangeSearchBarViewModel.inputText)
-      .disposed(by: self.disposeBag)
+    )]
 
     //when
     self.scheduler.createColdObservable(
       [
-        .next(10, ())
+        .next(5, "BTC")
       ]
-    ).bind(to: self.sut.exchangeSearchBarViewModel.searchButtonTapped)
+    ).bind(to: self.sut.exchangeSearchBarViewModel.inputText)
       .disposed(by: self.disposeBag)
     
     //then
@@ -84,7 +78,7 @@ class ExchangeViewModelTests: XCTestCase {
       .events(scheduler: self.scheduler, disposeBag: self.disposeBag)
       .to(equal(
         [
-          .next(10, [targetCellData])
+          .next(5, expectedResult)
         ]
       ))
   }

@@ -14,9 +14,11 @@ import Then
 
 final class CoinDetailViewController: UIViewController {
 
-  // TODO: 상세 구현 필요
+  // MARK: Payload
+  
   struct Payload {
     let orderCurrency: OrderCurrency
+    let paymentCurrency: PaymentCurrency
   }
 
 
@@ -26,10 +28,10 @@ final class CoinDetailViewController: UIViewController {
   private let payload: Payload
   private let disposeBag: DisposeBag
   
-  private let candleStickChartView: CandleStickChartView
+  private let coinChartView: CoinChartView
   private let segmentedCategoryView: SegmentedCategoryView
-  private let timeIntervalChangeButton: UIButton
-  
+  private let timeUnitChangeButton: UIButton
+
   
   // MARK: Initializers
 
@@ -37,9 +39,10 @@ final class CoinDetailViewController: UIViewController {
     self.payload = payload
     let categoryItems = ["호가", "차트"]
     self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
-    self.candleStickChartView = CandleStickChartView()
-    self.timeIntervalChangeButton = UIButton()
-    self.coinDetailViewModel = CoinDetailViewModel()
+    self.coinDetailViewModel = CoinDetailViewModel(orderCurrency: payload.orderCurrency,
+                                                   paymentCurrency: payload.paymentCurrency)
+    self.coinChartView = CoinChartView()
+    self.timeUnitChangeButton = UIButton()
     self.disposeBag = DisposeBag()
     
     super.init(nibName: nil, bundle: nil)
@@ -54,25 +57,25 @@ final class CoinDetailViewController: UIViewController {
     
     self.layout()
     self.attribute()
-    self.bind()
+    self.configure()
   }
   
   private func layout() {
-    [self.candleStickChartView,
+    [self.coinChartView,
      self.segmentedCategoryView,
-     self.timeIntervalChangeButton].forEach { self.view.addSubview($0) }
-    
+     self.timeUnitChangeButton].forEach { self.view.addSubview($0) }
+
     self.segmentedCategoryView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
     
-    self.candleStickChartView.snp.makeConstraints {
+    self.coinChartView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalTo(self.segmentedCategoryView.snp.bottom)
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }
     
-    self.timeIntervalChangeButton.snp.makeConstraints {
+    self.timeUnitChangeButton.snp.makeConstraints {
       $0.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
   }
@@ -80,86 +83,26 @@ final class CoinDetailViewController: UIViewController {
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
     
-    self.candleStickChartView.do {
-      $0.noDataText = "데이터가 없습니다."
-      $0.noDataFont = .systemFont(ofSize: 20)
-      $0.noDataTextColor = .lightGray
-      $0.backgroundColor = .white
-      $0.xAxis.setLabelCount(3, force: false)
-      $0.xAxis.labelPosition = .bottom
-      $0.dragDecelerationEnabled = false
-      $0.autoScaleMinMaxEnabled = true
-      $0.doubleTapToZoomEnabled = false
-      $0.highlightPerTapEnabled = false
-      $0.rightAxis.enabled = false
-      $0.leftAxis.enabled = true
-      $0.scaleYEnabled = false
-      $0.dragYEnabled = false
-      $0.delegate = self
-    }
-    
-    self.timeIntervalChangeButton.do {
+    self.timeUnitChangeButton.do {
       $0.setTitleColor(.black, for: .normal)
     }
   }
   
+  private func configure() {
+    self.bind()
+  }
+
   private func bind() {
-    self.timeIntervalChangeButton.rx.tap
-      .bind(to: self.coinDetailViewModel.tapSelectTimeIntervalButton)
+    self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
+
+    self.timeUnitChangeButton.rx.tap
+      .bind(to: self.coinDetailViewModel.tapSelectTimeUnitButton)
       .disposed(by: self.disposeBag)
     
-    self.coinDetailViewModel.selectedTimeInterval
+    self.coinDetailViewModel.selectedTimeUnit
       .bind {
-        self.timeIntervalChangeButton.setTitle($0.rawValue, for: .normal)
+        self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
       }
       .disposed(by: self.disposeBag)
-  }
-  
-  private func setChart(chartData: [ChartData]) {
-    let dataEntries = self.convertToDataEntries(from: chartData)
-    let axisValues = self.convertToAxisValues(from: chartData)
-    
-    let chartDataSet = CandleChartDataSet(entries: dataEntries).then {
-      $0.shadowColorSameAsCandle = true
-      $0.drawValuesEnabled = false
-      $0.highlightEnabled = false
-      $0.increasingFilled = true
-      $0.decreasingFilled = true
-      $0.increasingColor = .red
-      $0.decreasingColor = .blue
-    }
-    
-    let chartData = CandleChartData(dataSet: chartDataSet)
-    let maxValue = self.candleStickChartView.chartXMax
-    
-    self.candleStickChartView.do {
-      $0.data = chartData
-      $0.xAxis.valueFormatter = IndexAxisValueFormatter(values: axisValues)
-      $0.setVisibleXRangeMaximum(20.0)
-      $0.moveViewToX(maxValue)
-      $0.drawMarkers = false
-    }
-  }
-  
-  private func convertToDataEntries(from graphData: [ChartData]) -> [CandleChartDataEntry] {
-    return graphData.enumerated().map {
-      CandleChartDataEntry(x: Double($0),
-                           shadowH: $1.highPrice,
-                           shadowL: $1.lowPrice,
-                           open: $1.openPrice,
-                           close: $1.closePrice)
-    }
-  }
-  
-  private func convertToAxisValues(from graphData: [ChartData]) -> [String] {
-    return graphData.map { $0.dateText }
-  }
-}
-
-extension CoinDetailViewController: ChartViewDelegate {
-  func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-    if chartView.maxVisibleCount == 20 {
-      self.candleStickChartView.setVisibleXRange(minXRange: 10, maxXRange: 300)
-    }
   }
 }
