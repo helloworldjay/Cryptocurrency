@@ -15,6 +15,7 @@
 		48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE127997298008F2AD1 /* CoinListViewModel.swift */; };
 		48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */; };
 		48256CE72799732E008F2AD1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48256CE62799732E008F2AD1 /* NetworkManager.swift */; };
+		48311FE027AF9D8B002F1E87 /* ExchangeSegmentedCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48311FDF27AF9D8B002F1E87 /* ExchangeSegmentedCategoryView.swift */; };
 		4865371D27A69DB300BEBBB3 /* ExchangeSegmentedCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4865371C27A69DB300BEBBB3 /* ExchangeSegmentedCategoryViewModel.swift */; };
 		4865372027A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */; };
 		4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881F42827979E6600472C90 /* ExchangeViewController.swift */; };
@@ -100,6 +101,7 @@
 		48256CE127997298008F2AD1 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
 		48256CE3279972AA008F2AD1 /* CoinListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewCell.swift; sourceTree = "<group>"; };
 		48256CE62799732E008F2AD1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		48311FDF27AF9D8B002F1E87 /* ExchangeSegmentedCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSegmentedCategoryView.swift; sourceTree = "<group>"; };
 		4865371C27A69DB300BEBBB3 /* ExchangeSegmentedCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeSegmentedCategoryViewModel.swift; sourceTree = "<group>"; };
 		4865371F27A6CC0000BEBBB3 /* SegmentedCategoryViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCategoryViewTests.swift; sourceTree = "<group>"; };
 		4881F42827979E6600472C90 /* ExchangeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -489,6 +491,7 @@
 		B4A8E116279BF11100A2BFCD /* ExchangeSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
+				48311FDF27AF9D8B002F1E87 /* ExchangeSegmentedCategoryView.swift */,
 				4865371C27A69DB300BEBBB3 /* ExchangeSegmentedCategoryViewModel.swift */,
 			);
 			path = ExchangeSegmentedControl;
@@ -792,7 +795,6 @@
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
-
 				B49FDAFB27AAAFF5001A11E9 /* LetterSeparator.swift in Sources */,
 				C3D0EF9327A8A30500A5E4BE /* TimeIntervalViewModel.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
@@ -828,6 +830,7 @@
 				48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */,
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
 				C3D0EF8427A7B25000A5E4BE /* TimeInterval.swift in Sources */,
+				48311FE027AF9D8B002F1E87 /* ExchangeSegmentedCategoryView.swift in Sources */,
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,
 				B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */,
 				48AD306F27A974F100278D7A /* WebSocketManager.swift in Sources */,
