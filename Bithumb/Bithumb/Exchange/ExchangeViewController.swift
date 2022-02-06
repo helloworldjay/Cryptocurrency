@@ -12,7 +12,7 @@ final class ExchangeViewController: UIViewController {
   // MARK: Properties
   
   let coinListView: CoinListView
-  let segmentedCategoryView: SegmentedCategoryView
+  let exchangeSegmentedCategoryView: ExchangeSegmentedCategoryView
   let exchangeSearchBar: ExchangeSearchBar
   var exchangeViewModel: ExchangeViewModelLogic
   let exchangeUseCase: ExchangeUseCaseLogic
@@ -23,7 +23,7 @@ final class ExchangeViewController: UIViewController {
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     let categoryItems = ["원화", "BTC", "관심"]
-    self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
+    self.exchangeSegmentedCategoryView = ExchangeSegmentedCategoryView(items: categoryItems, fontSize: 14)
     self.networkManager = NetworkManager()
     self.exchangeUseCase = ExchangeUseCase(network: self.networkManager)
     self.exchangeViewModel = ExchangeViewModel(useCase: self.exchangeUseCase)
@@ -51,20 +51,20 @@ final class ExchangeViewController: UIViewController {
   private func bind() {
     self.exchangeSearchBar.bind(viewModel: self.exchangeViewModel.exchangeSearchBarViewModel)
     self.coinListView.bind(viewModel: self.exchangeViewModel.coinListViewModel)
-    self.segmentedCategoryView.bind(viewModel: self.exchangeViewModel.segmentedCategoryViewModel)
+    self.exchangeSegmentedCategoryView.bind(viewModel: self.exchangeViewModel.exchangeSegmentedCategoryViewModel)
   }
   
   private func layout() {
     self.setUpNavigationBar()
     
-    [self.segmentedCategoryView, self.coinListView].forEach { self.view.addSubview($0) }
+    [self.exchangeSegmentedCategoryView, self.coinListView].forEach { self.view.addSubview($0) }
     
-    self.segmentedCategoryView.snp.makeConstraints {
+    self.exchangeSegmentedCategoryView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
     
     self.coinListView.snp.makeConstraints {
-      $0.top.equalTo(self.segmentedCategoryView.snp.bottom).offset(10)
+      $0.top.equalTo(self.exchangeSegmentedCategoryView.snp.bottom).offset(10)
       $0.leading.trailing.equalToSuperview()
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }

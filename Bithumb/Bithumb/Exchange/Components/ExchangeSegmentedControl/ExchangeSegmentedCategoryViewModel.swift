@@ -9,10 +9,10 @@ import Foundation
 
 import RxSwift
 
-protocol SegmentedCategoryViewModelLogic {
+protocol ExchangeSegmentedCategoryViewModelLogic {
   var paymentCurrency: BehaviorSubject<PaymentCurrency> { get }
 }
 
-final class SegmentedCategoryViewModel: SegmentedCategoryViewModelLogic {
+final class ExchangeSegmentedCategoryViewModel: ExchangeSegmentedCategoryViewModelLogic {
   let paymentCurrency = BehaviorSubject<PaymentCurrency>(value: .krw)
 }
