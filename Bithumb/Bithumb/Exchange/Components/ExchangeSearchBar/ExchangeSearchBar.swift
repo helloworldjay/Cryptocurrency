@@ -83,10 +83,6 @@ final class ExchangeSearchBar: UISearchBar {
       .disposed(by: self.disposeBag)
     
     self.rx.searchButtonClicked
-      .bind(to: viewModel.searchButtonTapped)
-      .disposed(by: self.disposeBag)
-    
-    viewModel.searchButtonTapped
       .asSignal()
       .emit(to: self.rx.endEditing)
       .disposed(by: self.disposeBag)

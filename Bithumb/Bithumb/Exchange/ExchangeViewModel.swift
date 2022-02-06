@@ -34,17 +34,22 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
     self.coinListViewModel = CoinListViewModel()
     self.segmentedCategoryViewModel = SegmentedCategoryViewModel()
 
-    let result = Observable.combineLatest(self.orderCurrency, self.segmentedCategoryViewModel.paymentCurrency) { orderCurrency, paymentCurrency in
-      useCase.fetchTicker(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
-    }.flatMap { $0 }
+    let result = Observable.combineLatest(
+      self.orderCurrency,
+      self.segmentedCategoryViewModel.paymentCurrency
+    ) { useCase.fetchTicker(orderCurrency: $0, paymentCurrency: $1) }
+      .flatMap { $0 }
 
     let cellData = result
       .map(useCase.tickerResponse)
       .filter { $0 != nil }
       .map(useCase.coinListCellData)
 
-    let filteredCellData = Observable.combineLatest(cellData, self.exchangeSearchBarViewModel.orderCurrenciesToSearch) { cellData, filteredOrderCurrencies in
-      cellData.filter { cellDatum in
+    let filteredCellData = Observable.combineLatest(
+      cellData,
+      self.exchangeSearchBarViewModel.orderCurrenciesToSearch
+    ) { cellData, filteredOrderCurrencies in
+      return cellData.filter { cellDatum in
         filteredOrderCurrencies.values.contains(cellDatum.ticker)
       }
     }
