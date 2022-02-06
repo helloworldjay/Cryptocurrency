@@ -585,6 +585,15 @@ enum OrderCurrency: String, CaseIterable {
       return "신규 코인"
     }
   }
+
+  static var orderCurrencyDictionaryByTicker: [OrderCurrency : String] {
+    var orderCurrencyDictionary: [OrderCurrency : String] = [:]
+
+    self.allCases.forEach {
+      orderCurrencyDictionary[$0] = $0.rawValue
+    }
+    return orderCurrencyDictionary
+  }
   
   static func search(with name: String) -> OrderCurrency {
     for orderCurrency in OrderCurrency.allCases {
@@ -596,19 +605,18 @@ enum OrderCurrency: String, CaseIterable {
   }
   
   static func filteredCurrencies(with letter: String) -> [OrderCurrency : String] {
+    if letter.isEmpty {
+      return self.orderCurrencyDictionaryByTicker
+    }
+
     var currencies: [OrderCurrency : String] = [:]
+
     let letterSeparator = LetterSeparator()
     let separatedLetter = letterSeparator.seperatedLetter(from: letter)
-    if letter.isEmpty {
-      for orderCurrency in OrderCurrency.allCases {
-        currencies[orderCurrency] = orderCurrency.rawValue
-      }
-      return currencies
-    }
-    for orderCurrency in OrderCurrency.allCases {
-      if letterSeparator.seperatedLetter(from: orderCurrency.rawValue).contains(separatedLetter) ||
-          letterSeparator.seperatedLetter(from: orderCurrency.koreanName).contains(separatedLetter) {
-        currencies[orderCurrency] = orderCurrency.rawValue
+
+    OrderCurrency.allCases.forEach {
+      if letterSeparator.seperatedOrderCurrencyLetter(from: $0).contains(separatedLetter) {
+        currencies[$0] = $0.rawValue
       }
     }
     return currencies
