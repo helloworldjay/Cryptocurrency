@@ -8,12 +8,12 @@
 import Foundation
 
 struct ChartData: Equatable {
-  var timeInterval: Double = 0.0
-  var openPrice: Double = 0.0
-  var closePrice: Double = 0.0
-  var highPrice: Double = 0.0
-  var lowPrice: Double = 0.0
-  var exchangeVolume: Double = 0.0
+  var timeInterval = 0.0
+  var openPrice = 0.0
+  var closePrice = 0.0
+  var highPrice = 0.0
+  var lowPrice = 0.0
+  var exchangeVolume = 0.0
   
   var dateText: String {
     let dateFormatter = DateFormatter()

@@ -18,13 +18,13 @@ protocol CryptoCurrencyDataType {
 
 extension CryptoCurrencyDataType {
   func currentPriceText() -> NSAttributedString? {
-    guard let priceDifference = Double(self.priceDifference) else {
+    guard let priceDifference = Double(self.priceDifference),
+          let priceText = self.currentPrice.convertToDecimalText() else {
       return nil
     }
     
-    let priceText = self.currentPrice.convertToDecimalText()
     let color = UIColor.tickerColor(with: priceDifference)
-    return priceText?.convertToAttributedString(with: color)
+    return priceText.convertToAttributedString(with: color)
   }
   
   func priceDifferenceText() -> NSAttributedString? {
