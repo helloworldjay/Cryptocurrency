@@ -36,7 +36,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
 
     let result = Observable.combineLatest(
       self.orderCurrency,
-      self.segmentedCategoryViewModel.paymentCurrency
+      self.exchangeSegmentedCategoryViewModel.paymentCurrency
     ) { useCase.fetchTicker(orderCurrency: $0, paymentCurrency: $1) }
       .flatMap { $0 }
 
@@ -60,7 +60,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
 
     self.coinListViewModel.selectedOrderCurrency
       .subscribe(onNext: { orderCurrency in
-        guard let paymentCurrency = try? self.segmentedCategoryViewModel.paymentCurrency.value() else {
+        guard let paymentCurrency = try? self.exchangeSegmentedCategoryViewModel.paymentCurrency.value() else {
           return
         }
         self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: orderCurrency,
