@@ -31,18 +31,24 @@ final class CoinDetailViewController: UIViewController {
   private let coinChartView: CoinChartView
   private let segmentedCategoryView: SegmentedCategoryView
   private let timeUnitChangeButton: UIButton
-
+  private let priceChangedRatioLabel : UILabel
+  private let priceDifferenceLabel : UILabel
+  private let currentPriceLabel: UILabel
+  
   
   // MARK: Initializers
 
   init(payload: Payload) {
     self.payload = payload
-    let categoryItems = ["호가", "차트"]
+    let categoryItems = ["호가", "차트", "시세"]
     self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
     self.coinDetailViewModel = CoinDetailViewModel(orderCurrency: payload.orderCurrency,
                                                    paymentCurrency: payload.paymentCurrency)
     self.coinChartView = CoinChartView()
     self.timeUnitChangeButton = UIButton()
+    self.priceChangedRatioLabel = UILabel()
+    self.priceDifferenceLabel = UILabel()
+    self.currentPriceLabel = UILabel()
     self.disposeBag = DisposeBag()
     
     super.init(nibName: nil, bundle: nil)
@@ -63,10 +69,14 @@ final class CoinDetailViewController: UIViewController {
   private func layout() {
     [self.coinChartView,
      self.segmentedCategoryView,
-     self.timeUnitChangeButton].forEach { self.view.addSubview($0) }
-
+     self.timeUnitChangeButton,
+     self.currentPriceLabel,
+     self.priceDifferenceLabel,
+     self.priceChangedRatioLabel].forEach { self.view.addSubview($0) }
+    
     self.segmentedCategoryView.snp.makeConstraints {
-      $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+      $0.leading.equalToSuperview().inset(10)
+      $0.top.equalTo(self.priceDifferenceLabel.snp.bottom).offset(10)
     }
     
     self.coinChartView.snp.makeConstraints {
@@ -76,15 +86,34 @@ final class CoinDetailViewController: UIViewController {
     }
     
     self.timeUnitChangeButton.snp.makeConstraints {
-      $0.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+      $0.trailing.equalToSuperview().inset(10)
+      $0.bottom.equalTo(self.coinChartView.snp.top)
+    }
+    
+    self.currentPriceLabel.snp.makeConstraints {
+      $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
+    }
+    
+    self.priceDifferenceLabel.snp.makeConstraints {
+      $0.leading.equalToSuperview().inset(10)
+      $0.top.equalTo(self.currentPriceLabel.snp.bottom).offset(10)
+    }
+    
+    self.priceChangedRatioLabel.snp.makeConstraints {
+      $0.leading.equalTo(self.priceDifferenceLabel.snp.trailing).offset(10)
+      $0.centerY.equalTo(self.priceDifferenceLabel.snp.centerY)
     }
   }
   
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
+
+    self.currentPriceLabel.font = .preferredFont(forTextStyle: .largeTitle)
     
     self.timeUnitChangeButton.do {
-      $0.setTitleColor(.black, for: .normal)
+      $0.setTitleColor(.darkGray, for: .normal)
+      $0.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+      $0.tintColor = .darkGray
     }
   }
   
@@ -102,7 +131,17 @@ final class CoinDetailViewController: UIViewController {
     self.coinDetailViewModel.selectedTimeUnit
       .bind {
         self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
-      }
-      .disposed(by: self.disposeBag)
+      }.disposed(by: self.disposeBag)
+    
+    self.coinDetailViewModel.coinDetailData
+      .bind { coinDetailData in
+        self.setCoinDetailData(coinDetailData)
+      }.disposed(by: self.disposeBag)
+  }
+
+  private func setCoinDetailData(_ coinDetailData: CoinDetailData?) {
+    self.currentPriceLabel.attributedText = coinDetailData?.currentPriceText()
+    self.priceDifferenceLabel.attributedText = coinDetailData?.priceDifferenceText()
+    self.priceChangedRatioLabel.attributedText = coinDetailData?.priceChangedRatioText()
   }
 }
