@@ -42,8 +42,14 @@ final class OrderBookListViewCell: UITableViewCell {
   }
 
   private func attribute() {
-    [self.askQuantityLabel, self.bidQuantitylabel, self.priceLabel, self.priceChangedRatioLabel].forEach {
+    self.askQuantityLabel.do {
       $0.textAlignment = .left
+      $0.textColor = .black
+      $0.font = .systemFont(ofSize: 12)
+    }
+
+    [self.bidQuantitylabel, self.priceLabel, self.priceChangedRatioLabel].forEach {
+      $0.textAlignment = .right
       $0.textColor = .black
       $0.font = .systemFont(ofSize: 12)
     }
@@ -83,17 +89,32 @@ final class OrderBookListViewCell: UITableViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
 
-    self.priceChangedRatioLabel.text = nil
+    self.priceChangedRatioLabel.attributedText = nil
+    self.priceLabel.attributedText = nil
     self.askQuantityLabel.text = nil
     self.bidQuantitylabel.text = nil
-    self.priceLabel.text = nil
-
     self.askQuantityLabel.backgroundColor = nil
     self.bidQuantitylabel.backgroundColor = nil
     self.priceStackView.backgroundColor = nil
   }
 
-  func setData() {
-    // TODO: OrderBookListViewCellData 를 통해서 UI 적용
+  func setData(with data: OrderBookListViewCellData) {
+    if data.orderBook == .ask {
+      self.askQuantityLabel.text = data.orderQuantityText()
+      self.askQuantityLabel.backgroundColor = .ask
+      self.priceStackView.backgroundColor = .ask
+    } else {
+      self.bidQuantitylabel.text = data.orderQuantityText()
+      self.bidQuantitylabel.backgroundColor = .bid
+      self.priceStackView.backgroundColor = .bid
+    }
+    
+    if data.priceChangedRatio > .zero {
+      self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
+      self.priceLabel.attributedText = data.orderPriceText()
+    } else {
+      self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
+      self.priceLabel.attributedText = data.orderPriceText()
+    }
   }
 }

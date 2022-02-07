@@ -10,19 +10,18 @@ import Foundation
 import Then
 
 struct OrderBookListViewCellData: Equatable {
+  let orderBook: OrderBook
   let orderPrice: String
   let orderQuantity: String
+  let priceChangedRatio: Double
 }
 
 extension OrderBookListViewCellData {
-  func priceChangedRatioText(with openPrice: Double) -> NSAttributedString? {
-    guard let orderPrice = Double(orderPrice) else { return nil }
-    let priceChangedRatio = (orderPrice - openPrice) / openPrice
+  func priceChangedRatioText() -> NSAttributedString? {
+    let sign = self.priceChangedRatio.signText()
+    let color = UIColor.tickerColor(with: self.priceChangedRatio)
 
-    let sign = priceChangedRatio.signText()
-    let color = UIColor.tickerColor(with: priceChangedRatio)
-
-    guard let priceChangedPercentage = String(abs(priceChangedRatio)).convertToPercentageText() else {
+    guard let priceChangedPercentage = String(abs(self.priceChangedRatio)).convertToPercentageText() else {
       return nil
     }
 
@@ -31,12 +30,8 @@ extension OrderBookListViewCellData {
   }
 
   func orderPriceText() -> NSAttributedString? {
-    guard let orderPrice = Double(self.orderPrice),
-          let priceText = self.orderPrice.convertToDecimalText() else {
-            return nil
-          }
-
-    let color = UIColor.tickerColor(with: orderPrice)
+    guard let priceText = self.orderPrice.convertToDecimalText() else { return nil }
+    let color = UIColor.tickerColor(with: self.priceChangedRatio)
     return priceText.convertToAttributedString(with: color)
   }
 

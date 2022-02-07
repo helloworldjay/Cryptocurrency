@@ -23,7 +23,25 @@ extension UIColor {
       alpha: 1
     )
   }
-  
+
+  static var bid: UIColor {
+    return UIColor(
+      red: 251/255,
+      green: 239/255,
+      blue: 239/255,
+      alpha: 1
+    )
+  }
+
+  static var ask: UIColor {
+    return UIColor(
+      red: 227/255,
+      green: 235/255,
+      blue: 246/255,
+      alpha: 1
+    )
+  }
+
   static func tickerColor<T: BinaryFloatingPoint>(with number: T) -> UIColor {
     if number > 0 {
       return .red
