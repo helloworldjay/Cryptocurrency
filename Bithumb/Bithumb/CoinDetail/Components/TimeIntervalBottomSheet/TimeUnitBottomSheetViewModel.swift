@@ -11,7 +11,7 @@ import RxSwift
 protocol TimeUnitBottomSheetViewModelLogic {
   var units: [TimeUnit] { get }
   var tapListView: BehaviorRelay<IndexPath> { get }
-  var selectedTimeUnit: BehaviorRelay<TimeUnit> { get }
+  var selectedTimeUnit: PublishRelay<TimeUnit> { get }
   var timeUnitBottomSheetCoordinator: TimeUnitBottomSheetCoordinator? { get set }
 }
 
@@ -21,7 +21,7 @@ final class TimeUnitBottomSheetViewModel: TimeUnitBottomSheetViewModelLogic {
   
   let units = TimeUnit.allCases
   let tapListView: BehaviorRelay<IndexPath>
-  let selectedTimeUnit: BehaviorRelay<TimeUnit>
+  let selectedTimeUnit: PublishRelay<TimeUnit>
   
   var timeUnitBottomSheetCoordinator: TimeUnitBottomSheetCoordinator?
   private let disposeBag = DisposeBag()
@@ -32,7 +32,7 @@ final class TimeUnitBottomSheetViewModel: TimeUnitBottomSheetViewModelLogic {
   init(timeUnit: TimeUnit) {
     let index = self.units.firstIndex(of: timeUnit) ?? 0
     self.tapListView = BehaviorRelay(value: IndexPath(row: index, section: .zero))
-    self.selectedTimeUnit = BehaviorRelay(value: timeUnit)
+    self.selectedTimeUnit = PublishRelay<TimeUnit>()
     
     self.bind()
   }
@@ -45,7 +45,6 @@ final class TimeUnitBottomSheetViewModel: TimeUnitBottomSheetViewModelLogic {
     .disposed(by: self.disposeBag)
 
     self.selectedTimeUnit
-      .skip(1)
       .bind { timeUnit in
         self.timeUnitBottomSheetCoordinator?.dismiss()
       }
