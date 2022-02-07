@@ -28,8 +28,9 @@ final class CoinDetailViewController: UIViewController {
   private let payload: Payload
   private let disposeBag: DisposeBag
   
+  private let coinDetailSegmentedCategoryView: CoinDetailSegmentedCategoryView
+  private let orderBookListView: OrderBookListView
   private let coinChartView: CoinChartView
-  private let segmentedCategoryView: SegmentedCategoryView
   private let timeUnitChangeButton: UIButton
   private let priceChangedRatioLabel : UILabel
   private let priceDifferenceLabel : UILabel
@@ -40,11 +41,11 @@ final class CoinDetailViewController: UIViewController {
 
   init(payload: Payload) {
     self.payload = payload
-    let categoryItems = ["호가", "차트", "시세"]
-    self.segmentedCategoryView = SegmentedCategoryView(items: categoryItems, fontSize: 14)
     self.coinDetailViewModel = CoinDetailViewModel(orderCurrency: payload.orderCurrency,
                                                    paymentCurrency: payload.paymentCurrency)
+    self.coinDetailSegmentedCategoryView = CoinDetailSegmentedCategoryView()
     self.coinChartView = CoinChartView()
+    self.orderBookListView = OrderBookListView()
     self.timeUnitChangeButton = UIButton()
     self.priceChangedRatioLabel = UILabel()
     self.priceDifferenceLabel = UILabel()
@@ -68,20 +69,27 @@ final class CoinDetailViewController: UIViewController {
   
   private func layout() {
     [self.coinChartView,
-     self.segmentedCategoryView,
+     self.coinDetailSegmentedCategoryView,
      self.timeUnitChangeButton,
      self.currentPriceLabel,
      self.priceDifferenceLabel,
-     self.priceChangedRatioLabel].forEach { self.view.addSubview($0) }
+     self.priceChangedRatioLabel,
+     self.orderBookListView].forEach { self.view.addSubview($0) }
     
-    self.segmentedCategoryView.snp.makeConstraints {
+    self.coinDetailSegmentedCategoryView.snp.makeConstraints {
       $0.leading.equalToSuperview().inset(10)
       $0.top.equalTo(self.priceDifferenceLabel.snp.bottom).offset(10)
     }
     
     self.coinChartView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
-      $0.top.equalTo(self.segmentedCategoryView.snp.bottom)
+      $0.top.equalTo(self.coinDetailSegmentedCategoryView.snp.bottom)
+      $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
+    }
+    
+    self.orderBookListView.snp.makeConstraints {
+      $0.leading.trailing.equalToSuperview()
+      $0.top.equalTo(self.coinDetailSegmentedCategoryView.snp.bottom).offset(10)
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }
     
@@ -107,7 +115,7 @@ final class CoinDetailViewController: UIViewController {
   
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
-
+    self.coinChartView.isHidden = false
     self.currentPriceLabel.font = .preferredFont(forTextStyle: .largeTitle)
     
     self.timeUnitChangeButton.do {

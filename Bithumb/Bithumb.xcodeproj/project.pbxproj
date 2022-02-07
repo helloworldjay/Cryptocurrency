@@ -74,6 +74,7 @@
 		C329A89C27B0C63600193A4D /* OrderBookListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A89B27B0C63600193A4D /* OrderBookListViewCell.swift */; };
 		C329A8A227B14F8400193A4D /* OrderBookListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A8A127B14F8400193A4D /* OrderBookListView.swift */; };
 		C329A8A427B1502200193A4D /* OrderBookListViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A8A327B1502200193A4D /* OrderBookListViewCellData.swift */; };
+		C329A8AA27B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A8A927B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
 		C3D0EF6D27A7685100A5E4BE /* Array + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */; };
@@ -179,6 +180,7 @@
 		C329A89B27B0C63600193A4D /* OrderBookListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewCell.swift; sourceTree = "<group>"; };
 		C329A8A127B14F8400193A4D /* OrderBookListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListView.swift; sourceTree = "<group>"; };
 		C329A8A327B1502200193A4D /* OrderBookListViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewCellData.swift; sourceTree = "<group>"; };
+		C329A8A927B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailSegmentedCategoryView.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Ext.swift"; sourceTree = "<group>"; };
@@ -606,6 +608,14 @@
 			path = OrderBookListView;
 			sourceTree = "<group>";
 		};
+		C329A8A827B15BCE00193A4D /* CoinDetailSegmentedCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				C329A8A927B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift */,
+			);
+			path = CoinDetailSegmentedCategoryView;
+			sourceTree = "<group>";
+		};
 		C3D0EF6F27A777B500A5E4BE /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +629,7 @@
 		C3D0EF7827A7A40100A5E4BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C329A8A827B15BCE00193A4D /* CoinDetailSegmentedCategoryView */,
 				C329A87B27AECD8300193A4D /* CoinChartView */,
 				C329A87A27AECD1400193A4D /* TimeIntervalBottomSheet */,
 				C329A89A27B0C61D00193A4D /* OrderBookListView */,
@@ -891,6 +902,7 @@
 				C329A87F27AECDA000193A4D /* CoinChartViewModel.swift in Sources */,
 				4885375E27A3D91D00BE00FD /* TransactionCoordinator.swift in Sources */,
 				4885376027A3D92800BE00FD /* MoreOptionCoordinator.swift in Sources */,
+				C329A8AA27B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */,
