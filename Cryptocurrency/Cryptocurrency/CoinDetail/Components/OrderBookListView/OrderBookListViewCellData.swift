@@ -20,7 +20,6 @@ extension OrderBookListViewCellData {
   func priceChangedRatioText() -> NSAttributedString? {
     let sign = self.priceChangedRatio.signText()
     let color = UIColor.tickerColor(with: self.priceChangedRatio)
-
     guard let priceChangedPercentage = String(abs(self.priceChangedRatio)).convertToPercentageText() else {
       return nil
     }

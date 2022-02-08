@@ -67,12 +67,11 @@ final class PriceView: UIView {
   
   func bind(viewModel: PriceViewModel) {
     viewModel.coinDetailData
-      .bind { coinDetailData in
-        self.setCoinDetailData(coinDetailData)
-      }.disposed(by: self.disposeBag)
+      .bind(onNext: self.setCoinDetailData)
+      .disposed(by: self.disposeBag)
   }
   
-  private func setCoinDetailData(_ coinDetailData: CoinDetailData?) {
+  private func setCoinDetailData(with coinDetailData: CoinDetailData?) {
     self.currentPriceLabel.attributedText = coinDetailData?.currentPriceText()
     self.priceDifferenceLabel.attributedText = coinDetailData?.priceDifferenceText()
     self.priceChangedRatioLabel.attributedText = coinDetailData?.priceChangedRatioText()

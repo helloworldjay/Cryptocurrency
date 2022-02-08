@@ -108,13 +108,7 @@ final class OrderBookListViewCell: UITableViewCell {
       self.bidQuantitylabel.backgroundColor = .bid
       self.priceStackView.backgroundColor = .bid
     }
-    
-    if data.priceChangedRatio > .zero {
-      self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
-      self.priceLabel.attributedText = data.orderPriceText()
-    } else {
-      self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
-      self.priceLabel.attributedText = data.orderPriceText()
-    }
+    self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
+    self.priceLabel.attributedText = data.orderPriceText()
   }
 }
