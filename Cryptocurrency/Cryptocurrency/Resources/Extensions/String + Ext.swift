@@ -1,6 +1,6 @@
 //
 //  String + Ext.swift
-//  Bithumb
+//  Cryptocurrency
 //
 //  Created by 이영우 on 2022/01/26.
 //

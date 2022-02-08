@@ -1,6 +1,6 @@
 //
 //  CoinListViewModelTests.swift
-//  BithumbTests
+//  CryptocurrencyTests
 //
 //  Created by Seungjin Baek on 2022/02/05.
 //

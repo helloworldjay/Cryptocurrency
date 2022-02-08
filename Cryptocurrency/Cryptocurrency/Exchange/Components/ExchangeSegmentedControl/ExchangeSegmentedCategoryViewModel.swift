@@ -1,6 +1,6 @@
 //
 //  SegmentedCategoryViewModel.swift
-//  Bithumb
+//  Cryptocurrency
 //
 //  Created by Seungjin Baek on 2022/01/30.
 //

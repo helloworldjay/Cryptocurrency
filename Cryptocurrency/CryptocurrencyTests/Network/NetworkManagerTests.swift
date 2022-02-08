@@ -1,6 +1,6 @@
 //
 //  NetworkManagerTests.swift
-//  BithumbTests
+//  CryptocurrencyTests
 //
 //  Created by Seungjin Baek on 2022/01/22.
 //

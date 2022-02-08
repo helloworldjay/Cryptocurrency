@@ -1,6 +1,6 @@
 //
 //  TimeUnit.swift
-//  Bithumb
+//  Cryptocurrency
 //
 //  Created by 이영우 on 2022/01/31.
 //
