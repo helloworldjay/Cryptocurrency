@@ -13,6 +13,8 @@ import RxSwift
 protocol NetworkManagerLogic {
   func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
   func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>>
+  func fetchOrderBookData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>>
+  func fetchTransactionHistoryData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>>
 }
 
 struct NetworkManager: NetworkManagerLogic {
@@ -41,14 +43,26 @@ struct NetworkManager: NetworkManagerLogic {
   }
   
   func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>> {
+    return self.fetchData(CandleStickResponse.self, router: .fetchCandleStickData(orderCurrency, paymentCurrency, timeUnit))
+  }
+  
+  func fetchOrderBookData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>> {
+    return self.fetchData(OrderBookResponse.self, router: .fetchOrderBookData(orderCurrency, paymentCurrency))
+  }
+  
+  func fetchTransactionHistoryData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>> {
+    return self.fetchData(TransactionHistoryResponse.self, router: .fetchTransactionHistoryData(orderCurrency, paymentCurrency))
+  }
+
+  private func fetchData<T>(_ type: T.Type, router: NetworkRequestRouter) -> Single<Result<T, APINetworkError>> where T :Decodable {
     return Single.create { observer -> Disposable in
-      AF.request(NetworkRequestRouter.fetchCandleStickData(orderCurrency, paymentCurrency, timeUnit))
+      AF.request(router)
         .validate()
         .response { response in
           switch response.result {
           case .success(let data):
             guard let data = data else { return }
-            let response = try? JSONDecoder().decode(CandleStickResponse.self, from: data)
+            let response = try? JSONDecoder().decode(type, from: data)
             if let response = response {
               observer(.success(.success(response)))
             } else {
