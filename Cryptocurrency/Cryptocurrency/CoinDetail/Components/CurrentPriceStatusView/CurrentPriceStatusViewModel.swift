@@ -7,10 +7,10 @@
 
 import RxRelay
 
-protocol PriceViewModelLogic {
+protocol CurrentPriceStatusViewModelLogic {
   var coinDetailData: PublishRelay<CoinDetailData?> { get }
 }
 
-final class PriceViewModel: PriceViewModelLogic {
+final class CurrentPriceStatusViewModel: CurrentPriceStatusViewModelLogic {
   let coinDetailData = PublishRelay<CoinDetailData?>()
 }

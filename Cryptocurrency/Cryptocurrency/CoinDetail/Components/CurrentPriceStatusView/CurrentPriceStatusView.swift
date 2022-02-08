@@ -1,5 +1,5 @@
 //
-//  PriceView.swift
+//  CurrentPriceStatusView.swift
 //  Cryptocurrency
 //
 //  Created by 이영우 on 2022/02/08.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import SnapKit
 
-final class PriceView: UIView {
+final class CurrentPriceStatusView: UIView {
   
   // MARK: Properties
   
@@ -65,7 +65,7 @@ final class PriceView: UIView {
   
   // MARK: Binding
   
-  func bind(viewModel: PriceViewModel) {
+  func bind(viewModel: CurrentPriceStatusViewModel) {
     viewModel.coinDetailData
       .bind(onNext: self.setCoinDetailData)
       .disposed(by: self.disposeBag)

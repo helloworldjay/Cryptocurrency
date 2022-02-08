@@ -77,8 +77,8 @@
 		C329A8A427B1502200193A4D /* OrderBookListViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A8A327B1502200193A4D /* OrderBookListViewCellData.swift */; };
 		C329A8AA27B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329A8A927B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift */; };
 		C333E9C727B19E17004F92CE /* OrderBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9C627B19E17004F92CE /* OrderBook.swift */; };
-		C333E9CA27B259F1004F92CE /* PriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9C927B259F1004F92CE /* PriceView.swift */; };
-		C333E9CC27B25D1A004F92CE /* PriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9CB27B25D1A004F92CE /* PriceViewModel.swift */; };
+		C333E9CA27B259F1004F92CE /* CurrentPriceStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9C927B259F1004F92CE /* CurrentPriceStatusView.swift */; };
+		C333E9CC27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9CB27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift */; };
 		C333E9D027B292B5004F92CE /* CoinDetailSegmentedCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9CF27B292B4004F92CE /* CoinDetailSegmentedCategoryViewModel.swift */; };
 		C333E9D227B294DD004F92CE /* CoinDetailCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
@@ -188,8 +188,8 @@
 		C329A8A327B1502200193A4D /* OrderBookListViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewCellData.swift; sourceTree = "<group>"; };
 		C329A8A927B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailSegmentedCategoryView.swift; sourceTree = "<group>"; };
 		C333E9C627B19E17004F92CE /* OrderBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBook.swift; sourceTree = "<group>"; };
-		C333E9C927B259F1004F92CE /* PriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceView.swift; sourceTree = "<group>"; };
-		C333E9CB27B25D1A004F92CE /* PriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewModel.swift; sourceTree = "<group>"; };
+		C333E9C927B259F1004F92CE /* CurrentPriceStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceStatusView.swift; sourceTree = "<group>"; };
+		C333E9CB27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceStatusViewModel.swift; sourceTree = "<group>"; };
 		C333E9CF27B292B4004F92CE /* CoinDetailSegmentedCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailSegmentedCategoryViewModel.swift; sourceTree = "<group>"; };
 		C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailCategory.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
@@ -629,13 +629,13 @@
 			path = CoinDetailSegmentedCategoryView;
 			sourceTree = "<group>";
 		};
-		C333E9C827B259CE004F92CE /* PriceView */ = {
+		C333E9C827B259CE004F92CE /* CurrentPriceStatusView */ = {
 			isa = PBXGroup;
 			children = (
-				C333E9C927B259F1004F92CE /* PriceView.swift */,
-				C333E9CB27B25D1A004F92CE /* PriceViewModel.swift */,
+				C333E9C927B259F1004F92CE /* CurrentPriceStatusView.swift */,
+				C333E9CB27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift */,
 			);
-			path = PriceView;
+			path = CurrentPriceStatusView;
 			sourceTree = "<group>";
 		};
 		C3D0EF6F27A777B500A5E4BE /* Module */ = {
@@ -651,7 +651,7 @@
 		C3D0EF7827A7A40100A5E4BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				C333E9C827B259CE004F92CE /* PriceView */,
+				C333E9C827B259CE004F92CE /* CurrentPriceStatusView */,
 				C329A8A827B15BCE00193A4D /* CoinDetailSegmentedCategoryView */,
 				C329A87B27AECD8300193A4D /* CoinChartView */,
 				C329A87A27AECD1400193A4D /* TimeIntervalBottomSheet */,
@@ -930,7 +930,7 @@
 				B49FDAFB27AAAFF5001A11E9 /* LetterSeparator.swift in Sources */,
 				C3D0EF9327A8A30500A5E4BE /* TimeUnitBottomSheetViewModel.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
-				C333E9CC27B25D1A004F92CE /* PriceViewModel.swift in Sources */,
+				C333E9CC27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift in Sources */,
 				C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */,
 				4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
@@ -961,7 +961,7 @@
 				48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
 				C329A89927B0C59500193A4D /* PaddingLabel.swift in Sources */,
-				C333E9CA27B259F1004F92CE /* PriceView.swift in Sources */,
+				C333E9CA27B259F1004F92CE /* CurrentPriceStatusView.swift in Sources */,
 				4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */,
 				4885376327A40E3600BE00FD /* CoinDetailViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,

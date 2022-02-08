@@ -32,7 +32,7 @@ final class CoinDetailViewController: UIViewController {
   private let orderBookListView: OrderBookListView
   private let timeUnitChangeButton: UIButton
   private let coinChartView: CoinChartView
-  private let priceView: PriceView
+  private let currentPriceStatusView: CurrentPriceStatusView
   
   
   // MARK: Initializers
@@ -46,7 +46,7 @@ final class CoinDetailViewController: UIViewController {
     self.orderBookListView = OrderBookListView()
     self.timeUnitChangeButton = UIButton()
     self.coinChartView = CoinChartView()
-    self.priceView = PriceView()
+    self.currentPriceStatusView = CurrentPriceStatusView()
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -67,16 +67,16 @@ final class CoinDetailViewController: UIViewController {
     [self.coinChartView,
      self.coinDetailSegmentedCategoryView,
      self.timeUnitChangeButton,
-     self.priceView,
+     self.currentPriceStatusView,
      self.orderBookListView].forEach { self.view.addSubview($0) }
     
-    self.priceView.snp.makeConstraints {
+    self.currentPriceStatusView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
     
     self.coinDetailSegmentedCategoryView.snp.makeConstraints {
       $0.leading.equalToSuperview().inset(10)
-      $0.top.equalTo(self.priceView.snp.bottom).offset(10)
+      $0.top.equalTo(self.currentPriceStatusView.snp.bottom).offset(10)
     }
     
     self.coinChartView.snp.makeConstraints {
@@ -114,7 +114,7 @@ final class CoinDetailViewController: UIViewController {
   private func bind() {
     self.coinDetailSegmentedCategoryView.bind(viewModel: self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel)
     self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
-    self.priceView.bind(viewModel: self.coinDetailViewModel.priceViewModel)
+    self.currentPriceStatusView.bind(viewModel: self.coinDetailViewModel.currentPriceStatusViewModel)
 
     self.timeUnitChangeButton.rx.tap
       .bind(to: self.coinDetailViewModel.tapSelectTimeUnitButton)
