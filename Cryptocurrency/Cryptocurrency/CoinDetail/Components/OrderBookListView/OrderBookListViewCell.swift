@@ -86,25 +86,17 @@ final class OrderBookListViewCell: UITableViewCell {
     self.priceChangedRatioLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
   }
 
-  override func prepareForReuse() {
-    super.prepareForReuse()
-
-    self.priceChangedRatioLabel.attributedText = nil
-    self.priceLabel.attributedText = nil
-    self.askQuantityLabel.text = nil
-    self.bidQuantitylabel.text = nil
-    self.askQuantityLabel.backgroundColor = nil
-    self.bidQuantitylabel.backgroundColor = nil
-    self.priceStackView.backgroundColor = nil
-  }
-
   func setData(with data: OrderBookListViewCellData) {
     if data.orderBook == .ask {
+      self.bidQuantitylabel.text = nil
       self.askQuantityLabel.text = data.orderQuantityText()
+      self.bidQuantitylabel.backgroundColor = nil
       self.askQuantityLabel.backgroundColor = .ask
       self.priceStackView.backgroundColor = .ask
     } else {
+      self.askQuantityLabel.text = nil
       self.bidQuantitylabel.text = data.orderQuantityText()
+      self.askQuantityLabel.backgroundColor = nil
       self.bidQuantitylabel.backgroundColor = .bid
       self.priceStackView.backgroundColor = .bid
     }
