@@ -16,6 +16,7 @@ final class CoinDetailViewModel {
   let tapSelectTimeUnitButton = PublishRelay<Void>()
   let coinChartViewModel = CoinChartViewModel()
   let priceViewModel = PriceViewModel()
+  let coinDetailSegmentedCategoryViewModel = CoinDetailSegmentedCategoryViewModel()
   var coinDetailCoordinator: CoinDetailCoordinator?
 
   private let disposeBag = DisposeBag()

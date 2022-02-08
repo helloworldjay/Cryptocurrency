@@ -112,6 +112,7 @@ final class CoinDetailViewController: UIViewController {
   }
 
   private func bind() {
+    self.coinDetailSegmentedCategoryView.bind(viewModel: self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel)
     self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
     self.priceView.bind(viewModel: self.coinDetailViewModel.priceViewModel)
 

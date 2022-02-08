@@ -30,7 +30,10 @@ final class CoinDetailSegmentedCategoryView: SegmentedCategoryView {
   
   // MARK: Bind
   
-  func bind() {
-    
+  func bind(viewModel: CoinDetailSegmentedCategoryViewModelLogic) {
+    self.segmentedControl.rx.selectedSegmentIndex
+      .map { CoinDetailCategory.findCategory(with: $0) }
+      .bind(to: viewModel.category)
+      .disposed(by: self.disposeBag)
   }
 }
