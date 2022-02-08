@@ -15,7 +15,7 @@ final class CoinDetailViewModel {
   let selectedTimeUnit = BehaviorRelay(value: TimeUnit.oneMinute)
   let tapSelectTimeUnitButton = PublishRelay<Void>()
   let coinChartViewModel = CoinChartViewModel()
-  let coinDetailData = PublishRelay<CoinDetailData?>()
+  let priceViewModel = PriceViewModel()
   var coinDetailCoordinator: CoinDetailCoordinator?
 
   private let disposeBag = DisposeBag()
@@ -24,7 +24,8 @@ final class CoinDetailViewModel {
        orderCurrency: OrderCurrency,
        paymentCurrency: PaymentCurrency) {
     self.tapSelectTimeUnitButton
-      .bind {
+      .bind { [weak self] in
+        guard let self = self else { return }
         self.coinDetailCoordinator?.presentTimeUnitBottomSheet(with: self.selectedTimeUnit.value)
       }
       .disposed(by: self.disposeBag)
@@ -55,7 +56,7 @@ final class CoinDetailViewModel {
       .asObservable()
     
     coinDetailData
-      .bind(to: self.coinDetailData)
+      .bind(to: self.priceViewModel.coinDetailData)
       .disposed(by: self.disposeBag)
   }
 }
