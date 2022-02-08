@@ -81,6 +81,8 @@
 		C333E9CC27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9CB27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift */; };
 		C333E9D027B292B5004F92CE /* CoinDetailSegmentedCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9CF27B292B4004F92CE /* CoinDetailSegmentedCategoryViewModel.swift */; };
 		C333E9D227B294DD004F92CE /* CoinDetailCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */; };
+		C333E9DC27B2C3F2004F92CE /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */; };
+		C333E9DE27B2C40F004F92CE /* OrderBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
 		C3D0EF6D27A7685100A5E4BE /* Array + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */; };
@@ -192,6 +194,8 @@
 		C333E9CB27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceStatusViewModel.swift; sourceTree = "<group>"; };
 		C333E9CF27B292B4004F92CE /* CoinDetailSegmentedCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailSegmentedCategoryViewModel.swift; sourceTree = "<group>"; };
 		C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailCategory.swift; sourceTree = "<group>"; };
+		C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
+		C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookResponse.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		C3D0EF6C27A7685100A5E4BE /* Array + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Ext.swift"; sourceTree = "<group>"; };
@@ -295,6 +299,8 @@
 				48B60E4B279FBF3B000534EC /* TickerResponse.swift */,
 				C329A80927AB8DA600193A4D /* CandleStickResponse.swift */,
 				48A49ECE27A9772000DF5124 /* SocketTickerResponse.swift */,
+				C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */,
+				C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -955,7 +961,9 @@
 				C329A88627AECEC100193A4D /* CoinDetailData.swift in Sources */,
 				C329A8A427B1502200193A4D /* OrderBookListViewCellData.swift in Sources */,
 				C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */,
+				C333E9DE27B2C40F004F92CE /* OrderBookResponse.swift in Sources */,
 				4881F42E2797A1C400472C90 /* ProductServiceViewController.swift in Sources */,
+				C333E9DC27B2C3F2004F92CE /* TransactionHistoryResponse.swift in Sources */,
 				4882FA6F279D288100A25880 /* Currency.swift in Sources */,
 				C329A88427AECEAF00193A4D /* Double + Ext.swift in Sources */,
 				48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */,
