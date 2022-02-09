@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OrderBook {
+enum OrderBookCategory {
   case bid
   case ask
 }

@@ -10,7 +10,7 @@ import Foundation
 import Then
 
 struct OrderBookListViewCellData: Equatable {
-  let orderBook: OrderBook
+  let orderBook: OrderBookCategory
   let orderPrice: String
   let orderQuantity: String
   let priceChangedRatio: Double
