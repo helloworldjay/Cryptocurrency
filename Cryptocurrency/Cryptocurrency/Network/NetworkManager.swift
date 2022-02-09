@@ -43,18 +43,18 @@ struct NetworkManager: NetworkManagerLogic {
   }
   
   func fetchCandleStickData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>> {
-    return self.fetchData(CandleStickResponse.self, router: .fetchCandleStickData(orderCurrency, paymentCurrency, timeUnit))
+    return self.fetchData(as: CandleStickResponse.self, router: .fetchCandleStickData(orderCurrency, paymentCurrency, timeUnit))
   }
   
   func fetchOrderBookData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>> {
-    return self.fetchData(OrderBookResponse.self, router: .fetchOrderBookData(orderCurrency, paymentCurrency))
+    return self.fetchData(as: OrderBookResponse.self, router: .fetchOrderBookData(orderCurrency, paymentCurrency))
   }
   
   func fetchTransactionHistoryData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>> {
-    return self.fetchData(TransactionHistoryResponse.self, router: .fetchTransactionHistoryData(orderCurrency, paymentCurrency))
+    return self.fetchData(as: TransactionHistoryResponse.self, router: .fetchTransactionHistoryData(orderCurrency, paymentCurrency))
   }
 
-  private func fetchData<T>(_ type: T.Type, router: NetworkRequestRouter) -> Single<Result<T, APINetworkError>> where T :Decodable {
+  private func fetchData<T>(as type: T.Type, router: NetworkRequestRouter) -> Single<Result<T, APINetworkError>> where T :Decodable {
     return Single.create { observer -> Disposable in
       AF.request(router)
         .validate()
