@@ -42,17 +42,18 @@ final class OrderBookListViewCell: UITableViewCell {
   }
 
   private func attribute() {
-    self.askQuantityLabel.do {
+    self.bidQuantitylabel.do {
       $0.textAlignment = .left
       $0.textColor = .black
       $0.font = .systemFont(ofSize: 12)
     }
 
-    [self.bidQuantitylabel, self.priceLabel, self.priceChangedRatioLabel].forEach {
+    [self.askQuantityLabel, self.priceLabel, self.priceChangedRatioLabel].forEach {
       $0.textAlignment = .right
       $0.textColor = .black
       $0.font = .systemFont(ofSize: 12)
     }
+    self.selectionStyle = .none
   }
 
   private func layout() {
@@ -64,13 +65,13 @@ final class OrderBookListViewCell: UITableViewCell {
       self.priceStackView.addArrangedSubview($0)
     }
 
-    self.bidQuantitylabel.snp.makeConstraints {
+    self.askQuantityLabel.snp.makeConstraints {
       $0.leading.equalToSuperview()
       $0.top.bottom.equalToSuperview().inset(2)
       $0.width.equalToSuperview().multipliedBy(0.3)
     }
 
-    self.askQuantityLabel.snp.makeConstraints {
+    self.bidQuantitylabel.snp.makeConstraints {
       $0.leading.equalTo(self.priceStackView.snp.trailing).offset(2)
       $0.trailing.equalToSuperview()
       $0.top.bottom.equalToSuperview().inset(2)
@@ -79,7 +80,7 @@ final class OrderBookListViewCell: UITableViewCell {
 
     self.priceStackView.snp.makeConstraints {
       $0.top.bottom.equalToSuperview().inset(2)
-      $0.leading.equalTo(self.bidQuantitylabel.snp.trailing).offset(2)
+      $0.leading.equalTo(self.askQuantityLabel.snp.trailing).offset(2)
     }
 
     self.priceChangedRatioLabel.setContentHuggingPriority(.required, for: .horizontal)
@@ -90,13 +91,13 @@ final class OrderBookListViewCell: UITableViewCell {
     if data.orderBook == .ask {
       self.bidQuantitylabel.text = nil
       self.askQuantityLabel.text = data.orderQuantityText()
-      self.bidQuantitylabel.backgroundColor = nil
+      self.bidQuantitylabel.backgroundColor = .white
       self.askQuantityLabel.backgroundColor = .ask
       self.priceStackView.backgroundColor = .ask
     } else {
       self.askQuantityLabel.text = nil
       self.bidQuantitylabel.text = data.orderQuantityText()
-      self.askQuantityLabel.backgroundColor = nil
+      self.askQuantityLabel.backgroundColor = .white
       self.bidQuantitylabel.backgroundColor = .bid
       self.priceStackView.backgroundColor = .bid
     }
