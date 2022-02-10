@@ -17,6 +17,7 @@ final class CoinDetailViewModel {
   let coinChartViewModel = CoinChartViewModel()
   let currentPriceStatusViewModel = CurrentPriceStatusViewModel()
   let coinDetailSegmentedCategoryViewModel = CoinDetailSegmentedCategoryViewModel()
+  let orderBookListViewModel = OrderBookListViewModel()
   var coinDetailCoordinator: CoinDetailCoordinator?
 
   private let disposeBag = DisposeBag()
