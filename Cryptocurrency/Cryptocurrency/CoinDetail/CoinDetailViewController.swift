@@ -138,9 +138,9 @@ final class CoinDetailViewController: UIViewController {
       self.coinChartView.isHidden = true
       self.timeUnitChangeButton.isHidden = true
     case .chart:
+      self.orderBookListView.isHidden = true
       self.coinChartView.isHidden = false
       self.timeUnitChangeButton.isHidden = false
-      self.orderBookListView.isHidden = true
     case .transactionHistory:
       break
     }

@@ -53,7 +53,6 @@ final class OrderBookListViewCell: UITableViewCell {
       $0.textColor = .black
       $0.font = .systemFont(ofSize: 12)
     }
-    self.selectionStyle = .none
   }
 
   private func layout() {

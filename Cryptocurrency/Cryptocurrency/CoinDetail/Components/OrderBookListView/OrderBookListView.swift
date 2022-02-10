@@ -40,8 +40,13 @@ final class OrderBookListView: UITableView {
   func bind(viewModel: OrderBookListViewModelLogic) {
     viewModel.cellData
       .bind(to: self.rx.items) { tableView, row, data in
-        let index = IndexPath(row: row, section: 0)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OrderBookListViewCell", for: index) as? OrderBookListViewCell else { return OrderBookListViewCell() }
+        let indexPath = IndexPath(row: row, section: 0)
+        guard let cell = tableView.dequeueReusableCell(
+          withIdentifier: "OrderBookListViewCell",
+          for: indexPath
+        ) as? OrderBookListViewCell else {
+          return OrderBookListViewCell()
+        }
         cell.setData(with: data)
         return cell
       }.disposed(by: self.disposeBag)
