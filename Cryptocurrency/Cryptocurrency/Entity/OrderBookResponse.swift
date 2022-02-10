@@ -41,15 +41,39 @@ import Foundation
 struct OrderBookResponse: Decodable {
   let status: String
   let data: OrderBookData
+
+  func orderBookListViewCellData(by closingPrice: Double) -> [OrderBookListViewCellData] {
+    let bids = self.data.bids.map { orderBook -> OrderBookListViewCellData? in
+      guard let orderPrice = Double(orderBook.price) else { return nil }
+      return OrderBookListViewCellData(
+        orderBook: .bid,
+        orderPrice: orderBook.price,
+        orderQuantity: orderBook.quantity,
+        priceChangedRatio: (orderPrice - closingPrice) / closingPrice
+      )
+    }.compactMap { $0 }
+
+    let asks = self.data.asks.map { orderBook -> OrderBookListViewCellData? in
+      guard let orderPrice = Double(orderBook.price) else { return nil }
+      return OrderBookListViewCellData(
+        orderBook: .ask,
+        orderPrice: orderBook.price,
+        orderQuantity: orderBook.quantity,
+        priceChangedRatio: (orderPrice - closingPrice) / closingPrice
+      )
+    }.compactMap { $0 }
+
+    return (bids + asks).sorted(by: { $0.orderPrice > $1.orderPrice })
+  }
 }
 
 struct OrderBookData: Decodable {
-  let timestamp: Int
+  let timestamp: String
   let orderCurrency: String
   let paymentCurrency: String
   let bids: [OrderBook]
   let asks: [OrderBook]
-  
+
   enum CodingKeys: String, CodingKey {
     case timestamp, bids, asks
     case orderCurrency = "order_currency"

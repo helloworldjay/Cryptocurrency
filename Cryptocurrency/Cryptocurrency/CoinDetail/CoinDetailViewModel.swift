@@ -40,7 +40,7 @@ final class CoinDetailViewModel {
       }
     
     let chartData = candleStickResult
-      .map(useCase.candleStickResponse)
+      .map(useCase.response)
       .filter { $0 != nil }
       .map(useCase.chartData)
     
@@ -50,15 +50,39 @@ final class CoinDetailViewModel {
     
     let tickerResult = useCase.fetchTicker(orderCurrency: orderCurrency,
                                            paymentCurrency: paymentCurrency)
-    
-    let coinDetailData = tickerResult
-      .map(useCase.tickerResponse)
+
+    let tickerResponse = tickerResult
+      .map(useCase.response)
       .filter { $0 != nil }
+
+    let tickerData = tickerResponse
       .map(useCase.tickerData)
+
+    tickerData
+      .map { $0?.data }
       .asObservable()
-    
-    coinDetailData
       .bind(to: self.currentPriceStatusViewModel.coinDetailData)
+      .disposed(by: self.disposeBag)
+
+    tickerData
+      .map { $0?.price }
+      .asObservable()
+      .bind(to: self.orderBookListViewModel.openingPrice)
+      .disposed(by: self.disposeBag)
+
+    let orderBookResult = useCase.fetchOrderBook(orderCurrency: orderCurrency,
+                                                 paymentCurrency: paymentCurrency)
+
+    let orderBookResponse = orderBookResult
+      .map(useCase.response)
+      .filter { $0 != nil }
+      .asObservable()
+
+    Observable.combineLatest(
+      orderBookResponse,
+      self.orderBookListViewModel.openingPrice
+    ).map(useCase.orderBookListViewCellData)
+      .bind(to: self.orderBookListViewModel.cellData)
       .disposed(by: self.disposeBag)
   }
 }
