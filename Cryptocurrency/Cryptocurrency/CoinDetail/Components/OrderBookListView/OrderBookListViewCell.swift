@@ -87,7 +87,7 @@ final class OrderBookListViewCell: UITableViewCell {
   }
 
   func setData(with data: OrderBookListViewCellData) {
-    if data.orderBook == .ask {
+    if data.orderBookCategory == .ask {
       self.bidQuantitylabel.text = nil
       self.askQuantityLabel.text = data.orderQuantityText()
       self.bidQuantitylabel.backgroundColor = .white

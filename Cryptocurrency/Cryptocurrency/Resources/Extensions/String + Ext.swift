@@ -10,6 +10,7 @@ import UIKit
 extension String {
   func convertToDecimalText() -> String? {
     let numberFormatter = NumberFormatter()
+    numberFormatter.maximumFractionDigits = 4
     numberFormatter.numberStyle = .decimal
     
     guard let number = Double(self),

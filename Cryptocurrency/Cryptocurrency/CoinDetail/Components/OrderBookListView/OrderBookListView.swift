@@ -39,7 +39,7 @@ final class OrderBookListView: UITableView {
   
   func bind(viewModel: OrderBookListViewModelLogic) {
     viewModel.cellData
-      .bind(to: self.rx.items) { tableView, row, data in
+      .drive(self.rx.items) { tableView, row, data in
         let indexPath = IndexPath(row: row, section: 0)
         guard let cell = tableView.dequeueReusableCell(
           withIdentifier: "OrderBookListViewCell",
@@ -50,9 +50,9 @@ final class OrderBookListView: UITableView {
         cell.setData(with: data)
         return cell
       }.disposed(by: self.disposeBag)
-    
+
     viewModel.cellData
-      .bind { orderBookListViewCellData in
+      .drive { orderBookListViewCellData in
         let centerIndex = orderBookListViewCellData.count / 2
         self.scrollToRow(at: IndexPath(row: centerIndex, section: .zero),
                          at: .middle, animated: false)

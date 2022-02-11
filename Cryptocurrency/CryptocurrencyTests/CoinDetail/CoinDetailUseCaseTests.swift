@@ -94,39 +94,6 @@ final class CoinDetailUseCaseTests: XCTestCase {
     expect(chartData).to(beEmpty())
   }
   
-  func test_OrderBookResponse가_nil일_경우_orderBook_listview_cell_data를_빈_배열로_반환() {
-    //given
-    let response: OrderBookResponse? = nil
-    let openingPrice: Double? = 0.1
-    
-    //when
-    let orderBookListViewCellData = self.sut.orderBookListViewCellData(response: response, openingPrice: openingPrice)
-    
-    //then
-    expect(orderBookListViewCellData).to(beEmpty())
-  }
-  
-  func test_ClosingPrice가_nil일_경우_orderBook_listview_cell_data를_빈_배열로_반환() {
-    //given
-    let response: OrderBookResponse? = OrderBookResponse(
-      status: "0000",
-      data: OrderBookData(
-        timestamp: "1644491778626",
-        orderCurrency: "KRW",
-        paymentCurrency: "BTC",
-        bids: [OrderBook(quantity: "53910000", price: "0.3699")],
-        asks: [OrderBook(quantity: "53910000", price: "0.3699")]
-      )
-    )
-    let openingPrice: Double? = nil
-    
-    //when
-    let orderBookListViewCellData = self.sut.orderBookListViewCellData(response: response, openingPrice: openingPrice)
-    
-    //then
-    expect(orderBookListViewCellData).to(beEmpty())
-  }
-  
   func test_AllTickerResponse가_nil이_아닐_경우_ticker_data를_반환() {
     //given
     let response: AllTickerResponse = AllTickerResponse(
@@ -154,9 +121,9 @@ final class CoinDetailUseCaseTests: XCTestCase {
     
     //then
     expect(tickerData).toNot(beNil())
-    expect(tickerData!.data.currentPrice).to(equal("2000"))
-    expect(tickerData!.data.priceDifference).to(equal("10000"))
-    expect(tickerData!.data.priceChangedRatio).to(equal("1.0"))
+    expect(tickerData!.currentPrice).to(equal("2000"))
+    expect(tickerData!.priceDifference).to(equal("10000"))
+    expect(tickerData!.priceChangedRatio).to(equal("1.0"))
   }
   
   func test_CandleStickResponse가_nil이_아닐_경우_chart_data를_반환() {
@@ -189,7 +156,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
   
   func test_OrderBookResponse가_nil이_아닐_경우_orderBook_listview_cell_data를_반환() {
     //given
-    let response: OrderBookResponse? = OrderBookResponse(
+    let response = OrderBookResponse(
       status: "0000",
       data: OrderBookData(
         timestamp: "1644491778626",
@@ -202,11 +169,11 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let openingPrice: Double = 123.9
     
     //when
-    let orderBookListViewCellData = self.sut.orderBookListViewCellData(response: response, openingPrice: openingPrice)
+    let orderBookListViewCellData = self.sut.bidsCellData(with: response, openingPrice: openingPrice)
     
     //then
     expect(orderBookListViewCellData).toNot(beEmpty())
-    expect(orderBookListViewCellData[0].orderBook).to(equal(OrderBookCategory.bid))
+    expect(orderBookListViewCellData[0].orderBookCategory).to(equal(OrderBookCategory.bid))
     expect(orderBookListViewCellData[0].orderPrice).to(equal("0.3699"))
     expect(orderBookListViewCellData[0].orderQuantity).to(equal("53910000"))
   }

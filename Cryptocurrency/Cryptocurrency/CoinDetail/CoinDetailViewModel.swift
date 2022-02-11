@@ -18,6 +18,7 @@ final class CoinDetailViewModel {
   let currentPriceStatusViewModel = CurrentPriceStatusViewModel()
   let coinDetailSegmentedCategoryViewModel = CoinDetailSegmentedCategoryViewModel()
   let orderBookListViewModel = OrderBookListViewModel()
+  let openingPrice = PublishRelay<Double>()
   var coinDetailCoordinator: CoinDetailCoordinator?
 
   private let disposeBag = DisposeBag()
@@ -58,17 +59,17 @@ final class CoinDetailViewModel {
     let tickerData = tickerResponse
       .map(useCase.tickerData)
       .filter { $0 != nil }
+      .map { $0! }
 
     tickerData
-      .map { $0!.data }
       .asObservable()
       .bind(to: self.currentPriceStatusViewModel.coinDetailData)
       .disposed(by: self.disposeBag)
 
     tickerData
-      .map { $0!.price }
+      .map(useCase.openingPrice)
       .asObservable()
-      .bind(to: self.orderBookListViewModel.openingPrice)
+      .bind(to: self.openingPrice)
       .disposed(by: self.disposeBag)
 
     let orderBookResult = useCase.fetchOrderBook(orderCurrency: orderCurrency,
@@ -82,9 +83,16 @@ final class CoinDetailViewModel {
 
     Observable.combineLatest(
       orderBookResponse,
-      self.orderBookListViewModel.openingPrice
-    ).map(useCase.orderBookListViewCellData)
-      .bind(to: self.orderBookListViewModel.cellData)
+      self.openingPrice
+    ).map(useCase.asksCellData)
+      .bind(to: self.orderBookListViewModel.askCellData)
+      .disposed(by: self.disposeBag)
+
+    Observable.combineLatest(
+      orderBookResponse,
+      self.openingPrice
+    ).map(useCase.bidsCellData)
+      .bind(to: self.orderBookListViewModel.bidCellData)
       .disposed(by: self.disposeBag)
   }
 }
