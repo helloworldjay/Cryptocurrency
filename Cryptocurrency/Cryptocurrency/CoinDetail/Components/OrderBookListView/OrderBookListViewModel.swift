@@ -9,10 +9,10 @@ import RxRelay
 
 protocol OrderBookListViewModelLogic {
   var cellData: PublishRelay<[OrderBookListViewCellData]> { get }
-  var openingPrice: PublishRelay<Double?> { get }
+  var openingPrice: PublishRelay<Double> { get }
 }
 
 final class OrderBookListViewModel: OrderBookListViewModelLogic {
   let cellData = PublishRelay<[OrderBookListViewCellData]>()
-  let openingPrice = PublishRelay<Double?>()
+  let openingPrice = PublishRelay<Double>()
 }

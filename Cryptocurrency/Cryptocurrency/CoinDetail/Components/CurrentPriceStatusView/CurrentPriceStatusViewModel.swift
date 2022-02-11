@@ -8,9 +8,9 @@
 import RxRelay
 
 protocol CurrentPriceStatusViewModelLogic {
-  var coinDetailData: PublishRelay<CoinDetailData?> { get }
+  var coinDetailData: PublishRelay<CoinDetailData> { get }
 }
 
 final class CurrentPriceStatusViewModel: CurrentPriceStatusViewModelLogic {
-  let coinDetailData = PublishRelay<CoinDetailData?>()
+  let coinDetailData = PublishRelay<CoinDetailData>()
 }

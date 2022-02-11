@@ -57,15 +57,16 @@ final class CoinDetailViewModel {
 
     let tickerData = tickerResponse
       .map(useCase.tickerData)
+      .filter { $0 != nil }
 
     tickerData
-      .map { $0?.data }
+      .map { $0!.data }
       .asObservable()
       .bind(to: self.currentPriceStatusViewModel.coinDetailData)
       .disposed(by: self.disposeBag)
 
     tickerData
-      .map { $0?.price }
+      .map { $0!.price }
       .asObservable()
       .bind(to: self.orderBookListViewModel.openingPrice)
       .disposed(by: self.disposeBag)
@@ -76,6 +77,7 @@ final class CoinDetailViewModel {
     let orderBookResponse = orderBookResult
       .map(useCase.response)
       .filter { $0 != nil }
+      .map { $0! }
       .asObservable()
 
     Observable.combineLatest(

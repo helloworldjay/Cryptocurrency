@@ -71,9 +71,9 @@ final class CurrentPriceStatusView: UIView {
       .disposed(by: self.disposeBag)
   }
   
-  private func setCoinDetailData(with coinDetailData: CoinDetailData?) {
-    self.currentPriceLabel.attributedText = coinDetailData?.currentPriceText()
-    self.priceDifferenceLabel.attributedText = coinDetailData?.priceDifferenceText()
-    self.priceChangedRatioLabel.attributedText = coinDetailData?.priceChangedRatioText()
+  private func setCoinDetailData(with coinDetailData: CoinDetailData) {
+    self.currentPriceLabel.attributedText = coinDetailData.currentPriceText()
+    self.priceDifferenceLabel.attributedText = coinDetailData.priceDifferenceText()
+    self.priceChangedRatioLabel.attributedText = coinDetailData.priceChangedRatioText()
   }
 }

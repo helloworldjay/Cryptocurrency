@@ -17,7 +17,7 @@ protocol CoinDetailUseCaseLogic {
   func response<T: Decodable>(result: Result<T, APINetworkError>) -> T?
   func tickerData(response: AllTickerResponse?) -> (data: CoinDetailData, price: Double)?
   func chartData(response: CandleStickResponse?) -> [ChartData]
-  func orderBookListViewCellData(response: OrderBookResponse?, openingPrice: Double?) -> [OrderBookListViewCellData]
+  func orderBookListViewCellData(response: OrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData]
 }
 
 final class CoinDetailUseCase: CoinDetailUseCaseLogic {
@@ -81,10 +81,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     return response.chartData
   }
 
-  func orderBookListViewCellData(response: OrderBookResponse?, openingPrice: Double?) -> [OrderBookListViewCellData] {
-    guard let response = response, let openingPrice = openingPrice else {
-      return []
-    }
+  func orderBookListViewCellData(response: OrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData] {
     return response.orderBookListViewCellData(by: openingPrice)
   }
 }
