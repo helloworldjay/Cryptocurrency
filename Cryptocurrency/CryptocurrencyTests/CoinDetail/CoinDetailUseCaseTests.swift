@@ -32,7 +32,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let result: Result<AllTickerResponse, APINetworkError> = .success(response)
     
     //when
-    let entity = self.sut.tickerResponse(result: result)
+    let entity = self.sut.response(result: result)
     
     //then
     expect(entity).notTo(beNil())
@@ -45,7 +45,27 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let result: Result<CandleStickResponse, APINetworkError> = .success(response)
     
     //when
-    let entity = self.sut.candleStickResponse(result: result)
+    let entity = self.sut.response(result: result)
+    
+    //then
+    expect(entity).notTo(beNil())
+    expect(entity!.status).to(equal("0000"))
+  }
+
+  func test_OrderBookResponse_네트워크_결과물이_success일_경우_entity를_반환() {
+    //given
+    let orderBookData = OrderBookData(
+      timestamp: "1644491778626",
+      orderCurrency: "KRW",
+      paymentCurrency: "BTC",
+      bids: [OrderBook(quantity: "53910000", price: "0.3699")],
+      asks: [OrderBook(quantity: "53910000", price: "0.3699")]
+    )
+    let response = OrderBookResponse(status: "0000", data: orderBookData)
+    let result: Result<OrderBookResponse, APINetworkError> = .success(response)
+    
+    //when
+    let entity = self.sut.response(result: result)
     
     //then
     expect(entity).notTo(beNil())
@@ -132,5 +152,29 @@ final class CoinDetailUseCaseTests: XCTestCase {
     expect(chartData[0].highPrice).to(equal(755000))
     expect(chartData[0].lowPrice).to(equal(737000))
     expect(chartData[0].exchangeVolume).to(equal(3.78))
+  }
+  
+  func test_OrderBookResponse가_nil이_아닐_경우_orderBook_listview_cell_data를_반환() {
+    //given
+    let response = OrderBookResponse(
+      status: "0000",
+      data: OrderBookData(
+        timestamp: "1644491778626",
+        orderCurrency: "KRW",
+        paymentCurrency: "BTC",
+        bids: [OrderBook(quantity: "53910000", price: "0.3699")],
+        asks: []
+      )
+    )
+    let openingPrice: Double = 123.9
+    
+    //when
+    let orderBookListViewCellData = self.sut.bidsCellData(with: response, openingPrice: openingPrice)
+    
+    //then
+    expect(orderBookListViewCellData).toNot(beEmpty())
+    expect(orderBookListViewCellData[0].orderBookCategory).to(equal(OrderBookCategory.bid))
+    expect(orderBookListViewCellData[0].orderPrice).to(equal("0.3699"))
+    expect(orderBookListViewCellData[0].orderQuantity).to(equal("53910000"))
   }
 }

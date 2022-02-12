@@ -12,15 +12,13 @@ import RxSwift
 protocol CoinDetailUseCaseLogic {
   func fetchTicker(orderCurrency: OrderCurrency,
                    paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
-  func tickerResponse(result: Result<AllTickerResponse,
-                      APINetworkError>) -> AllTickerResponse?
-  func tickerData(response: AllTickerResponse?) -> CoinDetailData?
-  func fetchCandleStick(orderCurrency: OrderCurrency,
-                        paymentCurrency: PaymentCurrency,
-                        timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>>
-  func candleStickResponse(result: Result<CandleStickResponse,
-                           APINetworkError>) -> CandleStickResponse?
+  func fetchCandleStick(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>>
+  func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>>
+  func response<T: Decodable>(result: Result<T, APINetworkError>) -> T?
+  func tickerData(response: AllTickerResponse?) -> CoinPriceData?
+  func openingPrice(of data: CoinPriceData) -> Double
   func chartData(response: CandleStickResponse?) -> [ChartData]
+  func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
 }
 
 final class CoinDetailUseCase: CoinDetailUseCaseLogic {
@@ -41,48 +39,91 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
   
   func fetchTicker(orderCurrency: OrderCurrency,
                    paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
-    return network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
+    return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
   }
-  
-  func tickerResponse(result: Result<AllTickerResponse,
-                      APINetworkError>) -> AllTickerResponse? {
-    guard case .success(let value) = result else {
-      return nil
-    }
-    return value
-  }
-  
-  func tickerData(response: AllTickerResponse?) -> CoinDetailData? {
-    guard let data = response?.data.first else {
-      return nil
-    }
-    return CoinDetailData(
-      currentPrice: data.value.closingPrice,
-      priceChangedRatio: data.value.fluctateRate24H,
-      priceDifference: data.value.fluctate24H
-    )
-  }
-  
+
   func fetchCandleStick(orderCurrency: OrderCurrency,
                         paymentCurrency: PaymentCurrency,
                         timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>> {
-    return network.fetchCandleStickData(orderCurrency: orderCurrency,
+    return self.network.fetchCandleStickData(orderCurrency: orderCurrency,
                                         paymentCurrency: paymentCurrency,
                                         timeUnit: timeUnit)
   }
 
-  func candleStickResponse(result: Result<CandleStickResponse,
-                           APINetworkError>) -> CandleStickResponse? {
+  func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>> {
+    return self.network.fetchOrderBookData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
+  }
+
+  func response<T: Decodable>(result: Result<T, APINetworkError>) -> T? {
     guard case .success(let value) = result else {
       return nil
     }
     return value
   }
-  
+
+  func tickerData(response: AllTickerResponse?) -> CoinPriceData? {
+    guard let data = response?.data.first else {
+      return nil
+    }
+    return (
+      CoinPriceData(
+        currentPrice: data.value.closingPrice,
+        priceChangedRatio: data.value.fluctateRate24H,
+        priceDifference: data.value.fluctate24H
+      )
+    )
+  }
+
+  func openingPrice(of data: CoinPriceData) -> Double {
+    guard let currentPrice = Double(data.currentPrice),
+          let priceDifference = Double(data.priceDifference) else {
+            return 0
+          }
+    return currentPrice - priceDifference
+  }
+
   func chartData(response: CandleStickResponse?) -> [ChartData] {
     guard let response = response else {
       return []
     }
     return response.chartData
+  }
+  
+  func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData] {
+    let emptyCellData = self.emtpyCellData(response: response, category: category)
+    let orderBooks = (category == .ask) ? response.data.asks : response.data.bids
+    var cellData = orderBooks
+      .sorted(by: >)
+      .map { orderBook -> OrderBookListViewCellData? in
+      guard let orderPrice = Double(orderBook.price) else { return nil }
+      return OrderBookListViewCellData(
+        orderBookCategory: category,
+        orderPrice: orderBook.price,
+        orderQuantity: orderBook.quantity,
+        priceChangedRatio: (orderPrice - openingPrice) / orderPrice
+      )
+    }.compactMap { $0 }
+    
+    if category == .ask {
+      cellData = emptyCellData + cellData
+    } else {
+      cellData = cellData + emptyCellData
+    }
+    return cellData
+  }
+
+  private func emtpyCellData(response: OrderBookResponse, category: OrderBookCategory) -> [OrderBookListViewCellData] {
+    let dataCount = (category == .ask) ? response.data.asks.count : response.data.bids.count
+    let emptyCellDataCount = 30 - dataCount
+    let emptyCellDatum = OrderBookListViewCellData(
+      orderBookCategory: category,
+      orderPrice: nil,
+      orderQuantity: nil,
+      priceChangedRatio: nil
+    )
+    return Array(
+      repeating: emptyCellDatum,
+      count: emptyCellDataCount
+    )
   }
 }

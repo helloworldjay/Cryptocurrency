@@ -12,6 +12,11 @@ import RxSwift
 
 final class OrderBookListView: UITableView {
 
+  // MARK: Properties
+  
+  private let disposeBag = DisposeBag()
+  
+  
   // MARK: Initializers
   
   override init(frame: CGRect, style: UITableView.Style) {
@@ -32,8 +37,25 @@ final class OrderBookListView: UITableView {
     self.rowHeight = 40
   }
   
-  func bind() {
-    // TODO: 매개변수로 ViewModel을 받아와 Binding을 진행
+  func bind(viewModel: OrderBookListViewModelLogic) {
+    viewModel.cellData
+      .drive(self.rx.items) { tableView, row, data in
+        let indexPath = IndexPath(row: row, section: 0)
+        guard let cell = tableView.dequeueReusableCell(
+          withIdentifier: "OrderBookListViewCell",
+          for: indexPath
+        ) as? OrderBookListViewCell else {
+          return OrderBookListViewCell()
+        }
+        cell.setData(with: data)
+        return cell
+      }.disposed(by: self.disposeBag)
+
+    viewModel.cellData
+      .drive { orderBookListViewCellData in
+        let centerIndex = orderBookListViewCellData.count / 2
+        self.scrollToRow(at: IndexPath(row: centerIndex, section: .zero),
+                         at: .middle, animated: false)
+      }.disposed(by: self.disposeBag)
   }
 }
-

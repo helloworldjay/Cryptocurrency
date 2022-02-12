@@ -115,6 +115,7 @@ final class CoinDetailViewController: UIViewController {
     self.coinDetailSegmentedCategoryView.bind(viewModel: self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel)
     self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
     self.currentPriceStatusView.bind(viewModel: self.coinDetailViewModel.currentPriceStatusViewModel)
+    self.orderBookListView.bind(viewModel: self.coinDetailViewModel.orderBookListViewModel)
 
     self.timeUnitChangeButton.rx.tap
       .bind(to: self.coinDetailViewModel.tapSelectTimeUnitButton)
@@ -124,5 +125,24 @@ final class CoinDetailViewController: UIViewController {
       .bind {
         self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
       }.disposed(by: self.disposeBag)
+    
+    self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel.category
+      .bind(onNext: changeContentView)
+      .disposed(by: self.disposeBag)
+  }
+  
+  private func changeContentView(by category: CoinDetailCategory) {
+    switch category {
+    case .orderBook:
+      self.orderBookListView.isHidden = false
+      self.coinChartView.isHidden = true
+      self.timeUnitChangeButton.isHidden = true
+    case .chart:
+      self.orderBookListView.isHidden = true
+      self.coinChartView.isHidden = false
+      self.timeUnitChangeButton.isHidden = false
+    case .transactionHistory:
+      break
+    }
   }
 }
