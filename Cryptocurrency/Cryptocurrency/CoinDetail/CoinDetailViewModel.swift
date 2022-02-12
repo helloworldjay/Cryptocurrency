@@ -85,18 +85,11 @@ final class CoinDetailViewModel {
       orderBookResponse,
       self.openingPrice
     ).map { (response, openingPrice) in
-      useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
+      let bids = useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
+      let asks = useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
+      return asks + bids
     }
-    .bind(to: self.orderBookListViewModel.askCellData)
-    .disposed(by: self.disposeBag)
-
-    Observable.combineLatest(
-      orderBookResponse,
-      self.openingPrice
-    ).map { (response, openingPrice) in
-      useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
-    }
-    .bind(to: self.orderBookListViewModel.bidCellData)
+    .bind(to: self.orderBookListViewModel.orderBookListViewCellData)
     .disposed(by: self.disposeBag)
   }
 }

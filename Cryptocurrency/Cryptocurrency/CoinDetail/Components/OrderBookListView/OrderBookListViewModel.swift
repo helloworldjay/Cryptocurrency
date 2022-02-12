@@ -11,23 +11,17 @@ import RxCocoa
 
 protocol OrderBookListViewModelLogic {
   var cellData: Driver<[OrderBookListViewCellData]> { get }
-  var askCellData: PublishSubject<[OrderBookListViewCellData]> { get }
-  var bidCellData: PublishSubject<[OrderBookListViewCellData]> { get }
+  var orderBookListViewCellData: PublishSubject<[OrderBookListViewCellData]> { get }
 }
 
 final class OrderBookListViewModel: OrderBookListViewModelLogic {
   let cellData: Driver<[OrderBookListViewCellData]>
-  let askCellData: PublishSubject<[OrderBookListViewCellData]>
-  let bidCellData: PublishSubject<[OrderBookListViewCellData]>
+  let orderBookListViewCellData: PublishSubject<[OrderBookListViewCellData]>
 
   init() {
-    self.askCellData = PublishSubject<[OrderBookListViewCellData]>()
-    self.bidCellData = PublishSubject<[OrderBookListViewCellData]>()
+    self.orderBookListViewCellData = PublishSubject<[OrderBookListViewCellData]>()
     
-    self.cellData = Observable.zip(
-      self.askCellData,
-      self.bidCellData
-    ).asDriver(onErrorJustReturn: ([], []))
-      .map { $0 + $1 }
+    self.cellData = self.orderBookListViewCellData
+      .asDriver(onErrorJustReturn: [])
   }
 }
