@@ -57,7 +57,15 @@ struct OrderBookData: Decodable {
   }
 }
 
-struct OrderBook: Decodable {
+struct OrderBook: Decodable, Comparable {
+  static func < (lhs: OrderBook, rhs: OrderBook) -> Bool {
+    guard let lhsPrice = Double(lhs.price),
+          let rhsPrice = Double(rhs.price) else {
+            return false
+          }
+    return lhsPrice < rhsPrice
+  }
+  
   let quantity: String
   let price: String
 }

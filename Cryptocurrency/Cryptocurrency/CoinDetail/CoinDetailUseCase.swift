@@ -16,10 +16,9 @@ protocol CoinDetailUseCaseLogic {
   func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>>
   func response<T: Decodable>(result: Result<T, APINetworkError>) -> T?
   func tickerData(response: AllTickerResponse?) -> CoinDetailData?
-  func openingPrice(for data: CoinDetailData) -> Double
+  func openingPrice(of data: CoinDetailData) -> Double
   func chartData(response: CandleStickResponse?) -> [ChartData]
-  func bidsCellData(with response: OrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData]
-  func asksCellData(with response: OrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData]
+  func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
 }
 
 final class CoinDetailUseCase: CoinDetailUseCaseLogic {
@@ -75,7 +74,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     )
   }
 
-  func openingPrice(for data: CoinDetailData) -> Double {
+  func openingPrice(of data: CoinDetailData) -> Double {
     guard let currentPrice = Double(data.currentPrice),
           let priceDifference = Double(data.priceDifference) else {
             return 0
@@ -89,61 +88,42 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     }
     return response.chartData
   }
-
-  func bidsCellData(with response: OrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData] {
-    let neededEmptyCellDataCount = 30 - response.data.bids.count
-    let emptyCellData = self.emptyCellData(orderBookCategory: .bid, count: neededEmptyCellDataCount)
-    let cellData = response.data.bids.sorted { lhs, rhs in
-      guard let lhsOrderPrice = Double(lhs.price),
-            let rhsOrderPrice = Double(rhs.price) else {
-              return true
-            }
-      return lhsOrderPrice > rhsOrderPrice
-    }.map { orderBook -> OrderBookListViewCellData? in
+  
+  func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData] {
+    let emptyCellData = self.emtpyCellData(response: response, category: category)
+    let orderBooks = (category == .ask) ? response.data.asks : response.data.bids
+    var cellData = orderBooks
+      .sorted(by: >)
+      .map { orderBook -> OrderBookListViewCellData? in
       guard let orderPrice = Double(orderBook.price) else { return nil }
       return OrderBookListViewCellData(
-        orderBookCategory: .bid,
+        orderBookCategory: category,
         orderPrice: orderBook.price,
         orderQuantity: orderBook.quantity,
         priceChangedRatio: (orderPrice - openingPrice) / orderPrice
       )
     }.compactMap { $0 }
     
-    return cellData + emptyCellData
+    if category == .ask {
+      cellData = emptyCellData + cellData
+    } else {
+      cellData = cellData + emptyCellData
+    }
+    return cellData
   }
 
-  func asksCellData(with response: OrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData] {
-    let neededEmptyCellDataCount = 30 - response.data.asks.count
-    let emptyCellData = self.emptyCellData(orderBookCategory: .ask, count: neededEmptyCellDataCount)
-    let cellData = response.data.asks.sorted { lhs, rhs in
-      guard let lhsOrderPrice = Double(lhs.price),
-            let rhsOrderPrice = Double(rhs.price) else {
-              return true
-            }
-      return lhsOrderPrice > rhsOrderPrice
-    }.map { orderBook -> OrderBookListViewCellData? in
-      guard let orderPrice = Double(orderBook.price) else { return nil }
-      return OrderBookListViewCellData(
-        orderBookCategory: .ask,
-        orderPrice: orderBook.price,
-        orderQuantity: orderBook.quantity,
-        priceChangedRatio: (orderPrice - openingPrice) / orderPrice
-      )
-    }.compactMap { $0 }
-    
-    return emptyCellData + cellData
-  }
-
-  private func emptyCellData(orderBookCategory: OrderBookCategory, count: Int) -> [OrderBookListViewCellData] {
-    let emptyCellData = OrderBookListViewCellData(
-      orderBookCategory: orderBookCategory,
+  private func emtpyCellData(response: OrderBookResponse, category: OrderBookCategory) -> [OrderBookListViewCellData] {
+    let dataCount = (category == .ask) ? response.data.asks.count : response.data.bids.count
+    let emptyCellDataCount = 30 - dataCount
+    let emptyCellDatum = OrderBookListViewCellData(
+      orderBookCategory: category,
       orderPrice: nil,
       orderQuantity: nil,
       priceChangedRatio: nil
     )
     return Array(
-      repeating: emptyCellData,
-      count: count
+      repeating: emptyCellDatum,
+      count: emptyCellDataCount
     )
   }
 }
