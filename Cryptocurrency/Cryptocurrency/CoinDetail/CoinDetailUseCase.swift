@@ -14,11 +14,13 @@ protocol CoinDetailUseCaseLogic {
                    paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
   func fetchCandleStick(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>>
   func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>>
+  func fetchTransactionHistory(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>>
   func response<T: Decodable>(result: Result<T, APINetworkError>) -> T?
   func tickerData(response: AllTickerResponse?) -> CoinPriceData?
   func openingPrice(of data: CoinPriceData) -> Double
   func chartData(response: CandleStickResponse?) -> [ChartData]
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
+  func transactionSheetViewCellData(response: TransactionHistoryResponse) -> [TransactionSheetViewCellData]
 }
 
 final class CoinDetailUseCase: CoinDetailUseCaseLogic {
@@ -52,6 +54,10 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
 
   func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>> {
     return self.network.fetchOrderBookData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
+  }
+
+  func fetchTransactionHistory(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>> {
+    return self.network.fetchTransactionHistoryData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
   }
 
   func response<T: Decodable>(result: Result<T, APINetworkError>) -> T? {
@@ -125,5 +131,22 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       repeating: emptyCellDatum,
       count: emptyCellDataCount
     )
+  }
+
+  func transactionSheetViewCellData(response: TransactionHistoryResponse) -> [TransactionSheetViewCellData] {
+    return response.data.map { transactionHistoryData -> TransactionSheetViewCellData? in
+      guard let timeText = transactionHistoryData.transactionDate.split(separator: " ").map({ String($0) }).last,
+            let orderBookCategory = OrderBookCategory.findOrderBookCategory(with: transactionHistoryData.type),
+            let volume = Double(transactionHistoryData.unitsTraded) else {
+              return nil
+            }
+      return TransactionSheetViewCellData(
+        orderBookCategory: orderBookCategory,
+        transactionPrice: transactionHistoryData.price,
+        dateText: timeText,
+        volume: volume
+      )
+    }.compactMap { $0 }
+    .reversed()
   }
 }

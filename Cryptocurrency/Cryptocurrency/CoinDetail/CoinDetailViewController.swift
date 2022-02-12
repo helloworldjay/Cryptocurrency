@@ -33,6 +33,7 @@ final class CoinDetailViewController: UIViewController {
   private let timeUnitChangeButton: UIButton
   private let coinChartView: CoinChartView
   private let currentPriceStatusView: CurrentPriceStatusView
+  private let transactionSheetView: TransactionSheetView
   
   
   // MARK: Initializers
@@ -47,6 +48,7 @@ final class CoinDetailViewController: UIViewController {
     self.timeUnitChangeButton = UIButton()
     self.coinChartView = CoinChartView()
     self.currentPriceStatusView = CurrentPriceStatusView()
+    self.transactionSheetView = TransactionSheetView()
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -68,7 +70,8 @@ final class CoinDetailViewController: UIViewController {
      self.coinDetailSegmentedCategoryView,
      self.timeUnitChangeButton,
      self.currentPriceStatusView,
-     self.orderBookListView].forEach { self.view.addSubview($0) }
+     self.orderBookListView,
+     self.transactionSheetView].forEach { self.view.addSubview($0) }
     
     self.currentPriceStatusView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
@@ -89,7 +92,12 @@ final class CoinDetailViewController: UIViewController {
       $0.top.equalTo(self.coinDetailSegmentedCategoryView.snp.bottom).offset(10)
       $0.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
     }
-    
+
+    self.transactionSheetView.snp.makeConstraints {
+      $0.top.equalTo(self.coinDetailSegmentedCategoryView.snp.bottom).offset(10)
+      $0.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
+    }
+
     self.timeUnitChangeButton.snp.makeConstraints {
       $0.trailing.equalToSuperview().inset(10)
       $0.bottom.equalTo(self.coinChartView.snp.top)
@@ -116,6 +124,7 @@ final class CoinDetailViewController: UIViewController {
     self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
     self.currentPriceStatusView.bind(viewModel: self.coinDetailViewModel.currentPriceStatusViewModel)
     self.orderBookListView.bind(viewModel: self.coinDetailViewModel.orderBookListViewModel)
+    self.transactionSheetView.bind(viewModel: self.coinDetailViewModel.transactionSheetViewModel)
 
     self.timeUnitChangeButton.rx.tap
       .bind(to: self.coinDetailViewModel.tapSelectTimeUnitButton)
@@ -137,12 +146,17 @@ final class CoinDetailViewController: UIViewController {
       self.orderBookListView.isHidden = false
       self.coinChartView.isHidden = true
       self.timeUnitChangeButton.isHidden = true
+      self.transactionSheetView.isHidden = true
     case .chart:
       self.orderBookListView.isHidden = true
       self.coinChartView.isHidden = false
       self.timeUnitChangeButton.isHidden = false
+      self.transactionSheetView.isHidden = true
     case .transactionHistory:
-      break
+      self.orderBookListView.isHidden = true
+      self.coinChartView.isHidden = true
+      self.timeUnitChangeButton.isHidden = true
+      self.transactionSheetView.isHidden = false
     }
   }
 }
