@@ -83,6 +83,7 @@
 		C333E9D227B294DD004F92CE /* CoinDetailCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */; };
 		C333E9DC27B2C3F2004F92CE /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */; };
 		C333E9DE27B2C40F004F92CE /* OrderBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */; };
+		C3781FC427B7EEDF002586FA /* TransactionSheetViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */; };
 		C3D0B31527B50CBC005D4D61 /* OrderBookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
@@ -197,6 +198,7 @@
 		C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailCategory.swift; sourceTree = "<group>"; };
 		C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
 		C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookResponse.swift; sourceTree = "<group>"; };
+		C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewCellData.swift; sourceTree = "<group>"; };
 		C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewModel.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
@@ -647,6 +649,14 @@
 			path = CurrentPriceStatusView;
 			sourceTree = "<group>";
 		};
+		C3781FC227B7EEBC002586FA /* TransactionSheetView */ = {
+			isa = PBXGroup;
+			children = (
+				C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */,
+			);
+			path = TransactionSheetView;
+			sourceTree = "<group>";
+		};
 		C3D0EF6F27A777B500A5E4BE /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,6 +670,7 @@
 		C3D0EF7827A7A40100A5E4BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C3781FC227B7EEBC002586FA /* TransactionSheetView */,
 				C333E9C827B259CE004F92CE /* CurrentPriceStatusView */,
 				C329A8A827B15BCE00193A4D /* CoinDetailSegmentedCategoryView */,
 				C329A87B27AECD8300193A4D /* CoinChartView */,
@@ -952,6 +963,7 @@
 				4865371D27A69DB300BEBBB3 /* ExchangeSegmentedCategoryViewModel.swift in Sources */,
 				C329A8A227B14F8400193A4D /* OrderBookListView.swift in Sources */,
 				C333E9D227B294DD004F92CE /* CoinDetailCategory.swift in Sources */,
+				C3781FC427B7EEDF002586FA /* TransactionSheetViewCellData.swift in Sources */,
 				4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				C329A80A27AB8DA600193A4D /* CandleStickResponse.swift in Sources */,
