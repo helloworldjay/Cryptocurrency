@@ -84,6 +84,7 @@
 		C333E9DC27B2C3F2004F92CE /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */; };
 		C333E9DE27B2C40F004F92CE /* OrderBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */; };
 		C3781FC427B7EEDF002586FA /* TransactionSheetViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */; };
+		C3781FC627B7EF28002586FA /* TransactionSheetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */; };
 		C3D0B31527B50CBC005D4D61 /* OrderBookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
@@ -199,6 +200,7 @@
 		C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
 		C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookResponse.swift; sourceTree = "<group>"; };
 		C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewCellData.swift; sourceTree = "<group>"; };
+		C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewCell.swift; sourceTree = "<group>"; };
 		C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewModel.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 			isa = PBXGroup;
 			children = (
 				C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */,
+				C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */,
 			);
 			path = TransactionSheetView;
 			sourceTree = "<group>";
@@ -985,6 +988,7 @@
 				48B60E4C279FBF3B000534EC /* TickerResponse.swift in Sources */,
 				4881F4362797A2B800472C90 /* MoreOptionViewController.swift in Sources */,
 				C329A89927B0C59500193A4D /* PaddingLabel.swift in Sources */,
+				C3781FC627B7EF28002586FA /* TransactionSheetViewCell.swift in Sources */,
 				C333E9CA27B259F1004F92CE /* CurrentPriceStatusView.swift in Sources */,
 				4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */,
 				4885376327A40E3600BE00FD /* CoinDetailViewController.swift in Sources */,
