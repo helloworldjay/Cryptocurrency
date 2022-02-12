@@ -85,6 +85,7 @@
 		C333E9DE27B2C40F004F92CE /* OrderBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */; };
 		C3781FC427B7EEDF002586FA /* TransactionSheetViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */; };
 		C3781FC627B7EF28002586FA /* TransactionSheetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */; };
+		C3781FC827B7EF90002586FA /* TransactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC727B7EF90002586FA /* TransactionSheetView.swift */; };
 		C3D0B31527B50CBC005D4D61 /* OrderBookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
@@ -201,6 +202,7 @@
 		C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookResponse.swift; sourceTree = "<group>"; };
 		C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewCellData.swift; sourceTree = "<group>"; };
 		C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewCell.swift; sourceTree = "<group>"; };
+		C3781FC727B7EF90002586FA /* TransactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetView.swift; sourceTree = "<group>"; };
 		C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewModel.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
@@ -654,8 +656,9 @@
 		C3781FC227B7EEBC002586FA /* TransactionSheetView */ = {
 			isa = PBXGroup;
 			children = (
-				C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */,
+				C3781FC727B7EF90002586FA /* TransactionSheetView.swift */,
 				C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */,
+				C3781FC327B7EEDF002586FA /* TransactionSheetViewCellData.swift */,
 			);
 			path = TransactionSheetView;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				4885376027A3D92800BE00FD /* MoreOptionCoordinator.swift in Sources */,
 				C329A8AA27B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift in Sources */,
 				C333E9D027B292B5004F92CE /* CoinDetailSegmentedCategoryViewModel.swift in Sources */,
+				C3781FC827B7EF90002586FA /* TransactionSheetView.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
 				489FB61E279BF10B0078AEE1 /* NetworkRequestRouter.swift in Sources */,
 				C3D0B31527B50CBC005D4D61 /* OrderBookListViewModel.swift in Sources */,
