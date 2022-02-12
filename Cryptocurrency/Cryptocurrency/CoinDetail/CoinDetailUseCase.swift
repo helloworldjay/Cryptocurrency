@@ -15,8 +15,8 @@ protocol CoinDetailUseCaseLogic {
   func fetchCandleStick(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>>
   func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>>
   func response<T: Decodable>(result: Result<T, APINetworkError>) -> T?
-  func tickerData(response: AllTickerResponse?) -> CoinDetailData?
-  func openingPrice(of data: CoinDetailData) -> Double
+  func tickerData(response: AllTickerResponse?) -> CoinPriceData?
+  func openingPrice(of data: CoinPriceData) -> Double
   func chartData(response: CandleStickResponse?) -> [ChartData]
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
 }
@@ -61,12 +61,12 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     return value
   }
 
-  func tickerData(response: AllTickerResponse?) -> CoinDetailData? {
+  func tickerData(response: AllTickerResponse?) -> CoinPriceData? {
     guard let data = response?.data.first else {
       return nil
     }
     return (
-      CoinDetailData(
+      CoinPriceData(
         currentPrice: data.value.closingPrice,
         priceChangedRatio: data.value.fluctateRate24H,
         priceDifference: data.value.fluctate24H
@@ -74,7 +74,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     )
   }
 
-  func openingPrice(of data: CoinDetailData) -> Double {
+  func openingPrice(of data: CoinPriceData) -> Double {
     guard let currentPrice = Double(data.currentPrice),
           let priceDifference = Double(data.priceDifference) else {
             return 0

@@ -63,7 +63,7 @@ final class CoinDetailViewModel {
 
     tickerData
       .asObservable()
-      .bind(to: self.currentPriceStatusViewModel.coinDetailData)
+      .bind(to: self.currentPriceStatusViewModel.coinPriceData)
       .disposed(by: self.disposeBag)
 
     tickerData
