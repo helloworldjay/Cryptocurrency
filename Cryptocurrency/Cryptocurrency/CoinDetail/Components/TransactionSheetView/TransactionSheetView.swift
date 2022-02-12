@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import Then
 
@@ -86,7 +87,18 @@ final class TransactionSheetView: UIView {
   
   // MARK: Bind
   
-  func bind() {
-    // TODO: TransactionSheetViewModel을 매개변수로 받아와 Binding
+  func bind(viewModel: TransactionSheetViewModelLogic) {
+    viewModel.cellData
+      .drive(self.transactionListView.rx.items) { tableView, row, data in
+        let indexPath = IndexPath(row: row, section: 0)
+        guard let cell = tableView.dequeueReusableCell(
+          withIdentifier: "TransactionSheetViewCell",
+          for: indexPath
+        ) as? TransactionSheetViewCell else {
+          return TransactionSheetViewCell()
+        }
+        cell.setData(with: data)
+        return cell
+      }.disposed(by: self.disposeBag)
   }
 }
