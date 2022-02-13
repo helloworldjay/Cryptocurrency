@@ -70,6 +70,7 @@ final class TransactionSheetView: UIView {
     self.transactionListView.do {
       $0.register(TransactionSheetViewCell.self, forCellReuseIdentifier: "TransactionSheetViewCell")
       $0.allowsSelection = false
+      $0.rowHeight = 40
     }
     
     self.timeCategoryLabel.text = "시간"
