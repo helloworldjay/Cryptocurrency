@@ -72,6 +72,26 @@ final class CoinDetailUseCaseTests: XCTestCase {
     expect(entity!.status).to(equal("0000"))
   }
   
+  func test_TransactionHistoryResponse_네트워크_결과물이_success일_경우_entity를_반환() {
+    //given
+    let transactionData = TransactionHistoryData(
+      transactionDate: "2022-02-13 20:47:52",
+      type: "bid",
+      unitsTraded: "339521.5664",
+      price: "0.0027",
+      total: "916"
+    )
+    let response = TransactionHistoryResponse(status: "0000", data: [transactionData])
+    let result: Result<TransactionHistoryResponse, APINetworkError> = .success(response)
+    
+    //when
+    let entity = self.sut.response(result: result)
+    
+    //then
+    expect(entity).notTo(beNil())
+    expect(entity!.status).to(equal("0000"))
+  }
+
   func test_AllTickerResponse가_nil일_경우_ticker_data를_nil로_반환() {
     //given
     let response: AllTickerResponse? = nil
@@ -169,7 +189,9 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let openingPrice: Double = 123.9
     
     //when
-    let orderBookListViewCellData = self.sut.bidsCellData(with: response, openingPrice: openingPrice)
+    let orderBookListViewCellData = self.sut.orderBookListViewCellData(with: response,
+                                                                       category: .bid,
+                                                                       openingPrice: openingPrice)
     
     //then
     expect(orderBookListViewCellData).toNot(beEmpty())
