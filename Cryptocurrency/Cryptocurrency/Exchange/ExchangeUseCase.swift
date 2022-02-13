@@ -28,7 +28,7 @@ struct ExchangeUseCase: ExchangeUseCaseLogic {
   
   
   // MARK: Network Logics
-  
+
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
     return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
   }

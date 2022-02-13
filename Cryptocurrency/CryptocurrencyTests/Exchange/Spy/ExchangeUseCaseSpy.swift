@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 
 struct ExchangeUseCaseSpy: ExchangeUseCaseLogic {
-  
+
   var tickerResponseStub: Result<AllTickerResponse, APINetworkError>
   
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
