@@ -261,10 +261,10 @@
 		48256CD42799715A008F2AD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				48256CD627997179008F2AD1 /* ExchangeSearchBar */,
 				B4A8E116279BF11100A2BFCD /* ExchangeSegmentedControl */,
 				48256CD52799716C008F2AD1 /* CoinList */,
 				48D6C3CF27B68C2A000CB5AB /* CoinListSort */,
-				48256CD627997179008F2AD1 /* ExchangeSearchBar */,
 			);
 			path = Components;
 			sourceTree = "<group>";
