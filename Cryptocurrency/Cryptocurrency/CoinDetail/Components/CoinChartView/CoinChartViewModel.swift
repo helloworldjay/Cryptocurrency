@@ -14,5 +14,8 @@ protocol CoinChartViewModelLogic {
 }
 
 final class CoinChartViewModel: CoinChartViewModelLogic {
+
+  // MARK: Properties
+
   let chartData = PublishRelay<[ChartData]>()
 }

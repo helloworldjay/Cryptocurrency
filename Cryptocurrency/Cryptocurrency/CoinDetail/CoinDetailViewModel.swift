@@ -17,11 +17,14 @@ final class CoinDetailViewModel {
   let coinChartViewModel = CoinChartViewModel()
   let currentPriceStatusViewModel = CurrentPriceStatusViewModel()
   let coinDetailSegmentedCategoryViewModel = CoinDetailSegmentedCategoryViewModel()
+  let transactionSheetViewModel = TransactionSheetViewModel()
   let orderBookListViewModel = OrderBookListViewModel()
   let openingPrice = PublishRelay<Double>()
   var coinDetailCoordinator: CoinDetailCoordinator?
-
   private let disposeBag = DisposeBag()
+
+
+  // MARK: Initializer
 
   init(useCase: CoinDetailUseCaseLogic = CoinDetailUseCase(),
        orderCurrency: OrderCurrency,
@@ -91,5 +94,19 @@ final class CoinDetailViewModel {
     }
     .bind(to: self.orderBookListViewModel.orderBookListViewCellData)
     .disposed(by: self.disposeBag)
+
+    let transactionHistoryResult = useCase.fetchTransactionHistory(orderCurrency: orderCurrency,
+                                                                   paymentCurrency: paymentCurrency)
+
+    let transactionHistoryResponse = transactionHistoryResult
+      .map(useCase.response)
+      .filter { $0 != nil }
+      .map { $0! }
+
+    transactionHistoryResponse
+      .map(useCase.transactionSheetViewCellData)
+      .asObservable()
+      .bind(to: self.transactionSheetViewModel.transactionSheetViewCellData)
+      .disposed(by: self.disposeBag)
   }
 }
