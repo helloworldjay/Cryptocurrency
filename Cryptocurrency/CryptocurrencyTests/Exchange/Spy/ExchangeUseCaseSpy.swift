@@ -10,12 +10,12 @@ import Foundation
 
 import RxSwift
 
-struct ExchangeUseCaseSpy: ExchangeUseCaseLogic {
+final class ExchangeUseCaseSpy: ExchangeUseCaseLogic {
 
-  var tickerResponseStub: Result<AllTickerResponse, APINetworkError>
+  var tickerResponseStub: Result<AllTickerResponse, APINetworkError> = .success(AllTickerResponse(status: "", data: [:]))
   
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
-    return Observable.just(tickerResponseStub)
+    return Observable.just(self.tickerResponseStub)
       .asSingle()
   }
   
@@ -25,21 +25,34 @@ struct ExchangeUseCaseSpy: ExchangeUseCaseLogic {
     }
     return value
   }
-  
+
+  var coinListCellDataStub: [CoinListViewCellData] = []
+
   func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData] {
-    guard let response = response else {
-      return []
-    }
-    return response.data
-      .map {
-        return CoinListViewCellData(
-          coinName: OrderCurrency.search(with: $0.key).koreanName,
-          ticker: $0.key,
-          currentPrice: $0.value.closingPrice,
-          priceChangedRatio: $0.value.fluctateRate24H,
-          priceDifference: $0.value.fluctate24H,
-          transactionAmount: $0.value.accTradeValue24H
-        )
-      }
+    return self.coinListCellDataStub
+  }
+
+  var sortedByCoinNameStub: [CoinListViewCellData] = []
+
+  func sortByCoinName(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return sortedByCoinNameStub
+  }
+
+  var sortedByCurrentPriceStub: [CoinListViewCellData] = []
+
+  func sortByCurrentPrice(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return sortedByCurrentPriceStub
+  }
+
+  var sortedByPriceChangedRatioStub: [CoinListViewCellData] = []
+
+  func sortByPriceChangedRatio(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return sortedByPriceChangedRatioStub
+  }
+
+  var sortedByTransactionAmountStub: [CoinListViewCellData] = []
+
+  func sortByTransactionAmount(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return sortedByTransactionAmountStub
   }
 }
