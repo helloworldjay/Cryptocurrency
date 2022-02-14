@@ -21,8 +21,10 @@ final class CoinDetailViewModel {
   let orderBookListViewModel = OrderBookListViewModel()
   let openingPrice = PublishRelay<Double>()
   var coinDetailCoordinator: CoinDetailCoordinator?
-
   private let disposeBag = DisposeBag()
+
+
+  // MARK: Initializer
 
   init(useCase: CoinDetailUseCaseLogic = CoinDetailUseCase(),
        orderCurrency: OrderCurrency,

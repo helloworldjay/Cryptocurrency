@@ -15,8 +15,14 @@ protocol OrderBookListViewModelLogic {
 }
 
 final class OrderBookListViewModel: OrderBookListViewModelLogic {
+
+  // MARK: Properties
+
   let cellData: Driver<[OrderBookListViewCellData]>
   let orderBookListViewCellData: PublishSubject<[OrderBookListViewCellData]>
+
+
+  // MARK: Initialzier
 
   init() {
     self.orderBookListViewCellData = PublishSubject<[OrderBookListViewCellData]>()

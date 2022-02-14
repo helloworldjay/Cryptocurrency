@@ -12,5 +12,8 @@ protocol CurrentPriceStatusViewModelLogic {
 }
 
 final class CurrentPriceStatusViewModel: CurrentPriceStatusViewModelLogic {
+
+  // MARK: Properties
+
   let coinPriceData = PublishRelay<CoinPriceData>()
 }

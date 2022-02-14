@@ -36,7 +36,10 @@ final class OrderBookListView: UITableView {
     self.allowsSelection = false
     self.rowHeight = 40
   }
+
   
+  // MARK: Binding
+
   func bind(viewModel: OrderBookListViewModelLogic) {
     viewModel.cellData
       .drive(self.rx.items) { tableView, row, data in

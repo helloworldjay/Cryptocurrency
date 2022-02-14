@@ -18,7 +18,7 @@ extension TransactionSheetViewCellData {
   func priceText() -> NSAttributedString? {
     let askTextColor = UIColor.red.withAlphaComponent(0.8)
     let bidTextColor = UIColor.blue.withAlphaComponent(0.8)
-    let color = self.orderBookCategory == .ask ? askTextColor : bidTextColor
+    let color = (self.orderBookCategory) == .ask ? askTextColor : bidTextColor
     guard let decimalText = self.transactionPrice.convertToDecimalText() else {
       return nil
     }
@@ -28,7 +28,7 @@ extension TransactionSheetViewCellData {
   func volumeText() -> NSAttributedString? {
     let askTextColor = UIColor.red.withAlphaComponent(0.8)
     let bidTextColor = UIColor.blue.withAlphaComponent(0.8)
-    let color = self.orderBookCategory == .ask ? askTextColor : bidTextColor
+    let color = (self.orderBookCategory == .ask) ? askTextColor : bidTextColor
     let numberFormatter = NumberFormatter()
     numberFormatter.minimumFractionDigits = 4
     numberFormatter.maximumFractionDigits = 4

@@ -8,9 +8,9 @@
 import Foundation
 
 enum CoinDetailCategory: Int, CaseIterable {
-  case orderBook = 0
-  case chart = 1
-  case transactionHistory = 2
+  case orderBook
+  case chart
+  case transactionHistory
   
   static func findCategory(with index: Int) -> Self {
     guard let category = CoinDetailCategory.allCases

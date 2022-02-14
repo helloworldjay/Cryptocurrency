@@ -14,9 +14,15 @@ protocol TransactionSheetViewModelLogic {
 }
 
 final class TransactionSheetViewModel: TransactionSheetViewModelLogic {
+
+  // MARK: Properties
+
   let transactionSheetViewCellData: PublishSubject<[TransactionSheetViewCellData]>
   let cellData: Driver<[TransactionSheetViewCellData]>
-  
+
+
+  // MARK: Initializer
+
   init() {
     self.transactionSheetViewCellData = PublishSubject<[TransactionSheetViewCellData]>()
 

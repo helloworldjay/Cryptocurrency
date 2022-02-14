@@ -124,7 +124,7 @@ final class CoinDetailViewController: UIViewController {
     self.coinChartView.bind(viewModel: self.coinDetailViewModel.coinChartViewModel)
     self.currentPriceStatusView.bind(viewModel: self.coinDetailViewModel.currentPriceStatusViewModel)
     self.orderBookListView.bind(viewModel: self.coinDetailViewModel.orderBookListViewModel)
-    self.transactionSheetView.bind(viewModel: self.coinDetailViewModel.transactionSheetViewModel)
+    self.transactionSheetView.bind(transactionSheetViewModel: self.coinDetailViewModel.transactionSheetViewModel)
 
     self.timeUnitChangeButton.rx.tap
       .bind(to: self.coinDetailViewModel.tapSelectTimeUnitButton)

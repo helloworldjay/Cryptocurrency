@@ -74,6 +74,9 @@ final class TransactionSheetViewCell: UITableViewCell {
     self.volumeLabel.textAlignment = .right
   }
 
+
+  // MARK: Set CellData
+
   func setData(with data: TransactionSheetViewCellData) {
     self.timeLabel.text = data.dateText
     self.priceLabel.attributedText = data.priceText()

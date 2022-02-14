@@ -19,8 +19,10 @@ final class TransactionSheetView: UIView {
   private let timeCategoryLabel = UILabel()
   private let priceCategoryLabel = UILabel()
   private let transactionCategoryLabel = UILabel()
-  
   private let disposeBag = DisposeBag()
+  
+  
+  // MARK: Initializer
   
   init() {
     super.init(frame: .zero)
@@ -86,10 +88,10 @@ final class TransactionSheetView: UIView {
   }
   
   
-  // MARK: Bind
+  // MARK: Binding
   
-  func bind(viewModel: TransactionSheetViewModelLogic) {
-    viewModel.cellData
+  func bind(transactionSheetViewModel: TransactionSheetViewModelLogic) {
+    transactionSheetViewModel.cellData
       .drive(self.transactionListView.rx.items) { tableView, row, data in
         let indexPath = IndexPath(row: row, section: 0)
         guard let cell = tableView.dequeueReusableCell(
