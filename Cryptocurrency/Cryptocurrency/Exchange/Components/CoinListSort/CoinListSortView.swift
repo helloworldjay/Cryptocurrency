@@ -16,14 +16,14 @@ final class CoinListSortView: UITableViewHeaderFooterView {
 
   // MARK: Properties
 
-  let sortByName = SortButton()
-  let sortByCurrentPrice = SortButton()
-  let sortByPriceChangedRatio = SortButton()
-  let sortByTransactionAmount = SortButton()
-  let disposeBag = DisposeBag()
+  let sortByNameButton = SortButton()
+  let sortByCurrentPriceButton = SortButton()
+  let sortByPriceChangedRatioButton = SortButton()
+  let sortByTransactionAmountButton = SortButton()
   let divider = UIView().then {
     $0.backgroundColor = .gray
   }
+  private let disposeBag = DisposeBag()
 
 
   // MARK: Initializers
@@ -40,37 +40,37 @@ final class CoinListSortView: UITableViewHeaderFooterView {
   }
 
   private func attribute() {
-    self.sortByName.do {
+    self.sortByNameButton.do {
       $0.setTitle("가산자산명", for: .normal)
       $0.titleLabel?.font = .systemFont(ofSize: 15)
       $0.contentHorizontalAlignment = .left
       $0.addTarget(self, action: #selector(self.sortButtonTapped), for: .touchUpInside)
     }
-    self.sortByCurrentPrice.do {
+    self.sortByCurrentPriceButton.do {
       $0.setTitle("현재가", for: .normal)
       $0.titleLabel?.font = .systemFont(ofSize: 15)
       $0.contentHorizontalAlignment = .right
       $0.addTarget(self, action: #selector(self.sortButtonTapped), for: .touchUpInside)
     }
-    self.sortByPriceChangedRatio.do {
+    self.sortByPriceChangedRatioButton.do {
       $0.setTitle("변동률", for: .normal)
       $0.titleLabel?.font = .systemFont(ofSize: 15)
       $0.contentHorizontalAlignment = .right
       $0.addTarget(self, action: #selector(self.sortButtonTapped), for: .touchUpInside)
     }
-    self.sortByTransactionAmount.do {
+    self.sortByTransactionAmountButton.do {
       $0.setTitle("거래금액", for: .normal)
       $0.titleLabel?.font = .systemFont(ofSize: 15)
       $0.contentHorizontalAlignment = .right
       $0.addTarget(self, action: #selector(self.sortButtonTapped), for: .touchUpInside)
     }
 
-    self.setSelectedButton(with: self.sortByTransactionAmount)
+    self.setSelectedButton(with: self.sortByTransactionAmountButton)
 
     [
-      self.sortByName,
-      self.sortByCurrentPrice,
-      self.sortByPriceChangedRatio
+      self.sortByNameButton,
+      self.sortByCurrentPriceButton,
+      self.sortByPriceChangedRatioButton
     ].forEach {
       self.setUnselectedButton(with: $0)
     }
@@ -79,10 +79,10 @@ final class CoinListSortView: UITableViewHeaderFooterView {
   @objc
   private func sortButtonTapped(sortButton: SortButton) {
     [
-      self.sortByName,
-      self.sortByCurrentPrice,
-      self.sortByPriceChangedRatio,
-      self.sortByTransactionAmount
+      self.sortByNameButton,
+      self.sortByCurrentPriceButton,
+      self.sortByPriceChangedRatioButton,
+      self.sortByTransactionAmountButton
     ].filter { $0 != sortButton }
     .forEach { self.setUnselectedButton(with: $0) }
 
@@ -109,31 +109,31 @@ final class CoinListSortView: UITableViewHeaderFooterView {
 
   private func layout() {
     [
-      self.sortByName,
-      self.sortByCurrentPrice,
-      self.sortByPriceChangedRatio,
-      self.sortByTransactionAmount,
+      self.sortByNameButton,
+      self.sortByCurrentPriceButton,
+      self.sortByPriceChangedRatioButton,
+      self.sortByTransactionAmountButton,
       self.divider
     ].forEach { addSubview($0) }
 
-    self.sortByName.snp.makeConstraints {
+    self.sortByNameButton.snp.makeConstraints {
       $0.centerY.equalToSuperview()
       $0.leading.equalToSuperview().inset(12)
       $0.width.equalToSuperview().multipliedBy(0.3)
     }
 
-    self.sortByCurrentPrice.snp.makeConstraints {
-      $0.centerY.equalTo(self.sortByName)
+    self.sortByCurrentPriceButton.snp.makeConstraints {
+      $0.centerY.equalTo(self.sortByNameButton)
       $0.trailing.equalToSuperview().multipliedBy(0.5)
     }
 
-    self.sortByPriceChangedRatio.snp.makeConstraints {
-      $0.centerY.equalTo(self.sortByName)
+    self.sortByPriceChangedRatioButton.snp.makeConstraints {
+      $0.centerY.equalTo(self.sortByNameButton)
       $0.trailing.equalToSuperview().multipliedBy(0.7)
     }
 
-    self.sortByTransactionAmount.snp.makeConstraints {
-      $0.centerY.equalTo(self.sortByName)
+    self.sortByTransactionAmountButton.snp.makeConstraints {
+      $0.centerY.equalTo(self.sortByNameButton)
       $0.trailing.equalToSuperview().inset(12)
     }
 
@@ -145,27 +145,27 @@ final class CoinListSortView: UITableViewHeaderFooterView {
   }
 
   func bind(coinListSortViewModel: CoinListSortViewModelLogic) {
-    self.sortByName.rx.tap
+    self.sortByNameButton.rx.tap
       .map {
-        return (self.sortByName.isDescending, CoinListSortCriterion.coinName)
+        return (self.sortByNameButton.isDescending, CoinListSortCriterion.coinName)
       }.bind(to: coinListSortViewModel.coinListSortCriteria)
       .disposed(by: self.disposeBag)
 
-    self.sortByCurrentPrice.rx.tap
+    self.sortByCurrentPriceButton.rx.tap
       .map {
-        return (self.sortByCurrentPrice.isDescending, CoinListSortCriterion.currentPrice)
+        return (self.sortByCurrentPriceButton.isDescending, CoinListSortCriterion.currentPrice)
       }.bind(to: coinListSortViewModel.coinListSortCriteria)
       .disposed(by: self.disposeBag)
 
-    self.sortByPriceChangedRatio.rx.tap
+    self.sortByPriceChangedRatioButton.rx.tap
       .map {
-        return (self.sortByPriceChangedRatio.isDescending, CoinListSortCriterion.priceChangedRatio)
+        return (self.sortByPriceChangedRatioButton.isDescending, CoinListSortCriterion.priceChangedRatio)
       }.bind(to: coinListSortViewModel.coinListSortCriteria)
       .disposed(by: self.disposeBag)
 
-    self.sortByTransactionAmount.rx.tap
+    self.sortByTransactionAmountButton.rx.tap
       .map {
-        return (self.sortByTransactionAmount.isDescending, CoinListSortCriterion.transactionAmount)
+        return (self.sortByTransactionAmountButton.isDescending, CoinListSortCriterion.transactionAmount)
       }.bind(to: coinListSortViewModel.coinListSortCriteria)
       .disposed(by: self.disposeBag)
   }
