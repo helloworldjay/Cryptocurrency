@@ -17,9 +17,14 @@ final class CoinDetailViewModel {
   let coinChartViewModel = CoinChartViewModel()
   let currentPriceStatusViewModel = CurrentPriceStatusViewModel()
   let coinDetailSegmentedCategoryViewModel = CoinDetailSegmentedCategoryViewModel()
+  let transactionSheetViewModel = TransactionSheetViewModel()
+  let orderBookListViewModel = OrderBookListViewModel()
+  let openingPrice = PublishRelay<Double>()
   var coinDetailCoordinator: CoinDetailCoordinator?
-
   private let disposeBag = DisposeBag()
+
+
+  // MARK: Initializer
 
   init(useCase: CoinDetailUseCaseLogic = CoinDetailUseCase(),
        orderCurrency: OrderCurrency,
@@ -39,7 +44,7 @@ final class CoinDetailViewModel {
       }
     
     let chartData = candleStickResult
-      .map(useCase.candleStickResponse)
+      .map(useCase.response)
       .filter { $0 != nil }
       .map(useCase.chartData)
     
@@ -49,15 +54,59 @@ final class CoinDetailViewModel {
     
     let tickerResult = useCase.fetchTicker(orderCurrency: orderCurrency,
                                            paymentCurrency: paymentCurrency)
-    
-    let coinDetailData = tickerResult
-      .map(useCase.tickerResponse)
+
+    let tickerResponse = tickerResult
+      .map(useCase.response)
       .filter { $0 != nil }
+
+    let tickerData = tickerResponse
       .map(useCase.tickerData)
+      .filter { $0 != nil }
+      .map { $0! }
+
+    tickerData
       .asObservable()
-    
-    coinDetailData
-      .bind(to: self.currentPriceStatusViewModel.coinDetailData)
+      .bind(to: self.currentPriceStatusViewModel.coinPriceData)
+      .disposed(by: self.disposeBag)
+
+    tickerData
+      .map(useCase.openingPrice)
+      .asObservable()
+      .bind(to: self.openingPrice)
+      .disposed(by: self.disposeBag)
+
+    let orderBookResult = useCase.fetchOrderBook(orderCurrency: orderCurrency,
+                                                 paymentCurrency: paymentCurrency)
+
+    let orderBookResponse = orderBookResult
+      .map(useCase.response)
+      .filter { $0 != nil }
+      .map { $0! }
+      .asObservable()
+
+    Observable.combineLatest(
+      orderBookResponse,
+      self.openingPrice
+    ).map { (response, openingPrice) in
+      let bids = useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
+      let asks = useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
+      return asks + bids
+    }
+    .bind(to: self.orderBookListViewModel.orderBookListViewCellData)
+    .disposed(by: self.disposeBag)
+
+    let transactionHistoryResult = useCase.fetchTransactionHistory(orderCurrency: orderCurrency,
+                                                                   paymentCurrency: paymentCurrency)
+
+    let transactionHistoryResponse = transactionHistoryResult
+      .map(useCase.response)
+      .filter { $0 != nil }
+      .map { $0! }
+
+    transactionHistoryResponse
+      .map(useCase.transactionSheetViewCellData)
+      .asObservable()
+      .bind(to: self.transactionSheetViewModel.transactionSheetViewCellData)
       .disposed(by: self.disposeBag)
   }
 }

@@ -7,7 +7,14 @@
 
 import Foundation
 
-enum OrderBookCategory {
+enum OrderBookCategory: String, CaseIterable {
   case bid
   case ask
+
+  static func findOrderBookCategory(with text: String) -> Self? {
+    guard let orderBookCategory = OrderBookCategory.allCases
+            .filter({ $0.rawValue == text })
+            .first else { return .bid }
+    return orderBookCategory
+  }
 }

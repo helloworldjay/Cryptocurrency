@@ -44,12 +44,12 @@ struct OrderBookResponse: Decodable {
 }
 
 struct OrderBookData: Decodable {
-  let timestamp: Int
+  let timestamp: String
   let orderCurrency: String
   let paymentCurrency: String
   let bids: [OrderBook]
   let asks: [OrderBook]
-  
+
   enum CodingKeys: String, CodingKey {
     case timestamp, bids, asks
     case orderCurrency = "order_currency"
@@ -57,7 +57,15 @@ struct OrderBookData: Decodable {
   }
 }
 
-struct OrderBook: Decodable {
+struct OrderBook: Decodable, Comparable {
+  static func < (lhs: OrderBook, rhs: OrderBook) -> Bool {
+    guard let lhsPrice = Double(lhs.price),
+          let rhsPrice = Double(rhs.price) else {
+            return false
+          }
+    return lhsPrice < rhsPrice
+  }
+  
   let quantity: String
   let price: String
 }

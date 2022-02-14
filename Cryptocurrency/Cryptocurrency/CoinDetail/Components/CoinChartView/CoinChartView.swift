@@ -46,7 +46,10 @@ final class CoinChartView: CandleStickChartView {
     self.dragYEnabled = false
     self.delegate = self
   }
-  
+
+
+  // MARK: Binding
+
   func bind(viewModel: CoinChartViewModelLogic) {
     viewModel.chartData
       .bind { chartData in

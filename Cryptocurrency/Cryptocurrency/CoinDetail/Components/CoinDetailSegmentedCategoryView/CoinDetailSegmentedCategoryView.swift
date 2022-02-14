@@ -28,7 +28,7 @@ final class CoinDetailSegmentedCategoryView: SegmentedCategoryView {
   }
   
   
-  // MARK: Bind
+  // MARK: Binding
   
   func bind(viewModel: CoinDetailSegmentedCategoryViewModelLogic) {
     self.segmentedControl.rx.selectedSegmentIndex

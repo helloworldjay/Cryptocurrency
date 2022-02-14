@@ -16,7 +16,7 @@ struct NetworkManagerSpy: NetworkManagerLogic {
   var candleStickResponseStub: Result<CandleStickResponse, APINetworkError>
   var orderBookResponseStub: Result<OrderBookResponse, APINetworkError> = .failure(.decodingError)
   var transactionResponseStub: Result<TransactionHistoryResponse, APINetworkError> = .failure(.decodingError)
-  
+
   func fetchTickerData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
     return Observable.just(tickerResponseStub)
       .asSingle()
@@ -35,5 +35,5 @@ struct NetworkManagerSpy: NetworkManagerLogic {
   func fetchTransactionHistoryData(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>> {
     Observable.just(transactionResponseStub)
       .asSingle()
-  }
+  }  
 }
