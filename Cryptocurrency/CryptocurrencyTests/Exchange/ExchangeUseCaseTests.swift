@@ -81,4 +81,260 @@ class ExchangeUseCaseTests: XCTestCase {
     expect(cellData[0].currentPrice).to(equal("2000"))
     expect(cellData[0].priceChangedRatio).to(equal("1.0"))
   }
+
+  func test_coin_이름으로_정렬_기능_확인() {
+    //given
+    let testCellData = [
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      ),
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      )
+    ]
+    let expectedAscendingCellData = [
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      ),
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      )
+    ]
+
+    //when
+    let ascendingResult = sut.sortByCoinName(coinListCellData: testCellData, isDescending: false)
+    let descendingResult = sut.sortByCoinName(coinListCellData: testCellData, isDescending: true)
+
+    //then
+    expect(ascendingResult).to(equal(expectedAscendingCellData))
+    expect(descendingResult).toNot(equal(expectedAscendingCellData))
+  }
+
+  func test_현재가로_정렬_기능_확인() {
+    //given
+    let testCellData = [
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      ),
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      )
+    ]
+    let expectedDescendingCellData = [
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      ),
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      )
+    ]
+
+    //when
+    let ascendingResult = sut.sortByCurrentPrice(coinListCellData: testCellData, isDescending: false)
+    let descendingResult = sut.sortByCurrentPrice(coinListCellData: testCellData, isDescending: true)
+
+    //then
+    expect(ascendingResult).toNot(equal(expectedDescendingCellData))
+    expect(descendingResult).to(equal(expectedDescendingCellData))
+  }
+
+  func test_가격_변동률로_정렬_기능_확인() {
+    //given
+    let testCellData = [
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      ),
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      )
+    ]
+    let expectedDescendingCellData = [
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      ),
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      )
+    ]
+
+    //when
+    let ascendingResult = sut.sortByPriceChangedRatio(coinListCellData: testCellData, isDescending: false)
+    let descendingResult = sut.sortByPriceChangedRatio(coinListCellData: testCellData, isDescending: true)
+
+    //then
+    expect(ascendingResult).toNot(equal(expectedDescendingCellData))
+    expect(descendingResult).to(equal(expectedDescendingCellData))
+  }
+
+  func test_거래량으로_정렬_기능_확인() {
+    //given
+    let testCellData = [
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      ),
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      )
+    ]
+    let expectedDescendingCellData = [
+      CoinListViewCellData(
+        coinName: "사",
+        ticker: "DEF",
+        currentPrice: "456",
+        priceChangedRatio: "787",
+        priceDifference: "931",
+        transactionAmount: "852"
+      ),
+      CoinListViewCellData(
+        coinName: "가",
+        ticker: "GHI",
+        currentPrice: "789",
+        priceChangedRatio: "246",
+        priceDifference: "263",
+        transactionAmount: "682"
+      ),
+      CoinListViewCellData(
+        coinName: "하",
+        ticker: "ABC",
+        currentPrice: "123",
+        priceChangedRatio: "432",
+        priceDifference: "842",
+        transactionAmount: "424"
+      )
+    ]
+
+    //when
+    let ascendingResult = sut.sortByTransactionAmount(coinListCellData: testCellData, isDescending: false)
+    let descendingResult = sut.sortByTransactionAmount(coinListCellData: testCellData, isDescending: true)
+
+    //then
+    expect(ascendingResult).toNot(equal(expectedDescendingCellData))
+    expect(descendingResult).to(equal(expectedDescendingCellData))
+  }
 }

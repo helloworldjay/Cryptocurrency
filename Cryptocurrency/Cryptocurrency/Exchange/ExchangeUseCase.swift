@@ -11,6 +11,10 @@ protocol ExchangeUseCaseLogic {
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
   func tickerResponse(result: Result<AllTickerResponse, APINetworkError>) -> AllTickerResponse?
   func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData]
+  func sortByCoinName(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
+  func sortByCurrentPrice(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
+  func sortByPriceChangedRatio(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
+  func sortByTransactionAmount(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
 }
 
 struct ExchangeUseCase: ExchangeUseCaseLogic {
@@ -28,7 +32,7 @@ struct ExchangeUseCase: ExchangeUseCaseLogic {
   
   
   // MARK: Network Logics
-  
+
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
     return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
   }
@@ -55,5 +59,47 @@ struct ExchangeUseCase: ExchangeUseCaseLogic {
           transactionAmount: $0.value.accTradeValue24H
         )
       }
+  }
+
+  func sortByCoinName(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return coinListCellData.sorted { lhs, rhs -> Bool in
+      if isDescending {
+        return lhs.coinName > rhs.coinName
+      }
+      return lhs.coinName < rhs.coinName
+    }
+  }
+
+  func sortByCurrentPrice(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return coinListCellData.sorted { lhs, rhs -> Bool in
+      guard let lhsCurrentPrice = Double(lhs.currentPrice),
+            let rhsCurrentPrice = Double(rhs.currentPrice) else { return true }
+      if isDescending {
+        return lhsCurrentPrice > rhsCurrentPrice
+      }
+      return lhsCurrentPrice < rhsCurrentPrice
+    }
+  }
+
+  func sortByPriceChangedRatio(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return coinListCellData.sorted { lhs, rhs -> Bool in
+      guard let lhsPriceChangedRatio = Double(lhs.priceChangedRatio),
+            let rhsPriceChangedRatio = Double(rhs.priceChangedRatio) else { return true }
+      if isDescending {
+        return lhsPriceChangedRatio > rhsPriceChangedRatio
+      }
+      return lhsPriceChangedRatio < rhsPriceChangedRatio
+    }
+  }
+
+  func sortByTransactionAmount(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {
+    return coinListCellData.sorted { lhs, rhs -> Bool in
+      guard let lhsTransactionAmount = Double(lhs.transactionAmount),
+            let rhsTransactionAmount = Double(rhs.transactionAmount) else { return true }
+      if isDescending {
+        return lhsTransactionAmount > rhsTransactionAmount
+      }
+      return lhsTransactionAmount < rhsTransactionAmount
+    }
   }
 }
