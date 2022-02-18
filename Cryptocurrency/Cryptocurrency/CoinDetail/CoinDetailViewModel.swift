@@ -158,10 +158,10 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
       if cellData.count == 0 {
         return addedCellData.asks + addedCellData.bids
       }
-      let preAsks = Array(cellData[0..<30])
-      let preBids = Array(cellData[30..<60])
-      let mergedAsks = useCase.mergeOrderBookListViewCellData(preCellData: preAsks, postCellData: addedCellData.0)
-      let mergedBids = useCase.mergeOrderBookListViewCellData(preCellData: preBids, postCellData: addedCellData.1)
+      guard let preAsks = cellData[safe: 0..<30] else { return [] }
+      guard let preBids = cellData[safe: 30..<60] else { return [] }
+      let mergedAsks = useCase.mergeOrderBookListViewCellData(preCellData: preAsks, postCellData: addedCellData.asks)
+      let mergedBids = useCase.mergeOrderBookListViewCellData(preCellData: preBids, postCellData: addedCellData.bids)
       let filledAsksCellData = useCase.checked(orderBookListViewCellData: mergedAsks, category: .ask)
       let filledBidsCellData = useCase.checked(orderBookListViewCellData: mergedBids, category: .bid)
       return filledAsksCellData + filledBidsCellData

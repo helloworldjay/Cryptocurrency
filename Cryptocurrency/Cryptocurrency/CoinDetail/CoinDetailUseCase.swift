@@ -251,6 +251,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     } else {
       rangeToRemove = 30..<(30 + exceedCount)
     }
+    guard cellData[safe: rangeToRemove] != nil else { return orderBookListViewCellData }
     cellData.removeSubrange(rangeToRemove)
     return cellData
   }

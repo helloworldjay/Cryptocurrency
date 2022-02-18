@@ -12,6 +12,13 @@ extension Array {
     return self.indices ~= index ? self[index] : nil
   }
 
+  subscript(safe range: Range<Int>) -> [Element]? {
+    let lower = range.lowerBound
+    let upper = range.upperBound - 1
+    let isContained = self.indices ~= (upper) && self.indices ~= (lower)
+    return isContained ? Array(self[range]) : nil
+  }
+
   mutating func sortByOrderPrice() where Element == OrderBookListViewCellData {
     self.sort { lhs, rhs in
       let lhsPrice = lhs.orderPrice ?? 0.0
