@@ -226,7 +226,6 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       }
       mergedCellData.append($0)
     }
-    mergedCellData.sortByOrderPrice()
     return mergedCellData
       .filter { $0.orderQuantity != 0 }
       .filter { $0.orderQuantity != nil }
@@ -234,6 +233,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
 
   func checked(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
     var cellData = orderBookListViewCellData
+    cellData.sortByOrderPrice()
     if cellData.count > 30 {
       cellData = self.removedUnnecessaryCellData(orderBookListViewCellData: cellData, category: category)
     } else if cellData.count < 30 {
