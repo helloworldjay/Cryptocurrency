@@ -101,11 +101,12 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     var cellData = orderBooks
       .sorted(by: >)
       .map { orderBook -> OrderBookListViewCellData? in
-      guard let orderPrice = Double(orderBook.price) else { return nil }
+      guard let orderPrice = Double(orderBook.price),
+            let quantity = Double(orderBook.quantity) else { return nil }
       return OrderBookListViewCellData(
         orderBookCategory: category,
-        orderPrice: orderBook.price,
-        orderQuantity: orderBook.quantity,
+        orderPrice: orderPrice,
+        orderQuantity: quantity,
         priceChangedRatio: (orderPrice - openingPrice) / orderPrice
       )
     }.compactMap { $0 }

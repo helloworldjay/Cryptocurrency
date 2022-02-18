@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OrderBookCategory: String, CaseIterable {
+enum OrderBookCategory: String, CaseIterable, Decodable {
   case bid
   case ask
 

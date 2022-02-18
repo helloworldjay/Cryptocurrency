@@ -11,8 +11,8 @@ import Then
 
 struct OrderBookListViewCellData: Equatable {
   let orderBookCategory: OrderBookCategory
-  let orderPrice: String?
-  let orderQuantity: String?
+  let orderPrice: Double?
+  let orderQuantity: Double?
   let priceChangedRatio: Double?
 }
 

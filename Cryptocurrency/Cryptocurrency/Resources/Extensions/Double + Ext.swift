@@ -17,4 +17,16 @@ extension Double {
       return "-"
     }
   }
+
+  func convertToDecimalText() -> String? {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.maximumFractionDigits = 4
+    numberFormatter.numberStyle = .decimal
+    
+    guard let convertedText = numberFormatter.string(for: self) else {
+      return nil
+    }
+    
+    return convertedText
+  }
 }
