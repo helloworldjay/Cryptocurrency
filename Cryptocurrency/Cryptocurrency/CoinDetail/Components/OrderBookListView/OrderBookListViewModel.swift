@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 protocol OrderBookListViewModelLogic {
-  var initialCellData: PublishRelay<([OrderBookListViewCellData], [OrderBookListViewCellData])> { get }
+  var initialCellData: PublishRelay<(asks: [OrderBookListViewCellData], bids: [OrderBookListViewCellData])> { get }
   var orderBookListViewCellData: PublishRelay<[OrderBookListViewCellData]> { get }
   var cellData: Driver<[OrderBookListViewCellData]> { get }
 }
@@ -19,7 +19,7 @@ final class OrderBookListViewModel: OrderBookListViewModelLogic {
 
   // MARK: Properties
 
-  let initialCellData: PublishRelay<([OrderBookListViewCellData], [OrderBookListViewCellData])>
+  let initialCellData: PublishRelay<(asks: [OrderBookListViewCellData], bids: [OrderBookListViewCellData])>
   let orderBookListViewCellData: PublishRelay<[OrderBookListViewCellData]>
   let cellData: Driver<[OrderBookListViewCellData]>
   private let disposeBag = DisposeBag()
@@ -28,7 +28,7 @@ final class OrderBookListViewModel: OrderBookListViewModelLogic {
   // MARK: Initialzier
 
   init() {
-    self.initialCellData = PublishRelay<([OrderBookListViewCellData], [OrderBookListViewCellData])>()
+    self.initialCellData = PublishRelay<(asks: [OrderBookListViewCellData], bids: [OrderBookListViewCellData])>()
     self.orderBookListViewCellData = PublishRelay<[OrderBookListViewCellData]>()
     
     self.cellData = self.orderBookListViewCellData

@@ -228,7 +228,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let data = socketText.data(using: .utf8)!
 
     //when
-    let socketTickerResponse = self.sut.socketResponse(with: data, type: SocketTickerResponse.self)
+    let socketTickerResponse = self.sut.decodedSocketResponse(as: SocketTickerResponse.self, with: data)
 
     //then
     expect(socketTickerResponse).toNot(beNil())
@@ -256,7 +256,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let data = socketText.data(using: .utf8)!
 
     //when
-    let socketOrderBookResponse = self.sut.socketResponse(with: data, type: SocketOrderBookResponse.self)
+    let socketOrderBookResponse = self.sut.decodedSocketResponse(as: SocketOrderBookResponse.self, with: data)
 
     //then
     expect(socketOrderBookResponse).toNot(beNil())
@@ -285,7 +285,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let data = socketText.data(using: .utf8)!
 
     //when
-    let socketTransactionResponse = self.sut.socketResponse(with: data, type: SocketTransactionResponse.self)
+    let socketTransactionResponse = self.sut.decodedSocketResponse(as: SocketTransactionResponse.self, with: data)
 
     //then
     expect(socketTransactionResponse).toNot(beNil())
@@ -408,10 +408,10 @@ final class CoinDetailUseCaseTests: XCTestCase {
         orderQuantity: 1, priceChangedRatio: 0
       )
     ]
-    
+
     //when
-    let cellData = self.sut.mergeOrderBookListViewCellData(pre: preOrderBookListViewCellData,
-                                                           post: postOrderBookListViewCellData)
+    let cellData = self.sut.mergeOrderBookListViewCellData(preCellData: preOrderBookListViewCellData,
+                                                           postCellData: postOrderBookListViewCellData)
 
     //then
     expect(cellData).to(equal(expectedCellData))

@@ -12,7 +12,7 @@ extension Array {
     return self.indices ~= index ? self[index] : nil
   }
 
-  mutating func sort() where Element == OrderBookListViewCellData {
+  mutating func sortByOrderPrice() where Element == OrderBookListViewCellData {
     self.sort { lhs, rhs in
       let lhsPrice = lhs.orderPrice ?? 0.0
       let rhsPrice = rhs.orderPrice ?? 0.0

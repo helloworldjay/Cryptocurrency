@@ -23,9 +23,9 @@ protocol CoinDetailViewModelLogic {
 }
 
 final class CoinDetailViewModel: CoinDetailViewModelLogic {
-  
+
   // MARK: Properties
-  
+
   let selectedTimeUnit = BehaviorRelay(value: TimeUnit.oneMinute)
   let tapSelectTimeUnitButton = PublishRelay<Void>()
   let coinChartViewModel = CoinChartViewModel()
@@ -57,16 +57,16 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
                                  paymentCurrency: paymentCurrency,
                                  timeUnit: $0)
       }
-    
+
     let chartData = candleStickResult
       .map(useCase.response)
       .filter { $0 != nil }
       .map(useCase.chartData)
-    
+
     chartData
       .bind(to: self.coinChartViewModel.chartData)
       .disposed(by: self.disposeBag)
-    
+
     let tickerResult = useCase.fetchTicker(orderCurrency: orderCurrency,
                                            paymentCurrency: paymentCurrency)
 
@@ -102,7 +102,7 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
     Observable.combineLatest(
       orderBookResponse,
       self.openingPrice
-    ).map { (response, openingPrice) -> ([OrderBookListViewCellData], [OrderBookListViewCellData])  in
+    ).map { (response, openingPrice) -> ([OrderBookListViewCellData], [OrderBookListViewCellData]) in
       let bids = useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
       let asks = useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
       return (asks, bids)
@@ -126,8 +126,8 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
     let socketTickerResponse = self.socketText
       .map { $0.data(using: .utf8) }
       .filter { $0 != nil }
-      .map { useCase.socketResponse(with: $0!, type: SocketTickerResponse.self) }
-    
+      .map { useCase.decodedSocketResponse(as: SocketTickerResponse.self, with: $0!) }
+
     socketTickerResponse
       .filter { $0 != nil }
       .map { useCase.coinPriceData(with: $0!) }
@@ -137,18 +137,18 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
     let socketOrderBookResponse = self.socketText
       .map { $0.data(using: .utf8) }
       .filter { $0 != nil }
-      .map { useCase.socketResponse(with: $0!, type: SocketOrderBookResponse.self) }
+      .map { useCase.decodedSocketResponse(as: SocketOrderBookResponse.self, with: $0!) }
       .filter { $0 != nil }
       .map{ $0! }
       .asObservable()
 
-    let socketOrderBookCellData = Observable.combineLatest(
+    let socketOrderBookCellData: Observable<(asks: [OrderBookListViewCellData], bids: [OrderBookListViewCellData])> = Observable.combineLatest(
       socketOrderBookResponse,
       self.openingPrice
-    ).map { (response, openingPrice) -> ([OrderBookListViewCellData], [OrderBookListViewCellData])  in
+    ).map { (response, openingPrice) -> ([OrderBookListViewCellData], [OrderBookListViewCellData]) in
       let bids = useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
       let asks = useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
-      return (asks, bids)
+      return (asks: asks, bids: bids)
     }
 
     Observable.merge(
@@ -156,12 +156,12 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
       socketOrderBookCellData
     ).scan([OrderBookListViewCellData]()) { cellData, addedCellData in
       if cellData.count == 0 {
-        return addedCellData.0 + addedCellData.1
+        return addedCellData.asks + addedCellData.bids
       }
       let preAsks = Array(cellData[0..<30])
       let preBids = Array(cellData[30..<60])
-      let mergedAsks = useCase.mergeOrderBookListViewCellData(pre: preAsks, post: addedCellData.0)
-      let mergedBids = useCase.mergeOrderBookListViewCellData(pre: preBids, post: addedCellData.1)
+      let mergedAsks = useCase.mergeOrderBookListViewCellData(preCellData: preAsks, postCellData: addedCellData.0)
+      let mergedBids = useCase.mergeOrderBookListViewCellData(preCellData: preBids, postCellData: addedCellData.1)
       let filledAsksCellData = useCase.checked(orderBookListViewCellData: mergedAsks, category: .ask)
       let filledBidsCellData = useCase.checked(orderBookListViewCellData: mergedBids, category: .bid)
       return filledAsksCellData + filledBidsCellData
@@ -171,8 +171,8 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
     let socketTransactionResponse = self.socketText
       .map { $0.data(using: .utf8) }
       .filter { $0 != nil }
-      .map { useCase.socketResponse(with: $0!, type: SocketTransactionResponse.self) }
-    
+      .map { useCase.decodedSocketResponse(as: SocketTransactionResponse.self, with: $0!) }
+
     let socketTransactionSheetViewCellData = socketTransactionResponse
       .filter { $0 != nil }
       .map { useCase.transactionSheetViewCellData(with: $0!) }

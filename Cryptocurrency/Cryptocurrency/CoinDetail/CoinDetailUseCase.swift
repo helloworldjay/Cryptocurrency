@@ -20,30 +20,30 @@ protocol CoinDetailUseCaseLogic {
   func chartData(response: CandleStickResponse?) -> [ChartData]
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
   func transactionSheetViewCellData(response: TransactionHistoryResponse) -> [TransactionSheetViewCellData]
-  func socketResponse<T: Decodable>(with data: Data, type: T.Type) -> T?
+  func decodedSocketResponse<T: Decodable>(as type: T.Type, with data: Data) -> T?
   func orderBookListViewCellData(with response: SocketOrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
   func coinPriceData(with response: SocketTickerResponse) -> CoinPriceData
   func transactionSheetViewCellData(with response: SocketTransactionResponse) -> [TransactionSheetViewCellData]
-  func mergeOrderBookListViewCellData(pre: [OrderBookListViewCellData], post: [OrderBookListViewCellData]) -> [OrderBookListViewCellData]
+  func mergeOrderBookListViewCellData(preCellData: [OrderBookListViewCellData], postCellData: [OrderBookListViewCellData]) -> [OrderBookListViewCellData]
   func checked(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData]
 }
 
 final class CoinDetailUseCase: CoinDetailUseCaseLogic {
-  
+
   // MARK: Properties
-  
+
   let network: NetworkManagerLogic
-  
-  
+
+
   // MARK: Initializer
-  
+
   init(network: NetworkManagerLogic = NetworkManager()) {
     self.network = network
   }
   
-  
+
   // MARK: Network Logic
-  
+
   func fetchTicker(orderCurrency: OrderCurrency,
                    paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
     return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
@@ -99,7 +99,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     }
     return response.chartData
   }
-  
+
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData] {
     let emptyCellData = self.emtpyCellData(response: response, category: category)
     let orderBooks = (category == .ask) ? response.data.asks : response.data.bids
@@ -170,10 +170,10 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     .reversed()
   }
 
-  func socketResponse<T: Decodable>(with data: Data, type: T.Type) -> T? {
-    try? JSONDecoder().decode(type, from: data)
+  func decodedSocketResponse<T: Decodable>(as type: T.Type, with data: Data) -> T? {
+    return try? JSONDecoder().decode(type, from: data)
   }
-  
+
   func orderBookListViewCellData(with response: SocketOrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData] {
     return response.content.list.map { socketOrderBook -> OrderBookListViewCellData? in
       guard let orderPrice = Double(socketOrderBook.price),
@@ -186,7 +186,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       )
     }.compactMap { $0 }
   }
-  
+
   func coinPriceData(with response: SocketTickerResponse) -> CoinPriceData {
     return CoinPriceData(
       currentPrice: response.content.closePrice,
@@ -194,15 +194,17 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       priceDifference: response.content.chgAmt
     )
   }
-  
+
   func transactionSheetViewCellData(with response: SocketTransactionResponse) -> [TransactionSheetViewCellData] {
     return response.content.list.map { socketTransactionHistory -> TransactionSheetViewCellData? in
-      let category = socketTransactionHistory.upDown == "up" ? OrderBookCategory.ask : OrderBookCategory.bid
-      guard let dateText = socketTransactionHistory.contractDatemessage.split(separator: " ").last?.split(separator: ".").first.map({ String($0) }),
+      let category = (socketTransactionHistory.upDown == "up") ? OrderBookCategory.ask : OrderBookCategory.bid
+      guard let dateText = socketTransactionHistory.contractDatemessage
+              .split(separator: " ").last?
+              .split(separator: ".").first.map({ String($0) }),
             let volume = Double(socketTransactionHistory.contractQuantity) else {
         return nil
       }
-      
+
       return TransactionSheetViewCellData(
         orderBookCategory: category,
         transactionPrice: socketTransactionHistory.contractPrice,
@@ -212,10 +214,11 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     }.compactMap { $0 }
   }
 
-  func mergeOrderBookListViewCellData(pre: [OrderBookListViewCellData], post: [OrderBookListViewCellData]) -> [OrderBookListViewCellData] {
-    var mergedCellData = pre
-    post.forEach {
+  func mergeOrderBookListViewCellData(preCellData: [OrderBookListViewCellData], postCellData: [OrderBookListViewCellData]) -> [OrderBookListViewCellData] {
+    var mergedCellData = preCellData
+    postCellData.forEach {
       for index in 0..<mergedCellData.count {
+        guard mergedCellData[safe: index] != nil else { return }
         if mergedCellData[index].orderPrice == $0.orderPrice {
           mergedCellData[index] = $0
           return
@@ -223,7 +226,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       }
       mergedCellData.append($0)
     }
-    mergedCellData.sort()
+    mergedCellData.sortByOrderPrice()
     return mergedCellData
       .filter { $0.orderQuantity != 0 }
       .filter { $0.orderQuantity != nil }
