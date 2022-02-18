@@ -6,10 +6,9 @@
 //
 
 import RxCocoa
-import RxSwift
 
 protocol TransactionSheetViewModelLogic {
-  var transactionSheetViewCellData: PublishSubject<[TransactionSheetViewCellData]> { get }
+  var transactionSheetViewCellData: PublishRelay<[TransactionSheetViewCellData]> { get }
   var cellData: Driver<[TransactionSheetViewCellData]> { get }
 }
 
@@ -17,14 +16,14 @@ final class TransactionSheetViewModel: TransactionSheetViewModelLogic {
 
   // MARK: Properties
 
-  let transactionSheetViewCellData: PublishSubject<[TransactionSheetViewCellData]>
+  let transactionSheetViewCellData: PublishRelay<[TransactionSheetViewCellData]>
   let cellData: Driver<[TransactionSheetViewCellData]>
 
-
+  
   // MARK: Initializer
 
   init() {
-    self.transactionSheetViewCellData = PublishSubject<[TransactionSheetViewCellData]>()
+    self.transactionSheetViewCellData = PublishRelay<[TransactionSheetViewCellData]>()
 
     self.cellData = self.transactionSheetViewCellData
       .asDriver(onErrorJustReturn: [])

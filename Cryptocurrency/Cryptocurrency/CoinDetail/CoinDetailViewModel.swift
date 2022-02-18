@@ -7,8 +7,22 @@
 
 import RxRelay
 import RxSwift
+import Starscream
 
-final class CoinDetailViewModel {
+protocol CoinDetailViewModelLogic {
+  var selectedTimeUnit: BehaviorRelay<TimeUnit> { get }
+  var tapSelectTimeUnitButton: PublishRelay<Void> { get }
+  var coinChartViewModel: CoinChartViewModel { get }
+  var currentPriceStatusViewModel: CurrentPriceStatusViewModel { get }
+  var coinDetailSegmentedCategoryViewModel: CoinDetailSegmentedCategoryViewModel { get }
+  var transactionSheetViewModel: TransactionSheetViewModel { get }
+  var orderBookListViewModel: OrderBookListViewModel { get }
+  var openingPrice: PublishRelay<Double> { get }
+  var coinDetailCoordinator: CoinDetailCoordinator? { get set }
+  var socketText: PublishRelay<String> { get }
+}
+
+final class CoinDetailViewModel: CoinDetailViewModelLogic {
   
   // MARK: Properties
   
@@ -21,6 +35,7 @@ final class CoinDetailViewModel {
   let orderBookListViewModel = OrderBookListViewModel()
   let openingPrice = PublishRelay<Double>()
   var coinDetailCoordinator: CoinDetailCoordinator?
+  let socketText = PublishRelay<String>()
   private let disposeBag = DisposeBag()
 
 
@@ -35,23 +50,23 @@ final class CoinDetailViewModel {
         self.coinDetailCoordinator?.presentTimeUnitBottomSheet(with: self.selectedTimeUnit.value)
       }
       .disposed(by: self.disposeBag)
-    
+
     let candleStickResult = self.selectedTimeUnit
       .flatMapLatest {
         useCase.fetchCandleStick(orderCurrency: orderCurrency,
                                  paymentCurrency: paymentCurrency,
                                  timeUnit: $0)
       }
-    
+
     let chartData = candleStickResult
       .map(useCase.response)
       .filter { $0 != nil }
       .map(useCase.chartData)
-    
+
     chartData
       .bind(to: self.coinChartViewModel.chartData)
       .disposed(by: self.disposeBag)
-    
+
     let tickerResult = useCase.fetchTicker(orderCurrency: orderCurrency,
                                            paymentCurrency: paymentCurrency)
 
@@ -103,10 +118,59 @@ final class CoinDetailViewModel {
       .filter { $0 != nil }
       .map { $0! }
 
-    transactionHistoryResponse
+    let transactionSheetViewCellData = transactionHistoryResponse
       .map(useCase.transactionSheetViewCellData)
       .asObservable()
-      .bind(to: self.transactionSheetViewModel.transactionSheetViewCellData)
+
+    WebSocketManager.shared.socket?.delegate = self
+
+    let socketTransactionResponse = self.socketText
+      .map { $0.data(using: .utf8) }
+      .filter { $0 != nil }
+      .map { useCase.socketResponse(with: $0!, type: SocketTransactionResponse.self) }
+    
+    let socketTransactionSheetViewCellData = socketTransactionResponse
+      .filter { $0 != nil }
+      .map { useCase.transactionSheetViewCellData(with: $0!) }
+
+    Observable.merge(transactionSheetViewCellData, socketTransactionSheetViewCellData)
+      .observe(on: ConcurrentMainScheduler.instance)
+      .scan([TransactionSheetViewCellData]()) { cellData, action in
+        return action + cellData
+      }.bind(to: self.transactionSheetViewModel.transactionSheetViewCellData)
       .disposed(by: self.disposeBag)
+  }
+}
+
+
+// MARK: - WebSocket Delegate Logic
+
+extension CoinDetailViewModel: WebSocketDelegate {
+  func didReceive(event: WebSocketEvent, client: WebSocket) {
+    switch event {
+    case .connected(let headers):
+      client.write(string: "이름")
+      print("websocket is connected: \(headers)")
+    case .disconnected(let reason, let code):
+      print("websocket is disconnected: \(reason) with code: \(code)")
+    case .text(let text):
+      Observable.just(text)
+        .bind(to: self.socketText)
+        .disposed(by: self.disposeBag)
+    case .binary(let data):
+      print("Received data: \(data.count)")
+    case .ping(_):
+      break
+    case .pong(_):
+      break
+    case .viabilityChanged(_):
+      break
+    case .reconnectSuggested(_):
+      break
+    case .cancelled:
+      print("websocket is canceled")
+    case .error(let error):
+      print("websocket is error = \(error!)")
+    }
   }
 }
