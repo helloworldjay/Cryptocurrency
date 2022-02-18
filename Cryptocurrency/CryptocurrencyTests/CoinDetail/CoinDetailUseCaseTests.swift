@@ -300,8 +300,8 @@ final class CoinDetailUseCaseTests: XCTestCase {
         openPrice: "2302", closePrice: "2317", lowPrice: "2272",
         highPrice: "2344", value: "2831915078.07065789",
         volume: "1222314.51355788", sellVolume: "760129.34079004",
-        buyVolume: "462185.17276784", prevClosePrice: "2326",
-        chgRate: "0.65", chgAmt: "15", volumePower: "60.80",
+        buyVolume: "462185.17276784", previousClosePrice: "2326",
+        changeRate: "0.65", changeAmount: "15", volumePower: "60.80",
         symbol: "BTC_KRW"
       )
     )

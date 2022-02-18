@@ -190,8 +190,8 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
   func coinPriceData(with response: SocketTickerResponse) -> CoinPriceData {
     return CoinPriceData(
       currentPrice: response.content.closePrice,
-      priceChangedRatio: response.content.chgRate,
-      priceDifference: response.content.chgAmt
+      priceChangedRatio: response.content.changeRate,
+      priceDifference: response.content.changeAmount
     )
   }
 
