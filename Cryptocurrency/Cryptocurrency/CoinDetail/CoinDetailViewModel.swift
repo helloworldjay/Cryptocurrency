@@ -124,6 +124,17 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
 
     WebSocketManager.shared.socket?.delegate = self
 
+    let socketTickerResponse = self.socketText
+      .map { $0.data(using: .utf8) }
+      .filter { $0 != nil }
+      .map { useCase.socketResponse(with: $0!, type: SocketTickerResponse.self) }
+    
+    socketTickerResponse
+      .filter { $0 != nil }
+      .map { useCase.coinPriceData(with: $0!) }
+      .bind(to: self.currentPriceStatusViewModel.coinPriceData)
+      .disposed(by: self.disposeBag)
+
     let socketTransactionResponse = self.socketText
       .map { $0.data(using: .utf8) }
       .filter { $0 != nil }

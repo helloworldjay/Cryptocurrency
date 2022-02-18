@@ -17,7 +17,6 @@ final class CurrentPriceStatusView: UIView {
   private let priceChangedRatioLabel = UILabel()
   private let priceDifferenceLabel = UILabel()
   private let currentPriceLabel = UILabel()
-  
   private let disposeBag = DisposeBag()
   
   
