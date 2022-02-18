@@ -233,29 +233,43 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
   }
 
   func checked(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
-    var orderBookListViewCellData = orderBookListViewCellData
-    if orderBookListViewCellData.count > 30 {
-      let exceedCount = orderBookListViewCellData.count - 30
-      if category == .ask {
-        orderBookListViewCellData.removeSubrange(0..<exceedCount)
-      } else {
-        orderBookListViewCellData.removeSubrange(30..<(30 + exceedCount))
-      }
-    } else if orderBookListViewCellData.count < 30 {
-      let emptyCount = 30 - orderBookListViewCellData.count
-      let emptyCellData = Array(
-        repeating: OrderBookListViewCellData(
-          orderBookCategory: category,
-          orderPrice: nil,
-          orderQuantity: nil,
-          priceChangedRatio: nil
-        ), count: emptyCount)
-      if category == .ask {
-        orderBookListViewCellData.insert(contentsOf: emptyCellData, at: .zero)
-      } else {
-        orderBookListViewCellData.append(contentsOf: emptyCellData)
-      }
+    var cellData = orderBookListViewCellData
+    if cellData.count > 30 {
+      cellData = self.removedUnnecessaryCellData(orderBookListViewCellData: cellData, category: category)
+    } else if cellData.count < 30 {
+      cellData = self.filledEmptyCellData(orderBookListViewCellData: cellData, category: category)
     }
-    return orderBookListViewCellData
+    return cellData
+  }
+
+  private func removedUnnecessaryCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
+    var cellData = orderBookListViewCellData
+    let exceedCount = cellData.count - 30
+    var rangeToRemove: Range<Int>
+    if category == .ask {
+      rangeToRemove = 0..<exceedCount
+    } else {
+      rangeToRemove = 30..<(30 + exceedCount)
+    }
+    cellData.removeSubrange(rangeToRemove)
+    return cellData
+  }
+
+  private func filledEmptyCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
+    var cellData = orderBookListViewCellData
+    let emptyCount = 30 - cellData.count
+    let emptyCellData = Array(
+      repeating: OrderBookListViewCellData(
+        orderBookCategory: category,
+        orderPrice: nil,
+        orderQuantity: nil,
+        priceChangedRatio: nil
+      ), count: emptyCount)
+    if category == .ask {
+      cellData.insert(contentsOf: emptyCellData, at: .zero)
+    } else {
+      cellData.append(contentsOf: emptyCellData)
+    }
+    return cellData
   }
 }
