@@ -10,22 +10,26 @@ import RxSwift
 import RxCocoa
 
 protocol OrderBookListViewModelLogic {
+  var initialCellData: PublishRelay<([OrderBookListViewCellData], [OrderBookListViewCellData])> { get }
+  var orderBookListViewCellData: PublishRelay<[OrderBookListViewCellData]> { get }
   var cellData: Driver<[OrderBookListViewCellData]> { get }
-  var orderBookListViewCellData: PublishSubject<[OrderBookListViewCellData]> { get }
 }
 
 final class OrderBookListViewModel: OrderBookListViewModelLogic {
 
   // MARK: Properties
 
+  let initialCellData: PublishRelay<([OrderBookListViewCellData], [OrderBookListViewCellData])>
+  let orderBookListViewCellData: PublishRelay<[OrderBookListViewCellData]>
   let cellData: Driver<[OrderBookListViewCellData]>
-  let orderBookListViewCellData: PublishSubject<[OrderBookListViewCellData]>
+  private let disposeBag = DisposeBag()
 
 
   // MARK: Initialzier
 
   init() {
-    self.orderBookListViewCellData = PublishSubject<[OrderBookListViewCellData]>()
+    self.initialCellData = PublishRelay<([OrderBookListViewCellData], [OrderBookListViewCellData])>()
+    self.orderBookListViewCellData = PublishRelay<[OrderBookListViewCellData]>()
     
     self.cellData = self.orderBookListViewCellData
       .asDriver(onErrorJustReturn: [])

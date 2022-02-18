@@ -57,16 +57,16 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
                                  paymentCurrency: paymentCurrency,
                                  timeUnit: $0)
       }
-
+    
     let chartData = candleStickResult
       .map(useCase.response)
       .filter { $0 != nil }
       .map(useCase.chartData)
-
+    
     chartData
       .bind(to: self.coinChartViewModel.chartData)
       .disposed(by: self.disposeBag)
-
+    
     let tickerResult = useCase.fetchTicker(orderCurrency: orderCurrency,
                                            paymentCurrency: paymentCurrency)
 
@@ -102,13 +102,12 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
     Observable.combineLatest(
       orderBookResponse,
       self.openingPrice
-    ).map { (response, openingPrice) in
+    ).map { (response, openingPrice) -> ([OrderBookListViewCellData], [OrderBookListViewCellData])  in
       let bids = useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
       let asks = useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
-      return asks + bids
-    }
-    .bind(to: self.orderBookListViewModel.orderBookListViewCellData)
-    .disposed(by: self.disposeBag)
+      return (asks, bids)
+    }.bind(to: self.orderBookListViewModel.initialCellData)
+      .disposed(by: self.disposeBag)
 
     let transactionHistoryResult = useCase.fetchTransactionHistory(orderCurrency: orderCurrency,
                                                                    paymentCurrency: paymentCurrency)
@@ -133,6 +132,40 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
       .filter { $0 != nil }
       .map { useCase.coinPriceData(with: $0!) }
       .bind(to: self.currentPriceStatusViewModel.coinPriceData)
+      .disposed(by: self.disposeBag)
+
+    let socketOrderBookResponse = self.socketText
+      .map { $0.data(using: .utf8) }
+      .filter { $0 != nil }
+      .map { useCase.socketResponse(with: $0!, type: SocketOrderBookResponse.self) }
+      .filter { $0 != nil }
+      .map{ $0! }
+      .asObservable()
+
+    let socketOrderBookCellData = Observable.combineLatest(
+      socketOrderBookResponse,
+      self.openingPrice
+    ).map { (response, openingPrice) -> ([OrderBookListViewCellData], [OrderBookListViewCellData])  in
+      let bids = useCase.orderBookListViewCellData(with: response, category: .bid, openingPrice: openingPrice)
+      let asks = useCase.orderBookListViewCellData(with: response, category: .ask, openingPrice: openingPrice)
+      return (asks, bids)
+    }
+
+    Observable.merge(
+      self.orderBookListViewModel.initialCellData.asObservable(),
+      socketOrderBookCellData
+    ).scan([OrderBookListViewCellData]()) { cellData, addedCellData in
+      if cellData.count == 0 {
+        return addedCellData.0 + addedCellData.1
+      }
+      let preAsks = Array(cellData[0..<30])
+      let preBids = Array(cellData[30..<60])
+      let mergedAsks = useCase.mergeOrderBookListViewCellData(pre: preAsks, post: addedCellData.0)
+      let mergedBids = useCase.mergeOrderBookListViewCellData(pre: preBids, post: addedCellData.1)
+      let filledAsksCellData = useCase.checked(orderBookListViewCellData: mergedAsks, category: .ask)
+      let filledBidsCellData = useCase.checked(orderBookListViewCellData: mergedBids, category: .bid)
+      return filledAsksCellData + filledBidsCellData
+    }.bind(to: self.orderBookListViewModel.orderBookListViewCellData)
       .disposed(by: self.disposeBag)
 
     let socketTransactionResponse = self.socketText
