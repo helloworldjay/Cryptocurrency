@@ -226,12 +226,36 @@ final class CoinDetailUseCaseTests: XCTestCase {
     }
     """
     let data = socketText.data(using: .utf8)!
+    let expectedResponse = SocketTickerResponse(
+      type: "ticker",
+      content: SocketTickerData(
+        tickType: "24H",
+        date: "20200129",
+        time: "121844",
+        openPrice: "2302",
+        closePrice: "2317",
+        lowPrice: "2272",
+        highPrice: "2344",
+        value: "2831915078.07065789",
+        volume: "1222314.51355788",
+        sellVolume: "760129.34079004",
+        buyVolume: "462185.17276784",
+        previousClosePrice: "2326",
+        changeRate: "0.65",
+        changeAmount: "15",
+        volumePower: "60.80",
+        symbol: "BTC_KRW"
+      )
+    )
 
     //when
     let socketTickerResponse = self.sut.decodedSocketResponse(as: SocketTickerResponse.self, with: data)
 
     //then
     expect(socketTickerResponse).toNot(beNil())
+    expect(socketTickerResponse!.content.closePrice).to(equal(expectedResponse.content.closePrice))
+    expect(socketTickerResponse!.content.openPrice).to(equal(expectedResponse.content.openPrice))
+    expect(socketTickerResponse!.content.changeRate).to(equal(expectedResponse.content.changeRate))
   }
 
   func text_SocketOrderBookResponse에_해당하는_data가_들어올_경우_Decoding성공_후_entity를_반환() {
@@ -254,12 +278,31 @@ final class CoinDetailUseCaseTests: XCTestCase {
     }
     """
     let data = socketText.data(using: .utf8)!
+    let expectedResponse = SocketOrderBookResponse(
+      type: "orderbookdepth",
+      content: SocketOrderBookData(
+        list: [
+          SocketOrderBook(
+            symbol: "BTC_KRW",
+            price: "53365000",
+            quantity: "0",
+            total: "0",
+            orderType: .ask
+          )
+        ],
+        datetime: "1644918923346784"
+      )
+    )
 
     //when
     let socketOrderBookResponse = self.sut.decodedSocketResponse(as: SocketOrderBookResponse.self, with: data)
 
     //then
     expect(socketOrderBookResponse).toNot(beNil())
+    expect(socketOrderBookResponse!.content.list.first).toNot(beNil())
+    expect(socketOrderBookResponse!.content.list.first!.symbol).to(equal(expectedResponse.content.list.first!.symbol))
+    expect(socketOrderBookResponse!.content.list.first!.price).to(equal(expectedResponse.content.list.first!.price))
+    expect(socketOrderBookResponse!.content.list.first!.quantity).to(equal(expectedResponse.content.list.first!.quantity))
   }
 
   func test_SocketTransactionResponse에_해당하는_data가_들어올_경우_Decoding성공_후_entity를_반환() {
@@ -283,12 +326,32 @@ final class CoinDetailUseCaseTests: XCTestCase {
     }
     """
     let data = socketText.data(using: .utf8)!
+    let expectedResponse = SocketTransactionResponse(
+      type: "transaction",
+      content: SocketTransactionHistoryData(
+        list: [
+          SocketTransactionHistory(
+            contractType: "2",
+            contractPrice: "51224000",
+            contractQuantity: "0.106",
+            contractAmount: "5429744.000",
+            contractDatemessage: "2022-02-14 16:13:40.122852",
+            upDown: "dn",
+            symbol: "BTC_KRW"
+          )
+        ]
+      )
+    )
 
     //when
     let socketTransactionResponse = self.sut.decodedSocketResponse(as: SocketTransactionResponse.self, with: data)
 
     //then
     expect(socketTransactionResponse).toNot(beNil())
+    expect(socketTransactionResponse!.content.list.first).toNot(beNil())
+    expect(socketTransactionResponse!.content.list.first!.contractType).to(equal(expectedResponse.content.list.first!.contractType))
+    expect(socketTransactionResponse!.content.list.first!.contractPrice).to(equal(expectedResponse.content.list.first!.contractPrice))
+    expect(socketTransactionResponse!.content.list.first!.contractAmount).to(equal(expectedResponse.content.list.first!.contractAmount))
   }
 
   func test_SocketTickerResponse에_해당되는_tickerData를_반환() {
@@ -337,6 +400,14 @@ final class CoinDetailUseCaseTests: XCTestCase {
         datetime: "1644918923346784"
       )
     )
+    let expectedCellData = [
+      OrderBookListViewCellData(
+        orderBookCategory: .ask,
+        orderPrice: 53365000,
+        orderQuantity: 11.0,
+        priceChangedRatio: 0
+      )
+    ]
 
     //when
     let orderBookListViewCellData = self.sut.orderBookListViewCellData(with: socketOrderBookResponse,
@@ -345,6 +416,10 @@ final class CoinDetailUseCaseTests: XCTestCase {
 
     //then
     expect(orderBookListViewCellData).toNot(beEmpty())
+    expect(orderBookListViewCellData.first!.orderBookCategory).to(equal(expectedCellData.first!.orderBookCategory))
+    expect(orderBookListViewCellData.first!.orderPrice).to(equal(expectedCellData.first!.orderPrice))
+    expect(orderBookListViewCellData.first!.orderQuantity).to(equal(expectedCellData.first!.orderQuantity))
+    expect(orderBookListViewCellData.first!.priceChangedRatio).to(equal(expectedCellData.first!.priceChangedRatio))
   }
 
   func test_SocketTransactionResponse에_해당되는_배열을_반환() {
@@ -354,18 +429,35 @@ final class CoinDetailUseCaseTests: XCTestCase {
       content: SocketTransactionHistoryData(
         list: [
           SocketTransactionHistory(
-            contractType: "2", contractPrice: "51224000",
-            contractQuantity: "0.106", contractAmount: "5429744.0",
+            contractType: "2",
+            contractPrice: "51224000",
+            contractQuantity: "0.106",
+            contractAmount: "5429744.0",
             contractDatemessage: "2022-02-14 16:13:40.122852",
-            upDown: "dn", symbol: "BTC_KRW")]
+            upDown: "dn",
+            symbol: "BTC_KRW"
+          )
+        ]
       )
     )
+    let expectedCellData = [
+      TransactionSheetViewCellData(
+        orderBookCategory: .bid,
+        transactionPrice: "51224000",
+        dateText: "16:13:40",
+        volume: 0.106
+      )
+    ]
 
     //when
     let transactionSheetViewCellData = self.sut.transactionSheetViewCellData(with: socketTransactionResponse)
 
     //then
     expect(transactionSheetViewCellData).toNot(beEmpty())
+    expect(transactionSheetViewCellData.first!.orderBookCategory).to(equal(expectedCellData.first!.orderBookCategory))
+    expect(transactionSheetViewCellData.first!.transactionPrice).to(equal(expectedCellData.first!.transactionPrice))
+    expect(transactionSheetViewCellData.first!.dateText).to(equal(expectedCellData.first!.dateText))
+    expect(transactionSheetViewCellData.first!.volume).to(equal(expectedCellData.first!.volume))
   }
 
   func test_OrderBookListViewCellData를_합칠경우_Quantity가_0혹은_nil제외한_배열_반환() {
@@ -396,15 +488,15 @@ final class CoinDetailUseCaseTests: XCTestCase {
     ]
     let expectedCellData = [
       OrderBookListViewCellData(
-        orderBookCategory: .ask, orderPrice: 333000,
-        orderQuantity: 1, priceChangedRatio: 0
-      ),
-      OrderBookListViewCellData(
         orderBookCategory: .ask, orderPrice: 222000,
         orderQuantity: 1, priceChangedRatio: 0
       ),
       OrderBookListViewCellData(
         orderBookCategory: .ask, orderPrice: 111000,
+        orderQuantity: 1, priceChangedRatio: 0
+      ),
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 333000,
         orderQuantity: 1, priceChangedRatio: 0
       )
     ]
