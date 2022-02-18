@@ -86,7 +86,7 @@ extension CoinListViewModel: WebSocketDelegate {
   private func sendSocketTickerMessage() {
     WebSocketManager.shared.sendMessage(
       socketType: SocketType.ticker,
-      symbols: WebSocketManager.shared.generateSymbol(with: .krw),
+      symbols: WebSocketManager.shared.generateAllSymbol(with: .krw),
       tickType: "24H"
     )
   }
