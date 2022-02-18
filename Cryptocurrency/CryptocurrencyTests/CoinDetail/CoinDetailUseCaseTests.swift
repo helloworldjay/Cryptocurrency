@@ -196,7 +196,277 @@ final class CoinDetailUseCaseTests: XCTestCase {
     //then
     expect(orderBookListViewCellData).toNot(beEmpty())
     expect(orderBookListViewCellData[0].orderBookCategory).to(equal(OrderBookCategory.bid))
-    expect(orderBookListViewCellData[0].orderPrice).to(equal("0.3699"))
-    expect(orderBookListViewCellData[0].orderQuantity).to(equal("53910000"))
+    expect(orderBookListViewCellData[0].orderPrice).to(equal(0.3699))
+    expect(orderBookListViewCellData[0].orderQuantity).to(equal(53910000))
+  }
+
+  func test_SocketTickerResponse에_해당하는_data가_들어올_경우_Decoding성공_후_entity를_반환() {
+    //given
+    let socketText = """
+    {
+      "type" : "ticker",
+      "content" : {
+        "symbol" : "BTC_KRW",
+        "tickType" : "24H",
+        "date" : "20200129",
+        "time" : "121844",
+        "openPrice" : "2302",
+        "closePrice" : "2317",
+        "lowPrice" : "2272",
+        "highPrice" : "2344",
+        "value" : "2831915078.07065789",
+        "volume" : "1222314.51355788",
+        "sellVolume" : "760129.34079004",
+        "buyVolume" : "462185.17276784",
+        "prevClosePrice" : "2326",
+        "chgRate" : "0.65",
+        "chgAmt" : "15",
+        "volumePower" : "60.80"
+      }
+    }
+    """
+    let data = socketText.data(using: .utf8)!
+
+    //when
+    let socketTickerResponse = self.sut.socketResponse(with: data, type: SocketTickerResponse.self)
+
+    //then
+    expect(socketTickerResponse).toNot(beNil())
+  }
+
+  func text_SocketOrderBookResponse에_해당하는_data가_들어올_경우_Decoding성공_후_entity를_반환() {
+    //given
+    let socketText = """
+    {
+       "type": "orderbookdepth",
+       "content": {
+           "list": [
+               {
+                   "symbol": "BTC_KRW",
+                   "orderType": "ask",
+                   "price": "53365000",
+                   "quantity": "0",
+                   "total": "0"
+               }
+           ],
+           "datetime": "1644918923346784"
+       }
+    }
+    """
+    let data = socketText.data(using: .utf8)!
+
+    //when
+    let socketOrderBookResponse = self.sut.socketResponse(with: data, type: SocketOrderBookResponse.self)
+
+    //then
+    expect(socketOrderBookResponse).toNot(beNil())
+  }
+
+  func test_SocketTransactionResponse에_해당하는_data가_들어올_경우_Decoding성공_후_entity를_반환() {
+    //given
+    let socketText = """
+    {
+       "type": "transaction",
+       "content": {
+           "list": [
+               {
+                   "buySellGb": "2",
+                   "contPrice": "51224000",
+                   "contQty": "0.106",
+                   "contAmt": "5429744.000",
+                   "contDtm": "2022-02-14 16:13:40.122852",
+                   "updn": "dn",
+                   "symbol": "BTC_KRW"
+               }
+           ]
+       }
+    }
+    """
+    let data = socketText.data(using: .utf8)!
+
+    //when
+    let socketTransactionResponse = self.sut.socketResponse(with: data, type: SocketTransactionResponse.self)
+
+    //then
+    expect(socketTransactionResponse).toNot(beNil())
+  }
+
+  func test_SocketTickerResponse에_해당되는_tickerData를_반환() {
+    //given
+    let socketTickerResponse = SocketTickerResponse(
+      type: "ticker",
+      content: SocketTickerData(
+        tickType: "24H", date: "20200129", time: "121844",
+        openPrice: "2302", closePrice: "2317", lowPrice: "2272",
+        highPrice: "2344", value: "2831915078.07065789",
+        volume: "1222314.51355788", sellVolume: "760129.34079004",
+        buyVolume: "462185.17276784", prevClosePrice: "2326",
+        chgRate: "0.65", chgAmt: "15", volumePower: "60.80",
+        symbol: "BTC_KRW"
+      )
+    )
+    let expectedCoinPriceData = CoinPriceData(
+      currentPrice: "2317",
+      priceChangedRatio: "0.65",
+      priceDifference: "15"
+    )
+
+    //when
+    let coinPriceData = self.sut.coinPriceData(with: socketTickerResponse)
+
+    //then
+    expect(coinPriceData.currentPrice).to(equal(expectedCoinPriceData.currentPrice))
+    expect(coinPriceData.priceDifference).to(equal(expectedCoinPriceData.priceDifference))
+    expect(coinPriceData.priceChangedRatio).to(equal(expectedCoinPriceData.priceChangedRatio))
+  }
+
+  func test_SocketOrderBookResponse에_해당되는_배열을_반환() {
+    //given
+    let socketOrderBookResponse = SocketOrderBookResponse(
+      type: "orderbookdepth",
+      content: SocketOrderBookData(
+        list: [
+          SocketOrderBook(
+            symbol: "BTC_KRW",
+            price: "53365000",
+            quantity: "11.0",
+            total: "10.0",
+            orderType: .ask
+          )
+        ],
+        datetime: "1644918923346784"
+      )
+    )
+
+    //when
+    let orderBookListViewCellData = self.sut.orderBookListViewCellData(with: socketOrderBookResponse,
+                                                                       category: .ask,
+                                                                       openingPrice: 53365000)
+
+    //then
+    expect(orderBookListViewCellData).toNot(beEmpty())
+  }
+
+  func test_SocketTransactionResponse에_해당되는_배열을_반환() {
+    //given
+    let socketTransactionResponse = SocketTransactionResponse(
+      type: "transaction",
+      content: SocketTransactionHistoryData(
+        list: [
+          SocketTransactionHistory(
+            contractType: "2", contractPrice: "51224000",
+            contractQuantity: "0.106", contractAmount: "5429744.0",
+            contractDatemessage: "2022-02-14 16:13:40.122852",
+            upDown: "dn", symbol: "BTC_KRW")]
+      )
+    )
+
+    //when
+    let transactionSheetViewCellData = self.sut.transactionSheetViewCellData(with: socketTransactionResponse)
+
+    //then
+    expect(transactionSheetViewCellData).toNot(beEmpty())
+  }
+
+  func test_OrderBookListViewCellData를_합칠경우_Quantity가_0혹은_nil제외한_배열_반환() {
+    //given
+    let preOrderBookListViewCellData = [
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 222000,
+        orderQuantity: 1, priceChangedRatio: 0
+      ),
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 111000,
+        orderQuantity: 1, priceChangedRatio: 0
+      ),
+    ]
+    let postOrderBookListViewCellData = [
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 333000,
+        orderQuantity: nil, priceChangedRatio: 0
+      ),
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 333000,
+        orderQuantity: 0, priceChangedRatio: 0
+      ),
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 333000,
+        orderQuantity: 1, priceChangedRatio: 0
+      )
+    ]
+    let expectedCellData = [
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 333000,
+        orderQuantity: 1, priceChangedRatio: 0
+      ),
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 222000,
+        orderQuantity: 1, priceChangedRatio: 0
+      ),
+      OrderBookListViewCellData(
+        orderBookCategory: .ask, orderPrice: 111000,
+        orderQuantity: 1, priceChangedRatio: 0
+      )
+    ]
+    
+    //when
+    let cellData = self.sut.mergeOrderBookListViewCellData(pre: preOrderBookListViewCellData,
+                                                           post: postOrderBookListViewCellData)
+
+    //then
+    expect(cellData).to(equal(expectedCellData))
+  }
+
+  func test_OrderBookListViewCellData가_30개보다_적을경우_emptyCellData를_채워서_반환() {
+    //given
+    let orderBookListViewCellData = [
+      OrderBookListViewCellData(
+        orderBookCategory: .ask,
+        orderPrice: 3000,
+        orderQuantity: 12,
+        priceChangedRatio: 0.56
+      )
+    ]
+    let emptyCellData = OrderBookListViewCellData(orderBookCategory: .ask,
+                                                  orderPrice: nil,
+                                                  orderQuantity: nil,
+                                                  priceChangedRatio: nil)
+    let expectedCellData = Array(repeating: emptyCellData, count: 29) + [
+      OrderBookListViewCellData(
+        orderBookCategory: .ask,
+        orderPrice: 3000,
+        orderQuantity: 12,
+        priceChangedRatio: 0.56
+      )
+    ]
+
+    //when
+    let cellData = self.sut.checked(orderBookListViewCellData: orderBookListViewCellData,
+                                    category: .ask)
+
+    //then
+    expect(cellData).to(equal(expectedCellData))
+  }
+
+  func test_OrderBookListViewCellData가_30개보다_많을경우_emptyCellData를_채워서_반환() {
+    //given
+    let orderBookListViewCellDatum = OrderBookListViewCellData(
+      orderBookCategory: .ask,
+      orderPrice: 1000,
+      orderQuantity: 1,
+      priceChangedRatio: 0.3
+    )
+    let orderBookListViewCellData = Array(
+      repeating: orderBookListViewCellDatum,
+      count: 35
+    )
+    let expectedCount = 30
+
+    //when
+    let cellData = self.sut.checked(orderBookListViewCellData: orderBookListViewCellData,
+                                    category: .ask)
+
+    //then
+    expect(cellData.count).to(equal(expectedCount))
   }
 }

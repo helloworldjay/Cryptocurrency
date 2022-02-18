@@ -10,8 +10,7 @@ import Foundation
 import RxSwift
 
 protocol CoinDetailUseCaseLogic {
-  func fetchTicker(orderCurrency: OrderCurrency,
-                   paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
+  func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
   func fetchCandleStick(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency, timeUnit: TimeUnit) -> Single<Result<CandleStickResponse, APINetworkError>>
   func fetchOrderBook(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<OrderBookResponse, APINetworkError>>
   func fetchTransactionHistory(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<TransactionHistoryResponse, APINetworkError>>
@@ -21,6 +20,12 @@ protocol CoinDetailUseCaseLogic {
   func chartData(response: CandleStickResponse?) -> [ChartData]
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
   func transactionSheetViewCellData(response: TransactionHistoryResponse) -> [TransactionSheetViewCellData]
+  func socketResponse<T: Decodable>(with data: Data, type: T.Type) -> T?
+  func orderBookListViewCellData(with response: SocketOrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
+  func coinPriceData(with response: SocketTickerResponse) -> CoinPriceData
+  func transactionSheetViewCellData(with response: SocketTransactionResponse) -> [TransactionSheetViewCellData]
+  func mergeOrderBookListViewCellData(pre: [OrderBookListViewCellData], post: [OrderBookListViewCellData]) -> [OrderBookListViewCellData]
+  func checked(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData]
 }
 
 final class CoinDetailUseCase: CoinDetailUseCaseLogic {
@@ -119,6 +124,20 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     return cellData
   }
 
+  func orderBookListViewCellData(with response: SocketOrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData] {
+    let socketOrderBooks = response.content.list.filter { $0.orderType == category }
+    return socketOrderBooks.map { socketOrderBook -> OrderBookListViewCellData? in
+      guard let orderPrice = Double(socketOrderBook.price),
+            let orderQuantity = Double(socketOrderBook.quantity) else { return nil }
+      return OrderBookListViewCellData(
+        orderBookCategory: category,
+        orderPrice: orderPrice,
+        orderQuantity: orderQuantity,
+        priceChangedRatio: (orderPrice - openingPrice) / orderPrice
+      )
+    }.compactMap { $0 }
+  }
+
   private func emtpyCellData(response: OrderBookResponse, category: OrderBookCategory) -> [OrderBookListViewCellData] {
     let dataCount = (category == .ask) ? response.data.asks.count : response.data.bids.count
     let emptyCellDataCount = 30 - dataCount
@@ -149,5 +168,91 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       )
     }.compactMap { $0 }
     .reversed()
+  }
+
+  func socketResponse<T: Decodable>(with data: Data, type: T.Type) -> T? {
+    try? JSONDecoder().decode(type, from: data)
+  }
+  
+  func orderBookListViewCellData(with response: SocketOrderBookResponse, openingPrice: Double) -> [OrderBookListViewCellData] {
+    return response.content.list.map { socketOrderBook -> OrderBookListViewCellData? in
+      guard let orderPrice = Double(socketOrderBook.price),
+            let quantity = Double(socketOrderBook.quantity) else { return nil }
+      return OrderBookListViewCellData(
+        orderBookCategory: socketOrderBook.orderType,
+        orderPrice: orderPrice,
+        orderQuantity: quantity,
+        priceChangedRatio: (orderPrice - openingPrice) / orderPrice
+      )
+    }.compactMap { $0 }
+  }
+  
+  func coinPriceData(with response: SocketTickerResponse) -> CoinPriceData {
+    return CoinPriceData(
+      currentPrice: response.content.closePrice,
+      priceChangedRatio: response.content.chgRate,
+      priceDifference: response.content.chgAmt
+    )
+  }
+  
+  func transactionSheetViewCellData(with response: SocketTransactionResponse) -> [TransactionSheetViewCellData] {
+    return response.content.list.map { socketTransactionHistory -> TransactionSheetViewCellData? in
+      let category = socketTransactionHistory.upDown == "up" ? OrderBookCategory.ask : OrderBookCategory.bid
+      guard let dateText = socketTransactionHistory.contractDatemessage.split(separator: " ").last?.split(separator: ".").first.map({ String($0) }),
+            let volume = Double(socketTransactionHistory.contractQuantity) else {
+        return nil
+      }
+      
+      return TransactionSheetViewCellData(
+        orderBookCategory: category,
+        transactionPrice: socketTransactionHistory.contractPrice,
+        dateText: dateText,
+        volume: volume
+      )
+    }.compactMap { $0 }
+  }
+
+  func mergeOrderBookListViewCellData(pre: [OrderBookListViewCellData], post: [OrderBookListViewCellData]) -> [OrderBookListViewCellData] {
+    var mergedCellData = pre
+    post.forEach {
+      for index in 0..<mergedCellData.count {
+        if mergedCellData[index].orderPrice == $0.orderPrice {
+          mergedCellData[index] = $0
+          return
+        }
+      }
+      mergedCellData.append($0)
+    }
+    mergedCellData.sort()
+    return mergedCellData
+      .filter { $0.orderQuantity != 0 }
+      .filter { $0.orderQuantity != nil }
+  }
+
+  func checked(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
+    var orderBookListViewCellData = orderBookListViewCellData
+    if orderBookListViewCellData.count > 30 {
+      let exceedCount = orderBookListViewCellData.count - 30
+      if category == .ask {
+        orderBookListViewCellData.removeSubrange(0..<exceedCount)
+      } else {
+        orderBookListViewCellData.removeSubrange(30..<(30 + exceedCount))
+      }
+    } else if orderBookListViewCellData.count < 30 {
+      let emptyCount = 30 - orderBookListViewCellData.count
+      let emptyCellData = Array(
+        repeating: OrderBookListViewCellData(
+          orderBookCategory: category,
+          orderPrice: nil,
+          orderQuantity: nil,
+          priceChangedRatio: nil
+        ), count: emptyCount)
+      if category == .ask {
+        orderBookListViewCellData.insert(contentsOf: emptyCellData, at: .zero)
+      } else {
+        orderBookListViewCellData.append(contentsOf: emptyCellData)
+      }
+    }
+    return orderBookListViewCellData
   }
 }
