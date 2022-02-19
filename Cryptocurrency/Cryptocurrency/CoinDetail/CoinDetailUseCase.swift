@@ -25,6 +25,7 @@ protocol CoinDetailUseCaseLogic {
   func coinPriceData(with response: SocketTickerResponse) -> CoinPriceData
   func transactionSheetViewCellData(with response: SocketTransactionResponse) -> [TransactionSheetViewCellData]
   func mergeOrderBookListViewCellData(preCellData: [OrderBookListViewCellData], postCellData: [OrderBookListViewCellData]) -> [OrderBookListViewCellData]
+  func exceptedEmptyCellData(from cellData: [OrderBookListViewCellData]) -> [OrderBookListViewCellData]
   func checked(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData]
 }
 
@@ -221,6 +222,10 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       }
     }
     return mergedCellData
+  }
+
+  func exceptedEmptyCellData(from cellData: [OrderBookListViewCellData]) -> [OrderBookListViewCellData] {
+    return cellData
       .filter { $0.orderQuantity != 0 }
       .filter { $0.orderQuantity != nil }
   }
