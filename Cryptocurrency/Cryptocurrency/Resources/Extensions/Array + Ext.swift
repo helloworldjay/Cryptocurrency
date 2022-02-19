@@ -26,4 +26,12 @@ extension Array {
       return lhsPrice > rhsPrice
     }
   }
+
+  mutating func sortByTimeInterval() where Element == TransactionSheetViewCellData {
+    self.sort { lhs, rhs in
+      let lhsTimeInterval = lhs.timeInterval ?? 0.0
+      let rhsTimeInterval = rhs.timeInterval ?? 0.0
+      return lhsTimeInterval > rhsTimeInterval
+    }
+  }
 }

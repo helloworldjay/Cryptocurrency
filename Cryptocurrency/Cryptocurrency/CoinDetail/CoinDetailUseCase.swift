@@ -198,17 +198,14 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
   func transactionSheetViewCellData(with response: SocketTransactionResponse) -> [TransactionSheetViewCellData] {
     return response.content.list.map { socketTransactionHistory -> TransactionSheetViewCellData? in
       let category = (socketTransactionHistory.upDown == "up") ? OrderBookCategory.ask : OrderBookCategory.bid
-      guard let dateText = socketTransactionHistory.contractDatemessage
-              .split(separator: " ").last?
-              .split(separator: ".").first.map({ String($0) }),
-            let volume = Double(socketTransactionHistory.contractQuantity) else {
+      guard let volume = Double(socketTransactionHistory.contractQuantity) else {
         return nil
       }
 
       return TransactionSheetViewCellData(
         orderBookCategory: category,
         transactionPrice: socketTransactionHistory.contractPrice,
-        dateText: dateText,
+        dateText: socketTransactionHistory.contractDatemessage,
         volume: volume
       )
     }.compactMap { $0 }

@@ -178,9 +178,11 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
       .map { useCase.transactionSheetViewCellData(with: $0!) }
 
     Observable.merge(transactionSheetViewCellData, socketTransactionSheetViewCellData)
-      .observe(on: ConcurrentMainScheduler.instance)
-      .scan([TransactionSheetViewCellData]()) { cellData, action in
-        return action + cellData
+      .observe(on: SerialDispatchQueueScheduler(qos: .default))
+      .scan([TransactionSheetViewCellData]()) { cellData, addedCellData in
+        var addedCellData = addedCellData
+        addedCellData.sortByTimeInterval()
+        return addedCellData + cellData
       }.bind(to: self.transactionSheetViewModel.transactionSheetViewCellData)
       .disposed(by: self.disposeBag)
   }
