@@ -52,7 +52,7 @@ final class CoinDetailCoordinator: Coordinator {
   private func sendSocketTickerMessage() {
     WebSocketManager.shared.sendMessage(
       socketType: .ticker,
-      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, paymentCurrency: self.paymentCurrency),
+      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, and: self.paymentCurrency),
       tickType: "24H"
     )
   }
@@ -60,7 +60,7 @@ final class CoinDetailCoordinator: Coordinator {
   private func sendSocketTransactionMessage() {
     WebSocketManager.shared.sendMessage(
       socketType: .transaction,
-      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, paymentCurrency: self.paymentCurrency),
+      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, and: self.paymentCurrency),
       tickType: "24H"
     )
   }
@@ -68,7 +68,7 @@ final class CoinDetailCoordinator: Coordinator {
   private func sendSocketOrderBookMessage() {
     WebSocketManager.shared.sendMessage(
       socketType: .orderbookdepth,
-      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, paymentCurrency: self.paymentCurrency),
+      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, and: self.paymentCurrency),
       tickType: "24H"
     )
   }

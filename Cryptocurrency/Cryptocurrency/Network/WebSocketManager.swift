@@ -60,7 +60,7 @@ final class WebSocketManager {
     socket?.write(string: message)
   }
 
-  func generateSymbol(with orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> String {
+  func generateSymbol(with orderCurrency: OrderCurrency, and paymentCurrency: PaymentCurrency) -> String {
     return "\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
   }
 
