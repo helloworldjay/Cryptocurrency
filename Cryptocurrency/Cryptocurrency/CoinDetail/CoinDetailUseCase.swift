@@ -214,14 +214,11 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
   func mergeOrderBookListViewCellData(preCellData: [OrderBookListViewCellData], postCellData: [OrderBookListViewCellData]) -> [OrderBookListViewCellData] {
     var mergedCellData = preCellData
     postCellData.forEach {
-      for index in 0..<mergedCellData.count {
-        guard mergedCellData[safe: index] != nil else { return }
-        if mergedCellData[index].orderPrice == $0.orderPrice {
-          mergedCellData[index] = $0
-          return
-        }
+      if let index = mergedCellData.binarySearchForDescending(item: $0) {
+        mergedCellData[index] = $0
+      } else {
+        mergedCellData.append($0)
       }
-      mergedCellData.append($0)
     }
     return mergedCellData
       .filter { $0.orderQuantity != 0 }
