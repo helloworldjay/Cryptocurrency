@@ -233,14 +233,14 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     var cellData = orderBookListViewCellData
     cellData.sortByOrderPrice()
     if cellData.count > 30 {
-      cellData = self.removedUnnecessaryCellData(orderBookListViewCellData: cellData, category: category)
+      cellData = self.removeUnnecessaryCellData(orderBookListViewCellData: cellData, category: category)
     } else if cellData.count < 30 {
-      cellData = self.filledEmptyCellData(orderBookListViewCellData: cellData, category: category)
+      cellData = self.fillLackCellData(orderBookListViewCellData: cellData, category: category)
     }
     return cellData
   }
 
-  private func removedUnnecessaryCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
+  private func removeUnnecessaryCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
     var cellData = orderBookListViewCellData
     let exceedCount = cellData.count - 30
     var rangeToRemove: Range<Int>
@@ -254,7 +254,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     return cellData
   }
 
-  private func filledEmptyCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
+  private func fillLackCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
     var cellData = orderBookListViewCellData
     let emptyCount = 30 - cellData.count
     let emptyCellData = Array(
