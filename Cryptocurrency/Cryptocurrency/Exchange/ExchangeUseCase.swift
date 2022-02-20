@@ -11,6 +11,7 @@ protocol ExchangeUseCaseLogic {
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
   func tickerResponse(result: Result<AllTickerResponse, APINetworkError>) -> AllTickerResponse?
   func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData]
+  func favoriteGridCellData(currencies: [CoinItemCurrency]) -> [FavoriteGridViewCellData]
   func sortByCoinName(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
   func sortByCurrentPrice(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
   func sortByPriceChangedRatio(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
@@ -58,6 +59,16 @@ struct ExchangeUseCase: ExchangeUseCaseLogic {
           priceDifference: $0.value.fluctate24H,
           transactionAmount: $0.value.accTradeValue24H
         )
+      }
+  }
+
+  func favoriteGridCellData(currencies: [CoinItemCurrency]) -> [FavoriteGridViewCellData] {
+    return currencies
+      .map {
+        return FavoriteGridViewCellData(
+          coinName: $0.orderCurrency.koreanName,
+          ticker: $0.orderCurrency.rawValue,
+          paymentCurrency: $0.paymentCurrency.rawValue)
       }
   }
 
