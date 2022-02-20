@@ -32,6 +32,12 @@ final class ExchangeUseCaseSpy: ExchangeUseCaseLogic {
     return self.coinListCellDataStub
   }
 
+  var favoriteGridCellDataStub: [FavoriteGridViewCellData] = []
+
+  func favoriteGridCellData(currencies: [CoinItemCurrency]) -> [FavoriteGridViewCellData] {
+    return self.favoriteGridCellDataStub
+  }
+
   var sortedByCoinNameStub: [CoinListViewCellData] = []
 
   func sortByCoinName(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData] {

@@ -4,6 +4,382 @@
    <FileRef
       location = "group:Cryptocurrency.xcodeproj">
    </FileRef>
+   <Group
+      location = "group:Cryptocurrency"
+      name = "Cryptocurrency">
+      <Group
+         location = "group:Cryptocurrency/UserDefaults"
+         name = "UserDefaults">
+         <FileRef
+            location = "group:Cryptocurrency/UserDefaults/PersistenceManager.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Cryptocurrency/CoinDetail"
+         name = "CoinDetail">
+         <Group
+            location = "group:Cryptocurrency/CoinDetail/Components"
+            name = "Components">
+            <Group
+               location = "group:Cryptocurrency/CoinDetail/Components/TransactionSheetView"
+               name = "TransactionSheetView">
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TransactionSheetView/TransactionSheetView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TransactionSheetView/TransactionSheetViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TransactionSheetView/TransactionSheetViewCell.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TransactionSheetView/TransactionSheetViewCellData.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/CoinDetail/Components/CurrentPriceStatusView"
+               name = "CurrentPriceStatusView">
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CurrentPriceStatusView/CurrentPriceStatusView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CurrentPriceStatusView/CurrentPriceStatusViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CurrentPriceStatusView/CoinPriceData.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/CoinDetail/Components/CoinDetailSegmentedCategoryView"
+               name = "CoinDetailSegmentedCategoryView">
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CoinDetailSegmentedCategoryView/CoinDetailSegmentedCategoryView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CoinDetailSegmentedCategoryView/CoinDetailSegmentedCategoryViewModel.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/CoinDetail/Components/CoinChartView"
+               name = "CoinChartView">
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CoinChartView/CoinChartView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CoinChartView/CoinChartViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/CoinChartView/ChartData.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/CoinDetail/Components/TimeIntervalBottomSheet"
+               name = "TimeIntervalBottomSheet">
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TimeIntervalBottomSheet/TimeUnitBottomSheet.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TimeIntervalBottomSheet/TimeUnitBottomSheetViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TimeIntervalBottomSheet/TimeUnit.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/TimeIntervalBottomSheet/TimeUnitBottomSheetCoordinator.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/CoinDetail/Components/OrderBookListView"
+               name = "OrderBookListView">
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/OrderBookListView/OrderBookListView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/OrderBookListView/OrderBookListViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/OrderBookListView/OrderBookListViewCell.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/OrderBookListView/OrderBookListViewCellData.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/CoinDetail/Components/OrderBookListView/OrderBookCategory.swift">
+               </FileRef>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:Cryptocurrency/CoinDetail/CoinDetailViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/CoinDetail/CoinDetailViewModel.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/CoinDetail/CoinDetailUseCase.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/CoinDetail/CoinDetailCategory.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/CoinDetail/CoinDetailCoordinator.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Cryptocurrency/Exchange"
+         name = "Exchange">
+         <Group
+            location = "group:Cryptocurrency/Exchange/Components"
+            name = "Components">
+            <Group
+               location = "group:Cryptocurrency/Exchange/Components/FavoriteGridView"
+               name = "FavoriteGridView">
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/FavoriteGridView/FavoriteGridView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/FavoriteGridView/FavoriteGridViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/FavoriteGridView/FavoriteGridViewCell.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/FavoriteGridView/FavoriteGridViewCellData.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/Exchange/Components/ExchangeSearchBar"
+               name = "ExchangeSearchBar">
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/ExchangeSearchBar/ExchangeSearchBar.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/ExchangeSearchBar/ExchangeSearchBarViewModel.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/Exchange/Components/ExchangeSegmentedControl"
+               name = "ExchangeSegmentedControl">
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/ExchangeSegmentedControl/ExchangeSegmentedCategoryView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/ExchangeSegmentedControl/ExchangeSegmentedCategoryViewModel.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/Exchange/Components/CoinList"
+               name = "CoinList">
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinList/CoinListView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinList/CoinListViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinList/CoinListViewCell.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinList/CoinListViewCellData.swift">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:Cryptocurrency/Exchange/Components/CoinListSort"
+               name = "CoinListSort">
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinListSort/CoinListSortView.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinListSort/CoinListSortViewModel.swift">
+               </FileRef>
+               <FileRef
+                  location = "group:Cryptocurrency/Exchange/Components/CoinListSort/CoinListSortCriterion.swift">
+               </FileRef>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:Cryptocurrency/Exchange/ExchangeViewController.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Exchange/ExchangeViewModel.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Exchange/ExchangeUseCase.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Exchange/ExchangeCoordinator.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Cryptocurrency/Network"
+         name = "Network">
+         <FileRef
+            location = "group:Cryptocurrency/Network/APINetworkError.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Network/NetworkManager.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Network/NetworkRequestRouter.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Network/WebSocketManager.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Cryptocurrency/Entity"
+         name = "Entity">
+         <FileRef
+            location = "group:Cryptocurrency/Entity/AllTickerResponse.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Entity/Currency.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Entity/TickerResponse.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Entity/CandleStickResponse.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Entity/SocketTickerResponse.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Entity/OrderBookResponse.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Entity/TransactionHistoryResponse.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Cryptocurrency/Resources"
+         name = "Resources">
+         <Group
+            location = "group:Cryptocurrency/Resources/Data"
+            name = "Data">
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Data/CryptoCurrencyDataType.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/Resources/LetterSeparator"
+            name = "LetterSeparator">
+            <FileRef
+               location = "group:Cryptocurrency/Resources/LetterSeparator/LetterSeparator.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/Resources/Module"
+            name = "Module">
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Module/BottomSheet.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Module/SegmentedCategoryView.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Module/PaddingLabel.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Module/SortButton.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/Resources/Coordinators"
+            name = "Coordinators">
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Coordinators/Coordinator.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Coordinators/AppCoordinator.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/Resources/Extensions"
+            name = "Extensions">
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Extensions/CharacterSet + Ext.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Extensions/Double + Ext.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Extensions/UISegmentedControl + Ext.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Extensions/Array + Ext.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Extensions/String + Ext.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Extensions/UIColor + Ext.swift">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Cryptocurrency/Resources/AppDelegate.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Resources/SceneDelegate.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Cryptocurrency/Resources/Assets.xcassets">
+         </FileRef>
+         <Group
+            location = "group:Cryptocurrency/Resources"
+            name = "LaunchScreen.storyboard">
+            <FileRef
+               location = "group:Cryptocurrency/Resources/Base.lproj/LaunchScreen.storyboard">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:Cryptocurrency/Resources/Info.plist">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Cryptocurrency/TBD"
+         name = "TBD">
+         <Group
+            location = "group:Cryptocurrency/TBD/ProductService"
+            name = "ProductService">
+            <FileRef
+               location = "group:Cryptocurrency/TBD/ProductService/ProductServiceViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/TBD/ProductService/ProductServiceCoordinator.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/TBD/CurrentAsset"
+            name = "CurrentAsset">
+            <FileRef
+               location = "group:Cryptocurrency/TBD/CurrentAsset/CurrentAssetViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/TBD/CurrentAsset/CurrentAssetCoordinator.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/TBD/Transaction"
+            name = "Transaction">
+            <FileRef
+               location = "group:Cryptocurrency/TBD/Transaction/TransactionViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/TBD/Transaction/TransactionCoordinator.swift">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Cryptocurrency/TBD/MoreOption"
+            name = "MoreOption">
+            <FileRef
+               location = "group:Cryptocurrency/TBD/MoreOption/MoreOptionViewController.swift">
+            </FileRef>
+            <FileRef
+               location = "group:Cryptocurrency/TBD/MoreOption/MoreOptionCoordinator.swift">
+            </FileRef>
+         </Group>
+      </Group>
+   </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

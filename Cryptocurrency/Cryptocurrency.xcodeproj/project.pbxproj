@@ -60,6 +60,14 @@
 		6E81022DFE3C112F391F11E3 /* Pods_Cryptocurrency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E3CD0B0B4C1BB8739D6FF2 /* Pods_Cryptocurrency.framework */; };
 		8969AA1FAB5F2398384F2288 /* Pods_Cryptocurrency_CryptocurrencyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388D7592CDA05156AF39D1F0 /* Pods_Cryptocurrency_CryptocurrencyUITests.framework */; };
 		99F404AFB7C243C4F6D085D5 /* Pods_CryptocurrencyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7AF4C66C58E53CF5F605F6 /* Pods_CryptocurrencyTests.framework */; };
+		B42D1FCD27BCC4280031EF99 /* FavoriteGridViewCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D1FCC27BCC4280031EF99 /* FavoriteGridViewCellData.swift */; };
+		B42D1FCF27BD53250031EF99 /* FavoriteGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D1FCE27BD53250031EF99 /* FavoriteGridView.swift */; };
+		B42D1FD127BD537C0031EF99 /* FavoriteGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D1FD027BD537C0031EF99 /* FavoriteGridViewCell.swift */; };
+		B42D1FD327BD76100031EF99 /* FavoriteGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D1FD227BD76100031EF99 /* FavoriteGridViewModel.swift */; };
+		B47C0C5627BF65F500A72FFC /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C0C5527BF65F500A72FFC /* PersistenceManager.swift */; };
+		B47C0C5827C2469D00A72FFC /* UserDefaultsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C0C5727C2469D00A72FFC /* UserDefaultsError.swift */; };
+		B47C0C5A27C24D1A00A72FFC /* CoinDetailFavoriteButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C0C5927C24D1A00A72FFC /* CoinDetailFavoriteButtonState.swift */; };
+		B47C0C5C27C251E400A72FFC /* CoinItemCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C0C5B27C251E400A72FFC /* CoinItemCurrency.swift */; };
 		B49FDAF827AA6C8D001A11E9 /* CharacterSet + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49FDAF727AA6C8D001A11E9 /* CharacterSet + Ext.swift */; };
 		B49FDAFB27AAAFF5001A11E9 /* LetterSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49FDAFA27AAAFF5001A11E9 /* LetterSeparator.swift */; };
 		B4A8E115279AD60B00A2BFCD /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */; };
@@ -182,6 +190,14 @@
 		6AB2300BEDEC951E3984AC29 /* Pods-Cryptocurrency.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptocurrency.debug.xcconfig"; path = "Target Support Files/Pods-Cryptocurrency/Pods-Cryptocurrency.debug.xcconfig"; sourceTree = "<group>"; };
 		8D7AF4C66C58E53CF5F605F6 /* Pods_CryptocurrencyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptocurrencyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB671D49752CBE7CAF3A329E /* Pods-Cryptocurrency-CryptocurrencyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cryptocurrency-CryptocurrencyUITests.release.xcconfig"; path = "Target Support Files/Pods-Cryptocurrency-CryptocurrencyUITests/Pods-Cryptocurrency-CryptocurrencyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B42D1FCC27BCC4280031EF99 /* FavoriteGridViewCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGridViewCellData.swift; sourceTree = "<group>"; };
+		B42D1FCE27BD53250031EF99 /* FavoriteGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGridView.swift; sourceTree = "<group>"; };
+		B42D1FD027BD537C0031EF99 /* FavoriteGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGridViewCell.swift; sourceTree = "<group>"; };
+		B42D1FD227BD76100031EF99 /* FavoriteGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGridViewModel.swift; sourceTree = "<group>"; };
+		B47C0C5527BF65F500A72FFC /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		B47C0C5727C2469D00A72FFC /* UserDefaultsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsError.swift; sourceTree = "<group>"; };
+		B47C0C5927C24D1A00A72FFC /* CoinDetailFavoriteButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailFavoriteButtonState.swift; sourceTree = "<group>"; };
+		B47C0C5B27C251E400A72FFC /* CoinItemCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItemCurrency.swift; sourceTree = "<group>"; };
 		B49FDAF727AA6C8D001A11E9 /* CharacterSet + Ext.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "CharacterSet + Ext.swift"; sourceTree = "<group>"; tabWidth = 2; };
 		B49FDAFA27AAAFF5001A11E9 /* LetterSeparator.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LetterSeparator.swift; sourceTree = "<group>"; tabWidth = 2; };
 		B4A8E114279AD60B00A2BFCD /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
@@ -271,6 +287,7 @@
 		48256CD42799715A008F2AD1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B42D1FC927BCBD060031EF99 /* FavoriteGridView */,
 				48256CD627997179008F2AD1 /* ExchangeSearchBar */,
 				B4A8E116279BF11100A2BFCD /* ExchangeSegmentedControl */,
 				48256CD52799716C008F2AD1 /* CoinList */,
@@ -320,6 +337,7 @@
 				48A49ECE27A9772000DF5124 /* SocketTickerResponse.swift */,
 				C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */,
 				C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */,
+				B47C0C5B27C251E400A72FFC /* CoinItemCurrency.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -441,6 +459,7 @@
 				C3D0EF9B27A8AC1F00A5E4BE /* CoinDetailViewModel.swift */,
 				C329A88927AED08400193A4D /* CoinDetailUseCase.swift */,
 				C333E9D127B294DD004F92CE /* CoinDetailCategory.swift */,
+				B47C0C5927C24D1A00A72FFC /* CoinDetailFavoriteButtonState.swift */,
 				4885376427A40E4000BE00FD /* CoinDetailCoordinator.swift */,
 			);
 			path = CoinDetail;
@@ -529,6 +548,7 @@
 				4885376127A40E1C00BE00FD /* CoinDetail */,
 				4881F42527979DDF00472C90 /* Exchange */,
 				48256CE52799730A008F2AD1 /* Network */,
+				B47C0C5427BF65C400A72FFC /* UserDefaults */,
 				48256CE827997415008F2AD1 /* Entity */,
 				4881F42327979D8B00472C90 /* Resources */,
 				4881F4322797A25100472C90 /* TBD */,
@@ -564,6 +584,26 @@
 				8D7AF4C66C58E53CF5F605F6 /* Pods_CryptocurrencyTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B42D1FC927BCBD060031EF99 /* FavoriteGridView */ = {
+			isa = PBXGroup;
+			children = (
+				B42D1FCE27BD53250031EF99 /* FavoriteGridView.swift */,
+				B42D1FD227BD76100031EF99 /* FavoriteGridViewModel.swift */,
+				B42D1FD027BD537C0031EF99 /* FavoriteGridViewCell.swift */,
+				B42D1FCC27BCC4280031EF99 /* FavoriteGridViewCellData.swift */,
+			);
+			path = FavoriteGridView;
+			sourceTree = "<group>";
+		};
+		B47C0C5427BF65C400A72FFC /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				B47C0C5727C2469D00A72FFC /* UserDefaultsError.swift */,
+				B47C0C5527BF65F500A72FFC /* PersistenceManager.swift */,
+			);
+			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 		B49FDAF927AAAFDE001A11E9 /* LetterSeparator */ = {
@@ -972,6 +1012,7 @@
 				4885375E27A3D91D00BE00FD /* TransactionCoordinator.swift in Sources */,
 				4885376027A3D92800BE00FD /* MoreOptionCoordinator.swift in Sources */,
 				C329A8AA27B15BE900193A4D /* CoinDetailSegmentedCategoryView.swift in Sources */,
+				B47C0C5A27C24D1A00A72FFC /* CoinDetailFavoriteButtonState.swift in Sources */,
 				C333E9D027B292B5004F92CE /* CoinDetailSegmentedCategoryViewModel.swift in Sources */,
 				C3781FC827B7EF90002586FA /* TransactionSheetView.swift in Sources */,
 				48256CE4279972AA008F2AD1 /* CoinListViewCell.swift in Sources */,
@@ -982,6 +1023,7 @@
 				C3D0EF9327A8A30500A5E4BE /* TimeUnitBottomSheetViewModel.swift in Sources */,
 				48C7E8F3279E79E5003C4B25 /* CoinListViewCellData.swift in Sources */,
 				C333E9CC27B25D1A004F92CE /* CurrentPriceStatusViewModel.swift in Sources */,
+				B42D1FD127BD537C0031EF99 /* FavoriteGridViewCell.swift in Sources */,
 				C3D0EF7127A777CA00A5E4BE /* BottomSheet.swift in Sources */,
 				4885376527A40E4000BE00FD /* CoinDetailCoordinator.swift in Sources */,
 				48256CDE2799727D008F2AD1 /* ExchangeSearchBarViewModel.swift in Sources */,
@@ -997,6 +1039,7 @@
 				4885375C27A3D90E00BE00FD /* CurrentAssetCoordinator.swift in Sources */,
 				48256CD82799722E008F2AD1 /* ExchangeViewModel.swift in Sources */,
 				C329A80A27AB8DA600193A4D /* CandleStickResponse.swift in Sources */,
+				B47C0C5827C2469D00A72FFC /* UserDefaultsError.swift in Sources */,
 				48A49ECF27A9772000DF5124 /* SocketTickerResponse.swift in Sources */,
 				48256CE02799728C008F2AD1 /* CoinListView.swift in Sources */,
 				489FB624279C43F10078AEE1 /* APINetworkError.swift in Sources */,
@@ -1020,16 +1063,21 @@
 				48D6C3D527B69A71000CB5AB /* CoinListSortCriterion.swift in Sources */,
 				C329A89927B0C59500193A4D /* PaddingLabel.swift in Sources */,
 				C3781FC627B7EF28002586FA /* TransactionSheetViewCell.swift in Sources */,
+				B42D1FD327BD76100031EF99 /* FavoriteGridViewModel.swift in Sources */,
 				C333E9CA27B259F1004F92CE /* CurrentPriceStatusView.swift in Sources */,
+				B47C0C5C27C251E400A72FFC /* CoinItemCurrency.swift in Sources */,
 				4885375627A3CFF800BE00FD /* AppCoordinator.swift in Sources */,
 				4885376327A40E3600BE00FD /* CoinDetailViewController.swift in Sources */,
 				4881F4302797A22200472C90 /* CurrentAssetViewController.swift in Sources */,
 				48FDCFFE279541E2002F0050 /* SceneDelegate.swift in Sources */,
+				B42D1FCD27BCC4280031EF99 /* FavoriteGridViewCellData.swift in Sources */,
 				4885375827A3D1F500BE00FD /* ExchangeCoordinator.swift in Sources */,
+				B42D1FCF27BD53250031EF99 /* FavoriteGridView.swift in Sources */,
 				C329A88A27AED08400193A4D /* CoinDetailUseCase.swift in Sources */,
 				C3D9461B27A9991000EDE8FF /* TimeUnitBottomSheetCoordinator.swift in Sources */,
 				48256CDC27997267008F2AD1 /* ExchangeSearchBar.swift in Sources */,
 				C329A87D27AECD9900193A4D /* CoinChartView.swift in Sources */,
+				B47C0C5627BF65F500A72FFC /* PersistenceManager.swift in Sources */,
 				C329A88827AECFD600193A4D /* CryptoCurrencyDataType.swift in Sources */,
 				488F9E7C279BA68F0021A545 /* AllTickerResponse.swift in Sources */,
 				48311FE027AF9D8B002F1E87 /* ExchangeSegmentedCategoryView.swift in Sources */,
