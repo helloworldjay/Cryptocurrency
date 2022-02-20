@@ -222,7 +222,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     if cellData.count > 30 {
       cellData = self.removeUnnecessaryCellData(orderBookListViewCellData: cellData, category: category)
     } else if cellData.count < 30 {
-      cellData = self.fillLackCellData(orderBookListViewCellData: cellData, category: category)
+      cellData = self.addEmptyCellData(orderBookListViewCellData: cellData, category: category)
     }
     return cellData
   }
@@ -246,7 +246,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     return cellData
   }
 
-  private func fillLackCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
+  private func addEmptyCellData(orderBookListViewCellData: [OrderBookListViewCellData], category: OrderBookCategory) -> [OrderBookListViewCellData] {
     let cellData = orderBookListViewCellData
     let emptyCount = 30 - cellData.count
     let emptyCellData = self.emptyCellData(count: emptyCount, category: category)
