@@ -42,7 +42,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
       self.exchangeSegmentedCategoryViewModel.paymentCurrency,
       self.coinListSortViewModel.coinListSortCriteria
     ) { orderCurrency, paymentCurrency, _ in
-      useCase.fetchTicker(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency) }
+      useCase.fetchTicker(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency!) }
       .flatMap { $0 }
 
     let cellData = result
