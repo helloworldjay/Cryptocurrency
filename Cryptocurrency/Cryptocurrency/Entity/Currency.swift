@@ -7,12 +7,21 @@
 
 import Foundation
 
-enum PaymentCurrency: String {
+enum PaymentCurrency: String, CaseIterable, Codable {
   case krw = "KRW"
   case btc = "BTC"
+
+  static func search(with name: String) -> PaymentCurrency {
+    for paymentCurrency in PaymentCurrency.allCases {
+      if paymentCurrency.rawValue == name {
+        return paymentCurrency
+      }
+    }
+    return .krw
+  }
 }
 
-enum OrderCurrency: String, CaseIterable {
+enum OrderCurrency: String, CaseIterable, Codable {
   case all = "ALL"
   case btc = "BTC"
   case eth = "ETH"
