@@ -162,8 +162,8 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
       guard let preBids = cellData[safe: 30..<60] else { return [] }
       let mergedAsks = useCase.mergeOrderBookListViewCellData(preCellData: preAsks, postCellData: addedCellData.asks)
       let mergedBids = useCase.mergeOrderBookListViewCellData(preCellData: preBids, postCellData: addedCellData.bids)
-      let filledAsksCellData = useCase.checked(orderBookListViewCellData: mergedAsks, category: .ask)
-      let filledBidsCellData = useCase.checked(orderBookListViewCellData: mergedBids, category: .bid)
+      let filledAsksCellData = useCase.filledCellData(orderBookListViewCellData: mergedAsks, category: .ask)
+      let filledBidsCellData = useCase.filledCellData(orderBookListViewCellData: mergedBids, category: .bid)
       return filledAsksCellData + filledBidsCellData
     }.bind(to: self.orderBookListViewModel.orderBookListViewCellData)
       .disposed(by: self.disposeBag)

@@ -444,7 +444,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
       TransactionSheetViewCellData(
         orderBookCategory: .bid,
         transactionPrice: "51224000",
-        dateText: "16:13:40",
+        dateText: "2022-02-14 16:13:40.122852",
         volume: 0.106
       )
     ]
@@ -533,7 +533,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
     ]
 
     //when
-    let cellData = self.sut.checked(orderBookListViewCellData: orderBookListViewCellData,
+    let cellData = self.sut.filledCellData(orderBookListViewCellData: orderBookListViewCellData,
                                     category: .ask)
 
     //then
@@ -555,7 +555,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
     let expectedCount = 30
 
     //when
-    let cellData = self.sut.checked(orderBookListViewCellData: orderBookListViewCellData,
+    let cellData = self.sut.filledCellData(orderBookListViewCellData: orderBookListViewCellData,
                                     category: .ask)
 
     //then
