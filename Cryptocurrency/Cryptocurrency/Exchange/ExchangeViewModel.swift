@@ -11,8 +11,10 @@ import RxSwift
 protocol ExchangeViewModelLogic {
   var exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic { get }
   var coinListViewModel: CoinListViewModelLogic { get }
+  var favoriteGridViewModel: FavoriteGridViewModel { get }
   var coinListSortViewModel: CoinListSortViewModelLogic { get }
   var exchangeSegmentedCategoryViewModel: ExchangeSegmentedCategoryViewModelLogic { get }
+  var viewWillAppear: PublishSubject<Void> { get }
   var exchangeCoordinator: ExchangeCoordinator? { get set }
 }
 
@@ -22,8 +24,10 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   
   let exchangeSearchBarViewModel: ExchangeSearchBarViewModelLogic
   let coinListViewModel: CoinListViewModelLogic
+  let favoriteGridViewModel: FavoriteGridViewModel
   let coinListSortViewModel: CoinListSortViewModelLogic
   let exchangeSegmentedCategoryViewModel: ExchangeSegmentedCategoryViewModelLogic
+  let viewWillAppear = PublishSubject<Void>()
   var exchangeCoordinator: ExchangeCoordinator?
   private let orderCurrency = BehaviorSubject<OrderCurrency>(value: .all)
   private let disposeBag = DisposeBag()
@@ -34,6 +38,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
   init(useCase: ExchangeUseCaseLogic) {
     self.exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
     self.coinListViewModel = CoinListViewModel()
+    self.favoriteGridViewModel = FavoriteGridViewModel()
     self.coinListSortViewModel = CoinListSortViewModel()
     self.exchangeSegmentedCategoryViewModel = ExchangeSegmentedCategoryViewModel()
 
@@ -76,8 +81,28 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
     }
 
     filteredCellData
-      .bind(to: coinListViewModel.coinListCellData)
-      .disposed(by: disposeBag)
+      .bind(to: self.coinListViewModel.coinListCellData)
+      .disposed(by: self.disposeBag)
+
+    let userDefaultsData = Observable.combineLatest(self.viewWillAppear, self.exchangeSegmentedCategoryViewModel.category) { _, category -> [CoinItemCurrency] in
+      var retrivedFavorites: [CoinItemCurrency] = []
+      PersistenceManager.retrieveFavorites {
+        switch $0 {
+        case .success(let favorite):
+          retrivedFavorites = favorite
+        case .failure(let error):
+          print(error)
+        }
+      }
+      return retrivedFavorites
+    }
+
+    let favoriteCellData = userDefaultsData
+      .map (useCase.favoriteGridCellData)
+
+    favoriteCellData
+      .bind(to: self.favoriteGridViewModel.favoriteGridCellData)
+      .disposed(by: self.disposeBag)
 
     self.coinListViewModel.selectedOrderCurrency
       .subscribe(onNext: { orderCurrency in
@@ -87,5 +112,11 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
         self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: orderCurrency,
                                                                   paymentCurrency: paymentCurrency)
       }).disposed(by: self.disposeBag)
+
+    self.favoriteGridViewModel.selectedCellData
+      .subscribe(onNext: {
+        self.exchangeCoordinator?.presentCoinDetailViewController(orderCurrency: $0.orderCurrency, paymentCurrency: $0.paymentCurrency)
+      })
+      .disposed(by: self.disposeBag)
   }
 }
