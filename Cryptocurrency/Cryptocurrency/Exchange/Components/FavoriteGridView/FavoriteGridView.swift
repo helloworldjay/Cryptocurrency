@@ -38,4 +38,24 @@ class FavoriteGridView: UICollectionView {
     self.register(FavoriteGridViewCell.self, forCellWithReuseIdentifier: "FavoriteGridViewCell")
 
   }
+
+  func bind(viewModel: FavoriteGridViewModel) {
+    viewModel.cellData
+      .drive(self.rx.items) { collectionView, row, data in
+        let index = IndexPath(row: row, section: 0)
+        print(data)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteGridViewCell", for: index) as? FavoriteGridViewCell else { return FavoriteGridViewCell() }
+        cell.setData(with: data)
+
+        return cell
+      }.disposed(by: self.disposeBag)
+
+    self.rx.modelSelected(FavoriteGridViewCellData.self)
+      .map {
+        (orderCurrency: OrderCurrency.search(with: $0.ticker),
+         paymentCurrency: PaymentCurrency.search(with: $0.paymentCurrency))
+      }
+      .bind(to: viewModel.selectedCellData)
+      .disposed(by: self.disposeBag)
+  }
 }
