@@ -14,6 +14,8 @@ final class CoinDetailViewModel {
   
   let selectedTimeUnit = BehaviorRelay(value: TimeUnit.oneMinute)
   let tapSelectTimeUnitButton = PublishRelay<Void>()
+  let tapFavoriteToggleButton = PublishSubject<CoinDetailFavoriteButtonState>()
+  var favoriteToggleButtonState: CoinDetailFavoriteButtonState
   let coinChartViewModel = CoinChartViewModel()
   let currentPriceStatusViewModel = CurrentPriceStatusViewModel()
   let coinDetailSegmentedCategoryViewModel = CoinDetailSegmentedCategoryViewModel()
@@ -29,12 +31,35 @@ final class CoinDetailViewModel {
   init(useCase: CoinDetailUseCaseLogic = CoinDetailUseCase(),
        orderCurrency: OrderCurrency,
        paymentCurrency: PaymentCurrency) {
+    let currencyType = CoinItemCurrency(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
+
+    if PersistenceManager.isContained(with: currencyType) {
+      self.favoriteToggleButtonState = .favorite
+    } else {
+      self.favoriteToggleButtonState = .release
+    }
+
     self.tapSelectTimeUnitButton
       .bind { [weak self] in
         guard let self = self else { return }
         self.coinDetailCoordinator?.presentTimeUnitBottomSheet(with: self.selectedTimeUnit.value)
       }
       .disposed(by: self.disposeBag)
+
+    self.tapFavoriteToggleButton
+      .bind {
+        switch $0 {
+        case .favorite:
+          PersistenceManager.updateWith(item: currencyType, actionType: .add, completed: {
+            print($0)
+          })
+        case .release:
+          PersistenceManager.updateWith(item: currencyType, actionType: .remove) {
+            print($0)
+          }
+        }
+      }
+      .disposed(by: disposeBag)
     
     let candleStickResult = self.selectedTimeUnit
       .flatMapLatest {

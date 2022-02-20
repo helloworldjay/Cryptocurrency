@@ -15,7 +15,7 @@ import Then
 final class CoinDetailViewController: UIViewController {
 
   // MARK: Payload
-  
+
   struct Payload {
     let orderCurrency: OrderCurrency
     let paymentCurrency: PaymentCurrency
@@ -23,19 +23,20 @@ final class CoinDetailViewController: UIViewController {
 
 
   // MARK: Properties
-  
+
   let coinDetailViewModel: CoinDetailViewModel
   private let payload: Payload
   private let disposeBag: DisposeBag
-  
+
+  private var favoriteToggleButton: UIBarButtonItem
   private let coinDetailSegmentedCategoryView: CoinDetailSegmentedCategoryView
   private let orderBookListView: OrderBookListView
   private let timeUnitChangeButton: UIButton
   private let coinChartView: CoinChartView
   private let currentPriceStatusView: CurrentPriceStatusView
   private let transactionSheetView: TransactionSheetView
-  
-  
+
+
   // MARK: Initializers
 
   init(payload: Payload) {
@@ -43,13 +44,14 @@ final class CoinDetailViewController: UIViewController {
                                                    paymentCurrency: payload.paymentCurrency)
     self.payload = payload
     self.disposeBag = DisposeBag()
+    self.favoriteToggleButton = UIBarButtonItem()
     self.coinDetailSegmentedCategoryView = CoinDetailSegmentedCategoryView()
     self.orderBookListView = OrderBookListView()
     self.timeUnitChangeButton = UIButton()
     self.coinChartView = CoinChartView()
     self.currentPriceStatusView = CurrentPriceStatusView()
     self.transactionSheetView = TransactionSheetView()
-    
+
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -64,7 +66,7 @@ final class CoinDetailViewController: UIViewController {
     self.attribute()
     self.configure()
   }
-  
+
   private func layout() {
     [self.coinChartView,
      self.coinDetailSegmentedCategoryView,
@@ -72,22 +74,24 @@ final class CoinDetailViewController: UIViewController {
      self.currentPriceStatusView,
      self.orderBookListView,
      self.transactionSheetView].forEach { self.view.addSubview($0) }
-    
+
+    self.navigationItem.rightBarButtonItem = self.favoriteToggleButton
+
     self.currentPriceStatusView.snp.makeConstraints {
       $0.leading.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
     }
-    
+
     self.coinDetailSegmentedCategoryView.snp.makeConstraints {
       $0.leading.equalToSuperview().inset(10)
       $0.top.equalTo(self.currentPriceStatusView.snp.bottom).offset(10)
     }
-    
+
     self.coinChartView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview().inset(5)
       $0.top.equalTo(self.coinDetailSegmentedCategoryView.snp.bottom)
       $0.bottom.equalTo(self.view.safeAreaLayoutGuide)
     }
-    
+
     self.orderBookListView.snp.makeConstraints {
       $0.top.equalTo(self.coinDetailSegmentedCategoryView.snp.bottom).offset(10)
       $0.bottom.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
@@ -103,10 +107,19 @@ final class CoinDetailViewController: UIViewController {
       $0.bottom.equalTo(self.coinChartView.snp.top)
     }
   }
-  
+
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
+    self.favoriteToggleButton.tintColor = .signature
     self.coinChartView.isHidden = false
+
+    self.favoriteToggleButton.do {
+      if self.coinDetailViewModel.favoriteToggleButtonState == .favorite {
+        $0.image = UIImage(systemName: CoinDetailFavoriteButtonState.favorite.rawValue)
+      } else {
+        $0.image = UIImage(systemName: CoinDetailFavoriteButtonState.release.rawValue)
+      }
+    }
 
     self.timeUnitChangeButton.do {
       $0.setTitleColor(.darkGray, for: .normal)
@@ -114,7 +127,7 @@ final class CoinDetailViewController: UIViewController {
       $0.tintColor = .darkGray
     }
   }
-  
+
   private func configure() {
     self.bind()
   }
@@ -134,12 +147,32 @@ final class CoinDetailViewController: UIViewController {
       .bind {
         self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
       }.disposed(by: self.disposeBag)
-    
+
     self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel.category
       .bind(onNext: changeContentView)
       .disposed(by: self.disposeBag)
+
+    self.favoriteToggleButton.rx.tap
+      .scan(self.coinDetailViewModel.favoriteToggleButtonState) { lastState, _ in
+        switch lastState {
+        case .favorite:
+          return .release
+        case .release:
+          return .favorite
+        }
+      }
+      .bind(to: self.coinDetailViewModel.tapFavoriteToggleButton)
+      .disposed(by: self.disposeBag)
+
+    self.coinDetailViewModel.tapFavoriteToggleButton
+      .observe(on: MainScheduler.instance)
+      .bind { [weak self] in
+        guard let self = self else { return }
+        self.favoriteToggleButton.image = UIImage(systemName: $0.rawValue)
+      }
+      .disposed(by: self.disposeBag)
   }
-  
+
   private func changeContentView(by category: CoinDetailCategory) {
     switch category {
     case .orderBook:
