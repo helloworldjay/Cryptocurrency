@@ -91,6 +91,8 @@
 		C3781FC627B7EF28002586FA /* TransactionSheetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */; };
 		C3781FC827B7EF90002586FA /* TransactionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC727B7EF90002586FA /* TransactionSheetView.swift */; };
 		C3781FCA27B7F262002586FA /* TransactionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3781FC927B7F262002586FA /* TransactionSheetViewModel.swift */; };
+		C3C3DD6E27BF519C00052C5E /* SocketOrderBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3DD6D27BF519C00052C5E /* SocketOrderBookResponse.swift */; };
+		C3C3DD7027BF51DC00052C5E /* SocketTransactionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C3DD6F27BF51DC00052C5E /* SocketTransactionResponse.swift */; };
 		C3D0B31527B50CBC005D4D61 /* OrderBookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */; };
 		C3D0EF4227A1902100A5E4BE /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF4127A1902000A5E4BE /* String + Ext.swift */; };
 		C3D0EF6B27A7682400A5E4BE /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D0EF6A27A7682400A5E4BE /* ChartData.swift */; };
@@ -213,6 +215,8 @@
 		C3781FC527B7EF28002586FA /* TransactionSheetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewCell.swift; sourceTree = "<group>"; };
 		C3781FC727B7EF90002586FA /* TransactionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetView.swift; sourceTree = "<group>"; };
 		C3781FC927B7F262002586FA /* TransactionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSheetViewModel.swift; sourceTree = "<group>"; };
+		C3C3DD6D27BF519C00052C5E /* SocketOrderBookResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketOrderBookResponse.swift; sourceTree = "<group>"; };
+		C3C3DD6F27BF51DC00052C5E /* SocketTransactionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTransactionResponse.swift; sourceTree = "<group>"; };
 		C3D0B31427B50CBC005D4D61 /* OrderBookListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookListViewModel.swift; sourceTree = "<group>"; };
 		C3D0EF4127A1902000A5E4BE /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		C3D0EF6A27A7682400A5E4BE /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
@@ -313,13 +317,15 @@
 		48256CE827997415008F2AD1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				488F9E7B279BA68E0021A545 /* AllTickerResponse.swift */,
 				4882FA6E279D288100A25880 /* Currency.swift */,
 				48B60E4B279FBF3B000534EC /* TickerResponse.swift */,
-				C329A80927AB8DA600193A4D /* CandleStickResponse.swift */,
-				48A49ECE27A9772000DF5124 /* SocketTickerResponse.swift */,
+				488F9E7B279BA68E0021A545 /* AllTickerResponse.swift */,
 				C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */,
+				C329A80927AB8DA600193A4D /* CandleStickResponse.swift */,
 				C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */,
+				48A49ECE27A9772000DF5124 /* SocketTickerResponse.swift */,
+				C3C3DD6D27BF519C00052C5E /* SocketOrderBookResponse.swift */,
+				C3C3DD6F27BF51DC00052C5E /* SocketTransactionResponse.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1004,6 +1010,7 @@
 				48D6C3D727B69E79000CB5AB /* CoinListSortViewModel.swift in Sources */,
 				4881F42927979E6600472C90 /* ExchangeViewController.swift in Sources */,
 				C3781FCA27B7F262002586FA /* TransactionSheetViewModel.swift in Sources */,
+				C3C3DD6E27BF519C00052C5E /* SocketOrderBookResponse.swift in Sources */,
 				48FDCFFC279541E2002F0050 /* AppDelegate.swift in Sources */,
 				4885375A27A3D88400BE00FD /* ProductServiceCoordinator.swift in Sources */,
 				C329A88627AECEC100193A4D /* CoinPriceData.swift in Sources */,
@@ -1038,6 +1045,7 @@
 				B4A8E11A279D286200A2BFCD /* UISegmentedControl + Ext.swift in Sources */,
 				B4A8E118279BF15D00A2BFCD /* SegmentedCategoryView.swift in Sources */,
 				48AD306F27A974F100278D7A /* WebSocketManager.swift in Sources */,
+				C3C3DD7027BF51DC00052C5E /* SocketTransactionResponse.swift in Sources */,
 				48256CE227997298008F2AD1 /* CoinListViewModel.swift in Sources */,
 				C3D0EF7A27A7A42100A5E4BE /* TimeUnitBottomSheet.swift in Sources */,
 				C3D0EF9C27A8AC1F00A5E4BE /* CoinDetailViewModel.swift in Sources */,

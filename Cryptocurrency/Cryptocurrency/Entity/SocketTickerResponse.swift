@@ -48,11 +48,21 @@ struct SocketTickerData: Decodable, Equatable {
   let volume: String
   let sellVolume: String
   let buyVolume: String
-  let prevClosePrice: String
-  let chgRate: String
-  let chgAmt: String
+  let previousClosePrice: String
+  let changeRate: String
+  let changeAmount: String
   let volumePower: String
   let symbol: String
+
+  enum CodingKeys: String, CodingKey {
+    case tickType, date, time, openPrice
+    case closePrice, lowPrice, highPrice
+    case value, volume, sellVolume, buyVolume
+    case volumePower, symbol
+    case previousClosePrice = "prevClosePrice"
+    case changeRate = "chgRate"
+    case changeAmount = "chgAmt"
+  }
 
   var ticker: String? {
     guard let ticker = self.symbol.split(separator: "_").first else { return nil }
@@ -65,8 +75,8 @@ struct SocketTickerData: Decodable, Equatable {
       coinName: OrderCurrency.search(with: ticker).koreanName,
       ticker: ticker,
       currentPrice: self.closePrice,
-      priceChangedRatio: self.chgRate,
-      priceDifference: self.chgAmt,
+      priceChangedRatio: self.changeRate,
+      priceDifference: self.changeAmount,
       transactionAmount: value
     )
   }

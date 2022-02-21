@@ -9,12 +9,37 @@ import Foundation
 
 import Then
 
-struct OrderBookListViewCellData: Equatable {
+struct OrderBookListViewCellData {
   let orderBookCategory: OrderBookCategory
-  let orderPrice: String?
-  let orderQuantity: String?
+  let orderPrice: Double?
+  let orderQuantity: Double?
   let priceChangedRatio: Double?
 }
+
+
+// MARK: - Equatable
+
+extension OrderBookListViewCellData: Equatable {
+  static func == (lhs: OrderBookListViewCellData, rhs: OrderBookListViewCellData) -> Bool {
+    let lhsPrice = lhs.orderPrice ?? 0
+    let rhsPrice = rhs.orderPrice ?? 0
+    return lhsPrice == rhsPrice
+  }
+}
+
+
+// MARK: - Comparable
+
+extension OrderBookListViewCellData: Comparable {
+  static func < (lhs: OrderBookListViewCellData, rhs: OrderBookListViewCellData) -> Bool {
+    let lhsPrice = lhs.orderPrice ?? 0
+    let rhsPrice = rhs.orderPrice ?? 0
+    return lhsPrice < rhsPrice
+  }
+}
+
+
+// MARK: - Editing Logic
 
 extension OrderBookListViewCellData {
   func priceChangedRatioText() -> NSAttributedString? {

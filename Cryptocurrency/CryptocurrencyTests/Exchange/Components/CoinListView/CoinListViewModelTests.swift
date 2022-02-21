@@ -49,9 +49,9 @@ class CoinListViewModelTests: XCTestCase {
         volume: "31667.982402273023022265",
         sellVolume: "13969.678445247542400307",
         buyVolume: "17698.303957025480621958",
-        prevClosePrice: "3460000",
-        chgRate: "5.89",
-        chgAmt: "205000",
+        previousClosePrice: "3460000",
+        changeRate: "5.89",
+        changeAmount: "205000",
         volumePower: "126.69",
         symbol: "ETH_KRW"
       )

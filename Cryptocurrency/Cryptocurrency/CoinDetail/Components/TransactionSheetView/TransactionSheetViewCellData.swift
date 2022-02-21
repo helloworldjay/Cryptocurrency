@@ -12,6 +12,22 @@ struct TransactionSheetViewCellData {
   let transactionPrice: String
   let dateText: String
   let volume: Double
+
+  var timeInterval: Double? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
+    let convertedDate = dateFormatter.date(from: self.dateText)
+    return convertedDate?.timeIntervalSince1970
+  }
+
+  var timeText: String? {
+    guard let dateText = self.dateText
+            .split(separator: " ").last?
+            .split(separator: ".").first.map({ String($0) }) else {
+      return nil
+    }
+    return dateText
+  }
 }
 
 extension TransactionSheetViewCellData {

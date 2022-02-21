@@ -54,9 +54,9 @@ final class OrderBookListView: UITableView {
         return cell
       }.disposed(by: self.disposeBag)
 
-    viewModel.cellData
-      .drive { orderBookListViewCellData in
-        let centerIndex = orderBookListViewCellData.count / 2
+    viewModel.initialCellData
+      .bind { (asks, bids) in
+        let centerIndex = (asks.count + bids.count) / 2
         self.scrollToRow(at: IndexPath(row: centerIndex, section: .zero),
                          at: .middle, animated: false)
       }.disposed(by: self.disposeBag)

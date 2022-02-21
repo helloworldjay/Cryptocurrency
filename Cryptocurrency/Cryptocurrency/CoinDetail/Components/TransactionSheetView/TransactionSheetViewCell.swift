@@ -78,7 +78,7 @@ final class TransactionSheetViewCell: UITableViewCell {
   // MARK: Set CellData
 
   func setData(with data: TransactionSheetViewCellData) {
-    self.timeLabel.text = data.dateText
+    self.timeLabel.text = data.timeText
     self.priceLabel.attributedText = data.priceText()
     self.volumeLabel.attributedText = data.volumeText()
   }
