@@ -100,7 +100,16 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
     let favoriteCellData = userDefaultsData
       .map (useCase.favoriteGridCellData)
 
-    favoriteCellData
+    let filteredFavoriteCellData = Observable.combineLatest(
+      favoriteCellData,
+      self.exchangeSearchBarViewModel.orderCurrenciesToSearch
+    ) { favoriteCellData, filteredOrderCurrencies in
+      return favoriteCellData.filter { cellDatum in
+        filteredOrderCurrencies.values.contains(cellDatum.ticker)
+      }
+    }
+
+    filteredFavoriteCellData
       .bind(to: self.favoriteGridViewModel.favoriteGridCellData)
       .disposed(by: self.disposeBag)
 
