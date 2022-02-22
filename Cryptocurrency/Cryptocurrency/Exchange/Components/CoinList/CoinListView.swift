@@ -11,7 +11,13 @@ import RxSwift
 final class CoinListView: UITableView {
   
   // MARK: Properties
-  
+
+  let coinListSortView = CoinListSortView(
+    frame: CGRect(
+      origin: .zero,
+      size: CGSize(width: UIScreen.main.bounds.width, height: 30)
+    )
+  )
   private let disposeBag = DisposeBag()
   
 
@@ -29,6 +35,7 @@ final class CoinListView: UITableView {
   
   private func attribute() {
     self.backgroundColor = .white
+    self.tableHeaderView = self.coinListSortView
     self.register(CoinListViewCell.self, forCellReuseIdentifier: "CoinListViewCell")
     self.separatorStyle = .singleLine
     self.rowHeight = 60

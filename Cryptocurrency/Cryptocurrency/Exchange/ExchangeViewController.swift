@@ -51,6 +51,7 @@ final class ExchangeViewController: UIViewController {
   private func bind() {
     self.exchangeSearchBar.bind(viewModel: self.exchangeViewModel.exchangeSearchBarViewModel)
     self.coinListView.bind(viewModel: self.exchangeViewModel.coinListViewModel)
+    self.coinListView.coinListSortView.bind(coinListSortViewModel: self.exchangeViewModel.coinListSortViewModel)
     self.exchangeSegmentedCategoryView.bind(viewModel: self.exchangeViewModel.exchangeSegmentedCategoryViewModel)
   }
   

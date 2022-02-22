@@ -40,8 +40,38 @@ final class CoinDetailCoordinator: Coordinator {
       $0.coinDetailViewModel.coinDetailCoordinator = self
     }
     self.navigationController.pushViewController(coinDetailViewController, animated: false)
+
+    self.sendSocketTickerMessage()
+    self.sendSocketTransactionMessage()
+    self.sendSocketOrderBookMessage()
+  }
+
+
+  // MARK: Send Socket Message
+
+  private func sendSocketTickerMessage() {
+    WebSocketManager.shared.sendMessage(
+      socketType: .ticker,
+      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, and: self.paymentCurrency),
+      tickType: "24H"
+    )
   }
   
+  private func sendSocketTransactionMessage() {
+    WebSocketManager.shared.sendMessage(
+      socketType: .transaction,
+      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, and: self.paymentCurrency),
+      tickType: "24H"
+    )
+  }
+
+  private func sendSocketOrderBookMessage() {
+    WebSocketManager.shared.sendMessage(
+      socketType: .orderbookdepth,
+      symbols: WebSocketManager.shared.generateSymbol(with: self.orderCurrency, and: self.paymentCurrency),
+      tickType: "24H"
+    )
+  }
   
   // MARK: Presentations
   

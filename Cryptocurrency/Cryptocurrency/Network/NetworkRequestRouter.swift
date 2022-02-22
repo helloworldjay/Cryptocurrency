@@ -13,6 +13,8 @@ enum NetworkRequestRouter: URLRequestConvertible {
   
   case fetchTickerData(OrderCurrency, PaymentCurrency)
   case fetchCandleStickData(OrderCurrency, PaymentCurrency, TimeUnit)
+  case fetchOrderBookData(OrderCurrency, PaymentCurrency)
+  case fetchTransactionHistoryData(OrderCurrency, PaymentCurrency)
 
   private var baseURLString: String {
     return "https://api.bithumb.com/public"
@@ -28,18 +30,27 @@ enum NetworkRequestRouter: URLRequestConvertible {
       return "/ticker" + "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
     case .fetchCandleStickData(let orderCurrency, let paymentCurrency, let timeUnit):
       return "/candlestick/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)/\(timeUnit.rawValue)"
+    case .fetchOrderBookData(let orderCurrency, let paymentCurrency):
+      return "/orderbook/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
+    case .fetchTransactionHistoryData(let orderCurrency, let paymentCurrency):
+      return "/transaction_history/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
     }
   }
   
   func asURLRequest() throws -> URLRequest {
     let url = try (self.baseURLString + self.path).asURL()
-     var request = URLRequest(url: url)
-     request.httpMethod = self.HTTPMethod.rawValue
+    var request = URLRequest(url: url)
+    request.httpMethod = self.HTTPMethod.rawValue
+    request.cachePolicy = .reloadIgnoringCacheData
     
     switch self {
     case .fetchTickerData(_, _):
       return request
     case .fetchCandleStickData(_, _, _):
+      return request
+    case .fetchOrderBookData(_, _):
+      return request
+    case .fetchTransactionHistoryData(_, _):
       return request
     }
   }

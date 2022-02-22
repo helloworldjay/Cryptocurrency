@@ -17,7 +17,6 @@ final class CurrentPriceStatusView: UIView {
   private let priceChangedRatioLabel = UILabel()
   private let priceDifferenceLabel = UILabel()
   private let currentPriceLabel = UILabel()
-  
   private let disposeBag = DisposeBag()
   
   
@@ -66,14 +65,14 @@ final class CurrentPriceStatusView: UIView {
   // MARK: Binding
   
   func bind(viewModel: CurrentPriceStatusViewModel) {
-    viewModel.coinDetailData
+    viewModel.coinPriceData
       .bind(onNext: self.setCoinDetailData)
       .disposed(by: self.disposeBag)
   }
   
-  private func setCoinDetailData(with coinDetailData: CoinDetailData?) {
-    self.currentPriceLabel.attributedText = coinDetailData?.currentPriceText()
-    self.priceDifferenceLabel.attributedText = coinDetailData?.priceDifferenceText()
-    self.priceChangedRatioLabel.attributedText = coinDetailData?.priceChangedRatioText()
+  private func setCoinDetailData(with coinPriceData: CoinPriceData) {
+    self.currentPriceLabel.attributedText = coinPriceData.currentPriceText()
+    self.priceDifferenceLabel.attributedText = coinPriceData.priceDifferenceText()
+    self.priceChangedRatioLabel.attributedText = coinPriceData.priceChangedRatioText()
   }
 }

@@ -14,5 +14,8 @@ protocol CoinDetailSegmentedCategoryViewModelLogic {
 }
 
 final class CoinDetailSegmentedCategoryViewModel: CoinDetailSegmentedCategoryViewModelLogic {
+
+  // MARK: Properties
+
   let category = BehaviorRelay<CoinDetailCategory>(value: .orderBook)
 }

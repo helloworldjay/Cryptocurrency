@@ -18,12 +18,18 @@ protocol CoinListViewModelLogic {
 }
 
 final class CoinListViewModel: CoinListViewModelLogic {
+
+  // MARK: Properties
+
   let coinListCellData = PublishSubject<[CoinListViewCellData]>()
   let cellData: Driver<[CoinListViewCellData]>
   let selectedOrderCurrency = PublishSubject<OrderCurrency>()
   let socketText = PublishRelay<String>()
   let socketTickerData: Observable<SocketTickerData>
   private let disposeBag = DisposeBag()
+
+
+  // MARK: Initializers
 
   init() {
     self.cellData = self.coinListCellData
@@ -80,7 +86,7 @@ extension CoinListViewModel: WebSocketDelegate {
   private func sendSocketTickerMessage() {
     WebSocketManager.shared.sendMessage(
       socketType: SocketType.ticker,
-      symbols: WebSocketManager.shared.generateSymbol(with: .krw),
+      symbols: WebSocketManager.shared.generateAllSymbol(with: .krw),
       tickType: "24H"
     )
   }
