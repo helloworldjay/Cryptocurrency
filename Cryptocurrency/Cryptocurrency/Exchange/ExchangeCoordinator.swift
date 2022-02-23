@@ -34,7 +34,7 @@ final class ExchangeCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func exchangeNavigationController() -> UINavigationController {
     return self.navigationController
   }
 
