@@ -59,6 +59,14 @@ final class CurrentPriceStatusView: UIView {
   private func attribute() {
     self.currentPriceLabel.font = .systemFont(ofSize: 30)
     self.priceChangedRatioLabel.textAlignment = .left
+
+    self.initializeLabelText()
+  }
+
+  private func initializeLabelText() {
+    self.currentPriceLabel.text = "0.00"
+    self.priceDifferenceLabel.text = "0.00"
+    self.priceChangedRatioLabel.text = "0.00"
   }
   
   
