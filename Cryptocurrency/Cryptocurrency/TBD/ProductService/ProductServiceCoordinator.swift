@@ -26,7 +26,7 @@ final class ProductServiceCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func productServiceNavigationController() -> UINavigationController {
     return self.navigationController
   }
 }

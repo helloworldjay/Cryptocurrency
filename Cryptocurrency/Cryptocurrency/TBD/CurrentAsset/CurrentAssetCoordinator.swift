@@ -26,7 +26,7 @@ final class CurrentAssetCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func currentAssetNavigationController() -> UINavigationController {
     return self.navigationController
   }
 }

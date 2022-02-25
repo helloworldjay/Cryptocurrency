@@ -107,6 +107,7 @@ final class CoinDetailViewController: UIViewController {
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
     self.coinChartView.isHidden = false
+    self.view.backgroundColor = .white
 
     self.timeUnitChangeButton.do {
       $0.setTitleColor(.darkGray, for: .normal)

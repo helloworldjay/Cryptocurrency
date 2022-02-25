@@ -26,7 +26,7 @@ final class TransactionCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func transactionNavigationController() -> UINavigationController {
     return self.navigationController
   }
 }

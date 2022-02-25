@@ -18,12 +18,12 @@ final class ExchangeSearchBar: UISearchBar {
   
   private let giftButton = UIButton().then {
     $0.setImage(UIImage(systemName: "gift"), for: .normal)
-    $0.tintColor = .black
+    $0.tintColor = .white
   }
   
   private let bellButton = UIButton().then {
     $0.setImage(UIImage(systemName: "bell"), for: .normal)
-    $0.tintColor = .black
+    $0.tintColor = .white
   }
 
   private let exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
