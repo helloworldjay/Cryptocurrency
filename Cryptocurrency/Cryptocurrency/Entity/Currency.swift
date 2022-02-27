@@ -7,9 +7,18 @@
 
 import Foundation
 
-enum PaymentCurrency: String {
-  case krw = "KRW"
-  case btc = "BTC"
+enum PaymentCurrency {
+  case krw
+  case btc
+
+  var expression: String {
+    switch self {
+    case .krw:
+      return "KRW"
+    case .btc:
+      return "BTC"
+    }
+  }
 }
 
 enum OrderCurrency: CaseIterable {

@@ -61,13 +61,13 @@ final class WebSocketManager {
   }
 
   func generateSymbol(with orderCurrency: OrderCurrency, and paymentCurrency: PaymentCurrency) -> String {
-    return "\(orderCurrency.ticker)_\(paymentCurrency.rawValue)"
+    return "\(orderCurrency.ticker)_\(paymentCurrency.expression)"
   }
 
   func generateAllSymbol(with paymentCurreny: PaymentCurrency) -> String {
     return OrderCurrency.allCases
       .filter { $0 != .all }
-      .map { return $0.ticker + "_\(paymentCurreny.rawValue)" }
+      .map { return $0.ticker + "_\(paymentCurreny.expression)" }
       .joined(separator: "\", \"")
   }
 }
