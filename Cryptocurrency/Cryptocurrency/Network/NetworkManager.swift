@@ -115,20 +115,7 @@ struct NetworkManager: NetworkManagerLogic {
     return AllTickerResponse(
       status: decodedResponse.status,
       data: [
-        orderCurrency.rawValue:TickerData(
-          openingPrice: decodedResponse.data.openingPrice,
-          closingPrice: decodedResponse.data.closingPrice,
-          minPrice: decodedResponse.data.minPrice,
-          maxPrice: decodedResponse.data.maxPrice,
-          tradedUnit: decodedResponse.data.tradedUnit,
-          accTradeValue: decodedResponse.data.accTradeValue,
-          previousClosingPrice: decodedResponse.data.previousClosingPrice,
-          tradedUnit24H: decodedResponse.data.tradedUnit24H,
-          accTradeValue24H: decodedResponse.data.accTradeValue24H,
-          fluctate24H: decodedResponse.data.fluctate24H,
-          fluctateRate24H: decodedResponse.data.fluctateRate24H,
-          date: nil
-        )
+        orderCurrency.ticker: decodedResponse.data
       ]
     )
   }
