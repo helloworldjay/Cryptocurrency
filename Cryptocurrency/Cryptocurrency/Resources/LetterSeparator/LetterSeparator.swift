@@ -49,7 +49,7 @@ final class LetterSeparator {
   }
 
   func seperatedOrderCurrencyLetter(from orderCurrency: OrderCurrency) -> String {
-    return self.seperatedLetter(from: orderCurrency.rawValue)
+    return self.seperatedLetter(from: orderCurrency.ticker)
     + self.seperatedLetter(from: orderCurrency.koreanName)
   }
   

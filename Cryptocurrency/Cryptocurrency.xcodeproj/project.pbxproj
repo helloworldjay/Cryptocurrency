@@ -306,10 +306,10 @@
 		48256CE52799730A008F2AD1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				489FB623279C43F10078AEE1 /* APINetworkError.swift */,
 				48256CE62799732E008F2AD1 /* NetworkManager.swift */,
 				489FB61D279BF10B0078AEE1 /* NetworkRequestRouter.swift */,
 				48AD306E27A974F000278D7A /* WebSocketManager.swift */,
+				489FB623279C43F10078AEE1 /* APINetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

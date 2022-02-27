@@ -27,13 +27,13 @@ enum NetworkRequestRouter: URLRequestConvertible {
   private var path: String {
     switch self {
     case .fetchTickerData(let orderCurrency, let paymentCurrency):
-      return "/ticker" + "/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
+      return "/ticker" + "/\(orderCurrency.ticker)_\(paymentCurrency.rawValue)"
     case .fetchCandleStickData(let orderCurrency, let paymentCurrency, let timeUnit):
-      return "/candlestick/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)/\(timeUnit.rawValue)"
+      return "/candlestick/\(orderCurrency.ticker)_\(paymentCurrency.rawValue)/\(timeUnit.rawValue)"
     case .fetchOrderBookData(let orderCurrency, let paymentCurrency):
-      return "/orderbook/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
+      return "/orderbook/\(orderCurrency.ticker)_\(paymentCurrency.rawValue)"
     case .fetchTransactionHistoryData(let orderCurrency, let paymentCurrency):
-      return "/transaction_history/\(orderCurrency.rawValue)_\(paymentCurrency.rawValue)"
+      return "/transaction_history/\(orderCurrency.ticker)_\(paymentCurrency.rawValue)"
     }
   }
   
