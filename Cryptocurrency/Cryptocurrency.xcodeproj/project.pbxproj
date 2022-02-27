@@ -318,8 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				4882FA6E279D288100A25880 /* Currency.swift */,
-				48B60E4B279FBF3B000534EC /* TickerResponse.swift */,
 				488F9E7B279BA68E0021A545 /* AllTickerResponse.swift */,
+				48B60E4B279FBF3B000534EC /* TickerResponse.swift */,
 				C333E9DD27B2C40F004F92CE /* OrderBookResponse.swift */,
 				C329A80927AB8DA600193A4D /* CandleStickResponse.swift */,
 				C333E9DB27B2C3F2004F92CE /* TransactionHistoryResponse.swift */,

@@ -106,7 +106,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     let emptyCellData = self.emptyCellData(count: emptyCellDataCount, category: category)
     let orderBooks = (category == .ask) ? response.data.asks : response.data.bids
     var cellData = orderBooks
-      .sorted(by: >)
+      .sorted(by: self.orderBookPriceCriterion)
       .map { orderBook -> OrderBookListViewCellData? in
       guard let orderPrice = Double(orderBook.price),
             let quantity = Double(orderBook.quantity) else { return nil }
@@ -124,6 +124,14 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       cellData = cellData + emptyCellData
     }
     return cellData
+  }
+
+  private func orderBookPriceCriterion(lhs: OrderBook, rhs: OrderBook) -> Bool {
+    guard let lhsPrice = Double(lhs.price),
+          let rhsPrice = Double(rhs.price) else {
+            return false
+          }
+    return lhsPrice < rhsPrice
   }
 
   func orderBookListViewCellData(with response: SocketOrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData] {
