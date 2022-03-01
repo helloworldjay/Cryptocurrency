@@ -54,8 +54,8 @@ final class CoinListView: UITableView {
     viewModel.socketTickerData
       .subscribe(onNext: { socketTickerData in
         let numberOfRows = self.numberOfRows(inSection: 0)
-        guard let tickerName = socketTickerData.ticker,
-              let coinListViewCellData = socketTickerData.coinListViewCellData else { return }
+        guard let tickerName = viewModel.tickerName(from: socketTickerData),
+              let coinListViewCellData = viewModel.coinListViewCellData(from: socketTickerData) else { return }
         for row in 0..<numberOfRows {
           guard let cell = self.cellForRow(at: IndexPath(row: row, section: 0)) as? CoinListViewCell else { continue }
           if cell.hasSameTickerName(with: tickerName) {

@@ -15,6 +15,8 @@ protocol CoinListViewModelLogic {
   var selectedOrderCurrency: PublishSubject<OrderCurrency> { get }
   var socketText: PublishRelay<String> { get }
   var socketTickerData: Observable<SocketTickerData> { get }
+  func tickerName(from data: SocketTickerData) -> String?
+  func coinListViewCellData(from data: SocketTickerData) -> CoinListViewCellData?
 }
 
 final class CoinListViewModel: CoinListViewModelLogic {
@@ -47,6 +49,23 @@ final class CoinListViewModel: CoinListViewModelLogic {
       }
 
     WebSocketManager.shared.socket?.delegate = self
+  }
+
+  func tickerName(from data: SocketTickerData) -> String? {
+    guard let ticker = data.symbol.split(separator: "_").first else { return nil }
+    return String(ticker)
+  }
+
+  func coinListViewCellData(from data: SocketTickerData) -> CoinListViewCellData? {
+    guard let ticker = self.tickerName(from: data) else { return nil }
+    return CoinListViewCellData(
+      coinName: OrderCurrency.search(with: ticker).koreanName,
+      ticker: ticker,
+      currentPrice: data.closePrice,
+      priceChangedRatio: data.changeRate,
+      priceDifference: data.changeAmount,
+      transactionAmount: data.value
+    )
   }
 }
 
