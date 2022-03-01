@@ -233,7 +233,7 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
       return TransactionSheetViewCellData(
         orderBookCategory: category,
         transactionPrice: socketTransactionHistory.contractPrice,
-        dateText: socketTransactionHistory.contractDatemessage,
+        dateText: socketTransactionHistory.contractDateMessage,
         volume: volume
       )
     }.compactMap { $0 }

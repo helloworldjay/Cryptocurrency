@@ -40,7 +40,7 @@ struct TransactionHistoryData: Decodable {
   let unitsTraded: String
   let price: String
   let total: String
-  
+
   enum CodingKeys: String, CodingKey {
     case transactionDate = "transaction_date"
     case unitsTraded = "units_traded"

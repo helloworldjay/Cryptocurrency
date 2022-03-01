@@ -32,7 +32,7 @@ struct CandleStickResponse: Decodable {
 enum CandleStickData: Decodable {
   case timeInterval(Double)
   case information(String)
-  
+
   init(from decoder: Decoder) throws {
     let container = try decoder.singleValueContainer()
     if let time = try? container.decode(Double.self) {

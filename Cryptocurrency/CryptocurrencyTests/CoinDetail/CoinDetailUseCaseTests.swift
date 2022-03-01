@@ -324,7 +324,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
             contractPrice: "51224000",
             contractQuantity: "0.106",
             contractAmount: "5429744.000",
-            contractDatemessage: "2022-02-14 16:13:40.122852",
+            contractDateMessage: "2022-02-14 16:13:40.122852",
             upDown: "dn",
             symbol: "BTC_KRW"
           )
@@ -422,7 +422,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
             contractPrice: "51224000",
             contractQuantity: "0.106",
             contractAmount: "5429744.0",
-            contractDatemessage: "2022-02-14 16:13:40.122852",
+            contractDateMessage: "2022-02-14 16:13:40.122852",
             upDown: "dn",
             symbol: "BTC_KRW"
           )

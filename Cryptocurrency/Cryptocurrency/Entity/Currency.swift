@@ -594,7 +594,7 @@ enum OrderCurrency: CaseIterable {
       return "BTT"
     }
   }
-  
+
   var koreanName: String {
     switch self {
     case .btc:
@@ -986,7 +986,7 @@ enum OrderCurrency: CaseIterable {
     }
     return orderCurrencyDictionary
   }
-  
+
   static func search(with name: String) -> OrderCurrency {
     for orderCurrency in OrderCurrency.allCases {
       if orderCurrency.ticker == name {
@@ -995,7 +995,7 @@ enum OrderCurrency: CaseIterable {
     }
     return .all
   }
-  
+
   static func filteredCurrencies(with letter: String) -> [OrderCurrency : String] {
     if letter.isEmpty {
       return self.orderCurrencyDictionaryByTicker

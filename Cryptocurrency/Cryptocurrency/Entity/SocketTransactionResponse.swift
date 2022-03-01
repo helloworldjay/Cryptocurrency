@@ -37,14 +37,14 @@ struct SocketTransactionHistoryData: Decodable {
 
 struct SocketTransactionHistory: Decodable {
   let contractType, contractPrice, contractQuantity: String
-  let contractAmount, contractDatemessage, upDown, symbol: String
+  let contractAmount, contractDateMessage, upDown, symbol: String
 
   enum CodingKeys: String, CodingKey {
     case contractType = "buySellGb"
     case contractPrice = "contPrice"
     case contractQuantity = "contQty"
     case contractAmount = "contAmt"
-    case contractDatemessage = "contDtm"
+    case contractDateMessage = "contDtm"
     case upDown = "updn"
     case symbol
   }
