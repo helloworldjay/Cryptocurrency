@@ -61,6 +61,7 @@ final class CoinDetailViewModel: CoinDetailViewModelLogic {
     let chartData = candleStickResult
       .map(useCase.response)
       .filter { $0 != nil }
+      .map { $0! }
       .map(useCase.chartData)
 
     chartData

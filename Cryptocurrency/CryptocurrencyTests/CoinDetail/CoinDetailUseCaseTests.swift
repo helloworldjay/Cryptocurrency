@@ -103,17 +103,6 @@ final class CoinDetailUseCaseTests: XCTestCase {
     expect(tickerData).to(beNil())
   }
   
-  func test_CandleStickResponse가_nil일_경우_chart_data를_빈_배열로_반환() {
-    //given
-    let response: CandleStickResponse? = nil
-    
-    //when
-    let chartData = self.sut.chartData(response: response)
-    
-    //then
-    expect(chartData).to(beEmpty())
-  }
-  
   func test_AllTickerResponse가_nil이_아닐_경우_ticker_data를_반환() {
     //given
     let response: AllTickerResponse = AllTickerResponse(

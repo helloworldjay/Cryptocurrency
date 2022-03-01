@@ -17,7 +17,7 @@ protocol CoinDetailUseCaseLogic {
   func response<T: Decodable>(result: Result<T, APINetworkError>) -> T?
   func tickerData(response: AllTickerResponse?) -> CoinPriceData?
   func openingPrice(of data: CoinPriceData) -> Double
-  func chartData(response: CandleStickResponse?) -> [ChartData]
+  func chartData(response: CandleStickResponse) -> [ChartData]
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData]
   func transactionSheetViewCellData(response: TransactionHistoryResponse) -> [TransactionSheetViewCellData]
   func decodedSocketResponse<T: Decodable>(as type: T.Type, with data: Data) -> T?
@@ -93,11 +93,44 @@ final class CoinDetailUseCase: CoinDetailUseCaseLogic {
     return currentPrice - priceDifference
   }
 
-  func chartData(response: CandleStickResponse?) -> [ChartData] {
-    guard let response = response else {
-      return []
-    }
-    return response.chartData
+  func chartData(response: CandleStickResponse) -> [ChartData] {
+    var timeInterval = 0.0
+    var openPrice = 0.0
+    var closePrice = 0.0
+    var highPrice = 0.0
+    var lowPrice = 0.0
+    var exchangeVolume = 0.0
+
+    return response.data.map { candleStickData -> ChartData? in
+      for index in 0..<candleStickData.count {
+        guard let candleStickDatum = candleStickData[safe: index] else { return nil }
+
+        switch candleStickDatum {
+        case .timeInterval(let number):
+          timeInterval = number
+        case .information(let number):
+          guard let number = Double(number) else { return nil }
+
+          if index == 1 {
+            openPrice = number
+          } else if index == 2 {
+            closePrice = number
+          } else if index == 3 {
+            highPrice = number
+          } else if index == 4 {
+            lowPrice = number
+          } else if index == 5 {
+            exchangeVolume = number
+          }
+        }
+      }
+      return ChartData(timeInterval: timeInterval,
+                       openPrice: openPrice,
+                       closePrice: closePrice,
+                       highPrice: highPrice,
+                       lowPrice: lowPrice,
+                       exchangeVolume: exchangeVolume)
+    }.compactMap { $0 }
   }
 
   func orderBookListViewCellData(with response: OrderBookResponse, category: OrderBookCategory, openingPrice: Double) -> [OrderBookListViewCellData] {
