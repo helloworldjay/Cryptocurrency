@@ -12,13 +12,14 @@ final class ExchangeCoordinator: Coordinator {
   // MARK: Properties
 
   weak var parentCoordinator: Coordinator?
-  var childCoordinators: [Coordinator] = []
-  var navigationController: UINavigationController
+  var childCoordinators: [Coordinator]
+  private var navigationController: UINavigationController
 
 
   // MARK: Initializers
 
   init() {
+    self.childCoordinators = []
     self.navigationController = .init()
 
     self.start()
