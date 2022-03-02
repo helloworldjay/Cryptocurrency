@@ -22,8 +22,7 @@ final class ExchangeViewController: UIViewController {
   // MARK: Initializers
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    let categoryItems = ["원화", "BTC", "관심"]
-    self.exchangeSegmentedCategoryView = ExchangeSegmentedCategoryView(items: categoryItems, fontSize: 14)
+    self.exchangeSegmentedCategoryView = ExchangeSegmentedCategoryView()
     self.networkManager = NetworkManager()
     self.exchangeUseCase = ExchangeUseCase(network: self.networkManager)
     self.exchangeViewModel = ExchangeViewModel(useCase: self.exchangeUseCase)
