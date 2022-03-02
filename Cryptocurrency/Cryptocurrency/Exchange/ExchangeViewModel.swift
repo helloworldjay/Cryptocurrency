@@ -102,6 +102,7 @@ final class ExchangeViewModel: ExchangeViewModelLogic {
     }.flatMap { $0 }
     .map(self.exchangeUseCase.tickerResponse)
     .filter { $0 != nil }
+    .map { $0! }
     .map(self.exchangeUseCase.coinListCellData)
   }
 }
