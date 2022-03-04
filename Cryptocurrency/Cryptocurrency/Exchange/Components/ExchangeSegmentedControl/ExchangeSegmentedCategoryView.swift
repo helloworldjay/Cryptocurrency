@@ -12,7 +12,7 @@ import RxSwift
 
 final class ExchangeSegmentedCategoryView: SegmentedCategoryView {
 
-  // MARK: Register Segmented Index Matching to PaymentCurrency
+  // MARK: Segmented Index
 
   enum SegmentedViewIndex: Int, CaseIterable {
     case krw = 0

@@ -5,8 +5,6 @@
 //  Created by Seungjin Baek on 2022/01/30.
 //
 
-import Foundation
-
 import RxSwift
 
 protocol ExchangeSegmentedCategoryViewModelLogic {
