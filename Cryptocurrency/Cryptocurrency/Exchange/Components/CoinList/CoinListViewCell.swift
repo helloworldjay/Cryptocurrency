@@ -113,16 +113,29 @@ final class CoinListViewCell: UITableViewCell {
   }
   
   func setData(with data: CoinListViewCellData) {
-    self.transactionAmountLabel.text = data.transactionAmountText()
+    self.transactionAmountLabel.text = self.transactionAmountText(with: data)
     self.coinTitleLabel.text = data.coinName
     self.tickerLabel.text = data.ticker
-    self.currentPriceLabel.attributedText = data.currentPriceText()
-    self.priceDifferenceLabel.attributedText = data.priceDifferenceText()
-    self.priceChangedRatioLabel.attributedText = data.priceChangedRatioText()
+    self.currentPriceLabel.attributedText = self.currentPriceText(with: data)
+    self.priceDifferenceLabel.attributedText = self.priceDifferenceText(with: data)
+    self.priceChangedRatioLabel.attributedText = self.priceChangedRatioText(with: data)
   }
 
   func hasSameTickerName(with tickerName: String) -> Bool {
     guard let cellTickerName = self.tickerLabel.text else { return false }
     return cellTickerName == tickerName
+  }
+}
+
+
+// MARK: - Edit PriceData Text
+
+extension CoinListViewCell: PriceDataTextEditable {
+  func transactionAmountText(with cryptocurrencyPriceData: CoinListViewCellData) -> String? {
+    guard let transactionAmount = Double(cryptocurrencyPriceData.transactionAmount),
+          let millionUnitText = String(Int(floor(transactionAmount / 1000000))).convertToDecimalText() else {
+            return nil
+          }
+    return millionUnitText + "백만"
   }
 }
