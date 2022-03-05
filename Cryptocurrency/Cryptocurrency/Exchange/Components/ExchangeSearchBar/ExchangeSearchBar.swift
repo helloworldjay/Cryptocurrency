@@ -15,7 +15,7 @@ import Then
 final class ExchangeSearchBar: UISearchBar {
 
   //MARK:  Properties
-  
+
   private let giftButton = UIButton()
   private let bellButton = UIButton()
   private let exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
@@ -48,12 +48,12 @@ final class ExchangeSearchBar: UISearchBar {
 
     self.giftButton.do {
       $0.setImage(UIImage(systemName: "gift"), for: .normal)
-      $0.tintColor = .black
+      $0.tintColor = .white
     }
 
     self.bellButton.do {
       $0.setImage(UIImage(systemName: "bell"), for: .normal)
-      $0.tintColor = .black
+      $0.tintColor = .white
     }
   }
 

@@ -27,7 +27,7 @@ final class MoreOptionCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func moreOptionNavigationController() -> UINavigationController {
     return self.navigationController
   }
 }

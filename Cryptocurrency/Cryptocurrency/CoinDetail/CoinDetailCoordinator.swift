@@ -39,7 +39,7 @@ final class CoinDetailCoordinator: Coordinator {
     ).then {
       $0.coinDetailViewModel.coinDetailCoordinator = self
     }
-    self.navigationController.pushViewController(coinDetailViewController, animated: false)
+    self.navigationController.pushViewController(coinDetailViewController, animated: true)
 
     self.sendSocketTickerMessage()
     self.sendSocketTransactionMessage()

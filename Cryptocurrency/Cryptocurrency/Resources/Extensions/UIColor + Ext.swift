@@ -17,9 +17,9 @@ extension UIColor {
   
   static var signature: UIColor {
     return UIColor(
-      red: 227/255,
-      green: 129/255,
-      blue: 30/255,
+      red: 29/255,
+      green: 62/255,
+      blue: 146/255,
       alpha: 1
     )
   }
