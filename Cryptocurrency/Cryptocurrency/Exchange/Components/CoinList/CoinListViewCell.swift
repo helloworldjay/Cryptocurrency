@@ -21,12 +21,19 @@ final class CoinListViewCell: UITableViewCell {
   private let priceDifferenceLabel = UILabel()
   private let changesStackView = UIStackView()
   private let transactionAmountLabel = UILabel()
-  
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    
+
+
+  // MARK: Initializers
+
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+
     self.attribute()
     self.layout()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   private func attribute() {
