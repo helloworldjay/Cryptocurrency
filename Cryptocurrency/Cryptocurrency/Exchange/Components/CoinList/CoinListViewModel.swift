@@ -14,7 +14,7 @@ protocol CoinListViewModelLogic {
   var cellData: Driver<[CoinListViewCellData]> { get }
   var selectedOrderCurrency: PublishSubject<OrderCurrency> { get }
   var socketText: PublishRelay<String> { get }
-  var socketTickerData: Observable<SocketTickerData> { get }
+  var socketTickerData: Driver<SocketTickerData?> { get }
   func tickerName(from data: SocketTickerData) -> String?
   func coinListViewCellData(from data: SocketTickerData) -> CoinListViewCellData?
 }
@@ -27,7 +27,7 @@ final class CoinListViewModel: CoinListViewModelLogic {
   let cellData: Driver<[CoinListViewCellData]>
   let selectedOrderCurrency = PublishSubject<OrderCurrency>()
   let socketText = PublishRelay<String>()
-  let socketTickerData: Observable<SocketTickerData>
+  let socketTickerData: Driver<SocketTickerData?>
   private let disposeBag = DisposeBag()
 
 
@@ -46,7 +46,7 @@ final class CoinListViewModel: CoinListViewModelLogic {
       }.filter { $0 != nil }
       .map {
         $0!.content
-      }
+      }.asDriver(onErrorJustReturn: nil)
 
     WebSocketManager.shared.socket?.delegate = self
   }
@@ -76,7 +76,6 @@ extension CoinListViewModel: WebSocketDelegate {
   func didReceive(event: WebSocketEvent, client: WebSocket) {
     switch event {
     case .connected(let headers):
-      client.write(string: "이름")
       self.sendSocketTickerMessage()
       print("websocket is connected: \(headers)")
     case .disconnected(let reason, let code):
