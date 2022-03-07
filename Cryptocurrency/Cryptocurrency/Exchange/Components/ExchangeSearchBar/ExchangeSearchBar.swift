@@ -15,17 +15,9 @@ import Then
 final class ExchangeSearchBar: UISearchBar {
 
   //MARK:  Properties
-  
-  private let giftButton = UIButton().then {
-    $0.setImage(UIImage(systemName: "gift"), for: .normal)
-    $0.tintColor = .white
-  }
-  
-  private let bellButton = UIButton().then {
-    $0.setImage(UIImage(systemName: "bell"), for: .normal)
-    $0.tintColor = .white
-  }
 
+  private let giftButton = UIButton()
+  private let bellButton = UIButton()
   private let exchangeSearchBarViewModel = ExchangeSearchBarViewModel()
   private let disposeBag = DisposeBag()
 
@@ -35,7 +27,7 @@ final class ExchangeSearchBar: UISearchBar {
   override init(frame: CGRect) {
     super.init(frame: frame)
 
-    self.configure()
+    self.attribute()
     self.layout()
   }
   
@@ -43,7 +35,7 @@ final class ExchangeSearchBar: UISearchBar {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private func configure() {
+  private func attribute() {
     self.searchTextField.do {
       $0.layer.borderWidth = 2
       $0.layer.borderColor = UIColor.signature.cgColor
@@ -52,6 +44,16 @@ final class ExchangeSearchBar: UISearchBar {
       $0.backgroundColor = .systemBackground
       $0.placeholder = "코인명 또는 심볼 검색"
       $0.tintColor = UIColor.signature
+    }
+
+    self.giftButton.do {
+      $0.setImage(UIImage(systemName: "gift"), for: .normal)
+      $0.tintColor = .white
+    }
+
+    self.bellButton.do {
+      $0.setImage(UIImage(systemName: "bell"), for: .normal)
+      $0.tintColor = .white
     }
   }
 

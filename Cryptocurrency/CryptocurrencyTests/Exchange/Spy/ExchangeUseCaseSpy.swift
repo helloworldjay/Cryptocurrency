@@ -28,7 +28,7 @@ final class ExchangeUseCaseSpy: ExchangeUseCaseLogic {
 
   var coinListCellDataStub: [CoinListViewCellData] = []
 
-  func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData] {
+  func coinListCellData(response: AllTickerResponse) -> [CoinListViewCellData] {
     return self.coinListCellDataStub
   }
 

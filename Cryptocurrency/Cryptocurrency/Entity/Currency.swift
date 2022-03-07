@@ -7,202 +7,594 @@
 
 import Foundation
 
-enum PaymentCurrency: String {
-  case krw = "KRW"
-  case btc = "BTC"
+enum PaymentCurrency {
+  case krw
+  case btc
+
+  var expression: String {
+    switch self {
+    case .krw:
+      return "KRW"
+    case .btc:
+      return "BTC"
+    }
+  }
 }
 
-enum OrderCurrency: String, CaseIterable {
-  case all = "ALL"
-  case btc = "BTC"
-  case eth = "ETH"
-  case ltc = "LTC"
-  case etc = "ETC"
-  case xrp = "XRP"
-  case bch = "BCH"
-  case qtum = "QTUM"
-  case btg = "BTG"
-  case eos = "EOS"
-  case icx = "ICX"
-  case trx = "TRX"
-  case elf = "ELF"
-  case omg = "OMG"
-  case knc = "KNC"
-  case glm = "GLM"
-  case zil = "ZIL"
-  case waxp = "WAXP"
-  case powr = "POWR"
-  case lrc = "LRC"
-  case steem = "STEEM"
-  case strax = "STRAX"
-  case zrx = "ZRX"
-  case rep = "REP"
-  case xem = "XEM"
-  case snt = "SNT"
-  case ada = "ADA"
-  case ctxc = "CTXC"
-  case bat = "BAT"
-  case wtc = "WTC"
-  case theta = "THETA"
-  case loom = "LOOM"
-  case waves = "WAVES"
-  case dataTRUE = "TRUE"
-  case link = "LINK"
-  case enj = "ENJ"
-  case vet = "VET"
-  case mtl = "MTL"
-  case iost = "IOST"
-  case tmtg = "TMTG"
-  case qkc = "QKC"
-  case atolo = "ATOLO"
-  case amo = "AMO"
-  case bsv = "BSV"
-  case orbs = "ORBS"
-  case tfuel = "TFUEL"
-  case valor = "VALOR"
-  case con = "CON"
-  case ankr = "ANKR"
-  case mix = "MIX"
-  case cro = "CRO"
-  case fx = "FX"
-  case chr = "CHR"
-  case mbl = "MBL"
-  case mxc = "MXC"
-  case fct = "FCT"
-  case trv = "TRV"
-  case dad = "DAD"
-  case wom = "WOM"
-  case soc = "SOC"
-  case boa = "BOA"
-  case fleta = "FLETA"
-  case sxp = "SXP"
-  case cos = "COS"
-  case apix = "APIX"
-  case el = "EL"
-  case basic = "BASIC"
-  case hive = "HIVE"
-  case xpr = "XPR"
-  case vra = "VRA"
-  case fit = "FIT"
-  case egg = "EGG"
-  case bora = "BORA"
-  case arpa = "ARPA"
-  case ctc = "CTC"
-  case apm = "APM"
-  case ckb = "CKB"
-  case aergo = "AERGO"
-  case anw = "ANW"
-  case cennz = "CENNZ"
-  case evz = "EVZ"
-  case cyclub = "CYCLUB"
-  case srm = "SRM"
-  case qtcon = "QTCON"
-  case uni = "UNI"
-  case yfi = "YFI"
-  case uma = "UMA"
-  case aave = "AAVE"
-  case comp = "COMP"
-  case ren = "REN"
-  case bal = "BAL"
-  case rsr = "RSR"
-  case nmr = "NMR"
-  case rlc = "RLC"
-  case uos = "UOS"
-  case sand = "SAND"
-  case gom2 = "GOM2"
-  case ringx = "RINGX"
-  case bel = "BEL"
-  case obsr = "OBSR"
-  case orc = "ORC"
-  case pola = "POLA"
-  case awo = "AWO"
-  case adp = "ADP"
-  case dvi = "DVI"
-  case ghx = "GHX"
-  case mir = "MIR"
-  case mvc = "MVC"
-  case bly = "BLY"
-  case wozx = "WOZX"
-  case anv = "ANV"
-  case grt = "GRT"
-  case mm = "MM"
-  case biot = "BIOT"
-  case xno = "XNO"
-  case snx = "SNX"
-  case sofi = "SOFI"
-  case cola = "COLA"
-  case nu = "NU"
-  case oxt = "OXT"
-  case lina = "LINA"
-  case map = "MAP"
-  case aqt = "AQT"
-  case wiken = "WIKEN"
-  case ctsi = "CTSI"
-  case mana = "MANA"
-  case lpt = "LPT"
-  case mkr = "MKR"
-  case sushi = "SUSHI"
-  case asm = "ASM"
-  case pundix = "PUNDIX"
-  case celr = "CELR"
-  case lf = "LF"
-  case arw = "ARW"
-  case msb = "MSB"
-  case rly = "RLY"
-  case ocean = "OCEAN"
-  case bfc = "BFC"
-  case alice = "ALICE"
-  case coti = "COTI"
-  case cake = "CAKE"
-  case bnt = "BNT"
-  case xvs = "XVS"
-  case chz = "CHZ"
-  case axs = "AXS"
-  case dao = "DAO"
-  case dai = "DAI"
-  case matic = "MATIC"
-  case woo = "WOO"
-  case bake = "BAKE"
-  case velo = "VELO"
-  case bcd = "BCD"
-  case xlm = "XLM"
-  case gxc = "GXC"
-  case vsys = "VSYS"
-  case ipx = "IPX"
-  case wicc = "WICC"
-  case ont = "ONT"
-  case luna = "LUNA"
-  case aion = "AION"
-  case meta = "META"
-  case klay = "KLAY"
-  case ong = "ONG"
-  case algo = "ALGO"
-  case jst = "JST"
-  case xtz = "XTZ"
-  case mlk = "MLK"
-  case wemix = "WEMIX"
-  case dot = "DOT"
-  case atom = "ATOM"
-  case ssx = "SSX"
-  case temco = "TEMCO"
-  case hibs = "HIBS"
-  case burger = "BURGER"
-  case doge = "DOGE"
-  case ksm = "KSM"
-  case ctk = "CTK"
-  case xym = "XYM"
-  case bnb = "BNB"
-  case nft = "NFT"
-  case sun = "SUN"
-  case xec = "XEC"
-  case pci = "PCI"
-  case sol = "SOL"
-  case med = "MED"
-  case inch1 = "1INCH"
-  case boba = "BOBA"
-  case gala = "GALA"
-  case btt = "BTT"
-  
+enum OrderCurrency: CaseIterable {
+  case all
+  case btc
+  case eth
+  case ltc
+  case etc
+  case xrp
+  case bch
+  case qtum
+  case btg
+  case eos
+  case icx
+  case trx
+  case elf
+  case omg
+  case knc
+  case glm
+  case zil
+  case waxp
+  case powr
+  case lrc
+  case steem
+  case strax
+  case zrx
+  case rep
+  case xem
+  case snt
+  case ada
+  case ctxc
+  case bat
+  case wtc
+  case theta
+  case loom
+  case waves
+  case dataTRUE
+  case link
+  case enj
+  case vet
+  case mtl
+  case iost
+  case tmtg
+  case qkc
+  case atolo
+  case amo
+  case bsv
+  case orbs
+  case tfuel
+  case valor
+  case con
+  case ankr
+  case mix
+  case cro
+  case fx
+  case chr
+  case mbl
+  case mxc
+  case fct
+  case trv
+  case dad
+  case wom
+  case soc
+  case boa
+  case fleta
+  case sxp
+  case cos
+  case apix
+  case el
+  case basic
+  case hive
+  case xpr
+  case vra
+  case fit
+  case egg
+  case bora
+  case arpa
+  case ctc
+  case apm
+  case ckb
+  case aergo
+  case anw
+  case cennz
+  case evz
+  case cyclub
+  case srm
+  case qtcon
+  case uni
+  case yfi
+  case uma
+  case aave
+  case comp
+  case ren
+  case bal
+  case rsr
+  case nmr
+  case rlc
+  case uos
+  case sand
+  case gom2
+  case ringx
+  case bel
+  case obsr
+  case orc
+  case pola
+  case awo
+  case adp
+  case dvi
+  case ghx
+  case mir
+  case mvc
+  case bly
+  case wozx
+  case anv
+  case grt
+  case mm
+  case biot
+  case xno
+  case snx
+  case sofi
+  case cola
+  case nu
+  case oxt
+  case lina
+  case map
+  case aqt
+  case wiken
+  case ctsi
+  case mana
+  case lpt
+  case mkr
+  case sushi
+  case asm
+  case pundix
+  case celr
+  case lf
+  case arw
+  case msb
+  case rly
+  case ocean
+  case bfc
+  case alice
+  case coti
+  case cake
+  case bnt
+  case xvs
+  case chz
+  case axs
+  case dao
+  case dai
+  case matic
+  case woo
+  case bake
+  case velo
+  case bcd
+  case xlm
+  case gxc
+  case vsys
+  case ipx
+  case wicc
+  case ont
+  case luna
+  case aion
+  case meta
+  case klay
+  case ong
+  case algo
+  case jst
+  case xtz
+  case mlk
+  case wemix
+  case dot
+  case atom
+  case ssx
+  case temco
+  case hibs
+  case burger
+  case doge
+  case ksm
+  case ctk
+  case xym
+  case bnb
+  case nft
+  case sun
+  case xec
+  case pci
+  case sol
+  case med
+  case inch1
+  case boba
+  case gala
+  case btt
+
+  var ticker: String {
+    switch self {
+    case .all:
+      return "ALL"
+    case .btc:
+      return "BTC"
+    case .eth:
+      return "ETH"
+    case .ltc:
+      return "LTC"
+    case .etc:
+      return "ETC"
+    case .xrp:
+      return "XRP"
+    case .bch:
+      return "BCH"
+    case .qtum:
+      return "QTUM"
+    case .btg:
+      return "BTG"
+    case .eos:
+      return "EOS"
+    case .icx:
+      return "ICX"
+    case .trx:
+      return "TRX"
+    case .elf:
+      return "ELF"
+    case .omg:
+      return "OMG"
+    case .knc:
+      return "KNC"
+    case .glm:
+      return "GLM"
+    case .zil:
+      return "ZIL"
+    case .waxp:
+      return "WAXP"
+    case .powr:
+      return "POWR"
+    case .lrc:
+      return "LRC"
+    case .steem:
+      return "STEEM"
+    case .strax:
+      return "STRAX"
+    case .zrx:
+      return "ZRX"
+    case .rep:
+      return "REP"
+    case .xem:
+      return "XEM"
+    case .snt:
+      return "SNT"
+    case .ada:
+      return "ADA"
+    case .ctxc:
+      return "CTXC"
+    case .bat:
+      return "BAT"
+    case .wtc:
+      return "WTC"
+    case .theta:
+      return "THETA"
+    case .loom:
+      return "LOOM"
+    case .waves:
+      return "WAVES"
+    case .dataTRUE:
+      return "TRUE"
+    case .link:
+      return "LINK"
+    case .enj:
+      return "ENJ"
+    case .vet:
+      return "VET"
+    case .mtl:
+      return "MTL"
+    case .iost:
+      return "IOST"
+    case .tmtg:
+      return "TMTG"
+    case .qkc:
+      return "QKC"
+    case .atolo:
+      return "ATOLO"
+    case .amo:
+      return "AMO"
+    case .bsv:
+      return "BSV"
+    case .orbs:
+      return "ORBS"
+    case .tfuel:
+      return "TFUEL"
+    case .valor:
+      return "VALOR"
+    case .con:
+      return "CON"
+    case .ankr:
+      return "ANKR"
+    case .mix:
+      return "MIX"
+    case .cro:
+      return "CRO"
+    case .fx:
+      return "FX"
+    case .chr:
+      return "CHR"
+    case .mbl:
+      return "MBL"
+    case .mxc:
+      return "MXC"
+    case .fct:
+      return "FCT"
+    case .trv:
+      return "TRV"
+    case .dad:
+      return "DAD"
+    case .wom:
+      return "WOM"
+    case .soc:
+      return "SOC"
+    case .boa:
+      return "BOA"
+    case .fleta:
+      return "FLETA"
+    case .sxp:
+      return "SXP"
+    case .cos:
+      return "COS"
+    case .apix:
+      return "APIX"
+    case .el:
+      return "EL"
+    case .basic:
+      return "BASIC"
+    case .hive:
+      return "HIVE"
+    case .xpr:
+      return "XPR"
+    case .vra:
+      return "VRA"
+    case .fit:
+      return "FIT"
+    case .egg:
+      return "EGG"
+    case .bora:
+      return "BORA"
+    case .arpa:
+      return "ARPA"
+    case .ctc:
+      return "CTC"
+    case .apm:
+      return "APM"
+    case .ckb:
+      return "CKB"
+    case .aergo:
+      return "AERGO"
+    case .anw:
+      return "ANW"
+    case .cennz:
+      return "CENNZ"
+    case .evz:
+      return "EVZ"
+    case .cyclub:
+      return "CYCLUB"
+    case .srm:
+      return "SRM"
+    case .qtcon:
+      return "QTCON"
+    case .uni:
+      return "UNI"
+    case .yfi:
+      return "YFI"
+    case .uma:
+      return "UMA"
+    case .aave:
+      return "AAVE"
+    case .comp:
+      return "COMP"
+    case .ren:
+      return "REN"
+    case .bal:
+      return "BAL"
+    case .rsr:
+      return "RSR"
+    case .nmr:
+      return "NMR"
+    case .rlc:
+      return "RLC"
+    case .uos:
+      return "UOS"
+    case .sand:
+      return "SAND"
+    case .gom2:
+      return "GOM2"
+    case .ringx:
+      return "RINGX"
+    case .bel:
+      return "BEL"
+    case .obsr:
+      return "OBSR"
+    case .orc:
+      return "ORC"
+    case .pola:
+      return "POLA"
+    case .awo:
+      return "AWO"
+    case .adp:
+      return "ADP"
+    case .dvi:
+      return "DVI"
+    case .ghx:
+      return "GHX"
+    case .mir:
+      return "MIR"
+    case .mvc:
+      return "MVC"
+    case .bly:
+      return "BLY"
+    case .wozx:
+      return "WOZX"
+    case .anv:
+      return "ANV"
+    case .grt:
+      return "GRT"
+    case .mm:
+      return "MM"
+    case .biot:
+      return "BIOT"
+    case .xno:
+      return "XNO"
+    case .snx:
+      return "SNX"
+    case .sofi:
+      return "SOFI"
+    case .cola:
+      return "COLA"
+    case .nu:
+      return "NU"
+    case .oxt:
+      return "OXT"
+    case .lina:
+      return "LINA"
+    case .map:
+      return "MAP"
+    case .aqt:
+      return "AQT"
+    case .wiken:
+      return "WIKEN"
+    case .ctsi:
+      return "CTSI"
+    case .mana:
+      return "MANA"
+    case .lpt:
+      return "LPT"
+    case .mkr:
+      return "MKR"
+    case .sushi:
+      return "SUSHI"
+    case .asm:
+      return "ASM"
+    case .pundix:
+      return "PUNDIX"
+    case .celr:
+      return "CELR"
+    case .lf:
+      return "LF"
+    case .arw:
+      return "ARW"
+    case .msb:
+      return "MSB"
+    case .rly:
+      return "RLY"
+    case .ocean:
+      return "OCEAN"
+    case .bfc:
+      return "BFC"
+    case .alice:
+      return "ALICE"
+    case .coti:
+      return "COTI"
+    case .cake:
+      return "CAKE"
+    case .bnt:
+      return "BNT"
+    case .xvs:
+      return "XVS"
+    case .chz:
+      return "CHZ"
+    case .axs:
+      return "AXS"
+    case .dao:
+      return "DAO"
+    case .dai:
+      return "DAI"
+    case .matic:
+      return "MATIC"
+    case .woo:
+      return "WOO"
+    case .bake:
+      return "BAKE"
+    case .velo:
+      return "VELO"
+    case .bcd:
+      return "BCD"
+    case .xlm:
+      return "XLM"
+    case .gxc:
+      return "GXC"
+    case .vsys:
+      return "VSYS"
+    case .ipx:
+      return "IPX"
+    case .wicc:
+      return "WICC"
+    case .ont:
+      return "ONT"
+    case .luna:
+      return "LUNA"
+    case .aion:
+      return "AION"
+    case .meta:
+      return "META"
+    case .klay:
+      return "KLAY"
+    case .ong:
+      return "ONG"
+    case .algo:
+      return "ALGO"
+    case .jst:
+      return "JST"
+    case .xtz:
+      return "XTZ"
+    case .mlk:
+      return "MLK"
+    case .wemix:
+      return "WEMIX"
+    case .dot:
+      return "DOT"
+    case .atom:
+      return "ATOM"
+    case .ssx:
+      return "SSX"
+    case .temco:
+      return "TEMCO"
+    case .hibs:
+      return "HIBS"
+    case .burger:
+      return "BURGER"
+    case .doge:
+      return "DOGE"
+    case .ksm:
+      return "KSM"
+    case .ctk:
+      return "CTK"
+    case .xym:
+      return "XYM"
+    case .bnb:
+      return "BNB"
+    case .nft:
+      return "NFT"
+    case .sun:
+      return "SUN"
+    case .xec:
+      return "XEC"
+    case .pci:
+      return "PCI"
+    case .sol:
+      return "SOL"
+    case .med:
+      return "MED"
+    case .inch1:
+      return "1INCH"
+    case .boba:
+      return "BOBA"
+    case .gala:
+      return "GALA"
+    case .btt:
+      return "BTT"
+    }
+  }
+
   var koreanName: String {
     switch self {
     case .btc:
@@ -590,20 +982,20 @@ enum OrderCurrency: String, CaseIterable {
     var orderCurrencyDictionary: [OrderCurrency : String] = [:]
 
     self.allCases.forEach {
-      orderCurrencyDictionary[$0] = $0.rawValue
+      orderCurrencyDictionary[$0] = $0.ticker
     }
     return orderCurrencyDictionary
   }
-  
+
   static func search(with name: String) -> OrderCurrency {
     for orderCurrency in OrderCurrency.allCases {
-      if orderCurrency.rawValue == name {
+      if orderCurrency.ticker == name {
         return orderCurrency
       }
     }
     return .all
   }
-  
+
   static func filteredCurrencies(with letter: String) -> [OrderCurrency : String] {
     if letter.isEmpty {
       return self.orderCurrencyDictionaryByTicker
@@ -616,7 +1008,7 @@ enum OrderCurrency: String, CaseIterable {
 
     OrderCurrency.allCases.forEach {
       if letterSeparator.seperatedOrderCurrencyLetter(from: $0).contains(separatedLetter) {
-        currencies[$0] = $0.rawValue
+        currencies[$0] = $0.ticker
       }
     }
     return currencies

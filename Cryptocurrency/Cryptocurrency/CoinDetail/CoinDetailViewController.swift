@@ -133,7 +133,7 @@ final class CoinDetailViewController: UIViewController {
 
     self.coinDetailViewModel.selectedTimeUnit
       .bind {
-        self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
+        self.timeUnitChangeButton.setTitle($0.expression, for: .normal)
       }.disposed(by: self.disposeBag)
     
     self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel.category

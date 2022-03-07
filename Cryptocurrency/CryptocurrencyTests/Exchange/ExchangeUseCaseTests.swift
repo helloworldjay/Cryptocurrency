@@ -39,20 +39,9 @@ class ExchangeUseCaseTests: XCTestCase {
     expect(entity!.status).to(equal("0000"))
   }
   
-  func test_entity가_nil일_경우_cell_data를_빈_배열로_반환() {
-    //given
-    let response: AllTickerResponse? = nil
-    
-    //when
-    let cellData = self.sut.coinListCellData(response: response)
-    
-    //then
-    expect(cellData).to(beEmpty())
-  }
-  
   func test_entity가_nil이_아닐_경우_cell_data를_반환() {
     //given
-    let response: AllTickerResponse? = AllTickerResponse(
+    let response: AllTickerResponse = AllTickerResponse(
       status: "0000",
       data: [
         "BTC": TickerData(

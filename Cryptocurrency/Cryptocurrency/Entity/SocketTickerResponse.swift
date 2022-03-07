@@ -63,21 +63,4 @@ struct SocketTickerData: Decodable, Equatable {
     case changeRate = "chgRate"
     case changeAmount = "chgAmt"
   }
-
-  var ticker: String? {
-    guard let ticker = self.symbol.split(separator: "_").first else { return nil }
-    return String(ticker)
-  }
-
-  var coinListViewCellData: CoinListViewCellData? {
-    guard let ticker = self.ticker else { return nil }
-    return CoinListViewCellData(
-      coinName: OrderCurrency.search(with: ticker).koreanName,
-      ticker: ticker,
-      currentPrice: self.closePrice,
-      priceChangedRatio: self.changeRate,
-      priceDifference: self.changeAmount,
-      transactionAmount: value
-    )
-  }
 }
