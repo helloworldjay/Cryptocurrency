@@ -12,14 +12,19 @@ final class ExchangeCoordinator: Coordinator {
   // MARK: Properties
 
   weak var parentCoordinator: Coordinator?
-  var childCoordinators: [Coordinator] = []
-  var navigationController: UINavigationController
+  var childCoordinators: [Coordinator]
+  private var navigationController: UINavigationController
 
 
   // MARK: Initializers
 
   init() {
-    self.navigationController = .init()
+    self.childCoordinators = []
+    self.navigationController = .init().then {
+      $0.navigationBar.tintColor = .white
+      $0.navigationBar.backgroundColor = .signature
+      $0.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+    }
 
     self.start()
   }
@@ -34,7 +39,7 @@ final class ExchangeCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func exchangeNavigationController() -> UINavigationController {
     return self.navigationController
   }
 

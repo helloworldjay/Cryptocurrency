@@ -16,7 +16,7 @@
 
 ## App 상세 설명
 
-- [Project 상세 설명 페이지](https://apricot-cesium-747.notion.site/25c8b023c725419cbbdfca5a2ff5554f?v=9d89ee7deb314e768a16deec35015df9)
+- [Project 상세 설명 페이지](https://apricot-cesium-747.notion.site/1d8a2e903aae4c98af9e33396274dc8c)
 
 ## Conventions
 

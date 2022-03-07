@@ -15,7 +15,7 @@ class SegmentedCategoryViewTests: XCTestCase {
   var sut: ExchangeSegmentedCategoryView!
 
   override func setUp() {
-    self.sut = ExchangeSegmentedCategoryView(items: ["원화", "BTC", "관심"], fontSize: 14)
+    self.sut = ExchangeSegmentedCategoryView()
   }
 
   func test_index를_이용해_Segment의_PaymentCurrency_타입을_확인() {

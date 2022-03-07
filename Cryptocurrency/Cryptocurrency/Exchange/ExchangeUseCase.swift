@@ -10,7 +10,7 @@ import RxSwift
 protocol ExchangeUseCaseLogic {
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>>
   func tickerResponse(result: Result<AllTickerResponse, APINetworkError>) -> AllTickerResponse?
-  func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData]
+  func coinListCellData(response: AllTickerResponse) -> [CoinListViewCellData]
   func sortByCoinName(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
   func sortByCurrentPrice(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
   func sortByPriceChangedRatio(coinListCellData: [CoinListViewCellData], isDescending: Bool) -> [CoinListViewCellData]
@@ -18,36 +18,33 @@ protocol ExchangeUseCaseLogic {
 }
 
 struct ExchangeUseCase: ExchangeUseCaseLogic {
-  
+
   // MARK: Properties
-  
-  let network: NetworkManagerLogic
-  
-  
+
+  private let network: NetworkManagerLogic
+
+
   // MARK: Initializers
-  
+
   init(network: NetworkManagerLogic) {
     self.network = network
   }
-  
-  
-  // MARK: Network Logics
+
+
+  // MARK: Networking Logics
 
   func fetchTicker(orderCurrency: OrderCurrency, paymentCurrency: PaymentCurrency) -> Single<Result<AllTickerResponse, APINetworkError>> {
     return self.network.fetchTickerData(orderCurrency: orderCurrency, paymentCurrency: paymentCurrency)
   }
-  
+
   func tickerResponse(result: Result<AllTickerResponse, APINetworkError>) -> AllTickerResponse? {
     guard case .success(let value) = result else {
       return nil
     }
     return value
   }
-  
-  func coinListCellData(response: AllTickerResponse?) -> [CoinListViewCellData] {
-    guard let response = response else {
-      return []
-    }
+
+  func coinListCellData(response: AllTickerResponse) -> [CoinListViewCellData] {
     return response.data
       .map {
         return CoinListViewCellData(

@@ -42,7 +42,7 @@ final class AppCoordinator: Coordinator {
     let exchangeCoordinator = ExchangeCoordinator()
     exchangeCoordinator.parentCoordinator = self
     self.childCoordinators.append(exchangeCoordinator)
-    let exchangeViewController = exchangeCoordinator.pushNavigationController().then {
+    let exchangeViewController = exchangeCoordinator.exchangeNavigationController().then {
       $0.tabBarItem = UITabBarItem(
         title: "거래소",
         image: UIImage(systemName: "alternatingcurrent"),
@@ -53,7 +53,7 @@ final class AppCoordinator: Coordinator {
     let productServiceCoordinator = ProductServiceCoordinator()
     productServiceCoordinator.parentCoordinator = self
     self.childCoordinators.append(productServiceCoordinator)
-    let productServiceViewController = productServiceCoordinator.pushNavigationController().then {
+    let productServiceViewController = productServiceCoordinator.productServiceNavigationController().then {
       $0.tabBarItem = UITabBarItem(
         title: "상품/서비스",
         image: UIImage(systemName: "cart"),
@@ -64,7 +64,7 @@ final class AppCoordinator: Coordinator {
     let currentAssetCoordinator = CurrentAssetCoordinator()
     currentAssetCoordinator.parentCoordinator = self
     self.childCoordinators.append(currentAssetCoordinator)
-    let currentAssetViewController = currentAssetCoordinator.pushNavigationController().then {
+    let currentAssetViewController = currentAssetCoordinator.currentAssetNavigationController().then {
       $0.tabBarItem = UITabBarItem(
         title: "자산현황",
         image: UIImage(systemName: "wallet.pass"),
@@ -75,7 +75,7 @@ final class AppCoordinator: Coordinator {
     let transactionCoordinator = TransactionCoordinator()
     transactionCoordinator.parentCoordinator = self
     self.childCoordinators.append(transactionCoordinator)
-    let transactionViewController = transactionCoordinator.pushNavigationController().then {
+    let transactionViewController = transactionCoordinator.transactionNavigationController().then {
       $0.tabBarItem = UITabBarItem(
         title: "입출금",
         image: UIImage(systemName: "arrow.up.right.and.arrow.down.left.rectangle"),
@@ -86,7 +86,7 @@ final class AppCoordinator: Coordinator {
     let moreOptionCoordinator = MoreOptionCoordinator()
     moreOptionCoordinator.parentCoordinator = self
     self.childCoordinators.append(moreOptionCoordinator)
-    let moreOptionViewController = moreOptionCoordinator.pushNavigationController().then {
+    let moreOptionViewController = moreOptionCoordinator.moreOptionNavigationController().then {
       $0.tabBarItem = UITabBarItem(
         title: "더보기",
         image: UIImage(systemName: "ellipsis"),

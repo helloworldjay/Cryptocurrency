@@ -114,7 +114,7 @@ final class TimeUnitBottomSheet: BottomSheet {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "timeUnitListViewCell") else {
           return UITableViewCell()
         }
-        cell.textLabel?.text = element.rawValue
+        cell.textLabel?.text = element.expression
         cell.textLabel?.font = .systemFont(ofSize: 15)
         cell.tintColor = .signature
         if row == self.timeUnitViewModel.tapListView.value.row {

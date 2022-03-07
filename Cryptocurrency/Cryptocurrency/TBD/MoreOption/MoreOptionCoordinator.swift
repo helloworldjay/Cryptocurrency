@@ -9,10 +9,11 @@ import UIKit
 
 final class MoreOptionCoordinator: Coordinator {
   weak var parentCoordinator: Coordinator?
-  var childCoordinators: [Coordinator] = []
-  var navigationController: UINavigationController
+  var childCoordinators: [Coordinator]
+  private var navigationController: UINavigationController
 
   init() {
+    self.childCoordinators = []
     self.navigationController = .init()
 
     self.start()
@@ -26,7 +27,7 @@ final class MoreOptionCoordinator: Coordinator {
     )
   }
 
-  func pushNavigationController() -> UINavigationController {
+  func moreOptionNavigationController() -> UINavigationController {
     return self.navigationController
   }
 }

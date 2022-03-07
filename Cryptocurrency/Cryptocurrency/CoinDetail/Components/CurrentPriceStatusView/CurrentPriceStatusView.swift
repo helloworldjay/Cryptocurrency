@@ -59,6 +59,14 @@ final class CurrentPriceStatusView: UIView {
   private func attribute() {
     self.currentPriceLabel.font = .systemFont(ofSize: 30)
     self.priceChangedRatioLabel.textAlignment = .left
+
+    self.initializeLabelText()
+  }
+
+  private func initializeLabelText() {
+    self.currentPriceLabel.text = "0.00"
+    self.priceDifferenceLabel.text = "0.00"
+    self.priceChangedRatioLabel.text = "0.00"
   }
   
   
@@ -71,8 +79,13 @@ final class CurrentPriceStatusView: UIView {
   }
   
   private func setCoinDetailData(with coinPriceData: CoinPriceData) {
-    self.currentPriceLabel.attributedText = coinPriceData.currentPriceText()
-    self.priceDifferenceLabel.attributedText = coinPriceData.priceDifferenceText()
-    self.priceChangedRatioLabel.attributedText = coinPriceData.priceChangedRatioText()
+    self.currentPriceLabel.attributedText = self.currentPriceText(with: coinPriceData)
+    self.priceDifferenceLabel.attributedText = self.priceDifferenceText(with: coinPriceData)
+    self.priceChangedRatioLabel.attributedText = self.priceChangedRatioText(with: coinPriceData)
   }
 }
+
+
+// MARK: - Edit PriceData Text
+
+extension CurrentPriceStatusView: PriceDataTextEditable { }

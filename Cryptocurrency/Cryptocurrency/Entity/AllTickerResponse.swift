@@ -39,7 +39,7 @@ struct TickerData: Decodable {
   let tradedUnit, accTradeValue, previousClosingPrice, tradedUnit24H: String
   let accTradeValue24H, fluctate24H, fluctateRate24H: String
   let date: String?
-  
+
   enum CodingKeys: String, CodingKey {
     case openingPrice = "opening_price"
     case closingPrice = "closing_price"

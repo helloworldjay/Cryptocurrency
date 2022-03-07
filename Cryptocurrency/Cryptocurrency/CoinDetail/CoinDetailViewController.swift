@@ -107,6 +107,7 @@ final class CoinDetailViewController: UIViewController {
   private func attribute() {
     self.title = payload.orderCurrency.koreanName
     self.coinChartView.isHidden = false
+    self.view.backgroundColor = .white
 
     self.timeUnitChangeButton.do {
       $0.setTitleColor(.darkGray, for: .normal)
@@ -132,7 +133,7 @@ final class CoinDetailViewController: UIViewController {
 
     self.coinDetailViewModel.selectedTimeUnit
       .bind {
-        self.timeUnitChangeButton.setTitle($0.rawValue, for: .normal)
+        self.timeUnitChangeButton.setTitle($0.expression, for: .normal)
       }.disposed(by: self.disposeBag)
     
     self.coinDetailViewModel.coinDetailSegmentedCategoryViewModel.category

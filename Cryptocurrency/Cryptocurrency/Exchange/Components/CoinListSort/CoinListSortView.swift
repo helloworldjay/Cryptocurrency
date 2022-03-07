@@ -20,9 +20,7 @@ final class CoinListSortView: UITableViewHeaderFooterView {
   let sortByCurrentPriceButton = SortButton()
   let sortByPriceChangedRatioButton = SortButton()
   let sortByTransactionAmountButton = SortButton()
-  let divider = UIView().then {
-    $0.backgroundColor = .gray
-  }
+  let divider = UIView()
   private let disposeBag = DisposeBag()
 
 
@@ -73,6 +71,10 @@ final class CoinListSortView: UITableViewHeaderFooterView {
       self.sortByPriceChangedRatioButton
     ].forEach {
       self.setUnselectedButton(with: $0)
+    }
+
+    self.divider.do {
+      $0.backgroundColor = .gray
     }
   }
 

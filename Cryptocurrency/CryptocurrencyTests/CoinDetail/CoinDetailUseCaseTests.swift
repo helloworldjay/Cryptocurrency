@@ -103,17 +103,6 @@ final class CoinDetailUseCaseTests: XCTestCase {
     expect(tickerData).to(beNil())
   }
   
-  func test_CandleStickResponse가_nil일_경우_chart_data를_빈_배열로_반환() {
-    //given
-    let response: CandleStickResponse? = nil
-    
-    //when
-    let chartData = self.sut.chartData(response: response)
-    
-    //then
-    expect(chartData).to(beEmpty())
-  }
-  
   func test_AllTickerResponse가_nil이_아닐_경우_ticker_data를_반환() {
     //given
     let response: AllTickerResponse = AllTickerResponse(
@@ -335,7 +324,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
             contractPrice: "51224000",
             contractQuantity: "0.106",
             contractAmount: "5429744.000",
-            contractDatemessage: "2022-02-14 16:13:40.122852",
+            contractDateMessage: "2022-02-14 16:13:40.122852",
             upDown: "dn",
             symbol: "BTC_KRW"
           )
@@ -433,7 +422,7 @@ final class CoinDetailUseCaseTests: XCTestCase {
             contractPrice: "51224000",
             contractQuantity: "0.106",
             contractAmount: "5429744.0",
-            contractDatemessage: "2022-02-14 16:13:40.122852",
+            contractDateMessage: "2022-02-14 16:13:40.122852",
             upDown: "dn",
             symbol: "BTC_KRW"
           )
